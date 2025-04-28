@@ -5,9 +5,10 @@ import React from "react";
 import "./App.css";
 import AppLayout from "./Components/Layout/AppLayout";
 import Dashboard from "./Pages/Dashboard";
-import previewDocument from "./Pages/previewDocument";
 import Documents from "./Pages/Documents";
 import { Navigate } from "react-router-dom";
+import PreviewDocument from "./Pages/previewDocument";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -25,7 +26,7 @@ function App() {
         },
         {
           path: "previewDocument",
-          element: <previewDocument />,
+          element: <PreviewDocument />,
         },
         {
           path: "documents",
