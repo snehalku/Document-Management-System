@@ -55,7 +55,7 @@ const Sidebar = () => {
         <Box
           sx={{
             mt: 3,
-            // ml: 4,
+            ml: 4,
             fontFamily: "Poppins-Bold, Helvetica",
             fontWeight: 700,
             fontSize: "18px",
