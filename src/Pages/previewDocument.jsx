@@ -36,7 +36,7 @@ const PreviewDocument = () => {
     <Box
       sx={{
         bgcolor: "#f2f4f5",
-        minHeight: "88vh",
+        // minHeight: "88vh",
         py: 4,
         pl: "70px",
         pt: "12px",
@@ -55,43 +55,43 @@ const PreviewDocument = () => {
           p: 4,
           borderRadius: "10px",
           // mb: 3,
-          maxHeight: "78vh",
-          overflow: "auto",
+          // maxHeight: "78vh",
+          // overflow: "auto",
+         
         }}
       >
         <Grid container spacing={2}>
-          {/* Left Side - Invoice Image */}
-          <Grid item xs={7}>
-            <Paper
-              elevation={3}
-              sx={{
-                height: "65vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {/* Replace src with your invoice image */}
-              <img
-                src="src/assets/invoice.jpg"
-                alt="Invoice"
-                style={{ maxWidth: "100%", maxHeight: "100%" }}
-              />
-            </Paper>
-          </Grid>
+            {/* Left Side - Invoice Image */}
+            <Grid item size={7} >
+              <Paper
+                elevation={3}
+                sx={{
+                  height: "60vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  src="src/assets/invoice.jpg"
+                  alt="Invoice"
+                  style={{ maxWidth: "100%", maxHeight: "100%" }}
+                />
+              </Paper>
+            </Grid>
 
-          {/* Right Side - Form Fields */}
-          <Grid item xs={5}>
-            <Paper
-              elevation={3}
-              sx={{
-                height: "60vh",
-                p: 2,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
+            {/* Right Side - Form Fields */}
+            <Grid item size={5}>
+              <Paper
+                elevation={3}
+                sx={{
+                  height: "55vh",
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
               <Box>
                 <Typography variant="h6" mb={2}>
                   Invoice Details
@@ -163,9 +163,18 @@ const PreviewDocument = () => {
           justifyContent="flex-end"
           sx={{ mt: 2 }}
         >
-          <Button
-            variant="contained"
-            color="success"
+         <Button
+          variant="contained"
+          sx={{
+            borderRadius: "10px",
+            bgcolor: "#99CAFF",
+            color: "black",
+            px: 3,
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Shadow added here
+            "&:hover": {
+              bgcolor: "#7bb8ff",
+            },
+          }}
             onClick={() => {
               // navigate("/project1");
               navigate("/documents");
@@ -173,7 +182,20 @@ const PreviewDocument = () => {
           >
             Save
           </Button>
-          <Button variant="outlined" color="error">
+          <Button
+          variant="outlined"
+          sx={{
+            borderRadius: "10px",
+            bgcolor: "#f2f4f5",
+            px: 3,
+            color: "black",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+            border: "none", // 👈 override outlined variant's default border
+            "&:hover": {
+              bgcolor: "#e5e7e8",
+              border: "none", // 👈 make sure hover state also has no border
+            },
+          }}>
             Discard
           </Button>
         </Stack>
