@@ -37,7 +37,7 @@ const pump_report = "your-pdf-url-or-path"; // Replace with your actual file
 const projectData = [
   {
     id: 1,
-    documentName: "Invoice",
+    documentName: "March Invoice #1042",
     applicationName: "Account",
     // transactionId: "TXN123",
     transactionId: "123456",
@@ -49,61 +49,12 @@ const projectData = [
   },
   {
     id: 2,
-    documentName: "Bank Statement",
+    documentName: "Bank Statement April 2025",
     applicationName: "Account",
     transactionId: "TXN124",
     transactionName: "Document Uploaded",
     transactionDate: "2025-04-26",
     tooltip: "Click to preview document",
-
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
-  },
-  {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
-
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
-  },
-  {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
-
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
-  },
-  {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
-
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
-  },
-  {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
-
     // documentId: "DOC457",
     // documentName: "Agreement #789",
   },
@@ -215,7 +166,7 @@ const Dashboard = () => {
           //   justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by all parameters..."
+            placeholder="Search by All..."
             variant="outlined"
             sx={{
               width: "50%",
