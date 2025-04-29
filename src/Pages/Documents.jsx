@@ -12,7 +12,12 @@ import {
   Typography,
   Stack,
   IconButton,
+  Pagination,
+  PaginationItem,
   Tooltip,
+  Button,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -20,6 +25,11 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import InfoIcon from "@mui/icons-material/Info"; // for View Details button
 
 import invoice from "../assets/invoice.jpg";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import NavigateBefore from "@mui/icons-material/NavigateBefore";
+import NavigateNext from "@mui/icons-material/NavigateNext";
 
 const pump_report = "your-pdf-url-or-path"; // Replace with your actual file
 const projectData = [
@@ -59,6 +69,22 @@ const projectData = [
 ];
 
 const Documents = () => {
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(5); // default value
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = (value) => {
+    if (value) {
+      setSelectedValue(value);
+    }
+    setAnchorEl(null);
+  };
+
   return (
     <Box
       sx={{
@@ -124,26 +150,75 @@ const Documents = () => {
           <Table>
             <TableHead>
               <TableRow sx={{ bgcolor: "#99caff" }}>
-                {[
-                  "Id",
-                  "Document Name",
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Id</Typography>
+                    {/* No ArrowDropDown for Id */}
+                  </Stack>
+                </TableCell>
 
-                  "Application Name",
-                  "Transaction ID",
-                  "Transaction Name",
-                  "Transaction Date",
-                  "Document ID",
-                  "Category",
-                  "Sub Category",
-                  "Action",
-                ].map((header) => (
-                  <TableCell key={header}>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">{header}</Typography>
-                      {header !== "Action" && <ArrowDropDown />}
-                    </Stack>
-                  </TableCell>
-                ))}
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Document Name</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Application Name</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Transaction ID</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Transaction Name</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Transaction Date</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Document ID</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Category</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Sub Category</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Action</Typography>
+                    {/* No ArrowDropDown for Action */}
+                  </Stack>
+                </TableCell>
               </TableRow>
             </TableHead>
 
@@ -208,6 +283,117 @@ const Documents = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+          <Pagination
+            count={10}
+            shape="rounded"
+            renderItem={(item) => {
+              if (item.type === "previous") {
+                return (
+                  <PaginationItem
+                    component={IconButton}
+                    sx={{
+                      border: "1px solid #a7a6a6",
+
+                      borderRadius: "5px",
+
+                      bgcolor: "#f2f4f5",
+
+                      mx: 0.5,
+                    }}
+                    {...item}
+                    icon={<NavigateBefore fontSize="small" />}
+                  />
+                );
+              }
+
+              if (item.type === "next") {
+                return (
+                  <PaginationItem
+                    component={IconButton}
+                    sx={{
+                      border: "1px solid #a7a6a6",
+
+                      borderRadius: "5px",
+
+                      bgcolor: "#f2f4f5",
+
+                      mx: 0.5,
+                    }}
+                    {...item}
+                    icon={<NavigateNext fontSize="small" />}
+                  />
+                );
+              }
+
+              return (
+                <PaginationItem
+                  {...item}
+                  sx={{
+                    border: "1px solid #a7a6a6",
+
+                    borderRadius: "5px",
+
+                    bgcolor: item.selected ? "#99caff" : "#f2f4f5",
+
+                    mx: 0.5,
+
+                    color: item.selected ? "black" : "#747474",
+                  }}
+                />
+              );
+            }}
+          />
+          {/* <Button
+            variant="outlined"
+            size="small"
+            sx={{
+              ml: 1,
+ 
+              border: "1px solid #a7a6a6",
+ 
+              borderRadius: "5px",
+ 
+              bgcolor: "#f2f4f5",
+ 
+              color: "#747474",
+ 
+              fontSize: "10px",
+ 
+              textTransform: "none",
+            }}
+          >
+            10 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
+          </Button> */}
+          <Box>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={handleClick}
+              sx={{
+                ml: 1,
+                border: "1px solid #a7a6a6",
+                borderRadius: "5px",
+                bgcolor: "#f2f4f5",
+                color: "#747474",
+                fontSize: "10px",
+                textTransform: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              {selectedValue} / Pages{" "}
+              <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
+            </Button>
+
+            <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
+              <MenuItem onClick={() => handleClose(10)}>5/page</MenuItem>
+              <MenuItem onClick={() => handleClose(20)}>10/page</MenuItem>
+              <MenuItem onClick={() => handleClose(50)}>15/page</MenuItem>
+            </Menu>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
