@@ -71,54 +71,6 @@ const projectData = [
     // documentId: "DOC457",
     // documentName: "Agreement #789",
   },
-  {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
-
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
-  },
-  {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
-
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
-  },
-  {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
-
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
-  },
-  {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
-
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
-  },
 ];
 
 const Dashboard = () => {
