@@ -13,16 +13,21 @@ import { useNavigate } from "react-router-dom";
 
 const categories = [
   { value: "Finance", label: "Finance" },
-  { value: "Operations", label: "Operations" },
+  { value: "Account", label: "Account" },
+  { value: "Sales", label: "Sales" },
 ];
 
 const subcategories = {
   Finance: [
-    { value: "Invoice", label: "Invoice" },
+    { value: "Checklist", label: "Checklist" },
     { value: "Receipt", label: "Receipt" },
   ],
-  Operations: [
-    { value: "Report", label: "Report" },
+ Account: [
+    { value: "Bank Statement", label: "Bank Statement" },
+    { value: "Invoice", label: "Invoice" },
+  ],
+ Sales: [
+    { value: "Tax", label: "Tax" },
     { value: "Checklist", label: "Checklist" },
   ],
 };
@@ -66,7 +71,7 @@ const PreviewDocument = () => {
               <Paper
                 elevation={3}
                 sx={{
-                  height: "60vh",
+                  height: "62vh",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -85,7 +90,7 @@ const PreviewDocument = () => {
               <Paper
                 elevation={3}
                 sx={{
-                  height: "55vh",
+                  height: "57vh",
                   p: 2,
                   display: "flex",
                   flexDirection: "column",
@@ -137,16 +142,18 @@ const PreviewDocument = () => {
                 </TextField>
 
                 <TextField
-                  label="Invoice No"
+                  // label="Invoice No"
                   defaultValue="123456"
+                  label="Transaction ID"
                   fullWidth
                   InputLabelProps={{ shrink: true }}
                   sx={{ mb: 2 }}
                 />
 
                 <TextField
-                  label="Customer ID"
+                  // label="Customer ID"
                   defaultValue="123"
+                  label="Document ID"
                   fullWidth
                   InputLabelProps={{ shrink: true }}
                   sx={{ mb: 2 }}
