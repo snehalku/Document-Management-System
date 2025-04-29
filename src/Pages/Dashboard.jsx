@@ -39,7 +39,8 @@ const projectData = [
     id: 1,
     documentName: "Invoice",
     applicationName: "Account",
-    transactionId: "TXN123",
+    // transactionId: "TXN123",
+    transactionId: "123456",
     transactionName: "Payment Received",
     transactionDate: "2025-04-25",
     tooltip: "Click to preview document",
@@ -134,7 +135,7 @@ const Dashboard = () => {
           </Typography>
 
           {/* Select Dropdown using only MUI components */}
-          <FormControl sx={{ minWidth: 200 }}>
+          <FormControl sx={{ minWidth: 150 }}>
             <Select
               labelId="application-select-label"
               id="application-select"
