@@ -55,7 +55,6 @@ const projectData = [
     transactionName: "Document Uploaded",
     transactionDate: "2025-04-26",
     tooltip: "Click to preview document",
-
     // documentId: "DOC457",
     // documentName: "Agreement #789",
   },
