@@ -37,7 +37,7 @@ const pump_report = "your-pdf-url-or-path"; // Replace with your actual file
 const projectData = [
   {
     id: 1,
-    documentName: "Invoice",
+    documentName: "March Invoice #1042",
     applicationName: "Account",
     // transactionId: "TXN123",
     transactionId: "123456",
@@ -49,7 +49,7 @@ const projectData = [
   },
   {
     id: 2,
-    documentName: "Bank Statement",
+    documentName: "Bank Statement April 2025",
     applicationName: "Account",
     transactionId: "TXN124",
     transactionName: "Document Uploaded",
@@ -166,7 +166,7 @@ const Dashboard = () => {
           //   justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by all parameters..."
+            placeholder="Search by All..."
             variant="outlined"
             sx={{
               width: "50%",
