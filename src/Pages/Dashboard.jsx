@@ -39,7 +39,8 @@ const projectData = [
     id: 1,
     documentName: "Invoice",
     applicationName: "Account",
-    transactionId: "TXN123",
+    // transactionId: "TXN123",
+    transactionId: "123456",
     transactionName: "Payment Received",
     transactionDate: "2025-04-25",
     tooltip: "Click to preview document",
@@ -53,6 +54,54 @@ const projectData = [
     transactionId: "TXN124",
     transactionName: "Document Uploaded",
     transactionDate: "2025-04-26",
+    tooltip: "Click to preview document",
+
+    // documentId: "DOC457",
+    // documentName: "Agreement #789",
+  },
+  {
+    id: 3,
+    documentName: "Tax Document",
+    applicationName: "Account",
+    transactionId: "TXN122",
+    transactionName: "Document Uploaded",
+    transactionDate: "2025-04-27",
+    tooltip: "Click to preview document",
+
+    // documentId: "DOC457",
+    // documentName: "Agreement #789",
+  },
+  {
+    id: 3,
+    documentName: "Tax Document",
+    applicationName: "Account",
+    transactionId: "TXN122",
+    transactionName: "Document Uploaded",
+    transactionDate: "2025-04-27",
+    tooltip: "Click to preview document",
+
+    // documentId: "DOC457",
+    // documentName: "Agreement #789",
+  },
+  {
+    id: 3,
+    documentName: "Tax Document",
+    applicationName: "Account",
+    transactionId: "TXN122",
+    transactionName: "Document Uploaded",
+    transactionDate: "2025-04-27",
+    tooltip: "Click to preview document",
+
+    // documentId: "DOC457",
+    // documentName: "Agreement #789",
+  },
+  {
+    id: 3,
+    documentName: "Tax Document",
+    applicationName: "Account",
+    transactionId: "TXN122",
+    transactionName: "Document Uploaded",
+    transactionDate: "2025-04-27",
     tooltip: "Click to preview document",
 
     // documentId: "DOC457",
@@ -134,7 +183,7 @@ const Dashboard = () => {
           </Typography>
 
           {/* Select Dropdown using only MUI components */}
-          <FormControl sx={{ minWidth: 200 }}>
+          <FormControl sx={{ minWidth: 150 }}>
             <Select
               labelId="application-select-label"
               id="application-select"
@@ -208,11 +257,23 @@ const Dashboard = () => {
 
         <TableContainer
           component={Paper}
-          sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
+          sx={{
+            mb: 4,
+            borderRadius: "10px 10px 0 0",
+            maxHeight: 550, // set height as needed
+            overflowY: "auto",
+          }}
         >
           <Table>
             <TableHead>
-              <TableRow sx={{ bgcolor: "#99caff" }}>
+              <TableRow
+                sx={{
+                  position: "sticky",
+                  top: 0,
+                  zIndex: 1,
+                  backgroundColor: "#99caff",
+                }}
+              >
                 <TableCell>
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <Typography fontWeight="bold">Id</Typography>
