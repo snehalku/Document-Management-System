@@ -158,42 +158,42 @@ const Documents = () => {
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" >
+                  <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Document Name</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" >
+                  <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Application Name</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" >
+                  <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Transaction ID</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" >
+                  <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Transaction Name</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" >
+                  <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Transaction Date</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" >
+                  <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Document ID</Typography>
                     <ArrowDropDown />
                   </Stack>
@@ -214,7 +214,7 @@ const Documents = () => {
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" >
+                  <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Action</Typography>
                     {/* No ArrowDropDown for Action */}
                   </Stack>
