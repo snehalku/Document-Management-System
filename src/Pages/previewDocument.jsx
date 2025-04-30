@@ -34,8 +34,8 @@ const subcategories = {
 
 const PreviewDocument = () => {
   const navigate = useNavigate();
-  const [category, setCategory] = React.useState("");
-  const [subcategory, setSubcategory] = React.useState("");
+  const [category, setCategory] = React.useState("Account");
+  const [subcategory, setSubcategory] = React.useState("Invoice");
 
   return (
     <Box
@@ -104,9 +104,10 @@ const PreviewDocument = () => {
 
                 <TextField
                   label="Date"
-                  type="date"
+                  defaultValue="22/9/2020"
+                  // type="date"
                   fullWidth
-                  InputLabelProps={{ shrink: true }}
+                  // InputLabelProps={{ shrink: true }}
                   sx={{ mb: 2 }}
                 />
 
