@@ -124,7 +124,7 @@ const Sidebar = () => {
               <AssignmentIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Preview Document 1"
+              primary="Preview Document"
               primaryTypographyProps={{
                 fontFamily: "Poppins-Medium, Helvetica",
                 fontWeight: 500,

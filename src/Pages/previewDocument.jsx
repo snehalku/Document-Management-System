@@ -62,7 +62,7 @@
 //           // mb: 3,
 //           // maxHeight: "78vh",
 //           // overflow: "auto",
-         
+
 //         }}
 //       >
 //         <Grid container spacing={2}>
@@ -270,7 +270,6 @@
 //   const [selectedDoc, setSelectedDoc] = useState("");
 //   const [category, setCategory] = useState("");
 
- 
 //   // Load document list when date changes
 //   useEffect(() => {
 //     const list = mockDocuments[selectedDate] || [];
@@ -343,14 +342,13 @@
 //               elevation={2}
 //             >
 //               <iframe
-//                 src={`${pan_card}#toolbar=0`}  
+//                 src={`${pan_card}#toolbar=0`}
 //                 title="PAN Card"
 //                 width="100%"
 //                 height="100%"
 //               />
 //             </Paper>
 //           </Grid>
-
 
 //           {/* Right - Metadata and Actions */}
 //           <Grid item size={5}>
@@ -508,7 +506,10 @@ const PreviewKycPage = () => {
   const handleSearch = () => {
     const results = mockCustomerDocs.filter(
       (doc) =>
-        (!searchCustomer || doc.customerName.toLowerCase().includes(searchCustomer.toLowerCase())) &&
+        (!searchCustomer ||
+          doc.customerName
+            .toLowerCase()
+            .includes(searchCustomer.toLowerCase())) &&
         (!selectedDate || doc.date === selectedDate)
     );
     setSearchResults(results);
@@ -521,7 +522,7 @@ const PreviewKycPage = () => {
       setConfirmedDocIds([...confirmedDocIds, docId]);
     }
   };
-  
+
   const handleSelectSearchDoc = (doc) => {
     setSelectedDoc(doc);
     setCategory(doc.category || "");
@@ -533,7 +534,9 @@ const PreviewKycPage = () => {
   const handleSave = () => {
     if (!selectedDoc || !docIdentifier || !category || !subcategory) return;
 
-    const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.docName.split(".").pop()}`;
+    const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.docName
+      .split(".")
+      .pop()}`;
 
     console.log("Saving to DB:", {
       original: selectedDoc.docName,
@@ -556,7 +559,17 @@ const PreviewKycPage = () => {
     setSelectedDocName("");
   };
   return (
-    <Box sx={{ bgcolor: "#f2f4f5", py: 4, pl: "70px", pt: "12px", pr: "24px", boxSizing: "border-box", overflow: "hidden" }}>
+    <Box
+      sx={{
+        bgcolor: "#f2f4f5",
+        py: 4,
+        pl: "70px",
+        pt: "12px",
+        pr: "24px",
+        boxSizing: "border-box",
+        overflow: "hidden",
+      }}
+    >
       <Typography variant="h5" fontWeight="bold" mb={3}>
         KYC Document Verification
       </Typography>
@@ -595,46 +608,54 @@ const PreviewKycPage = () => {
         <Paper sx={{ p: 2, mb: 3 }}>
           {/* <Typography variant="h6" gutterBottom>Search Results</Typography> */}
           <TableContainer
-          component={Paper}
-          sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
-        >
-          <Table>
-            <TableHead>
-              <TableRow sx={{ bgcolor: "#99caff" }}>
-              <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Confirm</Typography>
-                    {/* No ArrowDropDown for Id */}
-                  </Stack>
-                </TableCell>
+            component={Paper}
+            sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
+          >
+            <Table>
+              <TableHead>
+                <TableRow sx={{ bgcolor: "#99caff" }}>
+                  <TableCell>
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Confirm</Typography>
+                      {/* No ArrowDropDown for Id */}
+                    </Stack>
+                  </TableCell>
 
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Customer Name</Typography>
-                    {/* No ArrowDropDown for Id */}
-                  </Stack>
-                </TableCell>
+                  <TableCell>
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Customer Name</Typography>
+                      {/* No ArrowDropDown for Id */}
+                    </Stack>
+                  </TableCell>
 
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Date</Typography>
-                    {/* <ArrowDropDown /> */}
-                  </Stack>
-                </TableCell>
+                  <TableCell>
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Date</Typography>
+                      {/* <ArrowDropDown /> */}
+                    </Stack>
+                  </TableCell>
 
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Document Name</Typography>
-                    {/* <ArrowDropDown /> */}
-                  </Stack>
-                </TableCell>
-              </TableRow>
-            </TableHead>
+                  <TableCell>
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Document Name</Typography>
+                      {/* <ArrowDropDown /> */}
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
               <TableBody>
                 {searchResults.map((doc) => (
-                  <TableRow key={doc.id} hover onClick={() => handleSelectSearchDoc(doc)} style={{ cursor: "pointer" }}>
+                  <TableRow
+                    key={doc.id}
+                    hover
+                    onClick={() => handleSelectSearchDoc(doc)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <TableCell>
-                      <Checkbox checked={confirmedDocIds.includes(doc.id)} disabled />
+                      <Checkbox
+                        checked={confirmedDocIds.includes(doc.id)}
+                        disabled
+                      />
                     </TableCell>
                     <TableCell>{doc.customerName}</TableCell>
                     <TableCell>{doc.date}</TableCell>
@@ -650,9 +671,22 @@ const PreviewKycPage = () => {
       <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
         <Grid container spacing={2}>
           <Grid item size={7}>
-            <Paper sx={{ height: "65vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "auto" }} elevation={2}>
+            <Paper
+              sx={{
+                height: "65vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "auto",
+              }}
+              elevation={2}
+            >
               {selectedDoc?.docType === "image" ? (
-                <img src={selectedDoc.path} alt="KYC" style={{ maxWidth: "100%", maxHeight: "100%" }} />
+                <img
+                  src={selectedDoc.path}
+                  alt="KYC"
+                  style={{ maxWidth: "100%", maxHeight: "100%" }}
+                />
               ) : (
                 <iframe
                   src={`${selectedDoc?.path || pan_card}#toolbar=0`}
@@ -666,9 +700,17 @@ const PreviewKycPage = () => {
           </Grid>
 
           <Grid item xs={5}>
-            <Paper sx={{ p: 2, height: "60vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <Paper
+              sx={{
+                p: 2,
+                height: "60vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
               <Box>
-              <TextField
+                <TextField
                   label="Document ID"
                   fullWidth
                   value={docIdentifier}
@@ -677,9 +719,16 @@ const PreviewKycPage = () => {
                   disabled={!selectedDoc}
                 />
 
-
-                <TextField label="Document Type" select fullWidth value={category} onChange={(e) => setCategory(e.target.value)} sx={{ mb: 2 }} disabled={!selectedDoc}>
-                   <MenuItem value="PAN">ID PROOF</MenuItem>
+                <TextField
+                  label="Document Type"
+                  select
+                  fullWidth
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                >
+                  <MenuItem value="PAN">ID PROOF</MenuItem>
                   <MenuItem value="Aadhaar">ADDRESS PROOF</MenuItem>
                   {/* <MenuItem value="Voter ID">Voter ID</MenuItem>
                   <MenuItem value="Passport">Passport</MenuItem> */}
@@ -691,10 +740,20 @@ const PreviewKycPage = () => {
                 </TextField> */}
               </Box>
               <Stack direction="row" spacing={2} justifyContent="flex-end">
-                <Button variant="contained" color="primary" onClick={handleSave} disabled={!selectedDoc}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSave}
+                  disabled={!selectedDoc}
+                >
                   Save
                 </Button>
-                <Button variant="outlined" color="secondary" onClick={handleDiscard} disabled={!selectedDoc}>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={handleDiscard}
+                  disabled={!selectedDoc}
+                >
                   Discard
                 </Button>
               </Stack>
@@ -707,5 +766,3 @@ const PreviewKycPage = () => {
 };
 
 export default PreviewKycPage;
-
-
