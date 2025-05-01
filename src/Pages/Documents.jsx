@@ -35,38 +35,39 @@ const pump_report = "your-pdf-url-or-path"; // Replace with your actual file
 const projectData = [
   {
     id: 1,
-    applicationName: "Account",
-    // transactionId: "TXN123",
-    transactionId: "123456",
-    transactionName: "Payment Received",
-    transactionDate: "2025-04-25",
-    // documentId: "DOC456",
-    documentId: "123",
-    documentName: "March Invoice #1042",
-    category: "Account",
-    subCategory: "Invoice",
+    date: "01/05/2025",
+    customerName: "David R Smith",
+    dob: "01/05/2006",
+    expiryDate: "22/08/2024",
+    nationalId: "5843 2166 4567 8904",
+    docType: "ID Proof",
   },
   {
     id: 2,
-    applicationName: "Account",
-    transactionId: "TXN124",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-26",
-    documentId: "DOC457",
-    documentName: "Bank Statement April 2025",
-    category: "Account",
-    subCategory: "Bank Statement",
+    date: "29/04/2025",
+    customerName: "Jane Smith",
+    dob: "05/05/2003",
+    expiryDate: "15/04/2025",
+    nationalId: "1486 4625 4632 7854",
+    docType: "ID Proof",
   },
   {
     id: 3,
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    documentId: "DOC458",
-    documentName: "Tax Document",
-    category: "Account",
-    subCategory: "Tax Document",
+    date: "24/02/2025",
+    customerName: "Sarah Johnson",
+    dob: "18/11/2008",
+    expiryDate: "23/08/2025",
+    nationalId: "3625 4562 1236 4569",
+    docType: "ID Proof",
+  },
+  {
+    id: 4,
+    date: "12/04/2025",
+    customerName: "David V Smith",
+    dob: "03/03/2002",
+    expiryDate: "14/05/2024",
+    nationalId: "5843 2166 4567 8904",
+    docType: "ID Proof",
   },
 ];
 
@@ -125,7 +126,7 @@ const Documents = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by All..."
+            placeholder="Search by Customer Name, Date of Birth, National ID & Document Type"
             variant="outlined"
             sx={{
               width: "50%",
@@ -154,63 +155,49 @@ const Documents = () => {
               <TableRow sx={{ bgcolor: "#99caff" }}>
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Id</Typography>
+                    <Typography fontWeight="bold"> Id</Typography>
                     {/* No ArrowDropDown for Id */}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Document Name</Typography>
+                    <Typography fontWeight="bold">Date</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Application Name</Typography>
+                    <Typography fontWeight="bold">Customer Name</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Transaction ID</Typography>
+                    <Typography fontWeight="bold">Date of Birth</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Transaction Name</Typography>
+                    <Typography fontWeight="bold">Card Expiry Date</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Transaction Date</Typography>
+                    <Typography fontWeight="bold">National ID</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Document ID</Typography>
-                    <ArrowDropDown />
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Category</Typography>
-                    <ArrowDropDown />
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Sub Category</Typography>
+                    <Typography fontWeight="bold">Document Type</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
@@ -230,16 +217,13 @@ const Documents = () => {
                   <TableCell>
                     <Typography fontWeight="bold">{project.id}</Typography>
                   </TableCell>
-                  <TableCell>{project.documentName}</TableCell>
+                  <TableCell>{project.date}</TableCell>
 
-                  <TableCell>{project.applicationName}</TableCell>
-                  <TableCell>{project.transactionId}</TableCell>
-                  <TableCell>{project.transactionName}</TableCell>
-                  <TableCell>{project.transactionDate}</TableCell>
-                  <TableCell>{project.documentId}</TableCell>
-                  <TableCell>{project.category}</TableCell>
-
-                  <TableCell>{project.subCategory}</TableCell>
+                  <TableCell>{project.customerName}</TableCell>
+                  <TableCell>{project.dob}</TableCell>
+                  <TableCell>{project.expiryDate}</TableCell>
+                  <TableCell>{project.nationalId}</TableCell>
+                  <TableCell>{project.docType}</TableCell>
 
                   {/* Action Buttons */}
                   <TableCell>
