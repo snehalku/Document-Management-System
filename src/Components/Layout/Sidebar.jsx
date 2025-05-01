@@ -55,7 +55,7 @@ const Sidebar = () => {
         <Box
           sx={{
             mt: 3,
-            // ml: 4,
+            ml: 4,
             fontFamily: "Poppins-Bold, Helvetica",
             fontWeight: 700,
             fontSize: "18px",
@@ -92,6 +92,39 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText
               primary="Dashboard"
+              primaryTypographyProps={{
+                fontFamily: "Poppins-Medium, Helvetica",
+                fontWeight: 500,
+                fontSize: "15px",
+              }}
+            />
+          </ListItem>
+          <ListItem
+            onClick={() => handleMenuItemClick("/previewDocument1")}
+            sx={{
+              borderRadius: "10px",
+              mb: 1,
+              bgcolor:
+                location.pathname === "/previewDocument1"
+                  ? "#d1d4d2"
+                  : "transparent",
+              height: "52px",
+              "&:hover": {
+                bgcolor:
+                  location.pathname === "/previewDocument1"
+                    ? "#d1d4d2"
+                    : "#f5f5f5",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <ListItemIcon
+              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+            >
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Preview Document"
               primaryTypographyProps={{
                 fontFamily: "Poppins-Medium, Helvetica",
                 fontWeight: 500,
