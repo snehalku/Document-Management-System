@@ -1,215 +1,711 @@
-import React from "react";
+// import React from "react";
+// import {
+//   Box,
+//   TextField,
+//   Typography,
+//   MenuItem,
+//   Grid,
+//   Paper,
+//   Button,
+//   Stack,
+// } from "@mui/material";
+// import { useNavigate } from "react-router-dom";
+
+// const categories = [
+//   { value: "Finance", label: "Finance" },
+//   { value: "Account", label: "Account" },
+//   { value: "Sales", label: "Sales" },
+// ];
+
+// const subcategories = {
+//   Finance: [
+//     { value: "Checklist", label: "Checklist" },
+//     { value: "Receipt", label: "Receipt" },
+//   ],
+//  Account: [
+//     { value: "Bank Statement", label: "Bank Statement" },
+//     { value: "Invoice", label: "Invoice" },
+//   ],
+//  Sales: [
+//     { value: "Tax", label: "Tax" },
+//     { value: "Checklist", label: "Checklist" },
+//   ],
+// };
+
+// const PreviewDocument = () => {
+//   const navigate = useNavigate();
+//   const [category, setCategory] = React.useState("Account");
+//   const [subcategory, setSubcategory] = React.useState("Invoice");
+
+//   return (
+//     <Box
+//       sx={{
+//         bgcolor: "#f2f4f5",
+//         // minHeight: "88vh",
+//         py: 4,
+//         pl: "70px",
+//         pt: "12px",
+//         pr: "24px",
+//         boxSizing: "border-box",
+//         overflow: "hidden",
+//       }}
+//     >
+//       <Typography variant="h5" component="h1" fontWeight="bold" sx={{ mb: 2 }}>
+//         Preview Document
+//       </Typography>
+
+//       <Paper
+//         elevation={3}
+//         sx={{
+//           p: 4,
+//           borderRadius: "10px",
+//           // mb: 3,
+//           // maxHeight: "78vh",
+//           // overflow: "auto",
+         
+//         }}
+//       >
+//         <Grid container spacing={2}>
+//             {/* Left Side - Invoice Image */}
+//             <Grid item size={7} >
+//               <Paper
+//                 elevation={3}
+//                 sx={{
+//                   height: "62vh",
+//                   display: "flex",
+//                   justifyContent: "center",
+//                   alignItems: "center",
+//                 }}
+//               >
+//                 <img
+//                   src="src/assets/invoice.jpg"
+//                   alt="Invoice"
+//                   style={{ maxWidth: "100%", maxHeight: "100%" }}
+//                 />
+//               </Paper>
+//             </Grid>
+
+//             {/* Right Side - Form Fields */}
+//             <Grid item size={5}>
+//               <Paper
+//                 elevation={3}
+//                 sx={{
+//                   height: "57vh",
+//                   p: 2,
+//                   display: "flex",
+//                   flexDirection: "column",
+//                   justifyContent: "space-between",
+//                 }}
+//               >
+//               <Box>
+//                 <Typography variant="h6" mb={2}>
+//                   Invoice Details
+//                 </Typography>
+
+//                 <TextField
+//                   label="Date"
+//                   defaultValue="22/9/2020"
+//                   // type="date"
+//                   fullWidth
+//                   // InputLabelProps={{ shrink: true }}
+//                   sx={{ mb: 2 }}
+//                 />
+
+//                 <TextField
+//                   label="Category"
+//                   select
+//                   value={category}
+//                   onChange={(e) => setCategory(e.target.value)}
+//                   fullWidth
+//                   sx={{ mb: 2 }}
+//                 >
+//                   {categories.map((option) => (
+//                     <MenuItem key={option.value} value={option.value}>
+//                       {option.label}
+//                     </MenuItem>
+//                   ))}
+//                 </TextField>
+
+//                 <TextField
+//                   label="Subcategory"
+//                   select
+//                   value={subcategory}
+//                   onChange={(e) => setSubcategory(e.target.value)}
+//                   fullWidth
+//                   sx={{ mb: 2 }}
+//                   disabled={!category}
+//                 >
+//                   {(subcategories[category] || []).map((option) => (
+//                     <MenuItem key={option.value} value={option.value}>
+//                       {option.label}
+//                     </MenuItem>
+//                   ))}
+//                 </TextField>
+
+//                 <TextField
+//                   // label="Invoice No"
+//                   defaultValue="123456"
+//                   label="Transaction ID"
+//                   fullWidth
+//                   InputLabelProps={{ shrink: true }}
+//                   sx={{ mb: 2 }}
+//                 />
+
+//                 <TextField
+//                   // label="Customer ID"
+//                   defaultValue="123"
+//                   label="Document ID"
+//                   fullWidth
+//                   InputLabelProps={{ shrink: true }}
+//                   sx={{ mb: 2 }}
+//                 />
+//               </Box>
+//             </Paper>
+//           </Grid>
+//         </Grid>
+
+//         {/* Save and Discard Buttons */}
+//         <Stack
+//           direction="row"
+//           spacing={2}
+//           justifyContent="flex-end"
+//           sx={{ mt: 2 }}
+//         >
+//          <Button
+//           variant="contained"
+//           sx={{
+//             borderRadius: "10px",
+//             bgcolor: "#99CAFF",
+//             color: "black",
+//             px: 3,
+//             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Shadow added here
+//             "&:hover": {
+//               bgcolor: "#7bb8ff",
+//             },
+//           }}
+//             onClick={() => {
+//               // navigate("/project1");
+//               navigate("/documents");
+//             }}
+//           >
+//             Save
+//           </Button>
+//           <Button
+//           variant="outlined"
+//           sx={{
+//             borderRadius: "10px",
+//             bgcolor: "#f2f4f5",
+//             px: 3,
+//             color: "black",
+//             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+//             border: "none", // 👈 override outlined variant's default border
+//             "&:hover": {
+//               bgcolor: "#e5e7e8",
+//               border: "none", // 👈 make sure hover state also has no border
+//             },
+//           }}>
+//             Discard
+//           </Button>
+//         </Stack>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default PreviewDocument;
+
+// import React, { useState, useEffect } from "react";
+// import pan_card from "../assets/pan_card.pdf"
+// import pdf from "../assets/राहुरी बुद्रुक_482_1_अ_1_Satbara.pdf"
+// import {
+//   Box,
+//   Grid,
+//   Paper,
+//   Typography,
+//   TextField,
+//   MenuItem,
+//   Button,
+//   Stack,
+// } from "@mui/material";
+
+// // const mockDocuments = {
+// //   "2025-04-28": [
+// //     {
+// //       name: "kyc_001.jpg",
+// //       type: "image",
+// //       path: "/assets/kyc_001.jpg",
+// //       category: "PAN",
+// //     },
+// //     {
+// //       name: "kyc_002.pdf",
+// //       type: "pdf",
+// //       path: "/assets/kyc_002.pdf",
+// //       category: "Aadhaar",
+// //     },
+// //   ],
+// //   "2025-04-29": [
+// //     {
+// //       name: "kyc_003.jpg",
+// //       type: "image",
+// //       path: "/assets/kyc_003.jpg",
+// //       category: "Voter ID",
+// //     },
+// //   ],
+// // };
+// const mockDocuments = {
+//   "2025-04-30": [
+//     {
+//       name: "pan_card.pdf",
+//       type: "pdf",
+//       path: "/assets/pan_card.pdf",
+//       category: "PAN",
+//     },
+//   ],
+// };
+
+// const PreviewKycPage = () => {
+//   const [selectedDate, setSelectedDate] = useState("");
+//   const [docList, setDocList] = useState([]);
+//   const [selectedDocName, setSelectedDocName] = useState("");
+//   const [selectedDoc, setSelectedDoc] = useState("");
+//   const [category, setCategory] = useState("");
+
+ 
+//   // Load document list when date changes
+//   useEffect(() => {
+//     const list = mockDocuments[selectedDate] || [];
+//     setDocList(list);
+//     setSelectedDocName("");
+//     setSelectedDoc(null);
+//   }, [selectedDate]);
+
+//   // Load selected document
+//   useEffect(() => {
+//     const doc = docList.find((d) => d.name === selectedDocName);
+//     if (doc) {
+//       setSelectedDoc(doc);
+//       setCategory(doc.category || "");
+//     }
+//   }, [selectedDocName, docList]);
+
+//   const handleSave = () => {
+//     if (!selectedDoc || !category) return;
+
+//     const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.name.split(".").pop()}`;
+
+//     console.log("Saving to DB:", {
+//       original: selectedDoc.name,
+//       newName: newFileName,
+//       category,
+//       date: selectedDate,
+//     });
+
+//     // Simulate DB save
+//     alert(`Saved as ${newFileName}`);
+//   };
+
+//   const handleDiscard = () => {
+//     alert(`Document ${selectedDoc.name} moved to trash`);
+//     setSelectedDoc(null);
+//     setSelectedDocName("");
+//   };
+
+//   return (
+//     // <Box sx={{ p: 4, backgroundColor: "#f5f5f5", height: "100vh" }}>
+//     <Box
+//           sx={{
+//             bgcolor: "#f2f4f5",
+//             // minHeight: "88vh",
+//             py: 4,
+//             pl: "70px",
+//             pt: "12px",
+//             pr: "24px",
+//             boxSizing: "border-box",
+//             overflow: "hidden",
+//           }}
+//         >
+//       <Typography variant="h5" fontWeight="bold" mb={3}>
+//         KYC Document Verification
+//       </Typography>
+
+//       <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
+//         <Grid container spacing={2}>
+//           {/* Left - Document Preview */}
+//           <Grid item size={7} >
+//             <Paper
+//               sx={{
+//                 height: "65vh",
+//                 display: "flex",
+//                 alignItems: "center",
+//                 justifyContent: "center",
+//                 overflow: "auto",
+//               }}
+//               elevation={2}
+//             >
+//               <iframe
+//                 src={`${pan_card}#toolbar=0`}  
+//                 title="PAN Card"
+//                 width="100%"
+//                 height="100%"
+//               />
+//             </Paper>
+//           </Grid>
+
+
+//           {/* Right - Metadata and Actions */}
+//           <Grid item size={5}>
+//             <Paper sx={{ p: 2, height: "60vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+//               <Box>
+//                 <TextField
+//                   label="Select Date"
+//                   type="date"
+//                   fullWidth
+//                   value={selectedDate}
+//                   onChange={(e) => setSelectedDate(e.target.value)}
+//                   InputLabelProps={{ shrink: true }}
+//                   sx={{ mb: 2 }}
+//                 />
+
+//                 <TextField
+//                   label="KYC Document"
+//                   select
+//                   fullWidth
+//                   value={selectedDocName}
+//                   onChange={(e) => setSelectedDocName(e.target.value)}
+//                   sx={{ mb: 2 }}
+//                   disabled={!docList.length}
+//                 >
+//                   {docList.map((doc) => (
+//                     <MenuItem key={doc.name} value={doc.name}>
+//                       {doc.name}
+//                     </MenuItem>
+//                   ))}
+//                 </TextField>
+
+//                 <TextField
+//                   label="Document Type"
+//                   select
+//                   fullWidth
+//                   value={category}
+//                   onChange={(e) => setCategory(e.target.value)}
+//                   sx={{ mb: 2 }}
+//                   disabled={!selectedDoc}
+//                 >
+//                   <MenuItem value="PAN">PAN</MenuItem>
+//                   <MenuItem value="Aadhaar">Aadhaar</MenuItem>
+//                   <MenuItem value="Voter ID">Voter ID</MenuItem>
+//                   <MenuItem value="Passport">Passport</MenuItem>
+//                 </TextField>
+//               </Box>
+//             </Paper>
+//           </Grid>
+//         </Grid>
+//         <Stack direction="row" spacing={2} justifyContent="flex-end" mt={2}>
+//                 <Button
+//                   variant="contained"
+//                   color="primary"
+//                   onClick={handleSave}
+//                   disabled={!selectedDoc}
+//                 >
+//                   Save
+//                 </Button>
+//                 <Button
+//                   variant="outlined"
+//                   color="secondary"
+//                   onClick={handleDiscard}
+//                   disabled={!selectedDoc}
+//                 >
+//                   Discard
+//                 </Button>
+//               </Stack>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default PreviewKycPage;
+
+import React, { useState, useEffect } from "react";
+import pan_card from "../assets/pan_card.pdf";
 import {
   Box,
-  TextField,
-  Typography,
-  MenuItem,
   Grid,
   Paper,
+  Typography,
+  TextField,
+  MenuItem,
   Button,
   Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Checkbox,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
-const categories = [
-  { value: "Finance", label: "Finance" },
-  { value: "Account", label: "Account" },
-  { value: "Sales", label: "Sales" },
+const mockCustomerDocs = [
+  {
+    id: 1,
+    customerName: "John Doe",
+    date: "2025-04-30",
+    docName: "pan_card.pdf",
+    docType: "pdf",
+    // path: "/assets/pan_card.pdf",
+    category: "PAN",
+    subcategory: "Primary",
+  },
+  {
+    id: 2,
+    customerName: "Jane Smith",
+    date: "2025-04-29",
+    docName: "aadhaar_card.jpg",
+    docType: "image",
+    // path: "/assets/kyc_001.jpg",
+    category: "Aadhaar",
+    subcategory: "Secondary",
+  },
+  {
+    id: 2,
+    customerName: "Jane Smith",
+    date: "2025-04-29",
+    docName: "pan_card.pdf",
+    docType: "pdf",
+    // path: "/assets/kyc_001.jpg",
+    category: "Pan",
+    subcategory: "Secondary",
+  },
 ];
 
-const subcategories = {
-  Finance: [
-    { value: "Checklist", label: "Checklist" },
-    { value: "Receipt", label: "Receipt" },
-  ],
- Account: [
-    { value: "Bank Statement", label: "Bank Statement" },
-    { value: "Invoice", label: "Invoice" },
-  ],
- Sales: [
-    { value: "Tax", label: "Tax" },
-    { value: "Checklist", label: "Checklist" },
-  ],
-};
+const PreviewKycPage = () => {
+  const [selectedDate, setSelectedDate] = useState("");
+  const [docList, setDocList] = useState([]);
+  const [selectedDocName, setSelectedDocName] = useState("");
+  const [selectedDoc, setSelectedDoc] = useState(null);
+  const [category, setCategory] = useState("");
+  const [subcategory, setSubcategory] = useState("");
+  const [searchCustomer, setSearchCustomer] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [confirmedDocIds, setConfirmedDocIds] = useState([]);
+  const [docIdentifier, setDocIdentifier] = useState("");
 
-const PreviewDocument = () => {
-  const navigate = useNavigate();
-  const [category, setCategory] = React.useState("Account");
-  const [subcategory, setSubcategory] = React.useState("Invoice");
+  useEffect(() => {
+    const list = [];
+    setDocList(list);
+    setSelectedDocName("");
+    setSelectedDoc(null);
+  }, [selectedDate]);
 
+  useEffect(() => {
+    const doc = docList.find((d) => d.name === selectedDocName);
+    if (doc) {
+      setSelectedDoc(doc);
+      setCategory(doc.category || "");
+    }
+  }, [selectedDocName, docList]);
+
+  const handleSearch = () => {
+    const results = mockCustomerDocs.filter(
+      (doc) =>
+        (!searchCustomer || doc.customerName.toLowerCase().includes(searchCustomer.toLowerCase())) &&
+        (!selectedDate || doc.date === selectedDate)
+    );
+    setSearchResults(results);
+  };
+
+  const handleCheckboxToggle = (docId) => {
+    if (confirmedDocIds.includes(docId)) {
+      setConfirmedDocIds(confirmedDocIds.filter((id) => id !== docId));
+    } else {
+      setConfirmedDocIds([...confirmedDocIds, docId]);
+    }
+  };
+  
+  const handleSelectSearchDoc = (doc) => {
+    setSelectedDoc(doc);
+    setCategory(doc.category || "");
+    setSubcategory(doc.subcategory || "");
+    setSelectedDocName(doc.docName);
+    setSelectedDate(doc.date);
+  };
+
+  const handleSave = () => {
+    if (!selectedDoc || !docIdentifier || !category || !subcategory) return;
+
+    const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.docName.split(".").pop()}`;
+
+    console.log("Saving to DB:", {
+      original: selectedDoc.docName,
+      newName: newFileName,
+      documentId: docIdentifier,
+      category,
+      subcategory,
+      date: selectedDate,
+    });
+
+    alert(`Saved as ${newFileName}`);
+    setConfirmedDocIds([...confirmedDocIds, selectedDoc.id]);
+  };
+
+  const handleDiscard = () => {
+    if (!selectedDoc) return;
+
+    alert(`Document ${selectedDoc.docName} moved to trash`);
+    setSelectedDoc(null);
+    setSelectedDocName("");
+  };
   return (
-    <Box
-      sx={{
-        bgcolor: "#f2f4f5",
-        // minHeight: "88vh",
-        py: 4,
-        pl: "70px",
-        pt: "12px",
-        pr: "24px",
-        boxSizing: "border-box",
-        overflow: "hidden",
-      }}
-    >
-      <Typography variant="h5" component="h1" fontWeight="bold" sx={{ mb: 2 }}>
-        Preview Document
+    <Box sx={{ bgcolor: "#f2f4f5", py: 4, pl: "70px", pt: "12px", pr: "24px", boxSizing: "border-box", overflow: "hidden" }}>
+      <Typography variant="h5" fontWeight="bold" mb={3}>
+        KYC Document Verification
       </Typography>
 
-      <Paper
-        elevation={3}
-        sx={{
-          p: 4,
-          borderRadius: "10px",
-          // mb: 3,
-          // maxHeight: "78vh",
-          // overflow: "auto",
-         
-        }}
-      >
+      {/* Search Parameters */}
+      <Box mb={3}>
         <Grid container spacing={2}>
-            {/* Left Side - Invoice Image */}
-            <Grid item size={7} >
-              <Paper
-                elevation={3}
-                sx={{
-                  height: "62vh",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <img
-                  src="src/assets/invoice.jpg"
-                  alt="Invoice"
-                  style={{ maxWidth: "100%", maxHeight: "100%" }}
-                />
-              </Paper>
-            </Grid>
+          <Grid item xs={4}>
+            <TextField
+              label="Search by Date"
+              type="date"
+              fullWidth
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              InputLabelProps={{ shrink: true }}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              label="Customer Name"
+              fullWidth
+              value={searchCustomer}
+              onChange={(e) => setSearchCustomer(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4} display="flex" alignItems="center">
+            <Button variant="contained" color="primary" onClick={handleSearch}>
+              Get Data
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
 
-            {/* Right Side - Form Fields */}
-            <Grid item size={5}>
-              <Paper
-                elevation={3}
-                sx={{
-                  height: "57vh",
-                  p: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-              >
+      {/* Search Result Table */}
+      {searchResults.length > 0 && (
+        <Paper sx={{ p: 2, mb: 3 }}>
+          {/* <Typography variant="h6" gutterBottom>Search Results</Typography> */}
+          <TableContainer
+          component={Paper}
+          sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow sx={{ bgcolor: "#99caff" }}>
+              <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Confirm</Typography>
+                    {/* No ArrowDropDown for Id */}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Customer Name</Typography>
+                    {/* No ArrowDropDown for Id */}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Date</Typography>
+                    {/* <ArrowDropDown /> */}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Document Name</Typography>
+                    {/* <ArrowDropDown /> */}
+                  </Stack>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+              <TableBody>
+                {searchResults.map((doc) => (
+                  <TableRow key={doc.id} hover onClick={() => handleSelectSearchDoc(doc)} style={{ cursor: "pointer" }}>
+                    <TableCell>
+                      <Checkbox checked={confirmedDocIds.includes(doc.id)} disabled />
+                    </TableCell>
+                    <TableCell>{doc.customerName}</TableCell>
+                    <TableCell>{doc.date}</TableCell>
+                    <TableCell>{doc.docName}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      )}
+
+      <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
+        <Grid container spacing={2}>
+          <Grid item size={7}>
+            <Paper sx={{ height: "65vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "auto" }} elevation={2}>
+              {selectedDoc?.docType === "image" ? (
+                <img src={selectedDoc.path} alt="KYC" style={{ maxWidth: "100%", maxHeight: "100%" }} />
+              ) : (
+                <iframe
+                  src={`${selectedDoc?.path || pan_card}#toolbar=0`}
+                  title="KYC Document"
+                  width="100%"
+                  height="100%"
+                  style={{ border: "none" }}
+                />
+              )}
+            </Paper>
+          </Grid>
+
+          <Grid item xs={5}>
+            <Paper sx={{ p: 2, height: "60vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <Box>
-                <Typography variant="h6" mb={2}>
-                  Invoice Details
-                </Typography>
-
-                <TextField
-                  label="Date"
-                  defaultValue="22/9/2020"
-                  // type="date"
-                  fullWidth
-                  // InputLabelProps={{ shrink: true }}
-                  sx={{ mb: 2 }}
-                />
-
-                <TextField
-                  label="Category"
-                  select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  fullWidth
-                  sx={{ mb: 2 }}
-                >
-                  {categories.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-
-                <TextField
-                  label="Subcategory"
-                  select
-                  value={subcategory}
-                  onChange={(e) => setSubcategory(e.target.value)}
-                  fullWidth
-                  sx={{ mb: 2 }}
-                  disabled={!category}
-                >
-                  {(subcategories[category] || []).map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-
-                <TextField
-                  // label="Invoice No"
-                  defaultValue="123456"
-                  label="Transaction ID"
-                  fullWidth
-                  InputLabelProps={{ shrink: true }}
-                  sx={{ mb: 2 }}
-                />
-
-                <TextField
-                  // label="Customer ID"
-                  defaultValue="123"
+              <TextField
                   label="Document ID"
                   fullWidth
-                  InputLabelProps={{ shrink: true }}
+                  value={docIdentifier}
+                  onChange={(e) => setDocIdentifier(e.target.value)}
                   sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
                 />
+
+
+                <TextField label="Document Type" select fullWidth value={category} onChange={(e) => setCategory(e.target.value)} sx={{ mb: 2 }} disabled={!selectedDoc}>
+                   <MenuItem value="PAN">ID PROOF</MenuItem>
+                  <MenuItem value="Aadhaar">ADDRESS PROOF</MenuItem>
+                  {/* <MenuItem value="Voter ID">Voter ID</MenuItem>
+                  <MenuItem value="Passport">Passport</MenuItem> */}
+                </TextField>
+
+                {/* <TextField label="Subcategory" select fullWidth value={subcategory} onChange={(e) => setSubcategory(e.target.value)} sx={{ mb: 2 }} disabled={!selectedDoc}>
+                  <MenuItem value="Primary">Primary</MenuItem>
+                  <MenuItem value="Secondary">Secondary</MenuItem>
+                </TextField> */}
               </Box>
+              <Stack direction="row" spacing={2} justifyContent="flex-end">
+                <Button variant="contained" color="primary" onClick={handleSave} disabled={!selectedDoc}>
+                  Save
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={handleDiscard} disabled={!selectedDoc}>
+                  Discard
+                </Button>
+              </Stack>
             </Paper>
           </Grid>
         </Grid>
-
-        {/* Save and Discard Buttons */}
-        <Stack
-          direction="row"
-          spacing={2}
-          justifyContent="flex-end"
-          sx={{ mt: 2 }}
-        >
-         <Button
-          variant="contained"
-          sx={{
-            borderRadius: "10px",
-            bgcolor: "#99CAFF",
-            color: "black",
-            px: 3,
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Shadow added here
-            "&:hover": {
-              bgcolor: "#7bb8ff",
-            },
-          }}
-            onClick={() => {
-              // navigate("/project1");
-              navigate("/documents");
-            }}
-          >
-            Save
-          </Button>
-          <Button
-          variant="outlined"
-          sx={{
-            borderRadius: "10px",
-            bgcolor: "#f2f4f5",
-            px: 3,
-            color: "black",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-            border: "none", // 👈 override outlined variant's default border
-            "&:hover": {
-              bgcolor: "#e5e7e8",
-              border: "none", // 👈 make sure hover state also has no border
-            },
-          }}>
-            Discard
-          </Button>
-        </Stack>
       </Paper>
     </Box>
   );
 };
 
-export default PreviewDocument;
+export default PreviewKycPage;
+
+
