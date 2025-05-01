@@ -8,7 +8,7 @@ import Dashboard from "./Pages/Dashboard";
 import Documents from "./Pages/Documents";
 import { Navigate } from "react-router-dom";
 import PreviewDocument from "./Pages/previewDocument";
-
+import PreviewDocument1 from "./Pages/previewDocument1";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +27,10 @@ function App() {
         {
           path: "previewDocument",
           element: <PreviewDocument />,
+        },
+        {
+          path: "previewDocument1",
+          element: <PreviewDocument1 />,
         },
         {
           path: "documents",

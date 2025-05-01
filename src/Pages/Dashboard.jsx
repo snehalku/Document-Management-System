@@ -166,7 +166,7 @@ const Dashboard = () => {
           //   justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by All..."
+            placeholder="Search by Document Name, Transaction Id ,Transaction Name and Transaction Date..."
             variant="outlined"
             sx={{
               width: "50%",
@@ -204,6 +204,25 @@ const Dashboard = () => {
           >
             Get Data
           </Button>
+          <Button
+            variant="contained"
+            sx={{
+              bgcolor: "#99caff",
+              width: "150px",
+              color: "black",
+              borderRadius: "10px",
+              fontWeight: "bold",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              "&:hover": {
+                bgcolor: "#88b9ee",
+              },
+            }}
+          >
+            Add New Document
+          </Button>
         </Stack>
 
         <TableContainer
@@ -239,12 +258,12 @@ const Dashboard = () => {
                   </Stack>
                 </TableCell>
 
-                <TableCell>
+                {/* <TableCell>
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <Typography fontWeight="bold">Application Name</Typography>
                     <ArrowDropDown />
                   </Stack>
-                </TableCell>
+                </TableCell> */}
 
                 <TableCell>
                   <Stack direction="row" alignItems="center" spacing={1}>
@@ -291,7 +310,7 @@ const Dashboard = () => {
                       </Typography>
                     </Tooltip>
                   </TableCell>
-                  <TableCell>{project.applicationName}</TableCell>
+                  {/* <TableCell>{project.applicationName}</TableCell> */}
                   <TableCell>{project.transactionId}</TableCell>
                   <TableCell>{project.transactionName}</TableCell>
                   <TableCell>{project.transactionDate}</TableCell>
