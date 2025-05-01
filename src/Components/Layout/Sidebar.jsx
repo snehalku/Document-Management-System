@@ -99,6 +99,39 @@ const Sidebar = () => {
               }}
             />
           </ListItem>
+          <ListItem
+            onClick={() => handleMenuItemClick("/previewDocument1")}
+            sx={{
+              borderRadius: "10px",
+              mb: 1,
+              bgcolor:
+                location.pathname === "/previewDocument1"
+                  ? "#d1d4d2"
+                  : "transparent",
+              height: "52px",
+              "&:hover": {
+                bgcolor:
+                  location.pathname === "/previewDocument1"
+                    ? "#d1d4d2"
+                    : "#f5f5f5",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <ListItemIcon
+              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+            >
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Preview Document 1"
+              primaryTypographyProps={{
+                fontFamily: "Poppins-Medium, Helvetica",
+                fontWeight: 500,
+                fontSize: "15px",
+              }}
+            />
+          </ListItem>
 
           {/* Projects */}
           <ListItem
