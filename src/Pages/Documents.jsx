@@ -24,7 +24,8 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import InfoIcon from "@mui/icons-material/Info"; // for View Details button
 
-import invoice from "../assets/invoice.jpg";
+// import invoice from "../assets/invoice.jpg";
+import agecard from "../assets/agecard.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -232,7 +233,7 @@ const Documents = () => {
                       <Tooltip title="View Document">
                         <IconButton
                           color="primary"
-                          onClick={() => window.open(invoice, "_blank")}
+                          onClick={() => window.open(agecard, "_blank")}
                         >
                           <VisibilityIcon />
                         </IconButton>
@@ -241,8 +242,8 @@ const Documents = () => {
                       {/* Download Document */}
                       <Tooltip title="Download Document">
                         <a
-                          href={invoice}
-                          download="invoice.jpg"
+                          href={agecard}
+                          download="agecard.jpg"
                           style={{ color: "inherit", textDecoration: "none" }}
                         >
                           <IconButton color="secondary">
