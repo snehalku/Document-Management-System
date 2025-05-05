@@ -1,428 +1,3 @@
-// import React from "react";
-// import {
-//   Box,
-//   TextField,
-//   Typography,
-//   MenuItem,
-//   Grid,
-//   Paper,
-//   Button,
-//   Stack,
-// } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
-
-// const categories = [
-//   { value: "Finance", label: "Finance" },
-//   { value: "Account", label: "Account" },
-//   { value: "Sales", label: "Sales" },
-// ];
-
-// const subcategories = {
-//   Finance: [
-//     { value: "Checklist", label: "Checklist" },
-//     { value: "Receipt", label: "Receipt" },
-//   ],
-//  Account: [
-//     { value: "Bank Statement", label: "Bank Statement" },
-//     { value: "Invoice", label: "Invoice" },
-//   ],
-//  Sales: [
-//     { value: "Tax", label: "Tax" },
-//     { value: "Checklist", label: "Checklist" },
-//   ],
-// };
-
-// const PreviewDocument = () => {
-//   const navigate = useNavigate();
-//   const [category, setCategory] = React.useState("Account");
-//   const [subcategory, setSubcategory] = React.useState("Invoice");
-
-//   return (
-//     <Box
-//       sx={{
-//         bgcolor: "#f2f4f5",
-//         // minHeight: "88vh",
-//         py: 4,
-//         pl: "70px",
-//         pt: "12px",
-//         pr: "24px",
-//         boxSizing: "border-box",
-//         overflow: "hidden",
-//       }}
-//     >
-//       <Typography variant="h5" component="h1" fontWeight="bold" sx={{ mb: 2 }}>
-//         Preview Document
-//       </Typography>
-
-//       <Paper
-//         elevation={3}
-//         sx={{
-//           p: 4,
-//           borderRadius: "10px",
-//           // mb: 3,
-//           // maxHeight: "78vh",
-//           // overflow: "auto",
-
-//         }}
-//       >
-//         <Grid container spacing={2}>
-//             {/* Left Side - Invoice Image */}
-//             <Grid item size={7} >
-//               <Paper
-//                 elevation={3}
-//                 sx={{
-//                   height: "62vh",
-//                   display: "flex",
-//                   justifyContent: "center",
-//                   alignItems: "center",
-//                 }}
-//               >
-//                 <img
-//                   src="src/assets/invoice.jpg"
-//                   alt="Invoice"
-//                   style={{ maxWidth: "100%", maxHeight: "100%" }}
-//                 />
-//               </Paper>
-//             </Grid>
-
-//             {/* Right Side - Form Fields */}
-//             <Grid item size={5}>
-//               <Paper
-//                 elevation={3}
-//                 sx={{
-//                   height: "57vh",
-//                   p: 2,
-//                   display: "flex",
-//                   flexDirection: "column",
-//                   justifyContent: "space-between",
-//                 }}
-//               >
-//               <Box>
-//                 <Typography variant="h6" mb={2}>
-//                   Invoice Details
-//                 </Typography>
-
-//                 <TextField
-//                   label="Date"
-//                   defaultValue="22/9/2020"
-//                   // type="date"
-//                   fullWidth
-//                   // InputLabelProps={{ shrink: true }}
-//                   sx={{ mb: 2 }}
-//                 />
-
-//                 <TextField
-//                   label="Category"
-//                   select
-//                   value={category}
-//                   onChange={(e) => setCategory(e.target.value)}
-//                   fullWidth
-//                   sx={{ mb: 2 }}
-//                 >
-//                   {categories.map((option) => (
-//                     <MenuItem key={option.value} value={option.value}>
-//                       {option.label}
-//                     </MenuItem>
-//                   ))}
-//                 </TextField>
-
-//                 <TextField
-//                   label="Subcategory"
-//                   select
-//                   value={subcategory}
-//                   onChange={(e) => setSubcategory(e.target.value)}
-//                   fullWidth
-//                   sx={{ mb: 2 }}
-//                   disabled={!category}
-//                 >
-//                   {(subcategories[category] || []).map((option) => (
-//                     <MenuItem key={option.value} value={option.value}>
-//                       {option.label}
-//                     </MenuItem>
-//                   ))}
-//                 </TextField>
-
-//                 <TextField
-//                   // label="Invoice No"
-//                   defaultValue="123456"
-//                   label="Transaction ID"
-//                   fullWidth
-//                   InputLabelProps={{ shrink: true }}
-//                   sx={{ mb: 2 }}
-//                 />
-
-//                 <TextField
-//                   // label="Customer ID"
-//                   defaultValue="123"
-//                   label="Document ID"
-//                   fullWidth
-//                   InputLabelProps={{ shrink: true }}
-//                   sx={{ mb: 2 }}
-//                 />
-//               </Box>
-//             </Paper>
-//           </Grid>
-//         </Grid>
-
-//         {/* Save and Discard Buttons */}
-//         <Stack
-//           direction="row"
-//           spacing={2}
-//           justifyContent="flex-end"
-//           sx={{ mt: 2 }}
-//         >
-//          <Button
-//           variant="contained"
-//           sx={{
-//             borderRadius: "10px",
-//             bgcolor: "#99CAFF",
-//             color: "black",
-//             px: 3,
-//             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Shadow added here
-//             "&:hover": {
-//               bgcolor: "#7bb8ff",
-//             },
-//           }}
-//             onClick={() => {
-//               // navigate("/project1");
-//               navigate("/documents");
-//             }}
-//           >
-//             Save
-//           </Button>
-//           <Button
-//           variant="outlined"
-//           sx={{
-//             borderRadius: "10px",
-//             bgcolor: "#f2f4f5",
-//             px: 3,
-//             color: "black",
-//             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-//             border: "none", // 👈 override outlined variant's default border
-//             "&:hover": {
-//               bgcolor: "#e5e7e8",
-//               border: "none", // 👈 make sure hover state also has no border
-//             },
-//           }}>
-//             Discard
-//           </Button>
-//         </Stack>
-//       </Paper>
-//     </Box>
-//   );
-// };
-
-// export default PreviewDocument;
-
-// import React, { useState, useEffect } from "react";
-// import pan_card from "../assets/pan_card.pdf"
-// import pdf from "../assets/राहुरी बुद्रुक_482_1_अ_1_Satbara.pdf"
-// import {
-//   Box,
-//   Grid,
-//   Paper,
-//   Typography,
-//   TextField,
-//   MenuItem,
-//   Button,
-//   Stack,
-// } from "@mui/material";
-
-// // const mockDocuments = {
-// //   "2025-04-28": [
-// //     {
-// //       name: "kyc_001.jpg",
-// //       type: "image",
-// //       path: "/assets/kyc_001.jpg",
-// //       category: "PAN",
-// //     },
-// //     {
-// //       name: "kyc_002.pdf",
-// //       type: "pdf",
-// //       path: "/assets/kyc_002.pdf",
-// //       category: "Aadhaar",
-// //     },
-// //   ],
-// //   "2025-04-29": [
-// //     {
-// //       name: "kyc_003.jpg",
-// //       type: "image",
-// //       path: "/assets/kyc_003.jpg",
-// //       category: "Voter ID",
-// //     },
-// //   ],
-// // };
-// const mockDocuments = {
-//   "2025-04-30": [
-//     {
-//       name: "pan_card.pdf",
-//       type: "pdf",
-//       path: "/assets/pan_card.pdf",
-//       category: "PAN",
-//     },
-//   ],
-// };
-
-// const PreviewKycPage = () => {
-//   const [selectedDate, setSelectedDate] = useState("");
-//   const [docList, setDocList] = useState([]);
-//   const [selectedDocName, setSelectedDocName] = useState("");
-//   const [selectedDoc, setSelectedDoc] = useState("");
-//   const [category, setCategory] = useState("");
-
-//   // Load document list when date changes
-//   useEffect(() => {
-//     const list = mockDocuments[selectedDate] || [];
-//     setDocList(list);
-//     setSelectedDocName("");
-//     setSelectedDoc(null);
-//   }, [selectedDate]);
-
-//   // Load selected document
-//   useEffect(() => {
-//     const doc = docList.find((d) => d.name === selectedDocName);
-//     if (doc) {
-//       setSelectedDoc(doc);
-//       setCategory(doc.category || "");
-//     }
-//   }, [selectedDocName, docList]);
-
-//   const handleSave = () => {
-//     if (!selectedDoc || !category) return;
-
-//     const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.name.split(".").pop()}`;
-
-//     console.log("Saving to DB:", {
-//       original: selectedDoc.name,
-//       newName: newFileName,
-//       category,
-//       date: selectedDate,
-//     });
-
-//     // Simulate DB save
-//     alert(`Saved as ${newFileName}`);
-//   };
-
-//   const handleDiscard = () => {
-//     alert(`Document ${selectedDoc.name} moved to trash`);
-//     setSelectedDoc(null);
-//     setSelectedDocName("");
-//   };
-
-//   return (
-//     // <Box sx={{ p: 4, backgroundColor: "#f5f5f5", height: "100vh" }}>
-//     <Box
-//           sx={{
-//             bgcolor: "#f2f4f5",
-//             // minHeight: "88vh",
-//             py: 4,
-//             pl: "70px",
-//             pt: "12px",
-//             pr: "24px",
-//             boxSizing: "border-box",
-//             overflow: "hidden",
-//           }}
-//         >
-//       <Typography variant="h5" fontWeight="bold" mb={3}>
-//         KYC Document Verification
-//       </Typography>
-
-//       <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
-//         <Grid container spacing={2}>
-//           {/* Left - Document Preview */}
-//           <Grid item size={7} >
-//             <Paper
-//               sx={{
-//                 height: "65vh",
-//                 display: "flex",
-//                 alignItems: "center",
-//                 justifyContent: "center",
-//                 overflow: "auto",
-//               }}
-//               elevation={2}
-//             >
-//               <iframe
-//                 src={`${pan_card}#toolbar=0`}
-//                 title="PAN Card"
-//                 width="100%"
-//                 height="100%"
-//               />
-//             </Paper>
-//           </Grid>
-
-//           {/* Right - Metadata and Actions */}
-//           <Grid item size={5}>
-//             <Paper sx={{ p: 2, height: "60vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-//               <Box>
-//                 <TextField
-//                   label="Select Date"
-//                   type="date"
-//                   fullWidth
-//                   value={selectedDate}
-//                   onChange={(e) => setSelectedDate(e.target.value)}
-//                   InputLabelProps={{ shrink: true }}
-//                   sx={{ mb: 2 }}
-//                 />
-
-//                 <TextField
-//                   label="KYC Document"
-//                   select
-//                   fullWidth
-//                   value={selectedDocName}
-//                   onChange={(e) => setSelectedDocName(e.target.value)}
-//                   sx={{ mb: 2 }}
-//                   disabled={!docList.length}
-//                 >
-//                   {docList.map((doc) => (
-//                     <MenuItem key={doc.name} value={doc.name}>
-//                       {doc.name}
-//                     </MenuItem>
-//                   ))}
-//                 </TextField>
-
-//                 <TextField
-//                   label="Document Type"
-//                   select
-//                   fullWidth
-//                   value={category}
-//                   onChange={(e) => setCategory(e.target.value)}
-//                   sx={{ mb: 2 }}
-//                   disabled={!selectedDoc}
-//                 >
-//                   <MenuItem value="PAN">PAN</MenuItem>
-//                   <MenuItem value="Aadhaar">Aadhaar</MenuItem>
-//                   <MenuItem value="Voter ID">Voter ID</MenuItem>
-//                   <MenuItem value="Passport">Passport</MenuItem>
-//                 </TextField>
-//               </Box>
-//             </Paper>
-//           </Grid>
-//         </Grid>
-//         <Stack direction="row" spacing={2} justifyContent="flex-end" mt={2}>
-//                 <Button
-//                   variant="contained"
-//                   color="primary"
-//                   onClick={handleSave}
-//                   disabled={!selectedDoc}
-//                 >
-//                   Save
-//                 </Button>
-//                 <Button
-//                   variant="outlined"
-//                   color="secondary"
-//                   onClick={handleDiscard}
-//                   disabled={!selectedDoc}
-//                 >
-//                   Discard
-//                 </Button>
-//               </Stack>
-//       </Paper>
-//     </Box>
-//   );
-// };
-
-// export default PreviewKycPage;
-
 import React, { useState, useEffect } from "react";
 import pan_card from "../assets/pan_card.pdf";
 import agecard from "../assets/agecard.jpg";
@@ -530,7 +105,7 @@ const PreviewKycPage = () => {
     setSelectedDocName(doc.docName);
     setSelectedDate(doc.date);
     setSearchCustomer(doc.customerName);
-    setDocIdentifier("National ID"); // Or extract from `doc` if available
+    setDocIdentifier("National ID"); 
 
     // Optional: You can also directly add to confirmed IDs here
     if (!confirmedDocIds.includes(doc.id)) {
@@ -539,22 +114,8 @@ const PreviewKycPage = () => {
   };
 
   const handleSave = () => {
-    // if (!selectedDoc || !docIdentifier ) return;
-
-    // const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.docName.split(".").pop()}`;
-
-    // console.log("Saving to DB:", {
-    //   original: selectedDoc.docName,
-    //   newName: newFileName,
-    //   documentId: docIdentifier,
-    //   category,
-    //   subcategory,
-    //   date: selectedDate,
-    // });
-
-    // setConfirmedDocIds([...confirmedDocIds, selectedDoc.id]);
-    setShowSnackbar(true); // 👈 Show snackbar after save
-    console.log("Snackbar should show now"); // ✅ Debug log
+    setShowSnackbar(true); 
+    console.log("Snackbar should show now"); 
 
     setTimeout(() => {
       navigate("/documents");
@@ -618,7 +179,7 @@ const PreviewKycPage = () => {
                     bgcolor: "#99CAFF",
                     color: "black",
                     px: 3,
-                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Shadow added here
+                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", 
                     "&:hover": {
                       bgcolor: "#7bb8ff",
                     },
@@ -643,11 +204,9 @@ const PreviewKycPage = () => {
               >
                 <Table size="small">
                   {" "}
-                  {/* This sets smaller base row height */}
                   <TableHead>
                     <TableRow sx={{ bgcolor: "#99caff", "& td": { py: 0.5 } }}>
                       {" "}
-                      {/* Reduce head cell padding */}
                       <TableCell>
                         <Typography fontWeight="bold"></Typography>
                       </TableCell>
@@ -671,7 +230,7 @@ const PreviewKycPage = () => {
                         key={doc.id}
                         hover
                         onClick={() => handleSelectSearchDoc(doc)}
-                        sx={{ cursor: "pointer", "& td": { py: 0.5 } }} // Reduce vertical padding in body
+                        sx={{ cursor: "pointer", "& td": { py: 0.5 } }} 
                       >
                         <TableCell>
                           <Checkbox
@@ -699,7 +258,7 @@ const PreviewKycPage = () => {
           <Grid item size={7}>
             <Paper
               sx={{
-                height: "65vh",
+                height: "73vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -739,21 +298,13 @@ const PreviewKycPage = () => {
             <Paper
               sx={{
                 p: 2,
-                height: "60vh",
+                height: "68vh",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
               }}
             >
               <Box>
-                {/* <TextField
-                  label="Document ID"
-                  fullWidth
-                  value={docIdentifier}
-                  onChange={(e) => setDocIdentifier(e.target.value)}
-                  sx={{ mb: 2 }}
-                  disabled={!selectedDoc}
-                /> */}
                 <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
                   Transaction Data
                 </Typography>
@@ -781,16 +332,6 @@ const PreviewKycPage = () => {
                   value={selectedDoc?.nationalId || ""}
                   sx={{ mb: 2 }}
                 />
-                {/* <TextField
-                  label="Card Expiry Date"
-                  fullWidth
-                  value={selectedDoc?.expiresOn || ""}
-                  sx={{ mb: 2 }}
-                /> */}
-                {/* <TextField label="Subcategory" select fullWidth value={subcategory} onChange={(e) => setSubcategory(e.target.value)} sx={{ mb: 2 }} disabled={!selectedDoc}>
-                  <MenuItem value="Primary">Primary</MenuItem>
-                  <MenuItem value="Secondary">Secondary</MenuItem>
-                </TextField> */}
                 <Divider
                   sx={{
                     mb: 2,
@@ -813,11 +354,6 @@ const PreviewKycPage = () => {
                   <MenuItem value="ageCard">KYC</MenuItem>
                   <MenuItem value="accounts"> Accounts</MenuItem>
                   <MenuItem value="finance"> Finance</MenuItem>
-
-                  {/* <MenuItem value="PAN">ID Proof</MenuItem>
-                  <MenuItem value="Aadhaar">Address Proof</MenuItem>
-                  <MenuItem value="Voter ID">Voter ID</MenuItem>
-                  <MenuItem value="Passport">Passport</MenuItem> */}
                 </TextField>
                 <TextField
                   label=" Sub Category"
@@ -847,7 +383,7 @@ const PreviewKycPage = () => {
                 bgcolor: "#99CAFF",
                 color: "black",
                 px: 3,
-                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Shadow added here
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
                 "&:hover": {
                   bgcolor: "#7bb8ff",
                 },
@@ -866,10 +402,10 @@ const PreviewKycPage = () => {
                 px: 3,
                 color: "black",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                border: "none", // 👈 override outlined variant's default border
+                border: "none", 
                 "&:hover": {
                   bgcolor: "#e5e7e8",
-                  border: "none", // 👈 make sure hover state also has no border
+                  border: "none", 
                 },
               }}
             >
