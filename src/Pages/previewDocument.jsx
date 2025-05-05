@@ -449,7 +449,8 @@ import { useNavigate } from "react-router-dom";
 const mockCustomerDocs = [
   {
     id: 1,
-    customerName: "David R Smith",
+    firstName: "David R",
+    lastName: "Smith",
     date: "2025-04-30",
     dob: "2006-05-01",
     expiresOn: "2024-08-22",
@@ -457,7 +458,8 @@ const mockCustomerDocs = [
   },
   {
     id: 2,
-    customerName: "Jane Smith",
+    firstName: "Jane Smith",
+    lastName: "Smith",
     date: "2025-04-29",
     dob: "2007-12-11",
     expiresOn: "2025-08-12",
@@ -465,7 +467,8 @@ const mockCustomerDocs = [
   },
   {
     id: 3,
-    customerName: "David R Smith",
+    firstName: "David R",
+    lastName: "Johnson",
     date: "2025-04-30",
     dob: "2007-05-10",
     expiresOn: "2025-08-12",
@@ -506,9 +509,7 @@ const PreviewKycPage = () => {
     const results = mockCustomerDocs.filter(
       (doc) =>
         (!searchCustomer ||
-          doc.customerName
-            .toLowerCase()
-            .includes(searchCustomer.toLowerCase())) &&
+          doc.firstName.toLowerCase().includes(searchCustomer.toLowerCase())) &&
         (!selectedDate || doc.date === selectedDate)
     );
     setSearchResults(results);
@@ -648,7 +649,10 @@ const PreviewKycPage = () => {
                         <Typography fontWeight="bold"></Typography>
                       </TableCell>
                       <TableCell>
-                        <Typography fontWeight="bold">Customer Name</Typography>
+                        <Typography fontWeight="bold">First Name</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography fontWeight="bold">Last Name</Typography>
                       </TableCell>
                       <TableCell>
                         <Typography fontWeight="bold">Date of Birth</Typography>
@@ -673,8 +677,8 @@ const PreviewKycPage = () => {
                           />
                         </TableCell>
 
-                        <TableCell>{doc.customerName}</TableCell>
-
+                        <TableCell>{doc.firstName}</TableCell>
+                        <TableCell>{doc.lastName}</TableCell>
                         <TableCell>{doc.dob}</TableCell>
                         <TableCell>{doc.nationalId}</TableCell>
                       </TableRow>
@@ -747,28 +751,33 @@ const PreviewKycPage = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 /> */}
-
+                <Typography sx={{ mb: 1, fontSize: 20, fontWeight: "bold" }}>
+                  Transaction Data
+                </Typography>
                 <TextField
-                  label="Customer Name"
+                  label="First Name"
                   fullWidth
-                  value={selectedDoc?.customerName || ""}
+                  value={selectedDoc?.firstName || ""}
                   sx={{ mb: 2 }}
                 />
-
+                <TextField
+                  label="Last Name"
+                  fullWidth
+                  value={selectedDoc?.lastName || ""}
+                  sx={{ mb: 2 }}
+                />
                 <TextField
                   label="Date of Birth"
                   fullWidth
                   value={selectedDoc?.dob || ""}
                   sx={{ mb: 2 }}
                 />
-
                 <TextField
                   label="National ID"
                   fullWidth
                   value={selectedDoc?.nationalId || ""}
                   sx={{ mb: 2 }}
                 />
-
                 {/* <TextField
                   label="Card Expiry Date"
                   fullWidth
@@ -786,7 +795,9 @@ const PreviewKycPage = () => {
                     borderColor: "black",
                   }}
                 />
-
+                <Typography sx={{ mb: 1, fontSize: 20, fontWeight: "bold" }}>
+                  Document
+                </Typography>
                 <TextField
                   label="Category"
                   select
@@ -796,7 +807,7 @@ const PreviewKycPage = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 >
-                  <MenuItem value="ageCard"> KYC</MenuItem>
+                  <MenuItem value="ageCard">KYC</MenuItem>
                   <MenuItem value="accounts"> Accounts</MenuItem>
                   <MenuItem value="finance"> Finance</MenuItem>
 
