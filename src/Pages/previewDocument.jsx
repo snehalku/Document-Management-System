@@ -539,7 +539,6 @@ const PreviewKycPage = () => {
   };
 
   const handleSave = () => {
-    navigate("/documents");
     // if (!selectedDoc || !docIdentifier ) return;
 
     // const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.docName.split(".").pop()}`;
@@ -556,6 +555,10 @@ const PreviewKycPage = () => {
     // setConfirmedDocIds([...confirmedDocIds, selectedDoc.id]);
     setShowSnackbar(true); // 👈 Show snackbar after save
     console.log("Snackbar should show now"); // ✅ Debug log
+
+    setTimeout(() => {
+      navigate("/documents");
+    }, 2000);
   };
 
   const handleDiscard = () => {
@@ -875,6 +878,7 @@ const PreviewKycPage = () => {
           </Stack>
 
           {/* Snackbar */}
+
           <Snackbar
             open={showSnackbar}
             autoHideDuration={3000}
@@ -884,9 +888,17 @@ const PreviewKycPage = () => {
             <Alert
               onClose={() => setShowSnackbar(false)}
               severity="success"
-              sx={{ width: "100%" }}
+              variant="filled"
+              sx={{
+                width: "100%",
+                fontWeight: 500,
+                fontSize: "1rem",
+                boxShadow: 3,
+                backgroundColor: "#2e7d32",
+                color: "#fff",
+              }}
             >
-              Data saved successfully!
+              ✅ Your data has been saved successfully.
             </Alert>
           </Snackbar>
         </Box>
