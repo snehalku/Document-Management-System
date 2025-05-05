@@ -73,7 +73,7 @@
 //   const [filterLastName, setFilterLastName] = useState("");
 //   const [filterDob, setFilterDob] = useState("");
 //   const [filterNationalId, setFilterNationalId] = useState("");
-  
+
 //   useEffect(() => {
 //     const list = [];
 //     setDocList(list);
@@ -111,7 +111,7 @@
 //     setSelectedDocName(doc.docName);
 //     setSelectedDate(doc.date);
 //     setSearchCustomer(doc.customerName);
-//     setDocIdentifier("National ID"); 
+//     setDocIdentifier("National ID");
 
 //     if (!confirmedDocIds.includes(doc.id)) {
 //       setConfirmedDocIds([...confirmedDocIds, doc.id]);
@@ -119,8 +119,8 @@
 //   };
 
 //   const handleSave = () => {
-//     setShowSnackbar(true); 
-//     console.log("Snackbar should show now"); 
+//     setShowSnackbar(true);
+//     console.log("Snackbar should show now");
 
 //     setTimeout(() => {
 //       navigate("/documents");
@@ -169,7 +169,7 @@
 //                   label="Search by Customer ID, Customer Name, Date of Birth, National ID"
 //                   value={searchCustomer}
 //                   onChange={(e) => setSearchCustomer(e.target.value)}
-//                   sx={{ width: "475px" }} 
+//                   sx={{ width: "475px" }}
 //                 />
 //               </Grid>
 //               <Grid item xs={4} display="flex" alignItems="center">
@@ -183,7 +183,7 @@
 //                     bgcolor: "#99CAFF",
 //                     color: "black",
 //                     px: 3,
-//                     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", 
+//                     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
 //                     "&:hover": {
 //                       bgcolor: "#7bb8ff",
 //                     },
@@ -293,7 +293,7 @@
 //                         key={doc.id}
 //                         hover
 //                         onClick={() => handleSelectSearchDoc(doc)}
-//                         sx={{ cursor: "pointer", "& td": { py: 0.5 } }} 
+//                         sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
 //                       >
 //                         <TableCell>
 //                           <Checkbox
@@ -321,8 +321,8 @@
 //             sx={{
 //               p: 2,
 //               borderRadius: 2,
-//               // height: '80vh',           
-//               // overflow: 'auto'          
+//               // height: '80vh',
+//               // overflow: 'auto'
 //             }}
 //           >
 //         <Grid container spacing={2}>
@@ -485,10 +485,10 @@
 //                 px: 3,
 //                 color: "black",
 //                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-//                 border: "none", 
+//                 border: "none",
 //                 "&:hover": {
 //                   bgcolor: "#e5e7e8",
-//                   border: "none", 
+//                   border: "none",
 //                 },
 //               }}
 //             >
@@ -548,7 +548,7 @@ import {
   Checkbox,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 const mockCustomerDocs = [
   {
@@ -609,7 +609,7 @@ const PreviewKycPage = () => {
     lastName: false,
   });
   const [issueDate, setIssueDate] = useState("");
-const [expiryDate, setExpiryDate] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
 
   useEffect(() => {
     const list = [];
@@ -648,7 +648,7 @@ const [expiryDate, setExpiryDate] = useState("");
     setSelectedDocName(doc.docName);
     setSelectedDate(doc.date);
     setSearchCustomer(doc.customerName);
-    setDocIdentifier("National ID"); 
+    setDocIdentifier("National ID");
 
     if (!confirmedDocIds.includes(doc.id)) {
       setConfirmedDocIds([...confirmedDocIds, doc.id]);
@@ -656,8 +656,8 @@ const [expiryDate, setExpiryDate] = useState("");
   };
 
   const handleSave = () => {
-    setShowSnackbar(true); 
-    console.log("Snackbar should show now"); 
+    setShowSnackbar(true);
+    console.log("Snackbar should show now");
 
     setTimeout(() => {
       navigate("/documents");
@@ -689,42 +689,41 @@ const [expiryDate, setExpiryDate] = useState("");
 
       {!selectedDoc && (
         <>
-         <Stack
-                  direction="row"
-                  spacing={2}
-                  sx={{ mb: 2 }}
-                  justifyContent="flex-start"
-                  alignItems="center"
-                >
-                 
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    Select Department
-                  </Typography>
-        
-                  <FormControl sx={{ minWidth: 150 }}>
-                    <Select
-                      labelId="application-select-label"
-                      id="application-select"
-                      defaultValue="AML KYC"
-                      label="Application"
-                      sx={{
-                        bgcolor: "#f2f4f5",
-                        height: "45px",
-                        borderRadius: "5px",
-                        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
-                        "& fieldset": {
-                          border: "none",
-                        },
-                        "&.Mui-focused": {
-                          boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
-                        },
-                      }}
-                    >
-                      <MenuItem value="AML KYC">AML KYC</MenuItem>
-                      <MenuItem value="Account">Accounts</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Stack>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ mb: 2 }}
+            justifyContent="flex-start"
+            alignItems="center"
+          >
+            <Typography variant="subtitle1" fontWeight="bold">
+              Select Department
+            </Typography>
+
+            <FormControl sx={{ minWidth: 150 }}>
+              <Select
+                labelId="application-select-label"
+                id="application-select"
+                defaultValue="AML KYC"
+                label="Application"
+                sx={{
+                  bgcolor: "#f2f4f5",
+                  height: "45px",
+                  borderRadius: "5px",
+                  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+                  "& fieldset": {
+                    border: "none",
+                  },
+                  "&.Mui-focused": {
+                    boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
+                  },
+                }}
+              >
+                <MenuItem value="AML KYC">AML KYC</MenuItem>
+                <MenuItem value="Account">Accounts</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
           <Box mb={3}>
             <Grid container spacing={2}>
               <Grid item xs={4}>
@@ -742,7 +741,7 @@ const [expiryDate, setExpiryDate] = useState("");
                   label="Search by Customer ID, Customer Name, Date of Birth, National ID"
                   value={searchCustomer}
                   onChange={(e) => setSearchCustomer(e.target.value)}
-                  sx={{ width: "475px" }} 
+                  sx={{ width: "475px" }}
                 />
               </Grid>
               <Grid item xs={4} display="flex" alignItems="center">
@@ -756,7 +755,7 @@ const [expiryDate, setExpiryDate] = useState("");
                     bgcolor: "#99CAFF",
                     color: "black",
                     px: 3,
-                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", 
+                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
                     "&:hover": {
                       bgcolor: "#7bb8ff",
                     },
@@ -788,7 +787,9 @@ const [expiryDate, setExpiryDate] = useState("");
                       </TableCell>
                       <TableCell>
                         <Box display="flex" alignItems="center">
-                          <Typography fontWeight="bold" mr={1}>Customer ID</Typography>
+                          <Typography fontWeight="bold" mr={1}>
+                            Customer ID
+                          </Typography>
                           <SearchIcon
                             sx={{ cursor: "pointer" }}
                             onClick={() =>
@@ -806,7 +807,10 @@ const [expiryDate, setExpiryDate] = useState("");
                             value={columnSearch.firstName}
                             onChange={(e) => {
                               const value = e.target.value;
-                              setColumnSearch((prev) => ({ ...prev, id: value }));
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                id: value,
+                              }));
                               const query = value.toLowerCase();
                               const filtered = mockCustomerDocs.filter((doc) =>
                                 doc.id.toLowerCase().includes(query)
@@ -819,7 +823,9 @@ const [expiryDate, setExpiryDate] = useState("");
                       </TableCell>
                       <TableCell>
                         <Box display="flex" alignItems="center">
-                          <Typography fontWeight="bold" mr={1}>First Name</Typography>
+                          <Typography fontWeight="bold" mr={1}>
+                            First Name
+                          </Typography>
                           <SearchIcon
                             sx={{ cursor: "pointer" }}
                             onClick={() =>
@@ -837,7 +843,10 @@ const [expiryDate, setExpiryDate] = useState("");
                             value={columnSearch.firstName}
                             onChange={(e) => {
                               const value = e.target.value;
-                              setColumnSearch((prev) => ({ ...prev, firstName: value }));
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                firstName: value,
+                              }));
                               const query = value.toLowerCase();
                               const filtered = mockCustomerDocs.filter((doc) =>
                                 doc.firstName.toLowerCase().includes(query)
@@ -848,9 +857,11 @@ const [expiryDate, setExpiryDate] = useState("");
                           />
                         )}
                       </TableCell>
-                       <TableCell>
+                      <TableCell>
                         <Box display="flex" alignItems="center">
-                          <Typography fontWeight="bold" mr={1}>Last Name</Typography>
+                          <Typography fontWeight="bold" mr={1}>
+                            Last Name
+                          </Typography>
                           <SearchIcon
                             sx={{ cursor: "pointer" }}
                             onClick={() =>
@@ -868,7 +879,10 @@ const [expiryDate, setExpiryDate] = useState("");
                             value={columnSearch.lastName}
                             onChange={(e) => {
                               const value = e.target.value;
-                              setColumnSearch((prev) => ({ ...prev, lastName: value }));
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                lastName: value,
+                              }));
                               const query = value.toLowerCase();
                               const filtered = mockCustomerDocs.filter((doc) =>
                                 doc.lastName.toLowerCase().includes(query)
@@ -878,10 +892,12 @@ const [expiryDate, setExpiryDate] = useState("");
                             placeholder="Search Last Name"
                           />
                         )}
-                      </TableCell> 
+                      </TableCell>
                       <TableCell>
                         <Box display="flex" alignItems="center">
-                          <Typography fontWeight="bold" mr={1}>Date of Birth</Typography>
+                          <Typography fontWeight="bold" mr={1}>
+                            Date of Birth
+                          </Typography>
                           <SearchIcon
                             sx={{ cursor: "pointer" }}
                             onClick={() =>
@@ -899,7 +915,10 @@ const [expiryDate, setExpiryDate] = useState("");
                             value={columnSearch.dob}
                             onChange={(e) => {
                               const value = e.target.value;
-                              setColumnSearch((prev) => ({ ...prev, dob: value }));
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                dob: value,
+                              }));
                               const query = value.toLowerCase();
                               const filtered = mockCustomerDocs.filter((doc) =>
                                 doc.dob.toLowerCase().includes(query)
@@ -909,10 +928,12 @@ const [expiryDate, setExpiryDate] = useState("");
                             placeholder="Search Date od Birth"
                           />
                         )}
-                      </TableCell> 
+                      </TableCell>
                       <TableCell>
                         <Box display="flex" alignItems="center">
-                          <Typography fontWeight="bold" mr={1}>National ID</Typography>
+                          <Typography fontWeight="bold" mr={1}>
+                            National ID
+                          </Typography>
                           <SearchIcon
                             sx={{ cursor: "pointer" }}
                             onClick={() =>
@@ -930,7 +951,10 @@ const [expiryDate, setExpiryDate] = useState("");
                             value={columnSearch.nationalId}
                             onChange={(e) => {
                               const value = e.target.value;
-                              setColumnSearch((prev) => ({ ...prev, nationalId: value }));
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                nationalId: value,
+                              }));
                               const query = value.toLowerCase();
                               const filtered = mockCustomerDocs.filter((doc) =>
                                 doc.nationalId.toLowerCase().includes(query)
@@ -941,38 +965,46 @@ const [expiryDate, setExpiryDate] = useState("");
                           />
                         )}
                       </TableCell>
-                      </TableRow>
-                      </TableHead>
-                         <TableBody>
-                          {searchResults
-                        .filter(doc =>
-                          doc.firstName.toLowerCase().includes(filterFirstName.toLowerCase()) &&
-                          doc.lastName.toLowerCase().includes(filterLastName.toLowerCase()) &&
-                          doc.dob.toLowerCase().includes(filterDob.toLowerCase()) &&
-                          doc.nationalId.toLowerCase().includes(filterNationalId.toLowerCase())
-                        )
-                        .map((doc) => (
-
-                      <TableRow
-                        key={doc.id}
-                        hover
-                        onClick={() => handleSelectSearchDoc(doc)}
-                        sx={{ cursor: "pointer", "& td": { py: 0.5 } }} 
-                      >
-                        <TableCell>
-                          <Checkbox
-                            checked={confirmedDocIds.includes(doc.id)}
-                            disabled
-                          />
-                        </TableCell>
-                        <TableCell>{doc.id}</TableCell>
-                        <TableCell>{doc.firstName}</TableCell>
-                        <TableCell>{doc.lastName}</TableCell>
-                        {/* <TableCell>{doc.transactionId}</TableCell> */}
-                        <TableCell>{doc.dob}</TableCell>
-                        <TableCell>{doc.nationalId}</TableCell>
-                      </TableRow>
-                    ))}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {searchResults
+                      .filter(
+                        (doc) =>
+                          doc.firstName
+                            .toLowerCase()
+                            .includes(filterFirstName.toLowerCase()) &&
+                          doc.lastName
+                            .toLowerCase()
+                            .includes(filterLastName.toLowerCase()) &&
+                          doc.dob
+                            .toLowerCase()
+                            .includes(filterDob.toLowerCase()) &&
+                          doc.nationalId
+                            .toLowerCase()
+                            .includes(filterNationalId.toLowerCase())
+                      )
+                      .map((doc) => (
+                        <TableRow
+                          key={doc.id}
+                          hover
+                          onClick={() => handleSelectSearchDoc(doc)}
+                          sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
+                        >
+                          <TableCell>
+                            <Checkbox
+                              checked={confirmedDocIds.includes(doc.id)}
+                              disabled
+                            />
+                          </TableCell>
+                          <TableCell>{doc.id}</TableCell>
+                          <TableCell>{doc.firstName}</TableCell>
+                          <TableCell>{doc.lastName}</TableCell>
+                          {/* <TableCell>{doc.transactionId}</TableCell> */}
+                          <TableCell>{doc.dob}</TableCell>
+                          <TableCell>{doc.nationalId}</TableCell>
+                        </TableRow>
+                      ))}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -980,15 +1012,15 @@ const [expiryDate, setExpiryDate] = useState("");
           )}
         </>
       )}
-          <Paper
-            elevation={3}
-            sx={{
-              p: 2,
-              borderRadius: 2,
-              // height: '80vh',           
-              // overflow: 'auto'          
-            }}
-          >
+      <Paper
+        elevation={3}
+        sx={{
+          p: 2,
+          borderRadius: 2,
+          // height: '80vh',
+          // overflow: 'auto'
+        }}
+      >
         <Grid container spacing={2}>
           <Grid item size={7}>
             <Paper
@@ -1041,7 +1073,7 @@ const [expiryDate, setExpiryDate] = useState("");
             >
               <Box>
                 <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
-                Transaction Data From OLTP System
+                  Transaction Data From OLTP System
                 </Typography>
                 <TextField
                   label="Customer ID / Transaction ID"
@@ -1107,7 +1139,7 @@ const [expiryDate, setExpiryDate] = useState("");
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 >
-                   <MenuItem value="ageCard"> Age Card</MenuItem>
+                  <MenuItem value="ageCard"> Age Card</MenuItem>
                 </TextField>
                 <TextField
                   label="Issue Date"
@@ -1130,7 +1162,6 @@ const [expiryDate, setExpiryDate] = useState("");
                   InputLabelProps={{ shrink: true }}
                   disabled={!selectedDoc}
                 />
-
               </Box>
             </Paper>
           </Grid>
@@ -1166,10 +1197,10 @@ const [expiryDate, setExpiryDate] = useState("");
                 px: 3,
                 color: "black",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                border: "none", 
+                border: "none",
                 "&:hover": {
                   bgcolor: "#e5e7e8",
-                  border: "none", 
+                  border: "none",
                 },
               }}
             >
@@ -1205,4 +1236,3 @@ const [expiryDate, setExpiryDate] = useState("");
 };
 
 export default PreviewKycPage;
-
