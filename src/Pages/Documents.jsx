@@ -41,34 +41,35 @@ const projectData = [
     dob: "01/05/2006",
     expiryDate: "22/08/2024",
     nationalId: "5843 2166 4567 8904",
-    docType: "ID Proof",
+    category: "KYC",
+    subCategory: "ID Proof",
   },
   {
     id: 2,
     date: "29/04/2025",
     customerName: "Jane Smith",
     dob: "05/05/2003",
-    expiryDate: "15/04/2025",
     nationalId: "1486 4625 4632 7854",
-    docType: "ID Proof",
+    category: "KYC",
+    subCategory: "Address Proof",
   },
   {
     id: 3,
     date: "24/02/2025",
     customerName: "Sarah Johnson",
     dob: "18/11/2008",
-    expiryDate: "23/08/2025",
     nationalId: "3625 4562 1236 4569",
-    docType: "ID Proof",
+    category: "KYC",
+    subCategory: "ID Proof",
   },
   {
     id: 4,
     date: "12/04/2025",
     customerName: "David V Smith",
     dob: "03/03/2002",
-    expiryDate: "14/05/2024",
     nationalId: "5843 2166 4567 8904",
-    docType: "ID Proof",
+    category: "KYC",
+    subCategory: "Address Proof",
   },
 ];
 
@@ -127,7 +128,7 @@ const Documents = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by Customer Name, Date of Birth, National ID & Document Type"
+            placeholder="Search by Transaction Date, Customer Name, Date of Birth, National ID, Category & Sub Category"
             variant="outlined"
             sx={{
               width: "50%",
@@ -163,7 +164,7 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Date</Typography>
+                    <Typography fontWeight="bold">Transaction Date</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
@@ -184,13 +185,6 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Card Expiry Date</Typography>
-                    <ArrowDropDown />
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">National ID</Typography>
                     <ArrowDropDown />
                   </Stack>
@@ -198,7 +192,13 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Document Type</Typography>
+                    <Typography fontWeight="bold">Category</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Sub Category</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
@@ -222,9 +222,9 @@ const Documents = () => {
 
                   <TableCell>{project.customerName}</TableCell>
                   <TableCell>{project.dob}</TableCell>
-                  <TableCell>{project.expiryDate}</TableCell>
                   <TableCell>{project.nationalId}</TableCell>
-                  <TableCell>{project.docType}</TableCell>
+                  <TableCell>{project.category}</TableCell>
+                  <TableCell>{project.subCategory}</TableCell>
 
                   {/* Action Buttons */}
                   <TableCell>
