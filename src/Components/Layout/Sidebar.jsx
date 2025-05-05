@@ -99,7 +99,7 @@ const Sidebar = () => {
               }}
             />
           </ListItem>
-          <ListItem
+          {/* <ListItem
             onClick={() => handleMenuItemClick("/previewDocument1")}
             sx={{
               borderRadius: "10px",
@@ -131,7 +131,7 @@ const Sidebar = () => {
                 fontSize: "15px",
               }}
             />
-          </ListItem>
+          </ListItem> */}
 
           {/* Projects */}
           <ListItem
