@@ -467,7 +467,7 @@ const mockCustomerDocs = [
   },
   {
     id: 3,
-    firstName: "David R",
+    firstName: "David ",
     lastName: "Johnson",
     date: "2025-04-30",
     dob: "2007-05-10",
@@ -751,7 +751,7 @@ const PreviewKycPage = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 /> */}
-                <Typography sx={{ mb: 1, fontSize: 20, fontWeight: "bold" }}>
+                <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
                   Transaction Data
                 </Typography>
                 <TextField
@@ -795,7 +795,7 @@ const PreviewKycPage = () => {
                     borderColor: "black",
                   }}
                 />
-                <Typography sx={{ mb: 1, fontSize: 20, fontWeight: "bold" }}>
+                <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
                   Document
                 </Typography>
                 <TextField
