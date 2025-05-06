@@ -22,32 +22,29 @@ import {
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import InfoIcon from "@mui/icons-material/Info"; // for View Details button
-
-// import invoice from "../assets/invoice.jpg";
 import agecard from "../assets/agecard.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NavigateBefore from "@mui/icons-material/NavigateBefore";
 import NavigateNext from "@mui/icons-material/NavigateNext";
-
-const pump_report = "your-pdf-url-or-path"; // Replace with your actual file
 const projectData = [
   {
     id: 1,
     date: "01/05/2025",
     customerName: "David R Smith",
+    transactionId: "TXN123",
     dob: "01/05/2006",
     expiryDate: "22/08/2024",
     nationalId: "5843 2166 4567 8904",
     category: "KYC",
-    subCategory: "ID Proof",
+    subCategory: "Age Proof",
   },
   {
     id: 2,
     date: "29/04/2025",
     customerName: "Jane Smith",
+    transactionId: "TXN345",
     dob: "05/05/2003",
     nationalId: "1486 4625 4632 7854",
     category: "KYC",
@@ -57,6 +54,7 @@ const projectData = [
     id: 3,
     date: "24/02/2025",
     customerName: "Sarah Johnson",
+    transactionId: "TXN344",
     dob: "18/11/2008",
     nationalId: "3625 4562 1236 4569",
     category: "KYC",
@@ -66,6 +64,7 @@ const projectData = [
     id: 4,
     date: "12/04/2025",
     customerName: "David V Smith",
+    transactionId: "TXN567",
     dob: "03/03/2002",
     nationalId: "5843 2166 4567 8904",
     category: "KYC",
@@ -75,21 +74,7 @@ const projectData = [
 
 const Documents = () => {
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedValue, setSelectedValue] = useState(5); // default value
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = (value) => {
-    if (value) {
-      setSelectedValue(value);
-    }
-    setAnchorEl(null);
-  };
-
+  
   return (
     <Box
       sx={{
@@ -137,12 +122,12 @@ const Documents = () => {
               borderRadius: "10px",
 
               "& .MuiOutlinedInput-root": {
-                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)", // increased opacity from 0.15 → 0.25
+                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)", 
                 "& fieldset": {
                   border: "none",
                 },
                 "&.Mui-focused": {
-                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)", // darker + larger shadow on focus
+                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
                 },
               },
             }}
@@ -158,13 +143,19 @@ const Documents = () => {
                 <TableCell>
                   <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold"> Id</Typography>
-                    {/* No ArrowDropDown for Id */}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Transaction Date</Typography>
+                    <ArrowDropDown />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Transaction ID</Typography>
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
@@ -206,7 +197,6 @@ const Documents = () => {
                 <TableCell>
                   <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Action</Typography>
-                    {/* No ArrowDropDown for Action */}
                   </Stack>
                 </TableCell>
               </TableRow>
@@ -219,17 +209,14 @@ const Documents = () => {
                     <Typography fontWeight="bold">{project.id}</Typography>
                   </TableCell>
                   <TableCell>{project.date}</TableCell>
-
+                  <TableCell>{project.transactionId}</TableCell>
                   <TableCell>{project.customerName}</TableCell>
                   <TableCell>{project.dob}</TableCell>
                   <TableCell>{project.nationalId}</TableCell>
                   <TableCell>{project.category}</TableCell>
                   <TableCell>{project.subCategory}</TableCell>
-
-                  {/* Action Buttons */}
                   <TableCell>
                     <Stack direction="row" spacing={1}>
-                      {/* View Document */}
                       <Tooltip title="View Document">
                         <IconButton
                           color="primary"
@@ -238,8 +225,6 @@ const Documents = () => {
                           <VisibilityIcon />
                         </IconButton>
                       </Tooltip>
-
-                      {/* Download Document */}
                       <Tooltip title="Download Document">
                         <a
                           href={agecard}
@@ -251,18 +236,6 @@ const Documents = () => {
                           </IconButton>
                         </a>
                       </Tooltip>
-
-                      {/* View Details */}
-                      {/* <Tooltip title="View Details">
-                    <IconButton
-                      color="info"
-                      onClick={() => {
-                        alert(`Showing details for Transaction ID: ${project.transactionId}`);
-                      }}
-                    >
-                      <InfoIcon />
-                    </IconButton>
-                  </Tooltip> */}
                     </Stack>
                   </TableCell>
                 </TableRow>
@@ -331,32 +304,10 @@ const Documents = () => {
               );
             }}
           />
-          {/* <Button
-            variant="outlined"
-            size="small"
-            sx={{
-              ml: 1,
- 
-              border: "1px solid #a7a6a6",
- 
-              borderRadius: "5px",
- 
-              bgcolor: "#f2f4f5",
- 
-              color: "#747474",
- 
-              fontSize: "10px",
- 
-              textTransform: "none",
-            }}
-          >
-            10 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
-          </Button> */}
           <Box>
             <Button
               variant="outlined"
               size="small"
-              onClick={handleClick}
               sx={{
                 ml: 1,
                 border: "1px solid #a7a6a6",
@@ -370,14 +321,14 @@ const Documents = () => {
                 gap: "4px",
               }}
             >
-              {selectedValue} / Pages{" "}
+              5 / Pages{" "}
               <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
             </Button>
 
-            <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
-              <MenuItem onClick={() => handleClose(10)}>5/page</MenuItem>
-              <MenuItem onClick={() => handleClose(20)}>10/page</MenuItem>
-              <MenuItem onClick={() => handleClose(50)}>15/page</MenuItem>
+            <Menu>
+              <MenuItem>5/page</MenuItem>
+              <MenuItem >10/page</MenuItem>
+              <MenuItem >15/page</MenuItem>
             </Menu>
           </Box>
         </Box>
