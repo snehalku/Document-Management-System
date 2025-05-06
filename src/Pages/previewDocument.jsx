@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import pan_card from "../assets/pan_card.pdf";
 import agecard from "../assets/agecard.jpg";
 import { Snackbar, Alert, Divider } from "@mui/material";
 import {
@@ -15,6 +14,8 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  FormControl,
+  Select,
   TableHead,
   TableRow,
   Checkbox,
@@ -23,27 +24,30 @@ import { useNavigate } from "react-router-dom";
 
 const mockCustomerDocs = [
   {
-    id: 1,
+    id: 101,
     firstName: "David R",
     lastName: "Smith",
+    transactionId: "TXN123",
     date: "2025-04-30",
     dob: "2006-05-01",
     expiresOn: "2024-08-22",
     nationalId: "5843216645678904",
   },
   {
-    id: 2,
+    id: 102,
     firstName: "Jane Smith",
     lastName: "Smith",
+    transactionId: "TXN345",
     date: "2025-04-29",
     dob: "2007-12-11",
     expiresOn: "2025-08-12",
     nationalId: "5843216645678904",
   },
   {
-    id: 3,
+    id: 103,
     firstName: "David ",
     lastName: "Johnson",
+    transactionId: "TXN567",
     date: "2025-04-30",
     dob: "2007-05-10",
     expiresOn: "2025-08-12",
@@ -81,21 +85,18 @@ const PreviewKycPage = () => {
   }, [selectedDocName, docList]);
 
   const handleSearch = () => {
-    const results = mockCustomerDocs.filter(
-      (doc) =>
+    const query = searchCustomer.toLowerCase();
+    const results = mockCustomerDocs.filter((doc) => {
+      return (
+        (!selectedDate || doc.date === selectedDate) &&
         (!searchCustomer ||
-          doc.firstName.toLowerCase().includes(searchCustomer.toLowerCase())) &&
-        (!selectedDate || doc.date === selectedDate)
-    );
+          doc.firstName.toLowerCase().includes(query) ||
+          doc.lastName.toLowerCase().includes(query) ||
+          doc.dob.toLowerCase().includes(query) ||
+          doc.nationalId.toLowerCase().includes(query))
+      );
+    });
     setSearchResults(results);
-  };
-
-  const handleCheckboxToggle = (docId) => {
-    if (confirmedDocIds.includes(docId)) {
-      setConfirmedDocIds(confirmedDocIds.filter((id) => id !== docId));
-    } else {
-      setConfirmedDocIds([...confirmedDocIds, docId]);
-    }
   };
 
   const handleSelectSearchDoc = (doc) => {
@@ -107,7 +108,6 @@ const PreviewKycPage = () => {
     setSearchCustomer(doc.customerName);
     setDocIdentifier("National ID"); 
 
-    // Optional: You can also directly add to confirmed IDs here
     if (!confirmedDocIds.includes(doc.id)) {
       setConfirmedDocIds([...confirmedDocIds, doc.id]);
     }
@@ -141,13 +141,12 @@ const PreviewKycPage = () => {
         overflow: "hidden",
       }}
     >
-      <Typography variant="h5" fontWeight="bold" mb={3}>
-        Document Upload
+      <Typography variant="h5" fontWeight="bold" mb={2}>
+        Customer KYC
       </Typography>
 
       {!selectedDoc && (
         <>
-          {/* Search Parameters */}
           <Box mb={3}>
             <Grid container spacing={2}>
               <Grid item xs={4}>
@@ -160,12 +159,12 @@ const PreviewKycPage = () => {
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item>
                 <TextField
-                  label="Customer Name"
-                  fullWidth
+                  label="Search by Transaction Customer ID, Customer Name, Date of Birth, National ID"
                   value={searchCustomer}
                   onChange={(e) => setSearchCustomer(e.target.value)}
+                  sx={{ width: "500px" }} 
                 />
               </Grid>
               <Grid item xs={4} display="flex" alignItems="center">
@@ -191,7 +190,6 @@ const PreviewKycPage = () => {
             </Grid>
           </Box>
 
-          {/* Search Result Table */}
           {searchResults.length > 0 && (
             <Paper sx={{ p: 2, mb: 2 }}>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
@@ -211,11 +209,17 @@ const PreviewKycPage = () => {
                         <Typography fontWeight="bold"></Typography>
                       </TableCell>
                       <TableCell>
+                        <Typography fontWeight="bold">Customer ID</Typography>
+                      </TableCell>
+                      <TableCell>
                         <Typography fontWeight="bold">First Name</Typography>
                       </TableCell>
                       <TableCell>
                         <Typography fontWeight="bold">Last Name</Typography>
                       </TableCell>
+                      {/* <TableCell>
+                        <Typography fontWeight="bold">Transaction ID</Typography>
+                      </TableCell> */}
                       <TableCell>
                         <Typography fontWeight="bold">Date of Birth</Typography>
                       </TableCell>
@@ -238,9 +242,10 @@ const PreviewKycPage = () => {
                             disabled
                           />
                         </TableCell>
-
+                        <TableCell>{doc.id}</TableCell>
                         <TableCell>{doc.firstName}</TableCell>
                         <TableCell>{doc.lastName}</TableCell>
+                        {/* <TableCell>{doc.transactionId}</TableCell> */}
                         <TableCell>{doc.dob}</TableCell>
                         <TableCell>{doc.nationalId}</TableCell>
                       </TableRow>
@@ -252,13 +257,20 @@ const PreviewKycPage = () => {
           )}
         </>
       )}
-
-      <Paper elevation={3} sx={{ p: 2, borderRadius: 2 }}>
+          <Paper
+            elevation={3}
+            sx={{
+              p: 2,
+              borderRadius: 2,
+              // height: '80vh',           
+              // overflow: 'auto'          
+            }}
+          >
         <Grid container spacing={2}>
           <Grid item size={7}>
             <Paper
               sx={{
-                height: "73vh",
+                height: "82vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -298,7 +310,7 @@ const PreviewKycPage = () => {
             <Paper
               sx={{
                 p: 2,
-                height: "68vh",
+                height: "78vh",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -306,8 +318,14 @@ const PreviewKycPage = () => {
             >
               <Box>
                 <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
-                  Transaction Data
+                Transaction Data From OLTP System
                 </Typography>
+                <TextField
+                  label="Customer ID / Transaction ID"
+                  fullWidth
+                  value={selectedDoc?.id || ""}
+                  sx={{ mb: 2 }}
+                />
                 <TextField
                   label="First Name"
                   fullWidth
@@ -320,6 +338,12 @@ const PreviewKycPage = () => {
                   value={selectedDoc?.lastName || ""}
                   sx={{ mb: 2 }}
                 />
+                {/* <TextField
+                  label="Transaction ID"
+                  fullWidth
+                  value={selectedDoc?.transactionId || ""}
+                  sx={{ mb: 2 }}
+                /> */}
                 <TextField
                   label="Date of Birth"
                   fullWidth
@@ -352,8 +376,6 @@ const PreviewKycPage = () => {
                   disabled={!selectedDoc}
                 >
                   <MenuItem value="ageCard">KYC</MenuItem>
-                  <MenuItem value="accounts"> Accounts</MenuItem>
-                  <MenuItem value="finance"> Finance</MenuItem>
                 </TextField>
                 <TextField
                   label=" Sub Category"
@@ -364,8 +386,10 @@ const PreviewKycPage = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 >
-                  <MenuItem value="ageCard"> ID Proof</MenuItem>
+                   <MenuItem value="ageCard"> Age Proof</MenuItem>
+                  <MenuItem value="passport"> ID Proof</MenuItem>
                   <MenuItem value="license"> Address Proof</MenuItem>
+                  <MenuItem value="signature"> Signature Proof</MenuItem>
                 </TextField>
               </Box>
             </Paper>
@@ -412,9 +436,6 @@ const PreviewKycPage = () => {
               Discard
             </Button>
           </Stack>
-
-          {/* Snackbar */}
-
           <Snackbar
             open={showSnackbar}
             autoHideDuration={3000}
