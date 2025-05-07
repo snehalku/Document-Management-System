@@ -27,13 +27,8 @@ import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NavigateBefore from "@mui/icons-material/NavigateBefore";
 import NavigateNext from "@mui/icons-material/NavigateNext";
-
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import InfoIcon from "@mui/icons-material/Info"; // for View Details button
 
-const pump_report = "your-pdf-url-or-path"; // Replace with your actual file
 const projectData = [
   {
     id: 1,
@@ -75,7 +70,7 @@ const projectData = [
 const Dashboard = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedValue, setSelectedValue] = useState(5); // default value
+  const [selectedValue, setSelectedValue] = useState(5); 
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -128,12 +123,11 @@ const Dashboard = () => {
           justifyContent="flex-start"
           alignItems="center"
         >
-          {/* Label */}
+         
           <Typography variant="subtitle1" fontWeight="bold">
             Select Application
           </Typography>
 
-          {/* Select Dropdown using only MUI components */}
           <FormControl sx={{ minWidth: 150 }}>
             <Select
               labelId="application-select-label"
@@ -175,12 +169,12 @@ const Dashboard = () => {
               borderRadius: "10px",
 
               "& .MuiOutlinedInput-root": {
-                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)", // increased opacity from 0.15 → 0.25
+                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
                 "& fieldset": {
                   border: "none",
                 },
                 "&.Mui-focused": {
-                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)", // darker + larger shadow on focus
+                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)", 
                 },
               },
             }}
@@ -230,7 +224,7 @@ const Dashboard = () => {
           sx={{
             mb: 4,
             borderRadius: "10px 10px 0 0",
-            maxHeight: 550, // set height as needed
+            maxHeight: 550, 
             overflowY: "auto",
           }}
         >
@@ -247,7 +241,6 @@ const Dashboard = () => {
                 <TableCell>
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <Typography fontWeight="bold">Id</Typography>
-                    {/* No ArrowDropDown for Id */}
                   </Stack>
                 </TableCell>
 
@@ -257,13 +250,6 @@ const Dashboard = () => {
                     <ArrowDropDown />
                   </Stack>
                 </TableCell>
-
-                {/* <TableCell>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography fontWeight="bold">Application Name</Typography>
-                    <ArrowDropDown />
-                  </Stack>
-                </TableCell> */}
 
                 <TableCell>
                   <Stack direction="row" alignItems="center" spacing={1}>
@@ -310,49 +296,9 @@ const Dashboard = () => {
                       </Typography>
                     </Tooltip>
                   </TableCell>
-                  {/* <TableCell>{project.applicationName}</TableCell> */}
                   <TableCell>{project.transactionId}</TableCell>
                   <TableCell>{project.transactionName}</TableCell>
                   <TableCell>{project.transactionDate}</TableCell>
-                  {/* <TableCell>{project.documentId}</TableCell>
-              <TableCell>{project.documentName}</TableCell> */}
-
-                  {/* Action Buttons */}
-                  {/* <TableCell>
-                    <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
-                        <IconButton
-                          color="primary"
-                          onClick={() => window.open(pump_report, "_blank")}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
-
-                      <Tooltip title="Download Document">
-                        <a
-                          href={pump_report}
-                          download="pump_report.pdf"
-                          style={{ color: "inherit", textDecoration: "none" }}
-                        >
-                          <IconButton color="secondary">
-                            <FileDownloadIcon />
-                          </IconButton>
-                        </a>
-                      </Tooltip>
-
-                      <Tooltip title="View Details">
-                    <IconButton
-                      color="info"
-                      onClick={() => {
-                        alert(`Showing details for Transaction ID: ${project.transactionId}`);
-                      }}
-                    >
-                      <InfoIcon />
-                    </IconButton>
-                  </Tooltip>
-                    </Stack>
-                  </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>
@@ -419,27 +365,6 @@ const Dashboard = () => {
               );
             }}
           />
-          {/* <Button
-            variant="outlined"
-            size="small"
-            sx={{
-              ml: 1,
- 
-              border: "1px solid #a7a6a6",
- 
-              borderRadius: "5px",
- 
-              bgcolor: "#f2f4f5",
- 
-              color: "#747474",
- 
-              fontSize: "10px",
- 
-              textTransform: "none",
-            }}
-          >
-            10 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
-          </Button> */}
           <Box>
             <Button
               variant="outlined"

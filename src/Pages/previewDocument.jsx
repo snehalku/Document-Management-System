@@ -161,10 +161,10 @@ const PreviewKycPage = () => {
               </Grid>
               <Grid item>
                 <TextField
-                  label="Search by Transaction Customer ID, Customer Name, Date of Birth, National ID"
+                  label="Search by Customer ID, Customer Name, Date of Birth, National ID"
                   value={searchCustomer}
                   onChange={(e) => setSearchCustomer(e.target.value)}
-                  sx={{ width: "500px" }} 
+                  sx={{ width: "475px" }} 
                 />
               </Grid>
               <Grid item xs={4} display="flex" alignItems="center">
