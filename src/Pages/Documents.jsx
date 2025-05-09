@@ -28,6 +28,8 @@ import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NavigateBefore from "@mui/icons-material/NavigateBefore";
 import NavigateNext from "@mui/icons-material/NavigateNext";
+import SearchIcon from '@mui/icons-material/Search';
+
 const projectData = [
   {
     id: 101,
@@ -78,7 +80,46 @@ const projectData = [
 
 const Documents = () => {
   const navigate = useNavigate();
+  const [searchInputs, setSearchInputs] = useState({
+    customerName: "",
+    date: "",
+    dob: "",
+    nationalId: "",
+    documentId: "",
+    category: "",
+    subCategory: "",
+  });
+  
+  const [showSearchFields, setShowSearchFields] = useState({
+    customerName: false,
+    date: false,
+    dob: false,
+    nationalId: false,
+    documentId: false,
+    category: false,
+    subCategory: false,
+  });
 
+  const handleSearchInputChange = (field, value) => {
+    setSearchInputs((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+  
+  const toggleSearchField = (field) => {
+    setShowSearchFields((prev) => ({
+      ...prev,
+      [field]: !prev[field],
+    }));
+  };
+
+  const filteredData = projectData.filter((item) =>
+    Object.keys(searchInputs).every((key) =>
+      item[key]?.toLowerCase().includes(searchInputs[key].toLowerCase())
+    )
+  );
+  
   return (
     <Box
       sx={{
@@ -117,7 +158,7 @@ const Documents = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by Transaction Date, Customer Name, Date of Birth, National ID, Category & Sub Category"
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID"
             variant="outlined"
             sx={{
               width: "50%",
@@ -144,51 +185,165 @@ const Documents = () => {
           <Table>
             <TableHead>
               <TableRow sx={{ bgcolor: "#99caff" }}>
+              <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography fontWeight="bold">Customer ID</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("id")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.id && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.id}
+                        onChange={(e) =>
+                          handleSearchInputChange("id", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
                 <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Customer ID</Typography>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography fontWeight="bold">Transaction Date</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("date")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.date && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.date}
+                        onChange={(e) =>
+                          handleSearchInputChange("date", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Transaction Date</Typography>
-                    <ArrowDropDown />
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography fontWeight="bold">Customer Name</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("customerName")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.customerName && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.customerName}
+                        onChange={(e) =>
+                          handleSearchInputChange("customerName", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+
+                 <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography fontWeight="bold">Date of Birth</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("dob")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.dob && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.dob}
+                        onChange={(e) =>
+                          handleSearchInputChange("dob", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Customer Name</Typography>
-                    <ArrowDropDown />
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Date of Birth</Typography>
-                    <ArrowDropDown />
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">National ID</Typography>
-                    <ArrowDropDown />
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography fontWeight="bold">National ID</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("nationalId")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.nationalId && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.nationalId}
+                        onChange={(e) =>
+                          handleSearchInputChange("nationalId", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
                 
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Document ID</Typography>
-                    <ArrowDropDown />
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography fontWeight="bold">Document ID</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("documentId")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.documentId && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.documentId}
+                        onChange={(e) =>
+                          handleSearchInputChange("documentId", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
 
-                <TableCell>
+                {/* <TableCell>
                   <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Category</Typography>
                     <ArrowDropDown />
@@ -199,7 +354,7 @@ const Documents = () => {
                     <Typography fontWeight="bold">Sub Category</Typography>
                     <ArrowDropDown />
                   </Stack>
-                </TableCell>
+                </TableCell> */}
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
@@ -210,7 +365,8 @@ const Documents = () => {
             </TableHead>
 
             <TableBody>
-              {projectData.map((project) => (
+            {filteredData.map((project) => (
+
                 <TableRow key={project.id} hover>
                   <TableCell>
                     <Typography fontWeight="bold">{project.id}</Typography>
@@ -219,9 +375,11 @@ const Documents = () => {
                   <TableCell>{project.customerName}</TableCell>
                   <TableCell>{project.dob}</TableCell>
                   <TableCell>{project.nationalId}</TableCell>
-                  <TableCell>{project.documentId}</TableCell>
-                  <TableCell>{project.category}</TableCell>
-                  <TableCell>{project.subCategory}</TableCell>
+                  <TableCell align="center" sx={{ textAlign: "center" }}>
+                    {project.documentId}
+                  </TableCell>
+                  {/* <TableCell>{project.category}</TableCell>
+                  <TableCell>{project.subCategory}</TableCell> */}
                   <TableCell>
                     <Stack direction="row" spacing={1}>
                       <Tooltip title="View Document">
