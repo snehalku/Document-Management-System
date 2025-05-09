@@ -19,12 +19,8 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import agecard from "../assets/agecard.jpg";
+
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NavigateBefore from "@mui/icons-material/NavigateBefore";
 import NavigateNext from "@mui/icons-material/NavigateNext";
@@ -33,16 +29,30 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 const roles = [
   {
-    name: "CA",
-    mail: "Able to view documents and assign parameters to it.",
-    role: "aa",
-    action: "as",
+    name: "Emily Johnson",
+    mail: "emilyjohnson@gmail.com",
+    role: "Admin",
+    responsibility: "Manages all users, departments, and documents.",
   },
   {
-    name: "CA",
-    mail: "Able to view documents and assign parameters to it.",
-    role: "aa",
-    action: "as",
+    name: "Michael Carter",
+    mail: "michaelcarter@gmail.com",
+    role: "Chartered Accountant (CA)",
+    responsibility:
+      "Views and assigns parameters to Accounts-related documents.",
+  },
+  {
+    name: "Daniel Lewis	",
+    mail: "daniellewis@gmail.com",
+    role: "KYC Officer",
+    responsibility: "Views and assigns parameters to KYC-related documents.",
+  },
+  {
+    name: "Sophia Martinez	",
+    mail: "sophiamartinez@gmail.com",
+    role: "Finance Officer",
+    responsibility:
+      "Views and assigns parameters to Finance-related documents.",
   },
 ];
 
@@ -149,7 +159,11 @@ const User = () => {
                 <TableCell>
                   <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Role</Typography>
-                    {/* <ArrowDropDown /> */}
+                  </Stack>
+                </TableCell>
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Responsibility</Typography>
                   </Stack>
                 </TableCell>
 
@@ -167,6 +181,7 @@ const User = () => {
                   <TableCell>{role.name}</TableCell>
                   <TableCell>{role.mail}</TableCell>
                   <TableCell>{role.role}</TableCell>
+                  <TableCell>{role.responsibility}</TableCell>
 
                   <TableCell>
                     <Stack direction="row" spacing={1}>
