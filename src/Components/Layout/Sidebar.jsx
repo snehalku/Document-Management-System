@@ -23,8 +23,8 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [openUserMgmt, setOpenUserMgmt] = React.useState(false);
-  const [openAuth, setOpenAuth] = React.useState(false);
+  const [openAdmin, setOpenAdmin] = React.useState(false);
+  //   const [openAuth, setOpenAuth] = React.useState(false);
 
   const handleMenuItemClick = (path) => {
     navigate(path);
@@ -99,21 +99,16 @@ const Sidebar = () => {
               }}
             />
           </ListItem>
-          {/* <ListItem
-            onClick={() => handleMenuItemClick("/previewDocument1")}
+
+          <ListItem
+            onClick={() => setOpenAdmin(!openAdmin)}
             sx={{
               borderRadius: "10px",
+              mt: 2,
               mb: 1,
-              bgcolor:
-                location.pathname === "/previewDocument1"
-                  ? "#d1d4d2"
-                  : "transparent",
               height: "52px",
               "&:hover": {
-                bgcolor:
-                  location.pathname === "/previewDocument1"
-                    ? "#d1d4d2"
-                    : "#f5f5f5",
+                bgcolor: "#f5f5f5",
                 cursor: "pointer",
               },
             }}
@@ -121,23 +116,47 @@ const Sidebar = () => {
             <ListItemIcon
               sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
             >
-              <AssignmentIcon />
+              <GroupIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Preview Document"
+              primary="Admin"
               primaryTypographyProps={{
                 fontFamily: "Poppins-Medium, Helvetica",
                 fontWeight: 500,
                 fontSize: "15px",
               }}
             />
-          </ListItem> */}
+            {openAdmin ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openAdmin} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding sx={{ pl: 4 }}>
+              <ListItem
+                onClick={() => handleMenuItemClick("/roles")}
+                sx={{ height: 40, mb: 0.5, "&:hover": { bgcolor: "#f5f5f5" } }}
+              >
+                <ListItemText primary="Roles" />
+              </ListItem>
+              <ListItem
+                onClick={() => handleMenuItemClick("/user")}
+                sx={{ height: 40, "&:hover": { bgcolor: "#f5f5f5" } }}
+              >
+                <ListItemText primary="User" />
+              </ListItem>
+              <ListItem
+                onClick={() => handleMenuItemClick("/folders")}
+                sx={{ height: 40, mt: 2, "&:hover": { bgcolor: "#f5f5f5" } }}
+              >
+                <ListItemText primary="Source & Destination Folder" />
+              </ListItem>
+            </List>
+          </Collapse>
 
           {/* Projects */}
           <ListItem
             onClick={() => handleMenuItemClick("/previewDocument")}
             sx={{
               borderRadius: "10px",
+              mt: 2,
               mb: 1,
               bgcolor:
                 location.pathname === "/previewDocument"
@@ -173,6 +192,7 @@ const Sidebar = () => {
             onClick={() => handleMenuItemClick("/documents")}
             sx={{
               borderRadius: "10px",
+              mt: 2,
               mb: 1,
               bgcolor:
                 location.pathname === "/documents" ? "#d1d4d2" : "transparent",
