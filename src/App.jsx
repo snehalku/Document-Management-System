@@ -9,6 +9,9 @@ import Documents from "./Pages/Documents";
 import { Navigate } from "react-router-dom";
 import PreviewDocument from "./Pages/previewDocument";
 import PreviewDocument1 from "./Pages/previewDocument1";
+import Roles from "./Pages/Roles";
+import User from "./Pages/User";
+import Folders from "./Pages/Folders";
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +38,18 @@ function App() {
         {
           path: "documents",
           element: <Documents />,
+        },
+        {
+          path: "roles",
+          element: <Roles />,
+        },
+        {
+          path: "user",
+          element: <User />,
+        },
+        {
+          path: "folders",
+          element: <Folders />,
         },
       ],
     },
