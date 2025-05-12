@@ -40,6 +40,7 @@ const projectData = [
     expiryDate: "22-08-2024",
     nationalId: "5843 2166 4567 8904",
     documentId: "111",
+    documentName: "David_R_202514",
     category: "KYC",
     subCategory: "Age Proof",
   },
@@ -51,6 +52,7 @@ const projectData = [
     dob: "05-05-2003",
     nationalId: "1486 4625 4632 7854",
     documentId: "112",
+    documentName: "Jane_S_202513",
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -62,6 +64,7 @@ const projectData = [
     dob: "18-11-2008",
     nationalId: "3625 4562 1236 4569",
     documentId: "113",
+    documentName: "Sarah_J_202512",
     category: "KYC",
     subCategory: "ID Proof",
   },
@@ -73,6 +76,7 @@ const projectData = [
     dob: "03-03-2002",
     nationalId: "5843 2166 4567 8904",
     documentId: "114",
+    documentName: "David_V_202511",
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -86,6 +90,7 @@ const Documents = () => {
     dob: "",
     nationalId: "",
     documentId: "",
+    documentName: "",
     category: "",
     subCategory: "",
   });
@@ -96,6 +101,7 @@ const Documents = () => {
     dob: false,
     nationalId: false,
     documentId: false,
+    documentName: false,
     category: false,
     subCategory: false,
   });
@@ -158,10 +164,10 @@ const Documents = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID"
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name"
             variant="outlined"
             sx={{
-              width: "50%",
+              width: "65%",
               bgcolor: "#fff",
               height: "50px",
               borderRadius: "10px",
@@ -343,13 +349,34 @@ const Documents = () => {
                 </TableCell>
 
 
-                {/* <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Category</Typography>
-                    <ArrowDropDown />
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography fontWeight="bold">Document Name</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("documentName")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.documentName && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.documentName}
+                        onChange={(e) =>
+                          handleSearchInputChange("documentName", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
-                <TableCell>
+
+
+                {/* <TableCell>
                   <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Sub Category</Typography>
                     <ArrowDropDown />
@@ -378,8 +405,8 @@ const Documents = () => {
                   <TableCell align="center" sx={{ textAlign: "center" }}>
                     {project.documentId}
                   </TableCell>
-                  {/* <TableCell>{project.category}</TableCell>
-                  <TableCell>{project.subCategory}</TableCell> */}
+                  <TableCell>{project.documentName}</TableCell>
+                  {/* <TableCell>{project.subCategory}</TableCell> */}
                   <TableCell>
                     <Stack direction="row" spacing={1}>
                       <Tooltip title="View Document">
