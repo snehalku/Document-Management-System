@@ -173,7 +173,34 @@
 // export default Folders;
 
 import React from "react";
-import { Button, Box, Paper } from "@mui/material";
+import {
+  Button,
+  Box,
+  Paper,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  Stack,
+  FormControl,
+  Select,
+  MenuItem,
+} from "@mui/material";
+
+const folderPaths = [
+  {
+    name: "Source Folder",
+    path: "C:\\DMS Old",
+  },
+  {
+    name: "Discard Folder",
+    path: "C:\\DMS Old",
+  },
+  {
+    name: "Destination Folder",
+    path: "C:\\DMS Old",
+  },
+];
 
 const Folders = () => {
   const handleFolderSource = (e) => {
@@ -216,43 +243,159 @@ const Folders = () => {
           position: "relative",
         }}
       >
-        <Paper elevation={3} sx={{ p: 3, borderRadius: 2, bgcolor: "#ffffff", mb: 4 }}>
-          <Button variant="contained" component="label" sx={{ mr: 2 }}>
-            Source Folder
-            <input
-              type="file"
-              webkitdirectory="true"
-              directory=""
-              multiple
-              hidden
-              onChange={handleFolderSource}
-            />
-          </Button>
+        <Typography variant="h5" fontWeight="bold" mb={1}>
+          Folders
+        </Typography>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ mb: 2 }}
+          justifyContent="flex-start"
+          alignItems="center"
+        >
+          <Typography variant="subtitle1" fontWeight="bold">
+            Select Department
+          </Typography>
 
-          <Button variant="contained" component="label" sx={{ mr: 2 }}>
-            Destination Folder
-            <input
-              type="file"
-              webkitdirectory="true"
-              directory=""
-              multiple
-              hidden
-              onChange={handleFolderDestination}
-            />
-          </Button>
+          <FormControl sx={{ minWidth: 150 }}>
+            <Select
+              labelId="application-select-label"
+              id="application-select"
+              defaultValue="AML KYC"
+              label="Application"
+              sx={{
+                bgcolor: "#f2f4f5",
+                height: "45px",
+                borderRadius: "5px",
+                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+                "& fieldset": {
+                  border: "none",
+                },
+                "&.Mui-focused": {
+                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
+                },
+              }}
+            >
+              <MenuItem value="AML KYC">AML KYC</MenuItem>
+              <MenuItem value="Account">Accounts</MenuItem>
+            </Select>
+          </FormControl>
+        </Stack>
 
-          <Button variant="contained" component="label">
-            Discard Folder
-            <input
-              type="file"
-              webkitdirectory="true"
-              directory=""
-              multiple
-              hidden
-              onChange={handleFolderDiscard}
-            />
-          </Button>
-        </Paper>
+        <Box display="flex" flexDirection="row" gap={3} mb={4}>
+          <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
+            <CardContent>
+              <Button
+                variant="contained"
+                component="label"
+                sx={{
+                  bgcolor: "#99caff",
+                  color: "#000",
+                  "&:hover": {
+                    bgcolor: "#80bfff",
+                  },
+                }}
+              >
+                Source Folder
+                <input
+                  type="file"
+                  webkitdirectory="true"
+                  directory=""
+                  multiple
+                  hidden
+                  onChange={handleFolderSource}
+                />
+              </Button>
+              <p>C:\documents\sourcefolder</p>
+            </CardContent>
+          </Card>
+
+          <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
+            <CardContent>
+              <Button
+                variant="contained"
+                component="label"
+                sx={{
+                  bgcolor: "#99caff",
+                  color: "#000",
+                  "&:hover": {
+                    bgcolor: "#80bfff",
+                  },
+                }}
+              >
+                Destination Folder
+                <input
+                  type="file"
+                  webkitdirectory="true"
+                  directory=""
+                  multiple
+                  hidden
+                  onChange={handleFolderDestination}
+                />
+              </Button>
+              <p>C:\documents\destinationfolder</p>
+            </CardContent>
+          </Card>
+
+          <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
+            <CardContent>
+              <Button
+                variant="contained"
+                component="label"
+                sx={{
+                  bgcolor: "#99caff",
+                  color: "#000",
+                  "&:hover": {
+                    bgcolor: "#80bfff",
+                  },
+                }}
+              >
+                Discard Folder
+                <input
+                  type="file"
+                  webkitdirectory="true"
+                  directory=""
+                  multiple
+                  hidden
+                  onChange={handleFolderDiscard}
+                />
+              </Button>
+              <p>C:\documents\discardfolder</p>
+            </CardContent>
+          </Card>
+        </Box>
+
+        {/* <Grid container spacing={3} sx={{ mt: 4, px: 3 }}>
+          {folderPaths.map((folder, index) => (
+            <Grid item xs={12} md={4} key={index}>
+              <Card
+                onChange={handleFolderSource}
+                sx={{
+                  borderRadius: "12px",
+                  p: 2,
+                  cursor: "pointer",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                  "&:hover": {
+                    backgroundColor: "#f0f0f0",
+                  },
+                }}
+              >
+                <CardContent>
+                  <Typography variant="h6" fontWeight="bold">
+                    {folder.name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    sx={{ mt: 1 }}
+                  >
+                    {folder.path}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid> */}
       </Box>
     </Box>
   );
