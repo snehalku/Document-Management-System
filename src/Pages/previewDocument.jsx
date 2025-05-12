@@ -681,6 +681,8 @@ const PreviewKycPage = () => {
         pr: "24px",
         boxSizing: "border-box",
         overflow: "hidden",
+        position: "relative",
+        // minHeight: "400vh",
       }}
     >
       <Typography variant="h5" fontWeight="bold" mb={1}>
@@ -804,7 +806,7 @@ const PreviewKycPage = () => {
                           <TextField
                             variant="standard"
                             size="small"
-                            value={columnSearch.firstName}
+                            value={columnSearch.id}
                             onChange={(e) => {
                               const value = e.target.value;
                               setColumnSearch((prev) => ({
@@ -813,13 +815,14 @@ const PreviewKycPage = () => {
                               }));
                               const query = value.toLowerCase();
                               const filtered = mockCustomerDocs.filter((doc) =>
-                                doc.id.toLowerCase().includes(query)
+                                String(doc.id).toLowerCase().includes(query)
                               );
                               setSearchResults(filtered);
                             }}
                             placeholder="Search Customer ID"
                           />
                         )}
+
                       </TableCell>
                       <TableCell>
                         <Box display="flex" alignItems="center">
@@ -1017,8 +1020,8 @@ const PreviewKycPage = () => {
         sx={{
           p: 2,
           borderRadius: 2,
-          // height: '80vh',
-          // overflow: 'auto'
+          height: '100vh',
+          overflow: 'auto'
         }}
       >
         <Grid container spacing={2}>
