@@ -31,6 +31,7 @@ const mockCustomerDocs = [
     transactionId: "TXN123",
     date: "2025-04-30",
     dob: "2006-05-01",
+    versionNumber: "1.0",
     expiresOn: "2024-08-22",
     nationalId: "5843216645678904",
   },
@@ -41,6 +42,7 @@ const mockCustomerDocs = [
     transactionId: "TXN345",
     date: "2025-04-29",
     dob: "2007-12-11",
+    versionNumber: "2.0",
     expiresOn: "2025-08-12",
     nationalId: "5843216645678904",
   },
@@ -51,6 +53,7 @@ const mockCustomerDocs = [
     transactionId: "TXN567",
     date: "2025-04-30",
     dob: "2007-05-10",
+    versionNumber: "5.0",
     expiresOn: "2025-08-12",
     nationalId: "5843216645678905",
   },
@@ -103,7 +106,7 @@ const ViewDocument = () => {
           <Grid item size={7}>
             <Paper
               sx={{
-                height: "115vh",
+                height: "120vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -143,7 +146,7 @@ const ViewDocument = () => {
             <Paper
               sx={{
                 p: 2,
-                height: "110vh",
+                height: "115vh",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -237,6 +240,14 @@ const ViewDocument = () => {
                   label="Expiry Date"
                   fullWidth
                  defaultValue="22-08-2024"
+                 InputProps={{ readOnly: true }}
+                  sx={{ mb: 2 }}
+                />
+
+                <TextField
+                  label="Version NO."
+                  fullWidth
+                 defaultValue="1.0"
                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />

@@ -1028,7 +1028,7 @@ const PreviewKycPage = () => {
           <Grid item size={7}>
             <Paper
               sx={{
-                height: "100vh",
+                height: "110vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -1068,7 +1068,7 @@ const PreviewKycPage = () => {
             <Paper
               sx={{
                 p: 2,
-                height: "96vh",
+                height: "105vh",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -1163,6 +1163,13 @@ const PreviewKycPage = () => {
                   onChange={(e) => setExpiryDate(e.target.value)}
                   sx={{ mb: 2 }}
                   InputLabelProps={{ shrink: true }}
+                  disabled={!selectedDoc}
+                />
+
+                <TextField
+                  label="Version NO."
+                  fullWidth
+                  sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 />
               </Box>
