@@ -229,6 +229,7 @@ const summaryCards = [
 const Dashboard = () => {
   const navigate = useNavigate();
   const [searchInputs, setSearchInputs] = useState({
+    id: "",
     customerName: "",
     date: "",
     dob: "",
@@ -240,6 +241,7 @@ const Dashboard = () => {
   });
 
   const [showSearchFields, setShowSearchFields] = useState({
+    id: false,
     customerName: false,
     date: false,
     dob: false,
@@ -266,9 +268,12 @@ const Dashboard = () => {
 
   const filteredData = projectData.filter((item) =>
     Object.keys(searchInputs).every((key) =>
-      item[key]?.toLowerCase().includes(searchInputs[key].toLowerCase())
+      String(item[key] || "")
+        .toLowerCase()
+        .includes(searchInputs[key].toLowerCase())
     )
   );
+  
 
   const handleCardClick = () => {
     navigate("/documents"); // navigate to the target route
