@@ -159,7 +159,7 @@ const Documents = () => {
           fontWeight="bold"
           sx={{ mb: 2 }}
         >
-          Documents
+          View Documents
         </Typography>
         <Stack
           direction="row"
@@ -168,10 +168,10 @@ const Documents = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name"
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name, Version NO."
             variant="outlined"
             sx={{
-              width: "65%",
+              width: "72%",
               bgcolor: "#fff",
               height: "50px",
               borderRadius: "10px",
