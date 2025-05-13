@@ -185,6 +185,7 @@ import {
   FormControl,
   Select,
   MenuItem,
+  TextField,
 } from "@mui/material";
 
 const folderPaths = [
@@ -283,7 +284,7 @@ const Folders = () => {
         </Stack>
 
         <Box display="flex" flexDirection="row" gap={3} mb={4}>
-          <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
+          {/* <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
             <CardContent>
               <Button
                 variant="contained"
@@ -308,94 +309,101 @@ const Folders = () => {
               </Button>
               <p>C:\documents\sourcefolder</p>
             </CardContent>
-          </Card>
+          </Card> */}
 
           <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
             <CardContent>
-              <Button
-                variant="contained"
-                component="label"
-                sx={{
-                  bgcolor: "#99caff",
-                  color: "#000",
-                  "&:hover": {
-                    bgcolor: "#80bfff",
-                  },
-                }}
-              >
-                Destination Folder
-                <input
-                  type="file"
-                  webkitdirectory="true"
-                  directory=""
-                  multiple
-                  hidden
-                  onChange={handleFolderDestination}
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Source Folder
+              </Typography>
+
+              <Box display="flex" alignItems="center" gap={2}>
+                <TextField
+                  label="Folder Path"
+                  variant="outlined"
+                  fullWidth
+                  defaultValue="C:\\documents\\sourcefolder"
+                  size="small"
                 />
-              </Button>
-              <p>C:\documents\destinationfolder</p>
+                <Button
+                  variant="contained"
+                  component="label"
+                  sx={{
+                    bgcolor: "#99caff",
+                    color: "#000",
+                    "&:hover": {
+                      bgcolor: "#80bfff",
+                    },
+                  }}
+                >
+                  Update
+                </Button>
+              </Box>
             </CardContent>
           </Card>
 
           <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
             <CardContent>
-              <Button
-                variant="contained"
-                component="label"
-                sx={{
-                  bgcolor: "#99caff",
-                  color: "#000",
-                  "&:hover": {
-                    bgcolor: "#80bfff",
-                  },
-                }}
-              >
-                Discard Folder
-                <input
-                  type="file"
-                  webkitdirectory="true"
-                  directory=""
-                  multiple
-                  hidden
-                  onChange={handleFolderDiscard}
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Destination Folder
+              </Typography>
+
+              <Box display="flex" alignItems="center" gap={2}>
+                <TextField
+                  label="Folder Path"
+                  variant="outlined"
+                  fullWidth
+                  defaultValue="C:\\documents\\destinationfolder"
+                  size="small"
                 />
-              </Button>
-              <p>C:\documents\discardfolder</p>
+                <Button
+                  variant="contained"
+                  component="label"
+                  sx={{
+                    bgcolor: "#99caff",
+                    color: "#000",
+                    "&:hover": {
+                      bgcolor: "#80bfff",
+                    },
+                  }}
+                >
+                  Update
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+
+          <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
+            <CardContent>
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Discard Folder
+              </Typography>
+
+              <Box display="flex" alignItems="center" gap={2}>
+                <TextField
+                  label="Folder Path"
+                  variant="outlined"
+                  fullWidth
+                  defaultValue="C:\\documents\\discardfolder"
+                  size="small"
+                />
+                <Button
+                  variant="contained"
+                  component="label"
+                  sx={{
+                    bgcolor: "#99caff",
+                    color: "#000",
+                    "&:hover": {
+                      bgcolor: "#80bfff",
+                    },
+                  }}
+                >
+                  Update
+                </Button>
+              </Box>
             </CardContent>
           </Card>
         </Box>
-
-        {/* <Grid container spacing={3} sx={{ mt: 4, px: 3 }}>
-          {folderPaths.map((folder, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Card
-                onChange={handleFolderSource}
-                sx={{
-                  borderRadius: "12px",
-                  p: 2,
-                  cursor: "pointer",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                  "&:hover": {
-                    backgroundColor: "#f0f0f0",
-                  },
-                }}
-              >
-                <CardContent>
-                  <Typography variant="h6" fontWeight="bold">
-                    {folder.name}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    sx={{ mt: 1 }}
-                  >
-                    {folder.path}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid> */}
       </Box>
     </Box>
   );
