@@ -126,9 +126,12 @@ const Documents = () => {
 
   const filteredData = projectData.filter((item) =>
     Object.keys(searchInputs).every((key) =>
-      item[key]?.toLowerCase().includes(searchInputs[key].toLowerCase())
+      String(item[key] || "")
+        .toLowerCase()
+        .includes(searchInputs[key].toLowerCase())
     )
   );
+  
 
   return (
     <Box
