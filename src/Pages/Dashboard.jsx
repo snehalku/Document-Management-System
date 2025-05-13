@@ -647,7 +647,9 @@ const Dashboard = () => {
                   </TableCell>
                   <TableCell>{project.documentName}</TableCell>
                   <TableCell>{project.versionNumber}</TableCell>
-                  <TableCell>{project.status}</TableCell>
+                  <TableCell sx={{ color: "#f28c0c" }}>
+                    {project.status}
+                  </TableCell>
 
                   <TableCell>
                     <Stack direction="row" spacing={1}>
