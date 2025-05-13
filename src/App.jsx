@@ -12,6 +12,8 @@ import PreviewDocument1 from "./Pages/previewDocument1";
 import Roles from "./Pages/Roles";
 import User from "./Pages/User";
 import Folders from "./Pages/Folders";
+import ViewDocument from "./Pages/ViewDocument";
+import VersionControl from "./Pages/VersionControl";
 
 function App() {
   const router = createBrowserRouter([
@@ -50,6 +52,14 @@ function App() {
         {
           path: "folders",
           element: <Folders />,
+        },
+        {
+          path: "viewDocument",
+          element: <ViewDocument />,
+        },
+        {
+          path: "versionControl",
+          element: <VersionControl />,
         },
       ],
     },

@@ -409,10 +409,10 @@ const Documents = () => {
                   {/* <TableCell>{project.subCategory}</TableCell> */}
                   <TableCell>
                     <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
+                    <Tooltip title="View Document">
                         <IconButton
                           color="primary"
-                          onClick={() => window.open(agecard, "_blank")}
+                          onClick={() => navigate("/viewdocument")}
                         >
                           <VisibilityIcon />
                         </IconButton>
