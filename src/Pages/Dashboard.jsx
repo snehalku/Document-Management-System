@@ -125,6 +125,7 @@ import {
   CardContent,
   IconButton,
   Tooltip,
+  TextField,
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -394,6 +395,33 @@ const Dashboard = () => {
               </Grid>
             ))}
           </Grid> */}
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ mb: 3 }}
+          justifyContent="space-between"
+        >
+          <TextField
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name, Version No."
+            variant="outlined"
+            sx={{
+              width: "72%",
+              bgcolor: "#fff",
+              height: "50px",
+              borderRadius: "10px",
+
+              "& .MuiOutlinedInput-root": {
+                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+                "& fieldset": {
+                  border: "none",
+                },
+                "&.Mui-focused": {
+                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
+                },
+              },
+            }}
+          />
+        </Stack>
         <TableContainer
           component={Paper}
           sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
