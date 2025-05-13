@@ -28,7 +28,7 @@ import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NavigateBefore from "@mui/icons-material/NavigateBefore";
 import NavigateNext from "@mui/icons-material/NavigateNext";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 const projectData = [
   {
@@ -98,7 +98,7 @@ const Documents = () => {
     category: "",
     subCategory: "",
   });
-  
+
   const [showSearchFields, setShowSearchFields] = useState({
     customerName: false,
     date: false,
@@ -116,7 +116,7 @@ const Documents = () => {
       [field]: value,
     }));
   };
-  
+
   const toggleSearchField = (field) => {
     setShowSearchFields((prev) => ({
       ...prev,
@@ -129,7 +129,7 @@ const Documents = () => {
       item[key]?.toLowerCase().includes(searchInputs[key].toLowerCase())
     )
   );
-  
+
   return (
     <Box
       sx={{
@@ -168,7 +168,7 @@ const Documents = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name, Version NO."
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name, Version No."
             variant="outlined"
             sx={{
               width: "72%",
@@ -177,7 +177,7 @@ const Documents = () => {
               borderRadius: "10px",
 
               "& .MuiOutlinedInput-root": {
-                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)", 
+                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
                 "& fieldset": {
                   border: "none",
                 },
@@ -195,7 +195,7 @@ const Documents = () => {
           <Table>
             <TableHead>
               <TableRow sx={{ bgcolor: "#99caff" }}>
-              <TableCell>
+                <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center" spacing={1}>
                       <Typography fontWeight="bold">Customer ID</Typography>
@@ -223,7 +223,9 @@ const Documents = () => {
                 <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">Transaction Date</Typography>
+                      <Typography fontWeight="bold">
+                        Transaction Date
+                      </Typography>
                       <IconButton
                         size="small"
                         onClick={() => toggleSearchField("date")}
@@ -264,7 +266,10 @@ const Documents = () => {
                         placeholder="Search"
                         value={searchInputs.customerName}
                         onChange={(e) =>
-                          handleSearchInputChange("customerName", e.target.value)
+                          handleSearchInputChange(
+                            "customerName",
+                            e.target.value
+                          )
                         }
                         sx={{ mt: 1 }}
                       />
@@ -272,7 +277,7 @@ const Documents = () => {
                   </Stack>
                 </TableCell>
 
-                 <TableCell>
+                <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center" spacing={1}>
                       <Typography fontWeight="bold">Date of Birth</Typography>
@@ -324,8 +329,6 @@ const Documents = () => {
                   </Stack>
                 </TableCell>
 
-                
-
                 <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center" spacing={1}>
@@ -352,7 +355,6 @@ const Documents = () => {
                   </Stack>
                 </TableCell>
 
-
                 <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center" spacing={1}>
@@ -371,7 +373,10 @@ const Documents = () => {
                         placeholder="Search"
                         value={searchInputs.documentName}
                         onChange={(e) =>
-                          handleSearchInputChange("documentName", e.target.value)
+                          handleSearchInputChange(
+                            "documentName",
+                            e.target.value
+                          )
                         }
                         sx={{ mt: 1 }}
                       />
@@ -379,11 +384,10 @@ const Documents = () => {
                   </Stack>
                 </TableCell>
 
-
                 <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">Version NO.</Typography>
+                      <Typography fontWeight="bold">Version No.</Typography>
                       <IconButton
                         size="small"
                         onClick={() => toggleSearchField("versionNumber")}
@@ -398,7 +402,10 @@ const Documents = () => {
                         placeholder="Search"
                         value={searchInputs.versionNumber}
                         onChange={(e) =>
-                          handleSearchInputChange("versionNumber", e.target.value)
+                          handleSearchInputChange(
+                            "versionNumber",
+                            e.target.value
+                          )
                         }
                         sx={{ mt: 1 }}
                       />
@@ -415,8 +422,7 @@ const Documents = () => {
             </TableHead>
 
             <TableBody>
-            {filteredData.map((project) => (
-
+              {filteredData.map((project) => (
                 <TableRow key={project.id} hover>
                   <TableCell>
                     <Typography fontWeight="bold">{project.id}</Typography>
@@ -432,7 +438,7 @@ const Documents = () => {
                   <TableCell>{project.versionNumber}</TableCell>
                   <TableCell>
                     <Stack direction="row" spacing={1}>
-                    <Tooltip title="View Document">
+                      <Tooltip title="View Document">
                         <IconButton
                           color="primary"
                           onClick={() => navigate("/viewdocument")}
@@ -536,14 +542,13 @@ const Documents = () => {
                 gap: "4px",
               }}
             >
-              5 / Pages{" "}
-              <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
+              5 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
             </Button>
 
             <Menu>
               <MenuItem>5/page</MenuItem>
-              <MenuItem >10/page</MenuItem>
-              <MenuItem >15/page</MenuItem>
+              <MenuItem>10/page</MenuItem>
+              <MenuItem>15/page</MenuItem>
             </Menu>
           </Box>
         </Box>
