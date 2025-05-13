@@ -41,6 +41,7 @@ const projectData = [
     nationalId: "5843 2166 4567 8904",
     documentId: "111",
     documentName: "David_R_202514",
+    versionNumber: "1.0",
     category: "KYC",
     subCategory: "Age Proof",
   },
@@ -53,6 +54,7 @@ const projectData = [
     nationalId: "1486 4625 4632 7854",
     documentId: "112",
     documentName: "Jane_S_202513",
+    versionNumber: "2.0",
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -65,6 +67,7 @@ const projectData = [
     nationalId: "3625 4562 1236 4569",
     documentId: "113",
     documentName: "Sarah_J_202512",
+    versionNumber: "3.0",
     category: "KYC",
     subCategory: "ID Proof",
   },
@@ -77,6 +80,7 @@ const projectData = [
     nationalId: "5843 2166 4567 8904",
     documentId: "114",
     documentName: "David_V_202511",
+    versionNumber: "4.0",
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -376,12 +380,31 @@ const Documents = () => {
                 </TableCell>
 
 
-                {/* <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Sub Category</Typography>
-                    <ArrowDropDown />
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography fontWeight="bold">Version NO.</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("versionNumber")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.versionNumber && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.versionNumber}
+                        onChange={(e) =>
+                          handleSearchInputChange("versionNumber", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
-                </TableCell> */}
+                </TableCell>
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
@@ -406,7 +429,7 @@ const Documents = () => {
                     {project.documentId}
                   </TableCell>
                   <TableCell>{project.documentName}</TableCell>
-                  {/* <TableCell>{project.subCategory}</TableCell> */}
+                  <TableCell>{project.versionNumber}</TableCell>
                   <TableCell>
                     <Stack direction="row" spacing={1}>
                     <Tooltip title="View Document">
