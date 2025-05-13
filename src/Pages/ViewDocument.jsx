@@ -67,8 +67,7 @@ const ViewDocument = () => {
     console.log("Snackbar should show now");
 
     setTimeout(() => {
-    //   navigate("/documents");
-      navigate("/versionControl");
+      navigate("/documents");
     }, 2000);
   };
 
@@ -158,12 +157,14 @@ const ViewDocument = () => {
                   label="Customer ID / Transaction ID"
                   fullWidth
                    defaultValue="101"
+                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
                 <TextField
                   label="Customer Name"
                   fullWidth
                  defaultValue="David R Smith"
+                 InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
                 
@@ -171,12 +172,14 @@ const ViewDocument = () => {
                   label="Date of Birth"
                   fullWidth
                   defaultValue="01-05-2006"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
                 <TextField
                   label="National ID"
                   fullWidth
                  defaultValue="5843216645678904"
+                 InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
                 <Divider
@@ -193,6 +196,7 @@ const ViewDocument = () => {
                   label="Document ID"
                   fullWidth
                   defaultValue="111"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 >
                 </TextField>
@@ -200,6 +204,7 @@ const ViewDocument = () => {
                   label="Document Name"
                   fullWidth
                   defaultValue="David_R_202514"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 >
                 </TextField>
@@ -208,6 +213,7 @@ const ViewDocument = () => {
                   label="Category"
                   fullWidth
                   defaultValue="KYC"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 >
                 </TextField>
@@ -215,6 +221,7 @@ const ViewDocument = () => {
                   label=" Sub Category"
                   fullWidth
                   defaultValue="Age Card"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 >
                 </TextField>
@@ -222,6 +229,7 @@ const ViewDocument = () => {
                   label="Issue Date"
                   fullWidth
                  defaultValue="31-05-2006"
+                 InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
 
@@ -229,6 +237,7 @@ const ViewDocument = () => {
                   label="Expiry Date"
                   fullWidth
                  defaultValue="22-08-2024"
+                 InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
               </Box>
@@ -292,7 +301,7 @@ const ViewDocument = () => {
                          color: "#fff",
                        }}
                      >
-                       ✅ Your data has been approved.
+                       ✅ Your document has been approved.
                      </Alert>
                    </Snackbar>
         </Box>
