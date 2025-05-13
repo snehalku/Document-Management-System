@@ -6,6 +6,10 @@ import ReportIcon from "@mui/icons-material/Report";
 import GroupIcon from "@mui/icons-material/Group";
 import SecurityIcon from "@mui/icons-material/Security";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import FolderCopyIcon from '@mui/icons-material/FolderCopy';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import PreviewIcon from '@mui/icons-material/Preview';
+
 
 import {
   Box,
@@ -100,6 +104,37 @@ const Sidebar = () => {
             />
           </ListItem>
 
+          <ListItem
+            onClick={() => handleMenuItemClick("/folders")}
+            sx={{
+              borderRadius: "10px",
+              mt: 2,
+              mb: 1,
+              bgcolor:
+                location.pathname === "/folders" ? "#d1d4d2" : "transparent",
+              height: "52px",
+              "&:hover": {
+                bgcolor:
+                  location.pathname === "/folders" ? "#d1d4d2" : "#f5f5f5",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <ListItemIcon
+              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+            >
+              <FolderCopyIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Configure Folders"
+              primaryTypographyProps={{
+                fontFamily: "Poppins-Medium, Helvetica",
+                fontWeight: 500,
+                fontSize: "15px",
+              }}
+            />
+          </ListItem>
+
           {/* Projects */}
           <ListItem
             onClick={() => handleMenuItemClick("/previewDocument")}
@@ -124,7 +159,7 @@ const Sidebar = () => {
             <ListItemIcon
               sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
             >
-              <AssignmentIcon />
+              <ArchiveIcon />
             </ListItemIcon>
             <ListItemText
               primary="Archive Document"
@@ -156,7 +191,7 @@ const Sidebar = () => {
             <ListItemIcon
               sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
             >
-              <ReportIcon />
+              <PreviewIcon />
             </ListItemIcon>
             <ListItemText
               primary="View Documents"
@@ -167,6 +202,7 @@ const Sidebar = () => {
               }}
             />
           </ListItem>
+
 
           <ListItem
             onClick={() => setOpenAdmin(!openAdmin)}
@@ -210,12 +246,12 @@ const Sidebar = () => {
               >
                 <ListItemText primary="User" />
               </ListItem>
-              <ListItem
+              {/* <ListItem
                 onClick={() => handleMenuItemClick("/folders")}
                 sx={{ height: 40, mt: 2, "&:hover": { bgcolor: "#f5f5f5" } }}
               >
                 <ListItemText primary="Configure Folders" />
-              </ListItem>
+              </ListItem> */}
             </List>
           </Collapse>
 

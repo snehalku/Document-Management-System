@@ -1083,30 +1083,35 @@ const PreviewKycPage = () => {
                   fullWidth
                   value={selectedDoc?.id || ""}
                   sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
                 />
                 <TextField
                   label="First Name"
                   fullWidth
                   value={selectedDoc?.firstName || ""}
                   sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
                 />
                 <TextField
                   label="Last Name"
                   fullWidth
                   value={selectedDoc?.lastName || ""}
                   sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
                 />
                 <TextField
                   label="Date of Birth"
                   fullWidth
                   value={selectedDoc?.dob || ""}
                   sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
                 />
                 <TextField
                   label="National ID"
                   fullWidth
                   value={selectedDoc?.nationalId || ""}
                   sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
                 />
                 <Divider
                   sx={{
