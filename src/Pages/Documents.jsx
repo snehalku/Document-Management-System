@@ -131,7 +131,6 @@ const Documents = () => {
         .includes(searchInputs[key].toLowerCase())
     )
   );
-  
 
   return (
     <Box
