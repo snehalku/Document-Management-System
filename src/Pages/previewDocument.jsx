@@ -134,23 +134,16 @@ const PreviewKycPage = () => {
   const handleSave = () => {
     setShowSnackbar(true);
     console.log("Snackbar should show now");
-    setPreviewDocPath(ageCard);
+    setTimeout(() => {
+      setPreviewDocPath(ageCard);
+    }, 3000);
+    setSelectedDate(null);         
+    setSearchCustomer("");        
+    setSearchResults("");  
     // setTimeout(() => {
     //   navigate("/documents");
     // }, 2000);
   };
-
-  // const handleSave = () => {
-  //   if (!selectedDoc) return;
-  
-  //   // Mark the document as confirmed
-  //   setConfirmedDocIds((prev) => [...prev, selectedDoc.id]);
-  
-  //   // Show the success snackbar
-  //   setShowSnackbar(true);
-  // };
-  
-  
 
   const handleDiscard = () => {
     if (!selectedDoc) return;
@@ -170,7 +163,6 @@ const PreviewKycPage = () => {
         boxSizing: "border-box",
         overflow: "hidden",
         position: "relative",
-        // minHeight: "400vh",
       }}
     >
       <Typography variant="h5" fontWeight="bold" mb={1}>
@@ -562,7 +554,6 @@ const PreviewKycPage = () => {
               elevation={2}
             >
               {previewDocPath ? (
-                // If it's an image
                 previewDocPath.endsWith(".png") ||
                 previewDocPath.endsWith(".jpg") ? (
                   <img
@@ -683,7 +674,6 @@ const PreviewKycPage = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 >
-                  {/* <MenuItem value="ageCard">AML KYC</MenuItem> */}
                   <MenuItem value="ageCard"> Age Proof</MenuItem>
                   <MenuItem value="passport"> ID Proof</MenuItem>
                   <MenuItem value="license"> Address Proof</MenuItem>
@@ -779,8 +769,6 @@ const PreviewKycPage = () => {
             autoHideDuration={3000}
             onClose={() => {
               setShowSnackbar(false);
-
-              // Now move to next document after snackbar closes
               const currentIndex = searchResults.findIndex(doc => doc.id === selectedDoc.id);
               const nextDoc = searchResults[currentIndex + 1];
               setSelectedDoc(nextDoc || null);
