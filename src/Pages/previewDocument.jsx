@@ -1,533 +1,8 @@
-// import React, { useState, useEffect } from "react";
-// import agecard from "../assets/agecard.jpg";
-// import { Snackbar, Alert, Divider } from "@mui/material";
-// import {
-//   Box,
-//   Grid,
-//   Paper,
-//   Typography,
-//   TextField,
-//   MenuItem,
-//   Button,
-//   Stack,
-//   Table,
-//   TableBody,
-//   TableCell,
-//   TableContainer,
-//   FormControl,
-//   Select,
-//   TableHead,
-//   TableRow,
-//   Checkbox,
-// } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
-// import SearchIcon from '@mui/icons-material/Search';
-
-// const mockCustomerDocs = [
-//   {
-//     id: 101,
-//     firstName: "David R",
-//     lastName: "Smith",
-//     transactionId: "TXN123",
-//     date: "2025-04-30",
-//     dob: "2006-05-01",
-//     expiresOn: "2024-08-22",
-//     nationalId: "5843216645678904",
-//   },
-//   {
-//     id: 102,
-//     firstName: "Jane Smith",
-//     lastName: "Smith",
-//     transactionId: "TXN345",
-//     date: "2025-04-29",
-//     dob: "2007-12-11",
-//     expiresOn: "2025-08-12",
-//     nationalId: "5843216645678904",
-//   },
-//   {
-//     id: 103,
-//     firstName: "David ",
-//     lastName: "Johnson",
-//     transactionId: "TXN567",
-//     date: "2025-04-30",
-//     dob: "2007-05-10",
-//     expiresOn: "2025-08-12",
-//     nationalId: "5843216645678905",
-//   },
-// ];
-
-// const PreviewKycPage = () => {
-//   const navigate = useNavigate();
-//   const [selectedDate, setSelectedDate] = useState("");
-//   const [docList, setDocList] = useState([]);
-//   const [selectedDocName, setSelectedDocName] = useState("");
-//   const [selectedDoc, setSelectedDoc] = useState(null);
-//   const [category, setCategory] = useState("");
-//   const [subcategory, setSubcategory] = useState("");
-//   const [searchCustomer, setSearchCustomer] = useState("");
-//   const [searchResults, setSearchResults] = useState([]);
-//   const [confirmedDocIds, setConfirmedDocIds] = useState([]);
-//   const [docIdentifier, setDocIdentifier] = useState("");
-//   const [showSnackbar, setShowSnackbar] = useState(false);
-//   const [filterFirstName, setFilterFirstName] = useState("");
-//   const [filterLastName, setFilterLastName] = useState("");
-//   const [filterDob, setFilterDob] = useState("");
-//   const [filterNationalId, setFilterNationalId] = useState("");
-
-//   useEffect(() => {
-//     const list = [];
-//     setDocList(list);
-//     setSelectedDocName("");
-//     setSelectedDoc(null);
-//   }, [selectedDate]);
-
-//   useEffect(() => {
-//     const doc = docList.find((d) => d.name === selectedDocName);
-//     if (doc) {
-//       setSelectedDoc(doc);
-//       setCategory(doc.category || "");
-//     }
-//   }, [selectedDocName, docList]);
-
-//   const handleSearch = () => {
-//     const query = searchCustomer.toLowerCase();
-//     const results = mockCustomerDocs.filter((doc) => {
-//       return (
-//         (!selectedDate || doc.date === selectedDate) &&
-//         (!searchCustomer ||
-//           doc.firstName.toLowerCase().includes(query) ||
-//           doc.lastName.toLowerCase().includes(query) ||
-//           doc.dob.toLowerCase().includes(query) ||
-//           doc.nationalId.toLowerCase().includes(query))
-//       );
-//     });
-//     setSearchResults(results);
-//   };
-
-//   const handleSelectSearchDoc = (doc) => {
-//     setSelectedDoc(doc);
-//     setCategory(doc.category || "");
-//     setSubcategory(doc.subcategory || "");
-//     setSelectedDocName(doc.docName);
-//     setSelectedDate(doc.date);
-//     setSearchCustomer(doc.customerName);
-//     setDocIdentifier("National ID");
-
-//     if (!confirmedDocIds.includes(doc.id)) {
-//       setConfirmedDocIds([...confirmedDocIds, doc.id]);
-//     }
-//   };
-
-//   const handleSave = () => {
-//     setShowSnackbar(true);
-//     console.log("Snackbar should show now");
-
-//     setTimeout(() => {
-//       navigate("/documents");
-//     }, 2000);
-//   };
-
-//   const handleDiscard = () => {
-//     if (!selectedDoc) return;
-
-//     alert(`Document ${selectedDoc.docName} moved to trash`);
-//     setSelectedDoc(null);
-//     setSelectedDocName("");
-//   };
-//   return (
-//     <Box
-//       sx={{
-//         bgcolor: "#f2f4f5",
-//         py: 4,
-//         pl: "70px",
-//         pt: "12px",
-//         pr: "24px",
-//         boxSizing: "border-box",
-//         overflow: "hidden",
-//       }}
-//     >
-//       <Typography variant="h5" fontWeight="bold" mb={2}>
-//         Customer KYC
-//       </Typography>
-
-//       {!selectedDoc && (
-//         <>
-//           <Box mb={3}>
-//             <Grid container spacing={2}>
-//               <Grid item xs={4}>
-//                 <TextField
-//                   label="Search by Date"
-//                   type="date"
-//                   fullWidth
-//                   value={selectedDate}
-//                   onChange={(e) => setSelectedDate(e.target.value)}
-//                   InputLabelProps={{ shrink: true }}
-//                 />
-//               </Grid>
-//               <Grid item>
-//                 <TextField
-//                   label="Search by Customer ID, Customer Name, Date of Birth, National ID"
-//                   value={searchCustomer}
-//                   onChange={(e) => setSearchCustomer(e.target.value)}
-//                   sx={{ width: "475px" }}
-//                 />
-//               </Grid>
-//               <Grid item xs={4} display="flex" alignItems="center">
-//                 <Button
-//                   variant="contained"
-//                   color="primary"
-//                   onClick={handleSearch}
-//                   sx={{
-//                     height: "100%",
-//                     borderRadius: "10px",
-//                     bgcolor: "#99CAFF",
-//                     color: "black",
-//                     px: 3,
-//                     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-//                     "&:hover": {
-//                       bgcolor: "#7bb8ff",
-//                     },
-//                   }}
-//                 >
-//                   Get Data
-//                 </Button>
-//               </Grid>
-//             </Grid>
-//           </Box>
-
-//           {searchResults.length > 0 && (
-//             <Paper sx={{ p: 2, mb: 2 }}>
-//               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-//                 Select the appropriate record from the list below.
-//                 <span style={{ color: "red" }}>*</span>
-//               </Typography>
-//               <TableContainer
-//                 component={Paper}
-//                 sx={{ borderRadius: "10px 10px 0 0" }}
-//               >
-//                 <Table size="small">
-//                   {" "}
-//                   <TableHead>
-//                     <TableRow sx={{ bgcolor: "#99caff", "& td": { py: 0.5 } }}>
-//                       {" "}
-//                       <TableCell>
-//                         <Typography fontWeight="bold"></Typography>
-//                       </TableCell>
-//                       <TableCell>
-//                         <Typography fontWeight="bold">Customer ID</Typography>
-//                       </TableCell>
-//                       <TableCell>
-//                         <Typography fontWeight="bold">First Name</Typography>
-//                       </TableCell>
-//                       <TableCell>
-//                         <Typography fontWeight="bold">Last Name</Typography>
-//                       </TableCell>
-//                       {/* <TableCell>
-//                         <Typography fontWeight="bold">Transaction ID</Typography>
-//                       </TableCell> */}
-//                       <TableCell>
-//                         <Typography fontWeight="bold">Date of Birth</Typography>
-//                       </TableCell>
-//                       <TableCell>
-//                         <Typography fontWeight="bold">National ID</Typography>
-//                       </TableCell>
-//                     </TableRow>
-//                     {/* Search inputs */}
-//   <TableRow>
-//     <TableCell />
-//     <TableCell /> {/* No filter for ID */}
-//     <TableCell>
-//       <TextField
-//         size="small"
-//         variant="outlined"
-//         placeholder="Search First Name"
-//         fullWidth
-//         value={filterFirstName}
-//         onChange={(e) => setFilterFirstName(e.target.value)}
-//       />
-//     </TableCell>
-//     <TableCell>
-//       <TextField
-//         size="small"
-//         variant="outlined"
-//         placeholder="Search Last Name"
-//         fullWidth
-//         value={filterLastName}
-//         onChange={(e) => setFilterLastName(e.target.value)}
-//       />
-//     </TableCell>
-//     <TableCell>
-//       <TextField
-//         size="small"
-//         variant="outlined"
-//         placeholder="Search DOB"
-//         fullWidth
-//         value={filterDob}
-//         onChange={(e) => setFilterDob(e.target.value)}
-//       />
-//     </TableCell>
-//     <TableCell>
-//       <TextField
-//         size="small"
-//         variant="outlined"
-//         placeholder="Search National ID"
-//         fullWidth
-//         value={filterNationalId}
-//         onChange={(e) => setFilterNationalId(e.target.value)}
-//       />
-//     </TableCell>
-//   </TableRow>
-// </TableHead>
-//                   {/* </TableHead> */}
-//                   <TableBody>
-//                   {searchResults
-//   .filter(doc =>
-//     doc.firstName.toLowerCase().includes(filterFirstName.toLowerCase()) &&
-//     doc.lastName.toLowerCase().includes(filterLastName.toLowerCase()) &&
-//     doc.dob.toLowerCase().includes(filterDob.toLowerCase()) &&
-//     doc.nationalId.toLowerCase().includes(filterNationalId.toLowerCase())
-//   )
-//   .map((doc) => (
-
-//                       <TableRow
-//                         key={doc.id}
-//                         hover
-//                         onClick={() => handleSelectSearchDoc(doc)}
-//                         sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
-//                       >
-//                         <TableCell>
-//                           <Checkbox
-//                             checked={confirmedDocIds.includes(doc.id)}
-//                             disabled
-//                           />
-//                         </TableCell>
-//                         <TableCell>{doc.id}</TableCell>
-//                         <TableCell>{doc.firstName}</TableCell>
-//                         <TableCell>{doc.lastName}</TableCell>
-//                         {/* <TableCell>{doc.transactionId}</TableCell> */}
-//                         <TableCell>{doc.dob}</TableCell>
-//                         <TableCell>{doc.nationalId}</TableCell>
-//                       </TableRow>
-//                     ))}
-//                   </TableBody>
-//                 </Table>
-//               </TableContainer>
-//             </Paper>
-//           )}
-//         </>
-//       )}
-//           <Paper
-//             elevation={3}
-//             sx={{
-//               p: 2,
-//               borderRadius: 2,
-//               // height: '80vh',
-//               // overflow: 'auto'
-//             }}
-//           >
-//         <Grid container spacing={2}>
-//           <Grid item size={7}>
-//             <Paper
-//               sx={{
-//                 height: "82vh",
-//                 display: "flex",
-//                 alignItems: "center",
-//                 justifyContent: "center",
-//                 overflow: "hidden",
-//                 position: "relative",
-//               }}
-//               elevation={2}
-//             >
-//               {selectedDoc?.docType === "image" ? (
-//                 <img
-//                   src={selectedDoc.path}
-//                   alt="KYC"
-//                   style={{
-//                     maxWidth: "100%",
-//                     maxHeight: "100%",
-//                     objectFit: "contain",
-//                   }}
-//                 />
-//               ) : (
-//                 <iframe
-//                   src={`${selectedDoc?.path || agecard}#toolbar=0`}
-//                   title="KYC Document"
-//                   style={{
-//                     position: "absolute",
-//                     top: 0,
-//                     left: 0,
-//                     width: "100%",
-//                     height: "100%",
-//                     border: "none",
-//                   }}
-//                 />
-//               )}
-//             </Paper>
-//           </Grid>
-
-//           <Grid item size={5}>
-//             <Paper
-//               sx={{
-//                 p: 2,
-//                 height: "78vh",
-//                 display: "flex",
-//                 flexDirection: "column",
-//                 justifyContent: "space-between",
-//               }}
-//             >
-//               <Box>
-//                 <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
-//                 Transaction Data From OLTP System
-//                 </Typography>
-//                 <TextField
-//                   label="Customer ID / Transaction ID"
-//                   fullWidth
-//                   value={selectedDoc?.id || ""}
-//                   sx={{ mb: 2 }}
-//                 />
-//                 <TextField
-//                   label="First Name"
-//                   fullWidth
-//                   value={selectedDoc?.firstName || ""}
-//                   sx={{ mb: 2 }}
-//                 />
-//                 <TextField
-//                   label="Last Name"
-//                   fullWidth
-//                   value={selectedDoc?.lastName || ""}
-//                   sx={{ mb: 2 }}
-//                 />
-//                 {/* <TextField
-//                   label="Transaction ID"
-//                   fullWidth
-//                   value={selectedDoc?.transactionId || ""}
-//                   sx={{ mb: 2 }}
-//                 /> */}
-//                 <TextField
-//                   label="Date of Birth"
-//                   fullWidth
-//                   value={selectedDoc?.dob || ""}
-//                   sx={{ mb: 2 }}
-//                 />
-//                 <TextField
-//                   label="National ID"
-//                   fullWidth
-//                   value={selectedDoc?.nationalId || ""}
-//                   sx={{ mb: 2 }}
-//                 />
-//                 <Divider
-//                   sx={{
-//                     mb: 2,
-//                     borderBottomWidth: 2,
-//                     borderColor: "black",
-//                   }}
-//                 />
-//                 <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
-//                   Document
-//                 </Typography>
-//                 <TextField
-//                   label="Category"
-//                   select
-//                   fullWidth
-//                   value={category}
-//                   onChange={(e) => setCategory(e.target.value)}
-//                   sx={{ mb: 2 }}
-//                   disabled={!selectedDoc}
-//                 >
-//                   <MenuItem value="ageCard">KYC</MenuItem>
-//                 </TextField>
-//                 <TextField
-//                   label=" Sub Category"
-//                   select
-//                   fullWidth
-//                   value={subcategory}
-//                   onChange={(e) => setSubcategory(e.target.value)}
-//                   sx={{ mb: 2 }}
-//                   disabled={!selectedDoc}
-//                 >
-//                    <MenuItem value="ageCard"> Age Proof</MenuItem>
-//                   <MenuItem value="passport"> ID Proof</MenuItem>
-//                   <MenuItem value="license"> Address Proof</MenuItem>
-//                   <MenuItem value="signature"> Signature Proof</MenuItem>
-//                 </TextField>
-//               </Box>
-//             </Paper>
-//           </Grid>
-//         </Grid>
-//         <Box sx={{ p: 1 }}>
-//           <Stack direction="row" spacing={2} justifyContent="flex-end">
-//             <Button
-//               variant="contained"
-//               color="primary"
-//               onClick={handleSave}
-//               disabled={selectedDoc === null}
-//               sx={{
-//                 borderRadius: "10px",
-//                 bgcolor: "#99CAFF",
-//                 color: "black",
-//                 px: 3,
-//                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-//                 "&:hover": {
-//                   bgcolor: "#7bb8ff",
-//                 },
-//               }}
-//             >
-//               Save
-//             </Button>
-//             <Button
-//               variant="outlined"
-//               color="secondary"
-//               onClick={handleDiscard}
-//               disabled={!selectedDoc}
-//               sx={{
-//                 borderRadius: "10px",
-//                 bgcolor: "#f2f4f5",
-//                 px: 3,
-//                 color: "black",
-//                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-//                 border: "none",
-//                 "&:hover": {
-//                   bgcolor: "#e5e7e8",
-//                   border: "none",
-//                 },
-//               }}
-//             >
-//               Discard
-//             </Button>
-//           </Stack>
-//           <Snackbar
-//             open={showSnackbar}
-//             autoHideDuration={3000}
-//             onClose={() => setShowSnackbar(false)}
-//             anchorOrigin={{ vertical: "top", horizontal: "center" }}
-//           >
-//             <Alert
-//               onClose={() => setShowSnackbar(false)}
-//               severity="success"
-//               variant="filled"
-//               sx={{
-//                 width: "100%",
-//                 fontWeight: 500,
-//                 fontSize: "1rem",
-//                 boxShadow: 3,
-//                 backgroundColor: "#2e7d32",
-//                 color: "#fff",
-//               }}
-//             >
-//               ✅ Your data has been saved successfully.
-//             </Alert>
-//           </Snackbar>
-//         </Box>
-//       </Paper>
-//     </Box>
-//   );
-// };
-
-// export default PreviewKycPage;
-
 import React, { useState, useEffect } from "react";
 import agecard from "../assets/agecard.jpg";
+import ageCard from "../assets/ageCard.png"
 import { Snackbar, Alert, Divider } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {
   Box,
   Grid,
@@ -573,13 +48,13 @@ const mockCustomerDocs = [
   },
   {
     id: 103,
-    firstName: "David ",
-    lastName: "Johnson",
+    firstName: "Angela ",
+    lastName: "Greene",
     transactionId: "TXN567",
-    date: "2025-04-30",
-    dob: "2007-05-10",
-    expiresOn: "2025-08-12",
-    nationalId: "5843216645678905",
+    date: "2025-04-28",
+    dob: "2002-11-09",
+    expiresOn: "2028-04-30",
+    nationalId: "5843216619642184",
   },
 ];
 
@@ -600,6 +75,7 @@ const PreviewKycPage = () => {
   const [filterLastName, setFilterLastName] = useState("");
   const [filterDob, setFilterDob] = useState("");
   const [filterNationalId, setFilterNationalId] = useState("");
+  const [previewDocPath, setPreviewDocPath] = useState(null);
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
     lastName: "",
@@ -658,11 +134,23 @@ const PreviewKycPage = () => {
   const handleSave = () => {
     setShowSnackbar(true);
     console.log("Snackbar should show now");
-
-    setTimeout(() => {
-      navigate("/documents");
-    }, 2000);
+    setPreviewDocPath(ageCard);
+    // setTimeout(() => {
+    //   navigate("/documents");
+    // }, 2000);
   };
+
+  // const handleSave = () => {
+  //   if (!selectedDoc) return;
+  
+  //   // Mark the document as confirmed
+  //   setConfirmedDocIds((prev) => [...prev, selectedDoc.id]);
+  
+  //   // Show the success snackbar
+  //   setShowSnackbar(true);
+  // };
+  
+  
 
   const handleDiscard = () => {
     if (!selectedDoc) return;
@@ -1026,7 +514,7 @@ const PreviewKycPage = () => {
       >
         <Grid container spacing={2}>
           <Grid item size={7}>
-            <Paper
+            {/* <Paper
               sx={{
                 height: "110vh",
                 display: "flex",
@@ -1038,6 +526,69 @@ const PreviewKycPage = () => {
               elevation={2}
             >
               {selectedDoc?.docType === "image" ? (
+                <img
+                  src={selectedDoc.path}
+                  alt="KYC"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              ) : (
+                <iframe
+                  src={`${selectedDoc?.path || agecard}#toolbar=0`}
+                  title="KYC Document"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                />
+              )}
+            </Paper> */}
+             <Paper
+              sx={{
+                height: "110vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                position: "relative",
+              }}
+              elevation={2}
+            >
+              {previewDocPath ? (
+                // If it's an image
+                previewDocPath.endsWith(".png") ||
+                previewDocPath.endsWith(".jpg") ? (
+                  <img
+                    src={previewDocPath}
+                    alt="Preview"
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                ) : (
+                  <iframe
+                    src={`${previewDocPath}#toolbar=0`}
+                    title="Preview Document"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      border: "none",
+                    }}
+                  />
+                )
+              ) : selectedDoc?.docType === "image" ? (
                 <img
                   src={selectedDoc.path}
                   alt="KYC"
@@ -1174,6 +725,7 @@ const PreviewKycPage = () => {
                 <TextField
                   label="Version NO."
                   fullWidth
+                  defaultValue= "1.0"
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 />
@@ -1225,13 +777,21 @@ const PreviewKycPage = () => {
           <Snackbar
             open={showSnackbar}
             autoHideDuration={3000}
-            onClose={() => setShowSnackbar(false)}
+            onClose={() => {
+              setShowSnackbar(false);
+
+              // Now move to next document after snackbar closes
+              const currentIndex = searchResults.findIndex(doc => doc.id === selectedDoc.id);
+              const nextDoc = searchResults[currentIndex + 1];
+              setSelectedDoc(nextDoc || null);
+            }}
             anchorOrigin={{ vertical: "top", horizontal: "center" }}
           >
             <Alert
               onClose={() => setShowSnackbar(false)}
               severity="success"
               variant="filled"
+              icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
               sx={{
                 width: "100%",
                 fontWeight: 500,
@@ -1239,11 +799,18 @@ const PreviewKycPage = () => {
                 boxShadow: 3,
                 backgroundColor: "#2e7d32",
                 color: "#fff",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              ✅ Your data has been saved successfully.
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography fontWeight={500}>
+                  Your document has been saved successfully.
+                </Typography>
+              </Box>
             </Alert>
           </Snackbar>
+
         </Box>
       </Paper>
     </Box>
