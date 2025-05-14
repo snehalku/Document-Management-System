@@ -14,6 +14,7 @@ import User from "./Pages/User";
 import Folders from "./Pages/Folders";
 import ViewDocument from "./Pages/ViewDocument";
 import VersionControl from "./Pages/VersionControl";
+import ApproveDoc from "./Pages/ApproveDoc";
 
 function App() {
   const router = createBrowserRouter([
@@ -60,6 +61,10 @@ function App() {
         {
           path: "versionControl",
           element: <VersionControl />,
+        },
+        {
+          path: "approveDoc",
+          element: <ApproveDoc />,
         },
       ],
     },
