@@ -92,14 +92,13 @@ const ViewDocument = () => {
         View Customer KYC Document
       </Typography>
 
-     
       <Paper
         elevation={3}
         sx={{
           p: 2,
           borderRadius: 2,
-        //   height: '100vh',
-        //   overflow: 'auto'
+          //   height: '100vh',
+          //   overflow: 'auto'
         }}
       >
         <Grid container spacing={2}>
@@ -159,18 +158,18 @@ const ViewDocument = () => {
                 <TextField
                   label="Customer ID / Transaction ID"
                   fullWidth
-                   defaultValue="101"
-                   InputProps={{ readOnly: true }}
+                  defaultValue="101"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
                 <TextField
                   label="Customer Name"
                   fullWidth
-                 defaultValue="David R Smith"
-                 InputProps={{ readOnly: true }}
+                  defaultValue="David R Smith"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
-                
+
                 <TextField
                   label="Date of Birth"
                   fullWidth
@@ -181,8 +180,8 @@ const ViewDocument = () => {
                 <TextField
                   label="National ID"
                   fullWidth
-                 defaultValue="5843216645678904"
-                 InputProps={{ readOnly: true }}
+                  defaultValue="5843216645678904"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
                 <Divider
@@ -201,16 +200,14 @@ const ViewDocument = () => {
                   defaultValue="111"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
-                >
-                </TextField>
+                ></TextField>
                 <TextField
                   label="Document Name"
                   fullWidth
                   defaultValue="David_R_202514"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
-                >
-                </TextField>
+                ></TextField>
 
                 <TextField
                   label="Category"
@@ -218,37 +215,35 @@ const ViewDocument = () => {
                   defaultValue="KYC"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
-                >
-                </TextField>
+                ></TextField>
                 <TextField
                   label=" Sub Category"
                   fullWidth
                   defaultValue="Age Card"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
-                >
-                </TextField>
+                ></TextField>
                 <TextField
                   label="Issue Date"
                   fullWidth
-                 defaultValue="31-05-2006"
-                 InputProps={{ readOnly: true }}
+                  defaultValue="31-05-2006"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
 
                 <TextField
                   label="Expiry Date"
                   fullWidth
-                 defaultValue="22-08-2024"
-                 InputProps={{ readOnly: true }}
+                  defaultValue="22-08-2024"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
 
                 <TextField
                   label="Version NO."
                   fullWidth
-                 defaultValue="1.0"
-                 InputProps={{ readOnly: true }}
+                  defaultValue="1.0"
+                  InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
               </Box>
@@ -272,7 +267,7 @@ const ViewDocument = () => {
                 },
               }}
             >
-              Approve 
+              Approve
             </Button>
             <Button
               variant="outlined"
@@ -290,31 +285,56 @@ const ViewDocument = () => {
                 },
               }}
             >
-             Reject
+              Reject
             </Button>
           </Stack>
+          {/* <Snackbar
+            open={showSnackbar}
+            autoHideDuration={3000}
+            onClose={() => setShowSnackbar(false)}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert
+              onClose={() => setShowSnackbar(false)}
+              severity="success"
+              variant="filled"
+              sx={{
+                width: "100%",
+                fontWeight: 500,
+                fontSize: "1rem",
+                boxShadow: 3,
+                backgroundColor: "#2e7d32",
+                color: "#fff",
+              }}
+            >
+              ✅ Your document has been approved.
+            </Alert>
+          </Snackbar> */}
           <Snackbar
-                     open={showSnackbar}
-                     autoHideDuration={3000}
-                     onClose={() => setShowSnackbar(false)}
-                     anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                   >
-                     <Alert
-                       onClose={() => setShowSnackbar(false)}
-                       severity="success"
-                       variant="filled"
-                       sx={{
-                         width: "100%",
-                         fontWeight: 500,
-                         fontSize: "1rem",
-                         boxShadow: 3,
-                         backgroundColor: "#2e7d32",
-                         color: "#fff",
-                       }}
-                     >
-                       ✅ Your document has been approved.
-                     </Alert>
-                   </Snackbar>
+            open={showSnackbar}
+            autoHideDuration={4000}
+            onClose={() => setShowSnackbar(false)}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert
+              // severity="success"
+              onClose={() => setShowSnackbar(false)}
+              variant="outlined"
+              sx={{
+                bgcolor: "#fff", // White background
+                color: "#2e7d32", // Green text
+                borderColor: "#4caf50", // Green border
+                borderWidth: 2,
+                fontWeight: 600,
+                fontSize: "1rem",
+                boxShadow: 2,
+                borderRadius: 2,
+                px: 2,
+              }}
+            >
+              Your document has been approved.
+            </Alert>
+          </Snackbar>
         </Box>
       </Paper>
     </Box>
