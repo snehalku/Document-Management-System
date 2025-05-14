@@ -104,7 +104,7 @@ const Sidebar = () => {
             />
           </ListItem>
 
-          <ListItem
+          {/* <ListItem
             onClick={() => handleMenuItemClick("/folders")}
             sx={{
               borderRadius: "10px",
@@ -133,7 +133,7 @@ const Sidebar = () => {
                 fontSize: "15px",
               }}
             />
-          </ListItem>
+          </ListItem> */}
 
           {/* Projects */}
           <ListItem
@@ -246,12 +246,12 @@ const Sidebar = () => {
               >
                 <ListItemText primary="User" />
               </ListItem>
-              {/* <ListItem
+              <ListItem
                 onClick={() => handleMenuItemClick("/folders")}
                 sx={{ height: 40, mt: 2, "&:hover": { bgcolor: "#f5f5f5" } }}
               >
                 <ListItemText primary="Configure Folders" />
-              </ListItem> */}
+              </ListItem>
             </List>
           </Collapse>
 
