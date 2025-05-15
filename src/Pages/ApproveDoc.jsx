@@ -43,7 +43,7 @@ const projectData = [
     documentId: "111",
     documentName: "John_L_202514",
     versionNumber: "1.0",
-    status: "Expiring Soon",
+    status: "Pending for Approval",
     category: "KYC",
     subCategory: "Age Proof",
   },
@@ -57,8 +57,7 @@ const projectData = [
     documentId: "112",
     documentName: "Jane_S_202513",
     versionNumber: "2.0",
-    status: "Expiring Soon",
-
+    status: "Pending for Approval",
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -72,8 +71,7 @@ const projectData = [
     documentId: "113",
     documentName: "Sarah_J_202512",
     versionNumber: "3.0",
-    status: "Expiring Soon",
-
+    status: "Pending for Approval",
     category: "KYC",
     subCategory: "ID Proof",
   },
@@ -87,8 +85,7 @@ const projectData = [
     documentId: "114",
     documentName: "David_V_202511",
     versionNumber: "4.0",
-    status: "Expiring Soon",
-
+    status: "Pending for Approval",
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -178,7 +175,7 @@ const ApproveDoc = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name, Version No."
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, ID No., Document ID, Document Name, Version No."
             variant="outlined"
             sx={{
               width: "72%",
