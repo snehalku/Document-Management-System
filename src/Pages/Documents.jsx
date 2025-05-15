@@ -34,14 +34,15 @@ const projectData = [
   {
     id: 101,
     date: "01-05-2025",
-    customerName: "David R Smith",
+    customerName: "John Livone",
     transactionId: "TXN123",
-    dob: "01-05-2006",
-    expiryDate: "22-08-2024",
-    nationalId: "5843 2166 4567 8904",
+    dob: "06-09-1986",
+    expiryDate: "12-11-2030",
+    IdNo: "A123456",
     documentId: "111",
-    documentName: "David_R_202514",
+    documentName: "John_L_202514",
     versionNumber: "1.0",
+    status: "Expiring Soon",
     category: "KYC",
     subCategory: "Age Proof",
   },
@@ -51,10 +52,12 @@ const projectData = [
     customerName: "Jane Smith",
     transactionId: "TXN345",
     dob: "05-05-2003",
-    nationalId: "1486 4625 4632 7854",
+    IdNo: "SD54896",
     documentId: "112",
     documentName: "Jane_S_202513",
     versionNumber: "2.0",
+    status: "Expiring Soon",
+
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -64,10 +67,12 @@ const projectData = [
     customerName: "Sarah Johnson",
     transactionId: "TXN344",
     dob: "18-11-2008",
-    nationalId: "3625 4562 1236 4569",
+    IdNo: "AK54789",
     documentId: "113",
     documentName: "Sarah_J_202512",
     versionNumber: "3.0",
+    status: "Expiring Soon",
+
     category: "KYC",
     subCategory: "ID Proof",
   },
@@ -77,10 +82,12 @@ const projectData = [
     customerName: "David V Smith",
     transactionId: "TXN567",
     dob: "03-03-2002",
-    nationalId: "5843 2166 4567 8904",
+    IdNo: "JK54789",
     documentId: "114",
     documentName: "David_V_202511",
     versionNumber: "4.0",
+    status: "Expiring Soon",
+
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -92,7 +99,7 @@ const Documents = () => {
     customerName: "",
     date: "",
     dob: "",
-    nationalId: "",
+    IdNo: "",
     documentId: "",
     documentName: "",
     category: "",
@@ -103,7 +110,7 @@ const Documents = () => {
     customerName: false,
     date: false,
     dob: false,
-    nationalId: false,
+    IdNo: false,
     documentId: false,
     documentName: false,
     category: false,
@@ -308,7 +315,7 @@ const Documents = () => {
                 <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">National ID</Typography>
+                      <Typography fontWeight="bold">ID Number</Typography>
                       <IconButton
                         size="small"
                         onClick={() => toggleSearchField("nationalId")}
@@ -316,12 +323,12 @@ const Documents = () => {
                         <SearchIcon fontSize="small" />
                       </IconButton>
                     </Stack>
-                    {showSearchFields.nationalId && (
+                    {showSearchFields.IdNo && (
                       <TextField
                         size="small"
                         variant="standard"
                         placeholder="Search"
-                        value={searchInputs.nationalId}
+                        value={searchInputs.IdNo}
                         onChange={(e) =>
                           handleSearchInputChange("nationalId", e.target.value)
                         }
@@ -432,7 +439,7 @@ const Documents = () => {
                   <TableCell>{project.date}</TableCell>
                   <TableCell>{project.customerName}</TableCell>
                   <TableCell>{project.dob}</TableCell>
-                  <TableCell>{project.nationalId}</TableCell>
+                  <TableCell>{project.IdNo}</TableCell>
                   <TableCell align="center" sx={{ textAlign: "center" }}>
                     {project.documentId}
                   </TableCell>
