@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import agecard from "../assets/agecard.jpg";
+import passport from "../assets/passport.jpg";
 import { Snackbar, Alert, Divider } from "@mui/material";
 import {
   Box,
@@ -24,6 +24,16 @@ import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 
 const mockCustomerDocs = [
+  {
+    id: 100,
+    firstName: "John",
+    lastName: "Livone",
+    transactionId: "TXN123",
+    date: "2025-04-30",
+    dob: "1986-09-06",
+    expiresOn: "2030-11-12",
+    nationalId: "A123456",
+  },
   {
     id: 101,
     firstName: "David R",
@@ -126,7 +136,7 @@ const ViewDocument = () => {
                 />
               ) : (
                 <iframe
-                  src={`${selectedDoc?.path || agecard}#toolbar=0`}
+                  src={`${selectedDoc?.path || passport}#toolbar=0`}
                   title="KYC Document"
                   style={{
                     position: "absolute",
@@ -158,14 +168,14 @@ const ViewDocument = () => {
                 <TextField
                   label="Customer ID / Transaction ID"
                   fullWidth
-                  defaultValue="101"
+                  defaultValue="100"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
                 <TextField
                   label="Customer Name"
                   fullWidth
-                  defaultValue="David R Smith"
+                  defaultValue="John Livone"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
@@ -173,14 +183,14 @@ const ViewDocument = () => {
                 <TextField
                   label="Date of Birth"
                   fullWidth
-                  defaultValue="01-05-2006"
+                  defaultValue="06-09-1986"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
                 <TextField
-                  label="National ID"
+                  label="ID Number"
                   fullWidth
-                  defaultValue="5843216645678904"
+                  defaultValue="A123456"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
@@ -204,7 +214,7 @@ const ViewDocument = () => {
                 <TextField
                   label="Document Name"
                   fullWidth
-                  defaultValue="David_R_202514"
+                  defaultValue="John_L_202514"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 ></TextField>
@@ -219,14 +229,14 @@ const ViewDocument = () => {
                 <TextField
                   label=" Sub Category"
                   fullWidth
-                  defaultValue="Age Card"
+                  defaultValue="Passport"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 ></TextField>
                 <TextField
                   label="Issue Date"
                   fullWidth
-                  defaultValue="31-05-2006"
+                  defaultValue="12-11-2020"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
@@ -234,7 +244,7 @@ const ViewDocument = () => {
                 <TextField
                   label="Expiry Date"
                   fullWidth
-                  defaultValue="22-08-2024"
+                  defaultValue="12-11-2030"
                   InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
@@ -321,15 +331,14 @@ const ViewDocument = () => {
               onClose={() => setShowSnackbar(false)}
               variant="outlined"
               sx={{
-                bgcolor: "#fff", // White background
-                color: "#2e7d32", // Green text
-                borderColor: "#4caf50", // Green border
-                borderWidth: 2,
-                fontWeight: 600,
+                width: "100%",
+                fontWeight: 500,
                 fontSize: "1rem",
-                boxShadow: 2,
-                borderRadius: 2,
-                px: 2,
+                boxShadow: 3,
+                backgroundColor: "#2e7d32",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
               }}
             >
               Your document has been approved.
