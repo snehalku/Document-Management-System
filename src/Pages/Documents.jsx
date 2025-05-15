@@ -177,7 +177,7 @@ const Documents = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name, Version No."
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, ID No., Document ID, Document Name, Version No."
             variant="outlined"
             sx={{
               width: "72%",

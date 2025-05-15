@@ -109,8 +109,6 @@
 
 import {
   Box,
-  Button,
-  Container,
   Grid,
   Paper,
   Table,
@@ -132,8 +130,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import agecard from "../assets/agecard.jpg";
 
 const projectData = [
   {
@@ -269,53 +265,6 @@ const Dashboard = () => {
           position: "relative",
         }}
       >
-        {/* <Grid container spacing={3} sx={{ mb: 2 }}>
-          {summaryCards.map((item, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Card
-                onClick={handleCardClick}
-                sx={{
-                  borderRadius: "10px",
-                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                  position: "relative",
-                  pb: 2,
-                  cursor: "pointer",
-                  width: "215px",
-                  height: "80px",
-                }}
-              >
-                <CardContent sx={{ position: "relative", p: 2 }}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h7"
-                      component="div"
-                      fontWeight="500"
-                      fontFamily="Poppins, sans-serif"
-                    >
-                      {item.title}
-                    </Typography>
-                  </Box>
-                  <Typography
-                    variant="h4"
-                    component="div"
-                    fontWeight="bold"
-                    fontFamily="Poppins, sans-serif"
-                    sx={{ mt: 1 }}
-                  >
-                    {item.value}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid> */}
-
         <Grid container spacing={3} sx={{ mb: 2 }}>
           <Grid item xs={12} md={4}>
             <Card
@@ -328,6 +277,11 @@ const Dashboard = () => {
                 cursor: "pointer",
                 width: "215px",
                 height: "80px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
               }}
             >
               <CardContent sx={{ position: "relative", p: 2 }}>
@@ -371,6 +325,11 @@ const Dashboard = () => {
                 cursor: "pointer",
                 width: "215px",
                 height: "80px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
               }}
             >
               <CardContent sx={{ position: "relative", p: 2 }}>
@@ -413,6 +372,11 @@ const Dashboard = () => {
                 cursor: "pointer",
                 width: "215px",
                 height: "80px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
               }}
             >
               <CardContent sx={{ position: "relative", p: 2 }}>
@@ -455,8 +419,13 @@ const Dashboard = () => {
                 cursor: "pointer",
                 width: "215px",
                 height: "80px",
-                backgroundColor: "#ffe0b2", // soft orange to signal attention
-                border: "2px solid #fb8c00", // orange border
+                backgroundColor: "#ffe0b2",
+                border: "2px solid #fb8c00",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
               }}
             >
               <CardContent sx={{ position: "relative", p: 2 }}>
@@ -499,6 +468,11 @@ const Dashboard = () => {
                 cursor: "pointer",
                 width: "215px",
                 height: "80px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
               }}
             >
               <CardContent sx={{ position: "relative", p: 2 }}>
@@ -539,7 +513,7 @@ const Dashboard = () => {
           justifyContent="space-between"
         >
           <TextField
-            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, National ID, Document ID, Document Name, Version No."
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, ID No., Document ID, Document Name, Version No."
             variant="outlined"
             sx={{
               width: "72%",
@@ -680,7 +654,7 @@ const Dashboard = () => {
                       <Typography fontWeight="bold">ID Number</Typography>
                       <IconButton
                         size="small"
-                        onClick={() => toggleSearchField("nationalId")}
+                        onClick={() => toggleSearchField("IdNo")}
                       >
                         <SearchIcon fontSize="small" />
                       </IconButton>
@@ -692,7 +666,7 @@ const Dashboard = () => {
                         placeholder="Search"
                         value={searchInputs.IdNo}
                         onChange={(e) =>
-                          handleSearchInputChange("nationalId", e.target.value)
+                          handleSearchInputChange("IdNo", e.target.value)
                         }
                         sx={{ mt: 1 }}
                       />
