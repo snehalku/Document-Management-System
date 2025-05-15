@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import agecard from "../assets/agecard.jpg";
-import ageCard from "../assets/ageCard.png"
+import passport from "../assets/passport.jpg";
+import idcard from "../assets/idcard.jpg";
 import { Snackbar, Alert, Divider } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {
@@ -27,6 +27,36 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const mockCustomerDocs = [
   {
+    id: 105,
+    firstName: "Mets",
+    lastName: "Lilli",
+    transactionId: "TXN123",
+    date: "2025-04-30",
+    dob: "1988-11-16",
+    expiresOn: "2020-01-02",
+    nationalId: "AS1234567",
+  },
+  {
+    id: 110,
+    firstName: "John",
+    lastName: "Smith",
+    transactionId: "TXN123",
+    date: "2025-04-30",
+    dob: "1988-11-16",
+    expiresOn: "2032-12-12",
+    nationalId: "A123477",
+  },
+  {
+    id: 100,
+    firstName: "John",
+    lastName: "Livone",
+    transactionId: "TXN123",
+    date: "2025-04-30",
+    dob: "1986-09-06",
+    expiresOn: "2030-11-12",
+    nationalId: "A123456",
+  },
+  {
     id: 101,
     firstName: "David R",
     lastName: "Smith",
@@ -52,6 +82,16 @@ const mockCustomerDocs = [
     lastName: "Greene",
     transactionId: "TXN567",
     date: "2025-04-28",
+    dob: "2002-11-09",
+    expiresOn: "2028-04-30",
+    nationalId: "5843216619642184",
+  },
+  {
+    id: 104,
+    firstName: "David ",
+    lastName: "Greene",
+    transactionId: "TXN567",
+    date: "2025-04-30",
     dob: "2002-11-09",
     expiresOn: "2028-04-30",
     nationalId: "5843216619642184",
@@ -135,11 +175,15 @@ const PreviewKycPage = () => {
     setShowSnackbar(true);
     console.log("Snackbar should show now");
     setTimeout(() => {
-      setPreviewDocPath(ageCard);
+      setPreviewDocPath(idcard);
     }, 3000);
     setSelectedDate(null);         
     setSearchCustomer("");        
     setSearchResults("");  
+    setCategory("");
+    setSubcategory("");
+    setIssueDate("");
+    setExpiryDate("");
     // setTimeout(() => {
     //   navigate("/documents");
     // }, 2000);
@@ -415,7 +459,7 @@ const PreviewKycPage = () => {
                       <TableCell>
                         <Box display="flex" alignItems="center">
                           <Typography fontWeight="bold" mr={1}>
-                            National ID
+                            ID Number
                           </Typography>
                           <SearchIcon
                             sx={{ cursor: "pointer" }}
@@ -591,7 +635,7 @@ const PreviewKycPage = () => {
                 />
               ) : (
                 <iframe
-                  src={`${selectedDoc?.path || agecard}#toolbar=0`}
+                  src={`${selectedDoc?.path || passport}#toolbar=0`}
                   title="KYC Document"
                   style={{
                     position: "absolute",
@@ -649,7 +693,7 @@ const PreviewKycPage = () => {
                   disabled={!selectedDoc}
                 />
                 <TextField
-                  label="National ID"
+                  label="ID Number"
                   fullWidth
                   value={selectedDoc?.nationalId || ""}
                   sx={{ mb: 2 }}
@@ -674,7 +718,6 @@ const PreviewKycPage = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 >
-                  <MenuItem value="ageCard"> Age Proof</MenuItem>
                   <MenuItem value="passport"> ID Proof</MenuItem>
                   <MenuItem value="license"> Address Proof</MenuItem>
                   <MenuItem value="signature"> Signature Proof</MenuItem>
@@ -688,7 +731,7 @@ const PreviewKycPage = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 >
-                  <MenuItem value="ageCard"> Age Card</MenuItem>
+                  <MenuItem value="passport"> Passport</MenuItem>
                 </TextField>
                 <TextField
                   label="Issue Date"
