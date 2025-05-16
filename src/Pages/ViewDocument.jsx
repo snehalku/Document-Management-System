@@ -208,14 +208,14 @@ const ViewDocument = () => {
                   label="Document ID"
                   fullWidth
                   defaultValue="111"
-                  InputProps={{ readOnly: true }}
+                  // InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 ></TextField>
                 <TextField
                   label="Document Name"
                   fullWidth
                   defaultValue="John_L_202514"
-                  InputProps={{ readOnly: true }}
+                  // InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 ></TextField>
 
@@ -223,21 +223,21 @@ const ViewDocument = () => {
                   label="Category"
                   fullWidth
                   defaultValue="KYC"
-                  InputProps={{ readOnly: true }}
+                  // InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 ></TextField>
                 <TextField
                   label=" Sub Category"
                   fullWidth
                   defaultValue="Passport"
-                  InputProps={{ readOnly: true }}
+                  // InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 ></TextField>
                 <TextField
                   label="Issue Date"
                   fullWidth
                   defaultValue="12-11-2020"
-                  InputProps={{ readOnly: true }}
+                  // InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
 
@@ -245,7 +245,7 @@ const ViewDocument = () => {
                   label="Expiry Date"
                   fullWidth
                   defaultValue="12-11-2030"
-                  InputProps={{ readOnly: true }}
+                  // InputProps={{ readOnly: true }}
                   sx={{ mb: 2 }}
                 />
 
