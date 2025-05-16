@@ -322,7 +322,7 @@ const Folders = () => {
                   label="Folder Path"
                   variant="outlined"
                   fullWidth
-                  defaultValue="C:\\documents\\sourcefolder"
+                  defaultValue="C:\\kycdocuments\\sourcefolder"
                   size="small"
                 />
                 <Button
@@ -353,7 +353,7 @@ const Folders = () => {
                   label="Folder Path"
                   variant="outlined"
                   fullWidth
-                  defaultValue="C:\\documents\\destinationfolder"
+                  defaultValue="C:\\kycdocuments\\destinationfolder"
                   size="small"
                 />
                 <Button
@@ -384,7 +384,7 @@ const Folders = () => {
                   label="Folder Path"
                   variant="outlined"
                   fullWidth
-                  defaultValue="C:\\documents\\discardfolder"
+                  defaultValue="C:\\kycdocuments\\discardfolder"
                   size="small"
                 />
                 <Button
