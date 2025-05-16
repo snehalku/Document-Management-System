@@ -69,7 +69,7 @@ const mockCustomerDocs = [
   },
 ];
 
-const ViewDocument = () => {
+const ApproveDocument = () => {
   const navigate = useNavigate();
 
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -262,30 +262,92 @@ const ViewDocument = () => {
         </Grid>
         <Box sx={{ p: 1 }}>
           <Stack direction="row" spacing={2} justifyContent="flex-end">
-           <Button
-                          variant="outlined"
-                          color="secondary"
-                          onClick={() => navigate('/documents')}
-                          sx={{
-                            borderRadius: "10px",
-                            bgcolor: "#f2f4f5",
-                            px: 3,
-                            color: "black",
-                            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                            border: "none",
-                            "&:hover": {
-                              bgcolor: "#e5e7e8",
-                              border: "none",
-                            },
-                          }}
-                        >
-                        Back
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSave}
+              sx={{
+                borderRadius: "10px",
+                bgcolor: "#99CAFF",
+                color: "black",
+                px: 3,
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                "&:hover": {
+                  bgcolor: "#7bb8ff",
+                },
+              }}
+            >
+              Approve
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              sx={{
+                borderRadius: "10px",
+                bgcolor: "#f2f4f5",
+                px: 3,
+                color: "black",
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                border: "none",
+                "&:hover": {
+                  bgcolor: "#e5e7e8",
+                  border: "none",
+                },
+              }}
+            >
+              Reject
             </Button>
           </Stack>
+          {/* <Snackbar
+            open={showSnackbar}
+            autoHideDuration={3000}
+            onClose={() => setShowSnackbar(false)}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert
+              onClose={() => setShowSnackbar(false)}
+              severity="success"
+              variant="filled"
+              sx={{
+                width: "100%",
+                fontWeight: 500,
+                fontSize: "1rem",
+                boxShadow: 3,
+                backgroundColor: "#2e7d32",
+                color: "#fff",
+              }}
+            >
+              ✅ Your document has been approved.
+            </Alert>
+          </Snackbar> */}
+          <Snackbar
+            open={showSnackbar}
+            autoHideDuration={4000}
+            onClose={() => setShowSnackbar(false)}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert
+              // severity="success"
+              onClose={() => setShowSnackbar(false)}
+              variant="outlined"
+              sx={{
+                width: "100%",
+                fontWeight: 500,
+                fontSize: "1rem",
+                boxShadow: 3,
+                backgroundColor: "#2e7d32",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              Your document has been approved.
+            </Alert>
+          </Snackbar>
         </Box>
       </Paper>
     </Box>
   );
 };
 
-export default ViewDocument;
+export default ApproveDocument;

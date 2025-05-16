@@ -456,7 +456,7 @@ const ApproveDoc = () => {
                       <Tooltip title="Approve Document">
                         <IconButton
                           color="primary"
-                          onClick={() => navigate("/viewdocument")}
+                          onClick={() => navigate("/approveDocument")}
                         >
                           <CheckBoxIcon />
                         </IconButton>

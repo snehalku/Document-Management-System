@@ -9,7 +9,7 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import PreviewIcon from '@mui/icons-material/Preview';
-
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 
 import {
   Box,
@@ -195,6 +195,37 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText
               primary="View Documents"
+              primaryTypographyProps={{
+                fontFamily: "Poppins-Medium, Helvetica",
+                fontWeight: 500,
+                fontSize: "15px",
+              }}
+            />
+          </ListItem>
+
+          <ListItem
+            onClick={() => handleMenuItemClick("/approveDoc")}
+            sx={{
+              borderRadius: "10px",
+              mt: 2,
+              mb: 1,
+              bgcolor:
+                location.pathname === "/approveDoc" ? "#d1d4d2" : "transparent",
+              height: "52px",
+              "&:hover": {
+                bgcolor:
+                  location.pathname === "/approveDoc" ? "#d1d4d2" : "#f5f5f5",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <ListItemIcon
+              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+            >
+              <LibraryAddCheckIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Approve Documents"
               primaryTypographyProps={{
                 fontFamily: "Poppins-Medium, Helvetica",
                 fontWeight: 500,
