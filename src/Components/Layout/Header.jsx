@@ -92,18 +92,21 @@ const Header = () => {
             padding: "0 16px",
           }}
         >
-          <Typography
+        <Typography
             variant="h6"
             sx={{
-              fontWeight: 600,
+              fontWeight: 700,
               paddingLeft: "100px",
               fontFamily: "Poppins-Bold, Helvetica",
-              fontWeight: 700,
               fontSize: "18px",
             }}
           >
-            DOCUMENT MANAGEMENT SYSTEM
+            DOCUMENT MANAGEMENT SYSTEM -{" "}
+            <span style={{ fontWeight: 500, opacity: 0.7 }}>
+              AML KYC
+            </span>
           </Typography>
+
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Avatar

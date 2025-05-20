@@ -29,6 +29,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NavigateBefore from "@mui/icons-material/NavigateBefore";
 import NavigateNext from "@mui/icons-material/NavigateNext";
 import SearchIcon from "@mui/icons-material/Search";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 const projectData = [
   {
@@ -42,7 +43,7 @@ const projectData = [
     documentId: "111",
     documentName: "John_L_202514",
     versionNumber: "1.0",
-    status: "Expiring Soon",
+    status: "Pending for Approval",
     category: "KYC",
     subCategory: "Age Proof",
   },
@@ -56,8 +57,7 @@ const projectData = [
     documentId: "112",
     documentName: "Jane_S_202513",
     versionNumber: "2.0",
-    status: "Expiring Soon",
-
+    status: "Pending for Approval",
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -71,29 +71,27 @@ const projectData = [
     documentId: "113",
     documentName: "Sarah_J_202512",
     versionNumber: "3.0",
-    status: "Expiring Soon",
-
+    status: "Pending for Approval",
     category: "KYC",
     subCategory: "ID Proof",
   },
-  {
-    id: 104,
-    date: "12-04-2025",
-    customerName: "David V Smith",
-    transactionId: "TXN567",
-    dob: "03-03-2002",
-    IdNo: "JK54789",
-    documentId: "114",
-    documentName: "David_V_202511",
-    versionNumber: "4.0",
-    status: "Expiring Soon",
-
-    category: "KYC",
-    subCategory: "Address Proof",
-  },
+  // {
+  //   id: 104,
+  //   date: "12-04-2025",
+  //   customerName: "David V Smith",
+  //   transactionId: "TXN567",
+  //   dob: "03-03-2002",
+  //   IdNo: "JK54789",
+  //   documentId: "114",
+  //   documentName: "David_V_202511",
+  //   versionNumber: "4.0",
+  //   status: "Pending for Approval",
+  //   category: "KYC",
+  //   subCategory: "Address Proof",
+  // },
 ];
 
-const Documents = () => {
+const ApproveDoc = () => {
   const navigate = useNavigate();
   const [searchInputs, setSearchInputs] = useState({
     customerName: "",
@@ -168,7 +166,7 @@ const Documents = () => {
           fontWeight="bold"
           sx={{ mb: 2 }}
         >
-          View Documents
+          Approve Documents
         </Typography>
         <Stack
           direction="row"
@@ -206,7 +204,7 @@ const Documents = () => {
               <TableRow sx={{ bgcolor: "#99caff" }}>
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">Customer ID</Typography>
                       <IconButton
                         size="small"
@@ -231,7 +229,7 @@ const Documents = () => {
                 </TableCell>
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">
                         Transaction Date
                       </Typography>
@@ -259,7 +257,7 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">Customer Name</Typography>
                       <IconButton
                         size="small"
@@ -288,7 +286,7 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">Date of Birth</Typography>
                       <IconButton
                         size="small"
@@ -314,7 +312,7 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">ID Number</Typography>
                       <IconButton
                         size="small"
@@ -340,7 +338,7 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">Document ID</Typography>
                       <IconButton
                         size="small"
@@ -366,7 +364,7 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">Document Name</Typography>
                       <IconButton
                         size="small"
@@ -395,7 +393,7 @@ const Documents = () => {
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">Version No.</Typography>
                       <IconButton
                         size="small"
@@ -421,7 +419,11 @@ const Documents = () => {
                     )}
                   </Stack>
                 </TableCell>
-
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Status</Typography>
+                  </Stack>
+                </TableCell>
                 <TableCell>
                   <Stack direction="row" alignItems="center">
                     <Typography fontWeight="bold">Action</Typography>
@@ -445,17 +447,21 @@ const Documents = () => {
                   </TableCell>
                   <TableCell>{project.documentName}</TableCell>
                   <TableCell>{project.versionNumber}</TableCell>
+                  <TableCell sx={{ color: "#FFC107" }}>
+                    {project.status}
+                  </TableCell>
+
                   <TableCell>
                     <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
+                      <Tooltip title="Approve Document">
                         <IconButton
                           color="primary"
-                          onClick={() => navigate("/viewdocument")}
+                          onClick={() => navigate("/approveDocument")}
                         >
-                          <VisibilityIcon />
+                          <CheckBoxIcon />
                         </IconButton>
                       </Tooltip>
-                      <Tooltip title="Download Document">
+                      {/* <Tooltip title="Download Document">
                         <a
                           href={agecard}
                           download="agecard.jpg"
@@ -465,7 +471,7 @@ const Documents = () => {
                             <FileDownloadIcon />
                           </IconButton>
                         </a>
-                      </Tooltip>
+                      </Tooltip> */}
                     </Stack>
                   </TableCell>
                 </TableRow>
@@ -566,4 +572,4 @@ const Documents = () => {
   );
 };
 
-export default Documents;
+export default ApproveDoc;

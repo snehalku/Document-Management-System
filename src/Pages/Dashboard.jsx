@@ -1,93 +1,246 @@
-import React from "react";
+// import React from "react";
+// import { Box, Typography, Alert, Stack, Paper } from "@mui/material";
+// import dayjs from "dayjs";
+
+// // Sample KYC data with expiry dates
+// const kycDocuments = [
+//   {
+//     customerName: "David R Smith",
+//     expiryDate: "2024-08-22",
+//   },
+//   {
+//     customerName: "Jane Smith",
+//     expiryDate: "2025-05-10",
+//   },
+//   {
+//     customerName: "Sarah Johnson",
+//     expiryDate: "2025-05-25",
+//   },
+//   {
+//     customerName: "David V Smith",
+//     expiryDate: "2025-04-15",
+//   },
+// ];
+
+// const Dashboard = () => {
+//   const today = dayjs();
+
+//   const getExpiryStatus = (date) => {
+//     const expiry = dayjs(date);
+//     const daysLeft = expiry.diff(today, "day");
+
+//     if (daysLeft < 0) return "expired";
+//     if (daysLeft <= 15) return "warning";
+//     return "valid";
+//   };
+
+//   const alerts = kycDocuments
+//     .map((doc) => {
+//       const status = getExpiryStatus(doc.expiryDate);
+//       return status !== "valid"
+//         ? {
+//             ...doc,
+//             status,
+//             message:
+//               status === "expired"
+//                 ? `KYC expired for ${doc.customerName} on ${doc.expiryDate}`
+//                 : `KYC for ${doc.customerName} is expiring soon (${doc.expiryDate})`,
+//           }
+//         : null;
+//     })
+//     .filter(Boolean);
+
+//   return (
+//     <Box
+//       sx={{
+//         bgcolor: "#f2f4f5",
+//         display: "flex",
+//         justifyContent: "center",
+//       }}
+//     >
+//       <Box
+//         sx={{
+//           bgcolor: "#f2f4f5",
+//           minHeight: "90vh",
+//           width: "100%",
+//           py: 4,
+//           pl: "70px",
+//           pt: "12px",
+//           pr: "24px",
+//           boxSizing: "border-box",
+//           overflow: "hidden",
+//           position: "relative",
+//         }}
+//       >
+//         <Paper
+//           elevation={3}
+//           sx={{
+//             p: 3,
+//             borderRadius: 2,
+//             bgcolor: "#ffffff",
+//             mb: 4,
+//           }}
+//         >
+//           <Typography variant="h6" fontWeight="bold" gutterBottom>
+//             KYC Expiry Alerts
+//           </Typography>
+
+//           {alerts.length === 0 ? (
+//             <Typography variant="body1">All KYC documents are valid.</Typography>
+//           ) : (
+//             <Stack spacing={2}>
+//               {alerts.map((alert, index) => (
+//                 <Alert
+//                   key={index}
+//                   severity={alert.status === "expired" ? "error" : "warning"}
+//                 >
+//                   {alert.message}
+//                 </Alert>
+//               ))}
+//             </Stack>
+//           )}
+//         </Paper>
+//       </Box>
+//     </Box>
+//   );
+// };
+
+// export default Dashboard;
+
 import {
   Box,
+  Grid,
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  Paper,
-  TextField,
-  Typography,
   Stack,
+  TableRow,
+  Typography,
+  Card,
+  CardContent,
   IconButton,
   Tooltip,
-  FormControl,
-  MenuItem,
-  InputLabel,
-  PaginationItem,
-  Select,
-  Pagination,
-  Button,
-  Menu,
+  TextField,
 } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import NavigateBefore from "@mui/icons-material/NavigateBefore";
-import NavigateNext from "@mui/icons-material/NavigateNext";
+import SearchIcon from "@mui/icons-material/Search";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import InfoIcon from "@mui/icons-material/Info"; // for View Details button
-
-const pump_report = "your-pdf-url-or-path"; // Replace with your actual file
 const projectData = [
   {
-    id: 1,
-    documentName: "Invoice",
-    applicationName: "Account",
+    id: 101,
+    date: "01-05-2025",
+    customerName: "John Livone",
     transactionId: "TXN123",
-    transactionName: "Payment Received",
-    transactionDate: "2025-04-25",
-    tooltip: "Click to preview document",
-    // documentId: "DOC456",
-    // documentName: "Invoice #456",
+    dob: "06-09-1986",
+    expiryDate: "12-11-2030",
+    IdNo: "A123456",
+    documentId: "111",
+    documentName: "John_L_202514",
+    versionNumber: "1.0",
+    status: "Pending for Approval",
+    category: "KYC",
+    subCategory: "Age Proof",
   },
   {
-    id: 2,
-    documentName: "Bank Statement",
-    applicationName: "Account",
-    transactionId: "TXN124",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-26",
-    tooltip: "Click to preview document",
+    id: 102,
+    date: "29-04-2025",
+    customerName: "Jane Smith",
+    transactionId: "TXN345",
+    dob: "05-05-2003",
+    IdNo: "SD54896",
+    documentId: "112",
+    documentName: "Jane_S_202513",
+    versionNumber: "2.0",
+    status: "Pending for Approval",
 
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
+    category: "KYC",
+    subCategory: "Address Proof",
   },
   {
-    id: 3,
-    documentName: "Tax Document",
-    applicationName: "Account",
-    transactionId: "TXN122",
-    transactionName: "Document Uploaded",
-    transactionDate: "2025-04-27",
-    tooltip: "Click to preview document",
+    id: 103,
+    date: "24-02-2025",
+    customerName: "Sarah Johnson",
+    transactionId: "TXN344",
+    dob: "18-11-2008",
+    IdNo: "AK54789",
+    documentId: "113",
+    documentName: "Sarah_J_202512",
+    versionNumber: "3.0",
+    status: "Pending for Approval",
 
-    // documentId: "DOC457",
-    // documentName: "Agreement #789",
+    category: "KYC",
+    subCategory: "ID Proof",
   },
+  // {
+  //   id: 104,
+  //   date: "12-04-2025",
+  //   customerName: "David V Smith",
+  //   transactionId: "TXN567",
+  //   dob: "03-03-2002",
+  //   IdNo: "JK54789",
+  //   documentId: "114",
+  //   documentName: "David_V_202511",
+  //   versionNumber: "4.0",
+  //   status: "Pending for Approval",
+
+  //   category: "KYC",
+  //   subCategory: "Address Proof",
+  // },
 ];
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedValue, setSelectedValue] = useState(5); // default value
-  const open = Boolean(anchorEl);
+  const [searchInputs, setSearchInputs] = useState({
+    id: "",
+    customerName: "",
+    date: "",
+    dob: "",
+    IdNo: "",
+    documentId: "",
+    documentName: "",
+    category: "",
+    subCategory: "",
+  });
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [showSearchFields, setShowSearchFields] = useState({
+    id: false,
+    customerName: false,
+    date: false,
+    dob: false,
+    IDNo: false,
+    documentId: false,
+    documentName: false,
+    category: false,
+    subCategory: false,
+  });
+
+  const handleSearchInputChange = (field, value) => {
+    setSearchInputs((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
   };
 
-  const handleClose = (value) => {
-    if (value) {
-      setSelectedValue(value);
-    }
-    setAnchorEl(null);
+  const toggleSearchField = (field) => {
+    setShowSearchFields((prev) => ({
+      ...prev,
+      [field]: !prev[field],
+    }));
   };
+
+  const filteredData = projectData.filter((item) =>
+    Object.keys(searchInputs).every((key) =>
+      String(item[key] || "")
+        .toLowerCase()
+        .includes(searchInputs[key].toLowerCase())
+    )
+  );
 
   return (
     <Box
@@ -95,7 +248,7 @@ const Dashboard = () => {
         bgcolor: "#f2f4f5",
         display: "flex",
         justifyContent: "center",
-        width: "100%",
+        // width: "100%",
       }}
     >
       <Box
@@ -112,38 +265,261 @@ const Dashboard = () => {
           position: "relative",
         }}
       >
-        <Typography
-          variant="h5"
-          component="h1"
-          fontWeight="bold"
-          sx={{ mb: 1 }}
-        >
-          Documents
-        </Typography>
+        <Grid container spacing={3} sx={{ mb: 2 }}>
+          <Grid item xs={12} md={4}>
+            <Card
+              onClick={() => navigate("/documents")}
+              sx={{
+                borderRadius: "10px",
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                position: "relative",
+                pb: 2,
+                cursor: "pointer",
+                width: "215px",
+                height: "80px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
+              }}
+            >
+              <CardContent sx={{ position: "relative", p: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h7"
+                    component="div"
+                    fontWeight="500"
+                    fontFamily="Poppins, sans-serif"
+                  >
+                    Total Documents
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="h4"
+                  component="div"
+                  fontWeight="bold"
+                  fontFamily="Poppins, sans-serif"
+                  sx={{ mt: 1 }}
+                >
+                  1124
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <Card
+              onClick={() => navigate("/approveDoc")}
+              sx={{
+                borderRadius: "10px",
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                position: "relative",
+                pb: 2,
+                cursor: "pointer",
+                width: "215px",
+                height: "80px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
+              }}
+            >
+              <CardContent sx={{ position: "relative", p: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h7"
+                    component="div"
+                    fontWeight="500"
+                    fontFamily="Poppins, sans-serif"
+                  >
+                    Pending for Approval
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="h4"
+                  component="div"
+                  fontWeight="bold"
+                  fontFamily="Poppins, sans-serif"
+                  sx={{ mt: 1 }}
+                >
+                  450
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <Card
+              sx={{
+                borderRadius: "10px",
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                position: "relative",
+                pb: 2,
+                cursor: "pointer",
+                width: "215px",
+                height: "80px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
+              }}
+            >
+              <CardContent sx={{ position: "relative", p: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h7"
+                    component="div"
+                    fontWeight="500"
+                    fontFamily="Poppins, sans-serif"
+                  >
+                    Approved
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="h4"
+                  component="div"
+                  fontWeight="bold"
+                  fontFamily="Poppins, sans-serif"
+                  sx={{ mt: 1 }}
+                >
+                  658
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <Card
+              sx={{
+                borderRadius: "10px",
+                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
+                position: "relative",
+                pb: 2,
+                cursor: "pointer",
+                width: "215px",
+                height: "80px",
+
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
+              }}
+            >
+              <CardContent sx={{ position: "relative", p: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h7"
+                    component="div"
+                    fontWeight="500"
+                    fontFamily="Poppins, sans-serif"
+                  >
+                    Expiring Soon
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="h4"
+                  component="div"
+                  fontWeight="bold"
+                  fontFamily="Poppins, sans-serif"
+                  sx={{ mt: 1 }}
+                >
+                  4
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <Card
+              sx={{
+                borderRadius: "10px",
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                position: "relative",
+                pb: 2,
+                cursor: "pointer",
+                width: "215px",
+                height: "80px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+                },
+              }}
+            >
+              <CardContent sx={{ position: "relative", p: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h7"
+                    component="div"
+                    fontWeight="500"
+                    fontFamily="Poppins, sans-serif"
+                  >
+                    Expired
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="h4"
+                  component="div"
+                  fontWeight="bold"
+                  fontFamily="Poppins, sans-serif"
+                  sx={{ mt: 1 }}
+                >
+                  12
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
 
         <Stack
           direction="row"
           spacing={2}
-          sx={{ mb: 2 }}
-          justifyContent="flex-start"
-          alignItems="center"
+          sx={{ mb: 3 }}
+          justifyContent="space-between"
         >
-          {/* Label */}
-          <Typography variant="subtitle1" fontWeight="bold">
-            Select Application
-          </Typography>
+          <TextField
+            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, ID No., Document ID, Document Name, Version No."
+            variant="outlined"
+            sx={{
+              width: "72%",
+              bgcolor: "#fff",
+              height: "50px",
+              borderRadius: "10px",
 
-          {/* Select Dropdown using only MUI components */}
-          <FormControl sx={{ minWidth: 200 }}>
-            <Select
-              labelId="application-select-label"
-              id="application-select"
-              defaultValue="Account"
-              label="Application"
-              sx={{
-                bgcolor: "#fff",
-                height: "45px",
-                borderRadius: "5px",
+              "& .MuiOutlinedInput-root": {
                 boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
                 "& fieldset": {
                   border: "none",
@@ -151,61 +527,284 @@ const Dashboard = () => {
                 "&.Mui-focused": {
                   boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
                 },
-              }}
-            >
-              <MenuItem value="Account">Account</MenuItem>
-              <MenuItem value="Finance">Finance</MenuItem>
-              <MenuItem value="Sales">Sales</MenuItem>
-            </Select>
-          </FormControl>
-        </Stack>
-        <Stack
-          direction="row"
-          spacing={2}
-          sx={{ mb: 3 }}
-          //   justifyContent="space-between"
-        >
-          <TextField
-            placeholder="Search by all parameters..."
-            variant="outlined"
-            sx={{
-              width: "50%",
-              bgcolor: "#fff",
-              height: "50px",
-              borderRadius: "10px",
-
-              "& .MuiOutlinedInput-root": {
-                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)", // increased opacity from 0.15 → 0.25
-                "& fieldset": {
-                  border: "none",
-                },
-                "&.Mui-focused": {
-                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)", // darker + larger shadow on focus
-                },
               },
             }}
           />
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#99caff",
-              width: "110px",
-              color: "black",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                bgcolor: "#88b9ee",
-              },
-            }}
-          >
-            Get Data
-          </Button>
         </Stack>
+        {/* <TableContainer
+          component={Paper}
+          sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow sx={{ bgcolor: "#99caff" }}>
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Customer ID</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("id")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.id && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.id}
+                        onChange={(e) =>
+                          handleSearchInputChange("id", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">
+                        Transaction Date
+                      </Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("date")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.date && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.date}
+                        onChange={(e) =>
+                          handleSearchInputChange("date", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
 
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Customer Name</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("customerName")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.customerName && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.customerName}
+                        onChange={(e) =>
+                          handleSearchInputChange(
+                            "customerName",
+                            e.target.value
+                          )
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Date of Birth</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("dob")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.dob && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.dob}
+                        onChange={(e) =>
+                          handleSearchInputChange("dob", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">ID Number</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("IdNo")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.IDNo && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.IdNo}
+                        onChange={(e) =>
+                          handleSearchInputChange("IdNo", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Document ID</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("documentId")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.documentId && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.documentId}
+                        onChange={(e) =>
+                          handleSearchInputChange("documentId", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Document Name</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("documentName")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.documentName && (
+                      <TextField
+                        size="small"
+                        variant="standard" 
+                        placeholder="Search"
+                        value={searchInputs.documentName}
+                        onChange={(e) =>
+                          handleSearchInputChange(
+                            "documentName",
+                            e.target.value
+                          )
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Version No.</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("versionNumber")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.versionNumber && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.versionNumber}
+                        onChange={(e) =>
+                          handleSearchInputChange(
+                            "versionNumber",
+                            e.target.value
+                          )
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Status</Typography>
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Action</Typography>
+                  </Stack>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+
+            <TableBody>
+              {filteredData.map((project) => (
+                <TableRow key={project.id} hover>
+                  <TableCell>
+                    <Typography fontWeight="bold">{project.id}</Typography>
+                  </TableCell>
+                  <TableCell>{project.date}</TableCell>
+                  <TableCell>{project.customerName}</TableCell>
+                  <TableCell>{project.dob}</TableCell>
+                  <TableCell>{project.IdNo}</TableCell>
+                  <TableCell align="center" sx={{ textAlign: "center" }}>
+                    {project.documentId}
+                  </TableCell>
+                  <TableCell>{project.documentName}</TableCell>
+                  <TableCell>{project.versionNumber}</TableCell>
+                  <TableCell sx={{ color: "#f28c0c" }}>
+                    {project.status}
+                  </TableCell>
+
+                  <TableCell>
+                    <Stack direction="row" spacing={1}>
+                      <Tooltip title="View Document">
+                        <IconButton
+                          color="primary"
+                          onClick={() => navigate("/viewdocument")}
+                        >
+                          <VisibilityIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer> */}
         <TableContainer
           component={Paper}
           sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
@@ -214,230 +813,282 @@ const Dashboard = () => {
             <TableHead>
               <TableRow sx={{ bgcolor: "#99caff" }}>
                 <TableCell>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography fontWeight="bold">Id</Typography>
-                    {/* No ArrowDropDown for Id */}
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Customer ID</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("id")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.id && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.id}
+                        onChange={(e) =>
+                          handleSearchInputChange("id", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">
+                        Transaction Date
+                      </Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("date")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.date && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.date}
+                        onChange={(e) =>
+                          handleSearchInputChange("date", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography fontWeight="bold">Document Name</Typography>
-                    <ArrowDropDown />
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Customer Name</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("customerName")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.customerName && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.customerName}
+                        onChange={(e) =>
+                          handleSearchInputChange(
+                            "customerName",
+                            e.target.value
+                          )
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography fontWeight="bold">Application Name</Typography>
-                    <ArrowDropDown />
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Date of Birth</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("dob")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.dob && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.dob}
+                        onChange={(e) =>
+                          handleSearchInputChange("dob", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography fontWeight="bold">Transaction ID</Typography>
-                    <ArrowDropDown />
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">ID Number</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("nationalId")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.IdNo && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.IdNo}
+                        onChange={(e) =>
+                          handleSearchInputChange("nationalId", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography fontWeight="bold">Transaction Name</Typography>
-                    <ArrowDropDown />
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Document ID</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("documentId")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.documentId && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.documentId}
+                        onChange={(e) =>
+                          handleSearchInputChange("documentId", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
                   </Stack>
                 </TableCell>
 
                 <TableCell>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography fontWeight="bold">Transaction Date</Typography>
-                    <ArrowDropDown />
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Document Name</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("documentName")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.documentName && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.documentName}
+                        onChange={(e) =>
+                          handleSearchInputChange(
+                            "documentName",
+                            e.target.value
+                          )
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
+                      <Typography fontWeight="bold">Version No.</Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => toggleSearchField("versionNumber")}
+                      >
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </Stack>
+                    {showSearchFields.versionNumber && (
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.versionNumber}
+                        onChange={(e) =>
+                          handleSearchInputChange(
+                            "versionNumber",
+                            e.target.value
+                          )
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Status</Typography>
+                  </Stack>
+                </TableCell>
+                <TableCell>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight="bold">Action</Typography>
                   </Stack>
                 </TableCell>
               </TableRow>
             </TableHead>
 
             <TableBody>
-              {projectData.map((project) => (
+              {filteredData.map((project) => (
                 <TableRow key={project.id} hover>
                   <TableCell>
                     <Typography fontWeight="bold">{project.id}</Typography>
                   </TableCell>
-                  <TableCell>
-                    <Tooltip title={project.tooltip} arrow>
-                      <Typography
-                        fontWeight="medium"
-                        sx={{
-                          whiteSpace: "pre-line",
-                          cursor: "pointer",
-                          textDecoration: "none",
-                          color: "#000000",
-                        }}
-                        onClick={() => navigate("/previewDocument")}
-                      >
-                        {project.documentName}
-                      </Typography>
-                    </Tooltip>
+                  <TableCell>{project.date}</TableCell>
+                  <TableCell>{project.customerName}</TableCell>
+                  <TableCell>{project.dob}</TableCell>
+                  <TableCell>{project.IdNo}</TableCell>
+                  <TableCell align="center" sx={{ textAlign: "center" }}>
+                    {project.documentId}
                   </TableCell>
-                  <TableCell>{project.applicationName}</TableCell>
-                  <TableCell>{project.transactionId}</TableCell>
-                  <TableCell>{project.transactionName}</TableCell>
-                  <TableCell>{project.transactionDate}</TableCell>
-                  {/* <TableCell>{project.documentId}</TableCell>
-              <TableCell>{project.documentName}</TableCell> */}
+                  <TableCell>{project.documentName}</TableCell>
+                  <TableCell>{project.versionNumber}</TableCell>
+                  <TableCell sx={{ color: "#FFC107" }}>
+                    {project.status}
+                  </TableCell>
 
-                  {/* Action Buttons */}
-                  {/* <TableCell>
+                  <TableCell>
                     <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
+                      <Tooltip title="Approve Document">
                         <IconButton
                           color="primary"
-                          onClick={() => window.open(pump_report, "_blank")}
+                          onClick={() => navigate("/approveDocument")}
                         >
-                          <VisibilityIcon />
+                          <CheckBoxIcon />
                         </IconButton>
                       </Tooltip>
-
-                      <Tooltip title="Download Document">
+                      {/* <Tooltip title="Download Document">
                         <a
-                          href={pump_report}
-                          download="pump_report.pdf"
+                          href={agecard}
+                          download="agecard.jpg"
                           style={{ color: "inherit", textDecoration: "none" }}
                         >
                           <IconButton color="secondary">
                             <FileDownloadIcon />
                           </IconButton>
                         </a>
-                      </Tooltip>
-
-                      <Tooltip title="View Details">
-                    <IconButton
-                      color="info"
-                      onClick={() => {
-                        alert(`Showing details for Transaction ID: ${project.transactionId}`);
-                      }}
-                    >
-                      <InfoIcon />
-                    </IconButton>
-                  </Tooltip>
+                      </Tooltip> */}
                     </Stack>
-                  </TableCell> */}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
-        <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-          <Pagination
-            count={10}
-            shape="rounded"
-            renderItem={(item) => {
-              if (item.type === "previous") {
-                return (
-                  <PaginationItem
-                    component={IconButton}
-                    sx={{
-                      border: "1px solid #a7a6a6",
-
-                      borderRadius: "5px",
-
-                      bgcolor: "#f2f4f5",
-
-                      mx: 0.5,
-                    }}
-                    {...item}
-                    icon={<NavigateBefore fontSize="small" />}
-                  />
-                );
-              }
-
-              if (item.type === "next") {
-                return (
-                  <PaginationItem
-                    component={IconButton}
-                    sx={{
-                      border: "1px solid #a7a6a6",
-
-                      borderRadius: "5px",
-
-                      bgcolor: "#f2f4f5",
-
-                      mx: 0.5,
-                    }}
-                    {...item}
-                    icon={<NavigateNext fontSize="small" />}
-                  />
-                );
-              }
-
-              return (
-                <PaginationItem
-                  {...item}
-                  sx={{
-                    border: "1px solid #a7a6a6",
-
-                    borderRadius: "5px",
-
-                    bgcolor: item.selected ? "#99caff" : "#f2f4f5",
-
-                    mx: 0.5,
-
-                    color: item.selected ? "black" : "#747474",
-                  }}
-                />
-              );
-            }}
-          />
-          {/* <Button
-            variant="outlined"
-            size="small"
-            sx={{
-              ml: 1,
- 
-              border: "1px solid #a7a6a6",
- 
-              borderRadius: "5px",
- 
-              bgcolor: "#f2f4f5",
- 
-              color: "#747474",
- 
-              fontSize: "10px",
- 
-              textTransform: "none",
-            }}
-          >
-            10 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
-          </Button> */}
-          <Box>
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={handleClick}
-              sx={{
-                ml: 1,
-                border: "1px solid #a7a6a6",
-                borderRadius: "5px",
-                bgcolor: "#f2f4f5",
-                color: "#747474",
-                fontSize: "10px",
-                textTransform: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-              }}
-            >
-              {selectedValue} / Pages{" "}
-              <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
-            </Button>
-
-            <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
-              <MenuItem onClick={() => handleClose(10)}>5/page</MenuItem>
-              <MenuItem onClick={() => handleClose(20)}>10/page</MenuItem>
-              <MenuItem onClick={() => handleClose(50)}>15/page</MenuItem>
-            </Menu>
-          </Box>
-        </Box>
       </Box>
     </Box>
   );
