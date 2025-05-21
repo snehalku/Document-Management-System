@@ -6,10 +6,10 @@ import ReportIcon from "@mui/icons-material/Report";
 import GroupIcon from "@mui/icons-material/Group";
 import SecurityIcon from "@mui/icons-material/Security";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import FolderCopyIcon from '@mui/icons-material/FolderCopy';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import PreviewIcon from '@mui/icons-material/Preview';
-import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
+import FolderCopyIcon from "@mui/icons-material/FolderCopy";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import PreviewIcon from "@mui/icons-material/Preview";
+import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 
 import {
   Box,
@@ -135,6 +135,41 @@ const Sidebar = () => {
             />
           </ListItem> */}
 
+          <ListItem
+            onClick={() => handleMenuItemClick("/archiveDocument1")}
+            sx={{
+              borderRadius: "10px",
+              mt: 2,
+              mb: 1,
+              bgcolor:
+                location.pathname === "/archiveDocument1"
+                  ? "#d1d4d2"
+                  : "transparent",
+              height: "52px",
+              "&:hover": {
+                bgcolor:
+                  location.pathname === "/archiveDocument1"
+                    ? "#d1d4d2"
+                    : "#f5f5f5",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <ListItemIcon
+              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+            >
+              <ArchiveIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Archive Document 1"
+              primaryTypographyProps={{
+                fontFamily: "Poppins-Medium, Helvetica",
+                fontWeight: 500,
+                fontSize: "15px",
+              }}
+            />
+          </ListItem>
+
           {/* Projects */}
           <ListItem
             onClick={() => handleMenuItemClick("/previewDocument")}
@@ -234,7 +269,6 @@ const Sidebar = () => {
             />
           </ListItem>
 
-
           <ListItem
             onClick={() => setOpenAdmin(!openAdmin)}
             sx={{
@@ -285,7 +319,6 @@ const Sidebar = () => {
               </ListItem>
             </List>
           </Collapse>
-
         </List>
       </Box>
 
