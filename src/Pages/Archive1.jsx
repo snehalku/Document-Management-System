@@ -15,6 +15,8 @@ import {
   Divider,
 } from "@mui/material";
 import ID from "../assets/ID.jpg";
+import Doc from "../assets/Doc.png";
+
 import { useState } from "react";
 
 const Archive1 = () => {
@@ -49,7 +51,7 @@ const Archive1 = () => {
         <Card
           sx={{
             flex: 1,
-            height: "100vh",
+            height: "85vh",
             position: "sticky",
             top: 0,
             alignSelf: "flex-start",
@@ -59,11 +61,11 @@ const Archive1 = () => {
           <Box sx={{ width: "100%", height: "auto" }}>
             <CardMedia
               component="img"
-              image={ID}
+              image={Doc}
               alt="Document"
               sx={{
                 width: "100%",
-                height: "auto",
+                height: "110vh",
                 objectFit: "contain",
               }}
             />
@@ -73,8 +75,8 @@ const Archive1 = () => {
         <Box
           sx={{
             flex: 1,
-            height: "100vh", // Full height container
-            p: 2, // optional padding
+            height: "100vh",
+            p: 2,
           }}
         >
           <Typography variant="h5" fontWeight="bold" mb={1}>
@@ -250,7 +252,7 @@ const Archive1 = () => {
 
           <Card
             sx={{
-              height: "90vh",
+              height: "50vh",
               overflowY: "auto",
               p: 2,
             }}
@@ -260,117 +262,115 @@ const Archive1 = () => {
                 sx={{
                   p: 2,
                   //   minHeight: "100%",
-                  height: "150vh",
+                  height: "50vh",
                   //   overflow: "auto",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-between",
+                  //   justifyContent: "space-between",
                 }}
               >
-                <Box>
-                  <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
-                    Document
-                  </Typography>
-                  <TextField
-                    label="Category"
-                    select
-                    fullWidth
-                    // value={category}
-                    // onChange={(e) => setCategory(e.target.value)}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  >
-                    <MenuItem value="passport"> ID Proof</MenuItem>
-                    <MenuItem value="license"> Address Proof</MenuItem>
-                    <MenuItem value="signature"> Signature Proof</MenuItem>
-                  </TextField>
-                  <TextField
-                    label=" Sub Category"
-                    select
-                    fullWidth
-                    // value={subcategory}
-                    // onChange={(e) => setSubcategory(e.target.value)}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  >
-                    <MenuItem value="passport"> Passport</MenuItem>
-                  </TextField>
-                  <TextField
-                    label="Issue Date"
-                    type="date"
-                    fullWidth
-                    // value={issueDate}
-                    // onChange={(e) => setIssueDate(e.target.value)}
-                    sx={{ mb: 2 }}
-                    InputLabelProps={{ shrink: true }}
-                    // disabled={!selectedDoc}
-                  />
+                <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
+                  Document
+                </Typography>
+                <TextField
+                  label="Category"
+                  select
+                  fullWidth
+                  // value={category}
+                  // onChange={(e) => setCategory(e.target.value)}
+                  sx={{ mb: 2 }}
+                  // disabled={!selectedDoc}
+                >
+                  <MenuItem value="passport"> ID Proof</MenuItem>
+                  <MenuItem value="license"> Address Proof</MenuItem>
+                  <MenuItem value="signature"> Signature Proof</MenuItem>
+                </TextField>
+                <TextField
+                  label=" Sub Category"
+                  select
+                  fullWidth
+                  // value={subcategory}
+                  // onChange={(e) => setSubcategory(e.target.value)}
+                  sx={{ mb: 2 }}
+                  // disabled={!selectedDoc}
+                >
+                  <MenuItem value="passport"> Passport</MenuItem>
+                </TextField>
+                <TextField
+                  label="Issue Date"
+                  type="date"
+                  fullWidth
+                  // value={issueDate}
+                  // onChange={(e) => setIssueDate(e.target.value)}
+                  sx={{ mb: 2 }}
+                  InputLabelProps={{ shrink: true }}
+                  // disabled={!selectedDoc}
+                />
 
-                  <TextField
-                    label="Expiry Date"
-                    type="date"
-                    fullWidth
-                    // value={expiryDate}
-                    // onChange={(e) => setExpiryDate(e.target.value)}
-                    sx={{ mb: 2 }}
-                    InputLabelProps={{ shrink: true }}
-                    // disabled={!selectedDoc}
-                  />
+                <TextField
+                  label="Expiry Date"
+                  type="date"
+                  fullWidth
+                  // value={expiryDate}
+                  // onChange={(e) => setExpiryDate(e.target.value)}
+                  sx={{ mb: 2 }}
+                  InputLabelProps={{ shrink: true }}
+                  // disabled={!selectedDoc}
+                />
 
-                  <TextField
-                    label="Version NO."
-                    fullWidth
-                    defaultValue="1.0"
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  />
+                <TextField
+                  label="Version NO."
+                  fullWidth
+                  defaultValue="1.0"
+                  sx={{ mb: 2 }}
+                  // disabled={!selectedDoc}
+                />
 
-                  <Divider
-                    sx={{
-                      mb: 2,
-                      borderBottomWidth: 2,
-                      borderColor: "black",
-                    }}
-                  />
-                  <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
-                    Transaction Data From OLTP System
-                  </Typography>
-                  <TextField
-                    label="Customer ID / Transaction ID"
-                    fullWidth
-                    // value={selectedDoc?.id || ""}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  />
-                  <TextField
-                    label="First Name"
-                    fullWidth
-                    // value={selectedDoc?.firstName || ""}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  />
-                  <TextField
-                    label="Last Name"
-                    fullWidth
-                    // value={selectedDoc?.lastName || ""}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  />
-                  <TextField
-                    label="Date of Birth"
-                    fullWidth
-                    // value={selectedDoc?.dob || ""}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  />
-                  <TextField
-                    label="ID Number"
-                    fullWidth
-                    // value={selectedDoc?.nationalId || ""}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  />
-                </Box>
+                <Divider
+                  sx={{
+                    mb: 2,
+                    borderBottomWidth: 2,
+                    borderColor: "black",
+                  }}
+                />
+                <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
+                  Transaction Data From OLTP System
+                </Typography>
+                <TextField
+                  label="Customer ID / Transaction ID"
+                  fullWidth
+                  // value={selectedDoc?.id || ""}
+                  sx={{ mb: 2 }}
+                  // disabled={!selectedDoc}
+                />
+                <TextField
+                  label="First Name"
+                  fullWidth
+                  // value={selectedDoc?.firstName || ""}
+                  sx={{ mb: 2 }}
+                  // disabled={!selectedDoc}
+                />
+                <TextField
+                  label="Last Name"
+                  fullWidth
+                  // value={selectedDoc?.lastName || ""}
+                  sx={{ mb: 2 }}
+                  // disabled={!selectedDoc}
+                />
+                <TextField
+                  label="Date of Birth"
+                  fullWidth
+                  // value={selectedDoc?.dob || ""}
+                  sx={{ mb: 2 }}
+                  // disabled={!selectedDoc}
+                />
+                <TextField
+                  label="ID Number"
+                  fullWidth
+                  // value={selectedDoc?.nationalId || ""}
+                  sx={{ mb: 2 }}
+                  // disabled={!selectedDoc}
+                />
               </Paper>
             </Grid>
           </Card>
