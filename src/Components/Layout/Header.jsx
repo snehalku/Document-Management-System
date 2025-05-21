@@ -46,7 +46,7 @@ const Header = () => {
         elevation={4}
         sx={{
           width: "100%",
-          height: 77,
+          height: 70,
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
@@ -96,15 +96,16 @@ const Header = () => {
             variant="h6"
             sx={{
               fontWeight: 700,
-              paddingLeft: "100px",
+              paddingLeft: "25px",
               fontFamily: "Poppins-Bold, Helvetica",
               fontSize: "18px",
             }}
           >
-            DOCUMENT MANAGEMENT SYSTEM -{" "}
+            DOCUMENT MANAGEMENT SYSTEM 
+            {/* -{" "}
             <span style={{ fontWeight: 500, opacity: 0.7 }}>
               AML KYC
-            </span>
+            </span> */}
           </Typography>
 
 

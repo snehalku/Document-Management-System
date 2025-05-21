@@ -204,13 +204,13 @@ const PreviewKycPage = () => {
     <Box
       sx={{
         bgcolor: "#f2f4f5",
-        py: 4,
+        // py: 4,
         pl: "70px",
-        pt: "12px",
-        pr: "24px",
-        boxSizing: "border-box",
-        overflow: "hidden",
-        position: "relative",
+        // pt: "12px",
+        // pr: "24px",
+        // boxSizing: "border-box",
+        // overflow: "hidden",
+        // position: "relative",
       }}
     >
       <Typography variant="h5" fontWeight="bold" mb={1}>

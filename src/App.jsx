@@ -24,18 +24,26 @@ function App() {
       path: "/",
       element: <AppLayout />,
       children: [
-        {
-          path: "dashboard",
-          element: <Dashboard />,
-        },
-        {
-          index: true,
-          element: <Navigate to="/dashboard" />,
-        },
+        // {
+        //   path: "dashboard",
+        //   element: <Dashboard />,
+        // },
+        // {
+        //   index: true,
+        //   element: <Navigate to="/dashboard" />,
+        // },
         {
           path: "previewDocument",
           element: <PreviewDocument />,
         },
+        {
+          index: true,
+          element: <Navigate to="/previewDocument" />,
+        },
+        // {
+        //   path: "previewDocument",
+        //   element: <PreviewDocument />,
+        // },
         {
           path: "previewDocument1",
           element: <PreviewDocument1 />,
