@@ -125,6 +125,8 @@ import {
   Tooltip,
   TextField,
 } from "@mui/material";
+import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from "recharts";
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -193,6 +195,15 @@ const projectData = [
   //   subCategory: "Address Proof",
   // },
 ];
+const pieData = [
+  { name: "Pending for Approval", value: 120 },
+  { name: "Approved", value: 155 },
+  { name: "Expiring Soon", value: 69 },
+  { name: "Expired", value: 89 },
+];
+
+// const COLORS = ["#FFA726", "#66BB6A", "#29B6F6", "#EF5350"];
+const COLORS = ["#8E44AD", "#2980B9", "#27AE60", "#F39C12"];
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -265,7 +276,7 @@ const Dashboard = () => {
           position: "relative",
         }}
       >
-        <Grid container spacing={3} sx={{ mb: 2 }}>
+        <Grid container spacing={3} sx={{ mb: 2, mt: 3 }}>
           <Grid item xs={12} md={4}>
             <Card
               onClick={() => navigate("/documents")}
@@ -308,7 +319,7 @@ const Dashboard = () => {
                   fontFamily="Poppins, sans-serif"
                   sx={{ mt: 1 }}
                 >
-                  1124
+                  275
                 </Typography>
               </CardContent>
             </Card>
@@ -356,7 +367,7 @@ const Dashboard = () => {
                   fontFamily="Poppins, sans-serif"
                   sx={{ mt: 1 }}
                 >
-                  450
+                  120
                 </Typography>
               </CardContent>
             </Card>
@@ -403,7 +414,7 @@ const Dashboard = () => {
                   fontFamily="Poppins, sans-serif"
                   sx={{ mt: 1 }}
                 >
-                  658
+                  155
                 </Typography>
               </CardContent>
             </Card>
@@ -450,7 +461,7 @@ const Dashboard = () => {
                   fontFamily="Poppins, sans-serif"
                   sx={{ mt: 1 }}
                 >
-                  4
+                  69
                 </Typography>
               </CardContent>
             </Card>
@@ -497,14 +508,14 @@ const Dashboard = () => {
                   fontFamily="Poppins, sans-serif"
                   sx={{ mt: 1 }}
                 >
-                  12
+                  89
                 </Typography>
               </CardContent>
             </Card>
           </Grid>
         </Grid>
 
-        <Stack
+        {/* <Stack
           direction="row"
           spacing={2}
           sx={{ mb: 3 }}
@@ -530,282 +541,37 @@ const Dashboard = () => {
               },
             }}
           />
-        </Stack>
+        </Stack> */}
+
+        <Box sx={{ mt: 6, width: "100%", height: 300 }}>
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) =>
+                  `${name}: ${(percent * 100).toFixed(0)}%`
+                }
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </Box>
+
         {/* <TableContainer
-          component={Paper}
-          sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
-        >
-          <Table>
-            <TableHead>
-              <TableRow sx={{ bgcolor: "#99caff" }}>
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Customer ID</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("id")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.id && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.id}
-                        onChange={(e) =>
-                          handleSearchInputChange("id", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">
-                        Transaction Date
-                      </Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("date")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.date && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.date}
-                        onChange={(e) =>
-                          handleSearchInputChange("date", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Customer Name</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("customerName")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.customerName && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.customerName}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "customerName",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Date of Birth</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("dob")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.dob && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.dob}
-                        onChange={(e) =>
-                          handleSearchInputChange("dob", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">ID Number</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("IdNo")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.IDNo && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.IdNo}
-                        onChange={(e) =>
-                          handleSearchInputChange("IdNo", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Document ID</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("documentId")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.documentId && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.documentId}
-                        onChange={(e) =>
-                          handleSearchInputChange("documentId", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Document Name</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("documentName")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.documentName && (
-                      <TextField
-                        size="small"
-                        variant="standard" 
-                        placeholder="Search"
-                        value={searchInputs.documentName}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "documentName",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Version No.</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("versionNumber")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.versionNumber && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.versionNumber}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "versionNumber",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Status</Typography>
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Action</Typography>
-                  </Stack>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody>
-              {filteredData.map((project) => (
-                <TableRow key={project.id} hover>
-                  <TableCell>
-                    <Typography fontWeight="bold">{project.id}</Typography>
-                  </TableCell>
-                  <TableCell>{project.date}</TableCell>
-                  <TableCell>{project.customerName}</TableCell>
-                  <TableCell>{project.dob}</TableCell>
-                  <TableCell>{project.IdNo}</TableCell>
-                  <TableCell align="center" sx={{ textAlign: "center" }}>
-                    {project.documentId}
-                  </TableCell>
-                  <TableCell>{project.documentName}</TableCell>
-                  <TableCell>{project.versionNumber}</TableCell>
-                  <TableCell sx={{ color: "#f28c0c" }}>
-                    {project.status}
-                  </TableCell>
-
-                  <TableCell>
-                    <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
-                        <IconButton
-                          color="primary"
-                          onClick={() => navigate("/viewdocument")}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer> */}
-        <TableContainer
           component={Paper}
           sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
         >
@@ -1071,24 +837,13 @@ const Dashboard = () => {
                           <CheckBoxIcon />
                         </IconButton>
                       </Tooltip>
-                      {/* <Tooltip title="Download Document">
-                        <a
-                          href={agecard}
-                          download="agecard.jpg"
-                          style={{ color: "inherit", textDecoration: "none" }}
-                        >
-                          <IconButton color="secondary">
-                            <FileDownloadIcon />
-                          </IconButton>
-                        </a>
-                      </Tooltip> */}
                     </Stack>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </TableContainer>
+        </TableContainer> */}
       </Box>
     </Box>
   );
