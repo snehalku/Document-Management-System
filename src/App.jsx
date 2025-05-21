@@ -24,13 +24,21 @@ function App() {
       path: "/",
       element: <AppLayout />,
       children: [
+        // {
+        //   path: "dashboard",
+        //   element: <Dashboard />,
+        // },
+        // {
+        //   index: true,
+        //   element: <Navigate to="/dashboard" />,
+        // },
         {
-          path: "dashboard",
-          element: <Dashboard />,
+          path: "archiveDocument1",
+          element: <Archive1 />,
         },
         {
           index: true,
-          element: <Navigate to="/dashboard" />,
+          element: <Navigate to="/archiveDocument1" />,
         },
         {
           path: "previewDocument",

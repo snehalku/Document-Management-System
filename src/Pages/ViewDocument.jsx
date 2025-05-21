@@ -88,13 +88,13 @@ const ViewDocument = () => {
     <Box
       sx={{
         bgcolor: "#f2f4f5",
-        py: 4,
-        pl: "70px",
-        pt: "12px",
-        pr: "24px",
-        boxSizing: "border-box",
-        overflow: "hidden",
-        position: "relative",
+        // py: 4,
+        pl: "25px",
+        // pt: "12px",
+        // pr: "24px",
+        // boxSizing: "border-box",
+        // overflow: "hidden",
+        // position: "relative",
         // minHeight: "400vh",
       }}
     >

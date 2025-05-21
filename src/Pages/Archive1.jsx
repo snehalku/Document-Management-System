@@ -45,13 +45,13 @@ const Archive1 = () => {
           position: "relative",
           display: "flex",
           flexDirection: "row",
-          gap: 2,
+          // gap: 2,
         }}
       >
         <Card
           sx={{
-            flex: 1,
-            height: "85vh",
+            flex: 1.2,
+            height: "87vh",
             position: "sticky",
             top: 0,
             alignSelf: "flex-start",
@@ -252,7 +252,7 @@ const Archive1 = () => {
 
           <Card
             sx={{
-              height: "50vh",
+              height: "52vh",
               overflowY: "auto",
               p: 2,
             }}
@@ -262,7 +262,7 @@ const Archive1 = () => {
                 sx={{
                   p: 2,
                   //   minHeight: "100%",
-                  height: "50vh",
+                  // height: "50vh",
                   //   overflow: "auto",
                   display: "flex",
                   flexDirection: "column",
