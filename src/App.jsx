@@ -33,17 +33,17 @@ function App() {
         //   element: <Navigate to="/dashboard" />,
         // },
         {
-          path: "previewDocument",
-          element: <PreviewDocument />,
+          path: "archiveDocument1",
+          element: <Archive1 />,
         },
         {
           index: true,
-          element: <Navigate to="/previewDocument" />,
+          element: <Navigate to="/archiveDocument1" />,
         },
-        // {
-        //   path: "previewDocument",
-        //   element: <PreviewDocument />,
-        // },
+        {
+          path: "previewDocument",
+          element: <PreviewDocument />,
+        },
         {
           path: "previewDocument1",
           element: <PreviewDocument1 />,
