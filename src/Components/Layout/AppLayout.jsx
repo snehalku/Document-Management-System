@@ -16,12 +16,11 @@ function AppLayout() {
       <Header toggleSidebar={toggleSidebar} />
       <div className="flex" style={{ marginTop: "64px" }}>
         {" "}
-        {/* ✅ FIX: Prevent content from hiding under the fixed header */}
         <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
         <main
           className="flex-1 p-4 bg-gray-100"
           style={{
-            marginLeft: "220px", // ✅ FIX: Prevent content from overlapping sidebar
+            marginLeft: "220px",
             paddingTop: "10px",
             overflowY: parentScroll ? "auto" : "hidden",
             // height: "calc(100vh - 64px)", // ✅ FIX: Ensure content fits within the screen

@@ -8,10 +8,19 @@ import {
   FormControl,
   Select,
   MenuItem,
+  Grid,
+  TextField,
+  Button,
+  Paper,
+  Divider,
 } from "@mui/material";
 import ID from "../assets/ID.jpg";
+import { useState } from "react";
 
 const Archive1 = () => {
+  const [selectedDate, setSelectedDate] = useState("");
+  const [searchCustomer, setSearchCustomer] = useState("");
+
   return (
     <Box
       sx={{
@@ -25,10 +34,10 @@ const Archive1 = () => {
           bgcolor: "#f2f4f5",
           //   minHeight: "90vh",
           width: "100%",
-          py: 4,
-          pl: "70px",
-          pt: "12px",
-          pr: "24px",
+          py: 1,
+          ml: "70px",
+          //   mt: "2px",
+          mr: "24px",
           boxSizing: "border-box",
           overflow: "hidden",
           position: "relative",
@@ -39,7 +48,7 @@ const Archive1 = () => {
       >
         <Card
           sx={{
-            flex: 1.3,
+            flex: 1,
             height: "100vh",
             position: "sticky",
             top: 0,
@@ -79,7 +88,7 @@ const Archive1 = () => {
             justifyContent="flex-start"
             alignItems="center"
           >
-            <Typography variant="subtitle1" fontWeight="bold">
+            <Typography variant="body2" fontWeight="700">
               Select Department
             </Typography>
 
@@ -91,14 +100,19 @@ const Archive1 = () => {
                 label="Application"
                 sx={{
                   bgcolor: "#f2f4f5",
-                  height: "45px",
-                  borderRadius: "5px",
-                  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+                  height: "36px",
+                  fontSize: "0.8rem",
+                  borderRadius: "4px",
+                  boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
                   "& fieldset": {
                     border: "none",
                   },
+                  "& .MuiSelect-select": {
+                    padding: "6px 10px",
+                    fontSize: "0.8rem",
+                  },
                   "&.Mui-focused": {
-                    boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
+                    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
                   },
                 }}
               >
@@ -118,7 +132,7 @@ const Archive1 = () => {
               justifyContent="flex-start"
               alignItems="center"
             >
-              <Typography variant="subtitle1" fontWeight="bold">
+              <Typography variant="body2" fontWeight="700">
                 Category
               </Typography>
 
@@ -130,14 +144,19 @@ const Archive1 = () => {
                   label="Application"
                   sx={{
                     bgcolor: "#f2f4f5",
-                    height: "45px",
-                    borderRadius: "5px",
-                    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+                    height: "36px",
+                    fontSize: "0.8rem",
+                    borderRadius: "4px",
+                    boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
                     "& fieldset": {
                       border: "none",
                     },
+                    "& .MuiSelect-select": {
+                      padding: "6px 10px",
+                      fontSize: "0.8rem",
+                    },
                     "&.Mui-focused": {
-                      boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
+                      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
                     },
                   }}
                 >
@@ -146,33 +165,39 @@ const Archive1 = () => {
                 </Select>
               </FormControl>
             </Stack>
+
             <Stack
               direction="row"
-              spacing={2}
+              spacing={1.5}
               sx={{ mb: 2 }}
               justifyContent="flex-start"
               alignItems="center"
             >
-              <Typography variant="subtitle1" fontWeight="bold">
+              <Typography variant="body2" fontWeight="700">
                 Sub Category
               </Typography>
 
-              <FormControl sx={{ minWidth: 150 }}>
+              <FormControl sx={{ minWidth: 130 }}>
                 <Select
                   labelId="application-select-label"
                   id="application-select"
                   defaultValue="ID Proof"
-                  label="Application"
+                  size="small"
                   sx={{
                     bgcolor: "#f2f4f5",
-                    height: "45px",
-                    borderRadius: "5px",
-                    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+                    height: "36px",
+                    fontSize: "0.8rem",
+                    borderRadius: "4px",
+                    boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
                     "& fieldset": {
                       border: "none",
                     },
+                    "& .MuiSelect-select": {
+                      padding: "6px 10px",
+                      fontSize: "0.8rem",
+                    },
                     "&.Mui-focused": {
-                      boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
+                      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
                     },
                   }}
                 >
@@ -183,25 +208,171 @@ const Archive1 = () => {
             </Stack>
           </Box>
 
-          {/* Scrollbar only inside this Card */}
+          <Box mb={3}>
+            <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
+              <TextField
+                label="Search by Date"
+                type="date"
+                size="small"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                InputLabelProps={{ shrink: true }}
+              />
+
+              <TextField
+                label=" Search by Customer ID, Name, DOB, National ID"
+                size="small"
+                value={searchCustomer}
+                onChange={(e) => setSearchCustomer(e.target.value)}
+                sx={{ width: 250 }}
+              />
+
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  height: "36px",
+                  borderRadius: "8px",
+                  bgcolor: "#99CAFF",
+                  color: "black",
+                  px: 2,
+                  fontSize: "0.8rem",
+                  boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
+                  "&:hover": {
+                    bgcolor: "#7bb8ff",
+                  },
+                }}
+              >
+                Get Data
+              </Button>
+            </Box>
+          </Box>
+
           <Card
             sx={{
-              height: "90vh", // Set this based on your design
+              height: "90vh",
               overflowY: "auto",
               p: 2,
             }}
           >
-            <Typography variant="h6">Your content goes here</Typography>
-            <Typography paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-              lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod
-              malesuada.
-            </Typography>
-            {[...Array(20)].map((_, i) => (
-              <Typography key={i} paragraph>
-                This is line {i + 1} of scrollable content.
-              </Typography>
-            ))}
+            <Grid item size={5}>
+              <Paper
+                sx={{
+                  p: 2,
+                  //   minHeight: "100%",
+                  height: "150vh",
+                  //   overflow: "auto",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Box>
+                  <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
+                    Document
+                  </Typography>
+                  <TextField
+                    label="Category"
+                    select
+                    fullWidth
+                    // value={category}
+                    // onChange={(e) => setCategory(e.target.value)}
+                    sx={{ mb: 2 }}
+                    // disabled={!selectedDoc}
+                  >
+                    <MenuItem value="passport"> ID Proof</MenuItem>
+                    <MenuItem value="license"> Address Proof</MenuItem>
+                    <MenuItem value="signature"> Signature Proof</MenuItem>
+                  </TextField>
+                  <TextField
+                    label=" Sub Category"
+                    select
+                    fullWidth
+                    // value={subcategory}
+                    // onChange={(e) => setSubcategory(e.target.value)}
+                    sx={{ mb: 2 }}
+                    // disabled={!selectedDoc}
+                  >
+                    <MenuItem value="passport"> Passport</MenuItem>
+                  </TextField>
+                  <TextField
+                    label="Issue Date"
+                    type="date"
+                    fullWidth
+                    // value={issueDate}
+                    // onChange={(e) => setIssueDate(e.target.value)}
+                    sx={{ mb: 2 }}
+                    InputLabelProps={{ shrink: true }}
+                    // disabled={!selectedDoc}
+                  />
+
+                  <TextField
+                    label="Expiry Date"
+                    type="date"
+                    fullWidth
+                    // value={expiryDate}
+                    // onChange={(e) => setExpiryDate(e.target.value)}
+                    sx={{ mb: 2 }}
+                    InputLabelProps={{ shrink: true }}
+                    // disabled={!selectedDoc}
+                  />
+
+                  <TextField
+                    label="Version NO."
+                    fullWidth
+                    defaultValue="1.0"
+                    sx={{ mb: 2 }}
+                    // disabled={!selectedDoc}
+                  />
+
+                  <Divider
+                    sx={{
+                      mb: 2,
+                      borderBottomWidth: 2,
+                      borderColor: "black",
+                    }}
+                  />
+                  <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
+                    Transaction Data From OLTP System
+                  </Typography>
+                  <TextField
+                    label="Customer ID / Transaction ID"
+                    fullWidth
+                    // value={selectedDoc?.id || ""}
+                    sx={{ mb: 2 }}
+                    // disabled={!selectedDoc}
+                  />
+                  <TextField
+                    label="First Name"
+                    fullWidth
+                    // value={selectedDoc?.firstName || ""}
+                    sx={{ mb: 2 }}
+                    // disabled={!selectedDoc}
+                  />
+                  <TextField
+                    label="Last Name"
+                    fullWidth
+                    // value={selectedDoc?.lastName || ""}
+                    sx={{ mb: 2 }}
+                    // disabled={!selectedDoc}
+                  />
+                  <TextField
+                    label="Date of Birth"
+                    fullWidth
+                    // value={selectedDoc?.dob || ""}
+                    sx={{ mb: 2 }}
+                    // disabled={!selectedDoc}
+                  />
+                  <TextField
+                    label="ID Number"
+                    fullWidth
+                    // value={selectedDoc?.nationalId || ""}
+                    sx={{ mb: 2 }}
+                    // disabled={!selectedDoc}
+                  />
+                </Box>
+              </Paper>
+            </Grid>
           </Card>
         </Box>
       </Box>
