@@ -27,7 +27,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const mockCustomerDocs = [
   {
-    id: 105,
+    id: "EDB5C13",
     firstName: "Mets",
     lastName: "Lilli",
     transactionId: "TXN123",
@@ -37,7 +37,7 @@ const mockCustomerDocs = [
     nationalId: "AS1234567",
   },
   {
-    id: 110,
+    id: "EDB5C11",
     firstName: "John",
     lastName: "Smith",
     transactionId: "TXN123",
@@ -47,7 +47,7 @@ const mockCustomerDocs = [
     nationalId: "A123477",
   },
   {
-    id: 100,
+    id: "EDB5C12",
     firstName: "John",
     lastName: "Livone",
     transactionId: "TXN123",
@@ -57,7 +57,7 @@ const mockCustomerDocs = [
     nationalId: "A123456",
   },
   {
-    id: 101,
+    id: "EDB5C14",
     firstName: "David R",
     lastName: "Smith",
     transactionId: "TXN123",
@@ -67,7 +67,7 @@ const mockCustomerDocs = [
     nationalId: "5843216645678904",
   },
   {
-    id: 102,
+    id: "EDB5C15",
     firstName: "Jane Smith",
     lastName: "Smith",
     transactionId: "TXN345",
@@ -77,7 +77,7 @@ const mockCustomerDocs = [
     nationalId: "5843216645678904",
   },
   {
-    id: 103,
+    id:"EDB5C16",
     firstName: "Angela ",
     lastName: "Greene",
     transactionId: "TXN567",
@@ -87,7 +87,7 @@ const mockCustomerDocs = [
     nationalId: "5843216619642184",
   },
   {
-    id: 104,
+    id: "EDB5C17",
     firstName: "David ",
     lastName: "Greene",
     transactionId: "TXN567",
@@ -245,6 +245,7 @@ const Archive1 = () => {
             Customer KYC
           </Typography>
           <Box>
+            {!hideTable && (
             <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
               <TextField
                 label="Search by Transaction Date"
@@ -369,7 +370,7 @@ const Archive1 = () => {
                 Get Data
               </Button>
             </Box>
-
+)}
             {!hideTable && searchResults.length > 0 && (
               <Paper sx={{ p: 2, mb: 2 }}>
                 <Typography
