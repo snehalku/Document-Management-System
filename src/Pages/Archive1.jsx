@@ -15,7 +15,7 @@ import {
   Divider,
 } from "@mui/material";
 import ID from "../assets/ID.jpg";
-import Doc from "../assets/Doc.png";
+import Doc2 from "../assets/Doc2.png";
 
 import { useState } from "react";
 
@@ -61,7 +61,7 @@ const Archive1 = () => {
           <Box sx={{ width: "100%", height: "auto" }}>
             <CardMedia
               component="img"
-              image={Doc}
+              image={Doc2}
               alt="Document"
               sx={{
                 width: "100%",
