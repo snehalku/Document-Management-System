@@ -83,7 +83,7 @@ const Archive1 = () => {
             Customer KYC
           </Typography>
 
-          <Stack
+          {/* <Stack
             direction="row"
             spacing={2}
             sx={{ mb: 2 }}
@@ -125,7 +125,7 @@ const Archive1 = () => {
                 <MenuItem value="Others">Others</MenuItem>
               </Select>
             </FormControl>
-          </Stack>
+          </Stack> */}
           <Box display="flex" flexDirection="row">
             <Stack
               direction="row"
@@ -281,9 +281,9 @@ const Archive1 = () => {
                   sx={{ mb: 2 }}
                   // disabled={!selectedDoc}
                 >
-                  <MenuItem value="passport"> ID Proof</MenuItem>
-                  <MenuItem value="license"> Address Proof</MenuItem>
-                  <MenuItem value="signature"> Signature Proof</MenuItem>
+                  <MenuItem value="passport"> AML KYC</MenuItem>
+                  <MenuItem value="license"> Transaction</MenuItem>
+                  {/* <MenuItem value="signature"> Signature Proof</MenuItem> */}
                 </TextField>
                 <TextField
                   label=" Sub Category"
@@ -294,7 +294,8 @@ const Archive1 = () => {
                   sx={{ mb: 2 }}
                   // disabled={!selectedDoc}
                 >
-                  <MenuItem value="passport"> Passport</MenuItem>
+                  <MenuItem value="idProof"> ID Proof</MenuItem>
+                  <MenuItem value="addressProof"> Address Proof</MenuItem>
                 </TextField>
                 <TextField
                   label="Issue Date"
@@ -373,6 +374,47 @@ const Archive1 = () => {
                 />
               </Paper>
             </Grid>
+            <Stack
+              direction="row"
+              spacing={2}
+              justifyContent="flex-end"
+              marginTop="10px"
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  borderRadius: "10px",
+                  bgcolor: "#99CAFF",
+                  color: "black",
+                  px: 3,
+                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                  "&:hover": {
+                    bgcolor: "#7bb8ff",
+                  },
+                }}
+              >
+                Save
+              </Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                sx={{
+                  borderRadius: "10px",
+                  bgcolor: "#f2f4f5",
+                  px: 3,
+                  color: "black",
+                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                  border: "none",
+                  "&:hover": {
+                    bgcolor: "#e5e7e8",
+                    border: "none",
+                  },
+                }}
+              >
+                Discard
+              </Button>
+            </Stack>
           </Card>
         </Box>
       </Box>
