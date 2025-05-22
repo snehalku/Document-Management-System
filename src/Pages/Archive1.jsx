@@ -20,7 +20,7 @@ import {
   TableCell,
   Paper,
 } from "@mui/material";
-import Doc from "../assets/Doc.png";
+import Doc2 from "../assets/Doc2.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { Snackbar, Alert } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -223,7 +223,7 @@ const Archive1 = () => {
           <Box sx={{ width: "100%", height: "auto" }}>
             <CardMedia
               component="img"
-              image={Doc}
+              image={Doc2}
               alt="Document"
               sx={{
                 width: "100%",
