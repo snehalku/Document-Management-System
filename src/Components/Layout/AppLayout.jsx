@@ -20,7 +20,7 @@ function AppLayout() {
         <main
           className="flex-1 p-4 bg-gray-100"
           style={{
-            marginLeft: "150px",
+            marginLeft: "145px",
             // paddingTop: "10px",
             overflowY: parentScroll ? "auto" : "hidden",
             // height: "calc(100vh - 64px)", // ✅ FIX: Ensure content fits within the screen
