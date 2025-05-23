@@ -77,7 +77,7 @@ const mockCustomerDocs = [
     nationalId: "5843216645678904",
   },
   {
-    id:"EDB5C16",
+    id: "EDB5C16",
     firstName: "Angela ",
     lastName: "Greene",
     transactionId: "TXN567",
@@ -126,6 +126,32 @@ const Archive1 = () => {
   });
   const [issueDate, setIssueDate] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
+  const [formData, setFormData] = useState({
+    customerId: "",
+    issueDate: "",
+    expiryDate: "",
+    versionNo: "1.0",
+  });
+
+  useEffect(() => {
+    if (selectedDoc) {
+      setFormData((prev) => ({
+        ...prev,
+        customerId: selectedDoc.id || "",
+      }));
+    }
+  }, [selectedDoc]);
+
+  const handleSnackbarClose = () => {
+    setShowSnackbar(false);
+    setFormData({
+      customerId: "",
+      issueDate: "",
+      expiryDate: "",
+      versionNo: " ",
+    });
+    setSelectedDoc(null);
+  };
 
   useEffect(() => {
     const list = [];
@@ -173,17 +199,17 @@ const Archive1 = () => {
 
   const handleSave = () => {
     setShowSnackbar(true);
-    console.log("Snackbar should show now");
-    setTimeout(() => {
-      setPreviewDocPath(idcard);
-    }, 3000);
-    setSelectedDate(null);
-    setSearchCustomer("");
-    setSearchResults("");
-    setCategory("");
-    setSubcategory("");
-    setIssueDate("");
-    setExpiryDate("");
+    // console.log("Snackbar should show now");
+    // setTimeout(() => {
+    //   setPreviewDocPath(idcard);
+    // }, 3000);
+    // setSelectedDate(null);
+    // setSearchCustomer("");
+    // setSearchResults("");
+    // setCategory("");
+    // setSubcategory("");
+    // setIssueDate("");
+    // setExpiryDate("");
   };
   return (
     <Box
@@ -246,131 +272,131 @@ const Archive1 = () => {
           </Typography>
           <Box>
             {!hideTable && (
-            <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
-              <TextField
-                label="Search by Transaction Date"
-                type="date"
-                size="small"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-                sx={{ width: 160 }}
-              />
+              <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
+                <TextField
+                  label="Search by Transaction Date"
+                  type="date"
+                  size="small"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  InputLabelProps={{ shrink: true }}
+                  sx={{ width: 160 }}
+                />
 
-              <Box display="flex" flexDirection="row">
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  sx={{ mr: 2 }}
-                  justifyContent="flex-start"
-                  alignItems="center"
-                >
-                  <Typography variant="body2" fontWeight="700">
-                    Category
-                  </Typography>
+                <Box display="flex" flexDirection="row">
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    sx={{ mr: 2 }}
+                    justifyContent="flex-start"
+                    alignItems="center"
+                  >
+                    <Typography variant="body2" fontWeight="700">
+                      Category
+                    </Typography>
 
-                  <FormControl sx={{ minWidth: 160 }}>
-                    <Select
-                      labelId="application-select-label"
-                      id="application-select"
-                      // defaultValue="AML KYC"
-                      label="Application"
-                      sx={{
-                        bgcolor: "#f2f4f5",
-                        height: "36px",
-                        fontSize: "0.8rem",
-                        borderRadius: "4px",
-                        boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                        "& fieldset": {
-                          border: "none",
-                        },
-                        "& .MuiSelect-select": {
-                          padding: "6px 10px",
+                    <FormControl sx={{ minWidth: 160 }}>
+                      <Select
+                        labelId="application-select-label"
+                        id="application-select"
+                        // defaultValue="AML KYC"
+                        label="Application"
+                        sx={{
+                          bgcolor: "#f2f4f5",
+                          height: "36px",
                           fontSize: "0.8rem",
-                        },
-                        "&.Mui-focused": {
-                          boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                        },
-                      }}
-                    >
-                      <MenuItem value="AML KYC">AML KYC</MenuItem>
-                      <MenuItem value="Account">Transaction</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Stack>
+                          borderRadius: "4px",
+                          boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
+                          "& fieldset": {
+                            border: "none",
+                          },
+                          "& .MuiSelect-select": {
+                            padding: "6px 10px",
+                            fontSize: "0.8rem",
+                          },
+                          "&.Mui-focused": {
+                            boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
+                          },
+                        }}
+                      >
+                        <MenuItem value="AML KYC">AML KYC</MenuItem>
+                        <MenuItem value="Account">Transaction</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Stack>
 
-                <Stack
-                  direction="row"
-                  spacing={1.5}
-                  // sx={{ mb: 2 }}
-                  justifyContent="flex-start"
-                  alignItems="center"
-                >
-                  <Typography variant="body2" fontWeight="700">
-                    Sub Category
-                  </Typography>
+                  <Stack
+                    direction="row"
+                    spacing={1.5}
+                    // sx={{ mb: 2 }}
+                    justifyContent="flex-start"
+                    alignItems="center"
+                  >
+                    <Typography variant="body2" fontWeight="700">
+                      Sub Category
+                    </Typography>
 
-                  <FormControl sx={{ minWidth: 160 }}>
-                    <Select
-                      labelId="application-select-label"
-                      id="application-select"
-                      // defaultValue="ID Proof"
-                      size="small"
-                      sx={{
-                        bgcolor: "#f2f4f5",
-                        height: "36px",
-                        fontSize: "0.8rem",
-                        borderRadius: "4px",
-                        boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                        "& fieldset": {
-                          border: "none",
-                        },
-                        "& .MuiSelect-select": {
-                          padding: "6px 10px",
+                    <FormControl sx={{ minWidth: 160 }}>
+                      <Select
+                        labelId="application-select-label"
+                        id="application-select"
+                        // defaultValue="ID Proof"
+                        size="small"
+                        sx={{
+                          bgcolor: "#f2f4f5",
+                          height: "36px",
                           fontSize: "0.8rem",
-                        },
-                        "&.Mui-focused": {
-                          boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                        },
-                      }}
-                    >
-                      <MenuItem value="ID Proof">ID Proof</MenuItem>
-                      <MenuItem value="Address Proof">Address Proof</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Stack>
+                          borderRadius: "4px",
+                          boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
+                          "& fieldset": {
+                            border: "none",
+                          },
+                          "& .MuiSelect-select": {
+                            padding: "6px 10px",
+                            fontSize: "0.8rem",
+                          },
+                          "&.Mui-focused": {
+                            boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
+                          },
+                        }}
+                      >
+                        <MenuItem value="ID Proof">ID Proof</MenuItem>
+                        <MenuItem value="Address Proof">Address Proof</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Stack>
+                </Box>
+
+                <TextField
+                  label=" Search by Customer ID, Name, DOB, National ID"
+                  size="small"
+                  value={searchCustomer}
+                  onChange={(e) => setSearchCustomer(e.target.value)}
+                  sx={{ mb: 2, width: 400 }}
+                />
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSearch}
+                  sx={{
+                    mb: 2,
+                    height: "36px",
+                    borderRadius: "8px",
+                    bgcolor: "#99CAFF",
+                    color: "black",
+                    px: 2,
+                    fontSize: "0.8rem",
+                    boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
+                    "&:hover": {
+                      bgcolor: "#7bb8ff",
+                    },
+                  }}
+                >
+                  Get Data
+                </Button>
               </Box>
-
-              <TextField
-                label=" Search by Customer ID, Name, DOB, National ID"
-                size="small"
-                value={searchCustomer}
-                onChange={(e) => setSearchCustomer(e.target.value)}
-                sx={{ mb: 2, width: 400 }}
-              />
-
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSearch}
-                sx={{
-                  mb: 2,
-                  height: "36px",
-                  borderRadius: "8px",
-                  bgcolor: "#99CAFF",
-                  color: "black",
-                  px: 2,
-                  fontSize: "0.8rem",
-                  boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
-                  "&:hover": {
-                    bgcolor: "#7bb8ff",
-                  },
-                }}
-              >
-                Get Data
-              </Button>
-            </Box>
-)}
+            )}
             {!hideTable && searchResults.length > 0 && (
               <Paper sx={{ p: 2, mb: 2 }}>
                 <Typography
@@ -609,7 +635,7 @@ const Archive1 = () => {
                             <TableCell>
                               <Checkbox
                                 checked={confirmedDocIds.includes(doc.id)}
-                                onChange={() => setHideTable(true)} // hides the entire section
+                                onChange={() => setHideTable(true)}
                               />
                             </TableCell>
                             <TableCell>{doc.id}</TableCell>
@@ -645,7 +671,7 @@ const Archive1 = () => {
                   Document
                 </Typography>
 
-                <TextField
+                {/* <TextField
                   label="Customer ID / Transaction ID"
                   fullWidth
                   value={selectedDoc?.id || ""}
@@ -674,6 +700,56 @@ const Archive1 = () => {
                   fullWidth
                   defaultValue="1.0"
                   sx={{ mb: 2 }}
+                /> */}
+                <TextField
+                  label="Customer ID / Transaction ID"
+                  fullWidth
+                  value={formData.customerId}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                />
+
+                <TextField
+                  label="Issue Date"
+                  type="date"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  InputLabelProps={{ shrink: true }}
+                  value={formData.issueDate}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      issueDate: e.target.value,
+                    }))
+                  }
+                />
+
+                <TextField
+                  label="Expiry Date"
+                  type="date"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  InputLabelProps={{ shrink: true }}
+                  value={formData.expiryDate}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      expiryDate: e.target.value,
+                    }))
+                  }
+                />
+
+                <TextField
+                  label="Version NO."
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  value={formData.versionNo}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      versionNo: e.target.value,
+                    }))
+                  }
                 />
               </Paper>
             </Grid>
@@ -720,19 +796,20 @@ const Archive1 = () => {
               </Stack>
               <Snackbar
                 open={showSnackbar}
-                autoHideDuration={3000}
-                onClose={() => {
-                  setShowSnackbar(false);
-                  const currentIndex = searchResults.findIndex(
-                    (doc) => doc.id === selectedDoc.id
-                  );
-                  const nextDoc = searchResults[currentIndex + 1];
-                  setSelectedDoc(nextDoc || null);
-                }}
+                onClose={handleSnackbarClose}
+                // autoHideDuration={3000}
+                // onClose={() => {
+                //   setShowSnackbar(false);
+                //   const currentIndex = searchResults.findIndex(
+                //     (doc) => doc.id === selectedDoc.id
+                //   );
+                //   const nextDoc = searchResults[currentIndex + 1];
+                //   setSelectedDoc(nextDoc || null);
+                // }}
                 anchorOrigin={{ vertical: "top", horizontal: "center" }}
               >
                 <Alert
-                  onClose={() => setShowSnackbar(false)}
+                  //   onClose={() => setShowSnackbar(false)}
                   severity="success"
                   variant="filled"
                   icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
@@ -749,7 +826,8 @@ const Archive1 = () => {
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Typography fontWeight={500}>
-                      Your document has been saved successfully.
+                      The document of the customer ID EDB5C12 has been saved
+                      successfully.
                     </Typography>
                   </Box>
                 </Alert>

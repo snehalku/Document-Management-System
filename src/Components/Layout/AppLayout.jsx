@@ -23,7 +23,7 @@ function AppLayout() {
             marginLeft: "145px",
             // paddingTop: "10px",
             overflowY: parentScroll ? "auto" : "hidden",
-            // height: "calc(100vh - 64px)", // ✅ FIX: Ensure content fits within the screen
+            height: "calc(100vh - 64px)", // ✅ FIX: Ensure content fits within the screen
           }}
         >
           <Outlet context={{ setParentScroll }} />
