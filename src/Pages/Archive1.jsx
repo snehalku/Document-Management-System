@@ -150,7 +150,11 @@ const Archive1 = () => {
       expiryDate: "",
       versionNo: " ",
     });
+
     setSelectedDoc(null);
+
+    // Show the search/filter box again
+    setHideTable(false); // <-- This is the key
   };
 
   useEffect(() => {
@@ -671,36 +675,6 @@ const Archive1 = () => {
                   Document
                 </Typography>
 
-                {/* <TextField
-                  label="Customer ID / Transaction ID"
-                  fullWidth
-                  value={selectedDoc?.id || ""}
-                  sx={{ mb: 2 }}
-                  disabled={!selectedDoc}
-                />
-
-                <TextField
-                  label="Issue Date"
-                  type="date"
-                  fullWidth
-                  sx={{ mb: 2 }}
-                  InputLabelProps={{ shrink: true }}
-                />
-
-                <TextField
-                  label="Expiry Date"
-                  type="date"
-                  fullWidth
-                  sx={{ mb: 2 }}
-                  InputLabelProps={{ shrink: true }}
-                />
-
-                <TextField
-                  label="Version NO."
-                  fullWidth
-                  defaultValue="1.0"
-                  sx={{ mb: 2 }}
-                /> */}
                 <TextField
                   label="Customer ID / Transaction ID"
                   fullWidth
