@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Card,
@@ -21,9 +21,11 @@ import {
   Paper,
 } from "@mui/material";
 import Doc2 from "../assets/Doc2.png";
+import Doc3 from "../assets/Doc3.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { Snackbar, Alert } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import TransitionAlerts from "../Components/ui/Notification";
 
 const mockCustomerDocs = [
   {
@@ -106,6 +108,7 @@ const Archive1 = () => {
   const [confirmedDocIds, setConfirmedDocIds] = useState([]);
   const [docIdentifier, setDocIdentifier] = useState("");
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false)
   const [filterFirstName, setFilterFirstName] = useState("");
   const [filterLastName, setFilterLastName] = useState("");
   const [filterDob, setFilterDob] = useState("");
@@ -150,12 +153,31 @@ const Archive1 = () => {
       expiryDate: "",
       versionNo: " ",
     });
-
     setSelectedDoc(null);
+          setPreviewDocPath(Doc3);
 
-    // Show the search/filter box again
-    setHideTable(false); // <-- This is the key
   };
+
+  const handleAlertClose = () => {
+    setAlertOpen(false)
+    setFormData({
+      customerId: "",
+      issueDate: "",
+      expiryDate: "",
+      versionNo: " ",
+    });
+    setSelectedDoc(null);
+          setPreviewDocPath(Doc3);
+            setHideTable(false);
+            showNextDocument();
+            setSelectedDate(null);
+    setSearchCustomer("");
+    setSearchResults("");
+    setCategory("");
+    setSubcategory("");
+    setIssueDate("");
+    setExpiryDate("");
+  }
 
   useEffect(() => {
     const list = [];
@@ -201,11 +223,31 @@ const Archive1 = () => {
     }
   };
 
+  const showNextDocument = () => {
+  const remainingDocs = searchResults.filter(
+    (doc) => !confirmedDocIds.includes(doc.id)
+  );
+
+  if (remainingDocs.length > 0) {
+    const nextDoc = remainingDocs[0];
+    setSelectedDoc(nextDoc);
+    setFormData({
+      customerId: nextDoc.id,
+      issueDate: "",
+      expiryDate: "",
+      versionNo: "1.0",
+    });
+  } else {
+    setSelectedDoc(null); // Or show a message: “All docs verified”
+  }
+};
+
   const handleSave = () => {
     setShowSnackbar(true);
+    setAlertOpen(true)
     // console.log("Snackbar should show now");
     // setTimeout(() => {
-    //   setPreviewDocPath(idcard);
+      // setPreviewDocPath(idcard);
     // }, 3000);
     // setSelectedDate(null);
     // setSearchCustomer("");
@@ -215,6 +257,40 @@ const Archive1 = () => {
     // setIssueDate("");
     // setExpiryDate("");
   };
+
+  const snackbarRef = useRef(null);
+useEffect(() => {
+  function handleClickOutside(event) {
+    if (snackbarRef.current && !snackbarRef.current.contains(event.target)) {
+      if (showSnackbar) {
+        // Close the snackbar
+        setShowSnackbar(false);
+
+        // Move to the next document
+        const currentIndex = searchResults.findIndex(doc => doc.id === selectedDoc.id);
+        const nextDoc = searchResults[currentIndex + 1];
+
+        if (nextDoc) {
+          setSelectedDoc(nextDoc);
+          setFormData({
+            customerId: nextDoc.id,
+            issueDate: '',
+            expiryDate: '',
+            versionNo: '1.0',
+          });
+        } else {
+          setSelectedDoc(null);
+        }
+      }
+    }
+  }
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [showSnackbar, selectedDoc, searchResults]);
+
   return (
     <Box
       sx={{
@@ -243,14 +319,14 @@ const Archive1 = () => {
         <Card
           sx={{
             flex: 1.2,
-            height: "87vh",
+            height: "89vh",
             position: "sticky",
             top: 0,
             alignSelf: "flex-start",
             overflowY: "hidden",
           }}
         >
-          <Box sx={{ width: "100%", height: "auto" }}>
+          {/* <Box sx={{ width: "100%", height: "auto" }}>
             <CardMedia
               component="img"
               image={Doc2}
@@ -261,8 +337,63 @@ const Archive1 = () => {
                 objectFit: "contain",
               }}
             />
-          </Box>
+          </Box> */}
+       {/* <Card sx={{ height: "53vh", p: 2 }}> */}
+        {(() => {
+          const docPath = previewDocPath || selectedDoc?.path || Doc2;
+
+          // Check if docPath is an image
+          const isImage =
+            docPath?.toLowerCase().endsWith(".png") ||
+            docPath?.toLowerCase().endsWith(".jpg") ||
+            docPath?.toLowerCase().endsWith(".jpeg") ||
+            docPath?.toLowerCase().endsWith(".gif");
+
+          return isImage ? (
+            <CardMedia
+              component="img"
+              image={docPath}
+              alt="Document"
+              sx={{
+                maxWidth: "100%",
+                maxHeight: "100%",
+                objectFit: "contain",
+                borderRadius: 2,
+                boxShadow: 2,
+              }}
+            />
+          ) : (
+            <Box
+              sx={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+                mt: 1,
+                borderRadius: 2,
+                overflow: "hidden",
+                boxShadow: 2,
+              }}
+            >
+              <iframe
+                src={`${docPath}#toolbar=0`}
+                title="KYC Document"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                }}
+              />
+            </Box>
+          );
+        })()}
+
         </Card>
+
+
+        {/* </Card> */}
 
         <Box
           sx={{
@@ -658,11 +789,13 @@ const Archive1 = () => {
 
           <Card
             sx={{
-              height: "53vh",
+              height: alertOpen ? "65vh" : "55vh", // ⬅️ Increase height when alert is open
               overflowY: "auto",
               p: 2,
+              transition: "height 0.3s ease", // ⬅️ Smooth transition
             }}
           >
+
             <Grid item size={5}>
               <Paper
                 sx={{
@@ -675,8 +808,38 @@ const Archive1 = () => {
                   Document
                 </Typography>
 
-                <TextField
+                {/* <TextField
                   label="Customer ID / Transaction ID"
+                  fullWidth
+                  value={selectedDoc?.id || ""}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                />
+
+                <TextField
+                  label="Issue Date"
+                  type="date"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  InputLabelProps={{ shrink: true }}
+                />
+
+                <TextField
+                  label="Expiry Date"
+                  type="date"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  InputLabelProps={{ shrink: true }}
+                />
+
+                <TextField
+                  label="Version NO."
+                  fullWidth
+                  defaultValue="1.0"
+                  sx={{ mb: 2 }}
+                /> */}
+                <TextField
+                  label="Customer ID"
                   fullWidth
                   value={formData.customerId}
                   sx={{ mb: 2 }}
@@ -727,6 +890,10 @@ const Archive1 = () => {
                 />
               </Paper>
             </Grid>
+            <TransitionAlerts alertOpen={alertOpen} 
+            handleAlertClose={handleAlertClose} 
+
+            message={ `The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}/>
             <Box sx={{ p: 1 }}>
               <Stack direction="row" spacing={2} justifyContent="flex-end">
                 <Button
@@ -768,44 +935,38 @@ const Archive1 = () => {
                   Discard
                 </Button>
               </Stack>
-              <Snackbar
-                open={showSnackbar}
-                onClose={handleSnackbarClose}
-                // autoHideDuration={3000}
-                // onClose={() => {
-                //   setShowSnackbar(false);
-                //   const currentIndex = searchResults.findIndex(
-                //     (doc) => doc.id === selectedDoc.id
-                //   );
-                //   const nextDoc = searchResults[currentIndex + 1];
-                //   setSelectedDoc(nextDoc || null);
-                // }}
-                anchorOrigin={{ vertical: "top", horizontal: "center" }}
-              >
-                <Alert
-                  //   onClose={() => setShowSnackbar(false)}
-                  severity="success"
-                  variant="filled"
-                  icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
-                  sx={{
-                    width: "100%",
-                    fontWeight: 500,
-                    fontSize: "1rem",
-                    boxShadow: 3,
-                    backgroundColor: "#2e7d32",
-                    color: "#fff",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
+                  
+
+             {/* <Snackbar
+                  open={showSnackbar}
+                      onClose={handleSnackbarClose}
+                  anchorOrigin={{ vertical: "center", horizontal: "right" }}
                 >
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Typography fontWeight={500}>
-                      The document of the customer ID EDB5C12 has been saved
-                      successfully.
-                    </Typography>
-                  </Box>
-                </Alert>
-              </Snackbar>
+                  <Alert
+                    ref={snackbarRef}
+                    severity="success"
+                    variant="filled"
+                    icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
+                    sx={{
+                      width: "100%",
+                      fontWeight: 500,
+                      fontSize: "1rem",
+                      boxShadow: 3,
+                      backgroundColor: "#2e7d32",
+                      color: "#fff",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Typography fontWeight={500}>
+                        The document of the customer ID {selectedDoc?.id} has been saved successfully.
+                      </Typography>
+                    </Box>
+                  </Alert>
+                </Snackbar>
+ */}
+
             </Box>
           </Card>
         </Box>
