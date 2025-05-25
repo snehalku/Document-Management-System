@@ -108,7 +108,7 @@ const Archive1 = () => {
   const [confirmedDocIds, setConfirmedDocIds] = useState([]);
   const [docIdentifier, setDocIdentifier] = useState("");
   const [showSnackbar, setShowSnackbar] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false)
+  const [alertOpen, setAlertOpen] = useState(false);
   const [filterFirstName, setFilterFirstName] = useState("");
   const [filterLastName, setFilterLastName] = useState("");
   const [filterDob, setFilterDob] = useState("");
@@ -145,39 +145,41 @@ const Archive1 = () => {
     }
   }, [selectedDoc]);
 
-  const handleSnackbarClose = () => {
-    setShowSnackbar(false);
-    setFormData({
-      customerId: "",
-      issueDate: "",
-      expiryDate: "",
-      versionNo: " ",
-    });
-    setSelectedDoc(null);
-          setPreviewDocPath(Doc3);
+  //   const handleSnackbarClose = () => {
+  //     setShowSnackbar(false);
+  //     setFormData({
+  //       customerId: "",
+  //       issueDate: "",
+  //       expiryDate: "",
+  //       versionNo: " ",
+  //     });
+  //     setSelectedDoc(null);
+  //     setPreviewDocPath(Doc3);
+  //   };
 
-  };
+  //   const handleAlertClose = () => {
+  //     setAlertOpen(false);
+  //     setFormData({
+  //       customerId: "",
+  //       issueDate: "",
+  //       expiryDate: "",
+  //       versionNo: " ",
+  //     });
+  //     setSelectedDoc(null);
+  //     setHideTable(false);
+  //     showNextDocument();
+  //     setSelectedDate(null);
+  //     setSearchCustomer("");
+  //     setSearchResults("");
+  //     setCategory("");
+  //     setSubcategory("");
+  //     setIssueDate("");
+  //     setExpiryDate("");
 
-  const handleAlertClose = () => {
-    setAlertOpen(false)
-    setFormData({
-      customerId: "",
-      issueDate: "",
-      expiryDate: "",
-      versionNo: " ",
-    });
-    setSelectedDoc(null);
-          setPreviewDocPath(Doc3);
-            setHideTable(false);
-            showNextDocument();
-            setSelectedDate(null);
-    setSearchCustomer("");
-    setSearchResults("");
-    setCategory("");
-    setSubcategory("");
-    setIssueDate("");
-    setExpiryDate("");
-  }
+  //     setTimeout(() => {
+  //       setPreviewDocPath(Doc3);
+  //     }, 1000);
+  //   };
 
   useEffect(() => {
     const list = [];
@@ -224,72 +226,83 @@ const Archive1 = () => {
   };
 
   const showNextDocument = () => {
-  const remainingDocs = searchResults.filter(
-    (doc) => !confirmedDocIds.includes(doc.id)
-  );
+    const remainingDocs = searchResults.filter(
+      (doc) => !confirmedDocIds.includes(doc.id)
+    );
 
-  if (remainingDocs.length > 0) {
-    const nextDoc = remainingDocs[0];
-    setSelectedDoc(nextDoc);
-    setFormData({
-      customerId: nextDoc.id,
-      issueDate: "",
-      expiryDate: "",
-      versionNo: "1.0",
-    });
-  } else {
-    setSelectedDoc(null); // Or show a message: “All docs verified”
-  }
-};
+    if (remainingDocs.length > 0) {
+      const nextDoc = remainingDocs[0];
+      setSelectedDoc(nextDoc);
+      setFormData({
+        customerId: nextDoc.id,
+        issueDate: "",
+        expiryDate: "",
+        versionNo: "1.0",
+      });
+    } else {
+      setSelectedDoc(null); // Or show a message: “All docs verified”
+    }
+  };
 
   const handleSave = () => {
-    setShowSnackbar(true);
-    setAlertOpen(true)
-    // console.log("Snackbar should show now");
-    // setTimeout(() => {
-      // setPreviewDocPath(idcard);
-    // }, 3000);
-    // setSelectedDate(null);
-    // setSearchCustomer("");
-    // setSearchResults("");
-    // setCategory("");
-    // setSubcategory("");
-    // setIssueDate("");
-    // setExpiryDate("");
+    setAlertOpen(true);
+
+    setTimeout(() => {
+      setAlertOpen(false);
+      setFormData({
+        customerId: "",
+        issueDate: "",
+        expiryDate: "",
+        versionNo: " ",
+      });
+      setSelectedDoc(null);
+      setHideTable(false);
+      showNextDocument();
+      setSelectedDate(null);
+      setSearchCustomer("");
+      setSearchResults("");
+      setCategory("");
+      setSubcategory("");
+      setIssueDate("");
+      setExpiryDate("");
+      setPreviewDocPath(Doc3);
+    }, 3000);
   };
 
   const snackbarRef = useRef(null);
-useEffect(() => {
-  function handleClickOutside(event) {
-    if (snackbarRef.current && !snackbarRef.current.contains(event.target)) {
-      if (showSnackbar) {
-        // Close the snackbar
-        setShowSnackbar(false);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (snackbarRef.current && !snackbarRef.current.contains(event.target)) {
+        if (showSnackbar) {
+          // Close the snackbar
+          setShowSnackbar(false);
 
-        // Move to the next document
-        const currentIndex = searchResults.findIndex(doc => doc.id === selectedDoc.id);
-        const nextDoc = searchResults[currentIndex + 1];
+          // Move to the next document
+          const currentIndex = searchResults.findIndex(
+            (doc) => doc.id === selectedDoc.id
+          );
+          const nextDoc = searchResults[currentIndex + 1];
 
-        if (nextDoc) {
-          setSelectedDoc(nextDoc);
-          setFormData({
-            customerId: nextDoc.id,
-            issueDate: '',
-            expiryDate: '',
-            versionNo: '1.0',
-          });
-        } else {
-          setSelectedDoc(null);
+          if (nextDoc) {
+            setSelectedDoc(nextDoc);
+            setFormData({
+              customerId: nextDoc.id,
+              issueDate: "",
+              expiryDate: "",
+              versionNo: "1.0",
+            });
+          } else {
+            setSelectedDoc(null);
+          }
         }
       }
     }
-  }
 
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, [showSnackbar, selectedDoc, searchResults]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSnackbar, selectedDoc, searchResults]);
 
   return (
     <Box
@@ -319,7 +332,7 @@ useEffect(() => {
         <Card
           sx={{
             flex: 1.2,
-            height: "89vh",
+            height: "87vh",
             position: "sticky",
             top: 0,
             alignSelf: "flex-start",
@@ -338,60 +351,58 @@ useEffect(() => {
               }}
             />
           </Box> */}
-       {/* <Card sx={{ height: "53vh", p: 2 }}> */}
-        {(() => {
-          const docPath = previewDocPath || selectedDoc?.path || Doc2;
+          {/* <Card sx={{ height: "53vh", p: 2 }}> */}
+          {(() => {
+            const docPath = previewDocPath || selectedDoc?.path || Doc2;
 
-          // Check if docPath is an image
-          const isImage =
-            docPath?.toLowerCase().endsWith(".png") ||
-            docPath?.toLowerCase().endsWith(".jpg") ||
-            docPath?.toLowerCase().endsWith(".jpeg") ||
-            docPath?.toLowerCase().endsWith(".gif");
+            // Check if docPath is an image
+            const isImage =
+              docPath?.toLowerCase().endsWith(".png") ||
+              docPath?.toLowerCase().endsWith(".jpg") ||
+              docPath?.toLowerCase().endsWith(".jpeg") ||
+              docPath?.toLowerCase().endsWith(".gif");
 
-          return isImage ? (
-            <CardMedia
-              component="img"
-              image={docPath}
-              alt="Document"
-              sx={{
-                maxWidth: "100%",
-                maxHeight: "100%",
-                objectFit: "contain",
-                borderRadius: 2,
-                boxShadow: 2,
-              }}
-            />
-          ) : (
-            <Box
-              sx={{
-                position: "relative",
-                width: "100%",
-                height: "100%",
-                mt: 1,
-                borderRadius: 2,
-                overflow: "hidden",
-                boxShadow: 2,
-              }}
-            >
-              <iframe
-                src={`${docPath}#toolbar=0`}
-                title="KYC Document"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  border: "none",
+            return isImage ? (
+              <CardMedia
+                component="img"
+                image={docPath}
+                alt="Document"
+                sx={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  objectFit: "contain",
+                  borderRadius: 2,
+                  boxShadow: 2,
                 }}
               />
-            </Box>
-          );
-        })()}
-
+            ) : (
+              <Box
+                sx={{
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                  mt: 1,
+                  borderRadius: 2,
+                  overflow: "hidden",
+                  boxShadow: 2,
+                }}
+              >
+                <iframe
+                  src={`${docPath}#toolbar=0`}
+                  title="KYC Document"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                />
+              </Box>
+            );
+          })()}
         </Card>
-
 
         {/* </Card> */}
 
@@ -402,8 +413,8 @@ useEffect(() => {
             p: 2,
           }}
         >
-          <Typography variant="h5" fontWeight="bold" mb={1}>
-            Customer KYC
+          <Typography variant="h5" fontWeight="bold" mb={2}>
+            Archive Document
           </Typography>
           <Box>
             {!hideTable && (
@@ -503,7 +514,7 @@ useEffect(() => {
                 </Box>
 
                 <TextField
-                  label=" Search by Customer ID, Name, DOB, National ID"
+                  label=" Search by Customer ID, Name, DOB, ID nUMBER"
                   size="small"
                   value={searchCustomer}
                   onChange={(e) => setSearchCustomer(e.target.value)}
@@ -789,13 +800,12 @@ useEffect(() => {
 
           <Card
             sx={{
-              height: alertOpen ? "65vh" : "55vh", // ⬅️ Increase height when alert is open
+              height: alertOpen ? "62vh" : "50vh",
               overflowY: "auto",
               p: 2,
-              transition: "height 0.3s ease", // ⬅️ Smooth transition
+              transition: "height 0.3s ease",
             }}
           >
-
             <Grid item size={5}>
               <Paper
                 sx={{
@@ -808,36 +818,6 @@ useEffect(() => {
                   Document
                 </Typography>
 
-                {/* <TextField
-                  label="Customer ID / Transaction ID"
-                  fullWidth
-                  value={selectedDoc?.id || ""}
-                  sx={{ mb: 2 }}
-                  disabled={!selectedDoc}
-                />
-
-                <TextField
-                  label="Issue Date"
-                  type="date"
-                  fullWidth
-                  sx={{ mb: 2 }}
-                  InputLabelProps={{ shrink: true }}
-                />
-
-                <TextField
-                  label="Expiry Date"
-                  type="date"
-                  fullWidth
-                  sx={{ mb: 2 }}
-                  InputLabelProps={{ shrink: true }}
-                />
-
-                <TextField
-                  label="Version NO."
-                  fullWidth
-                  defaultValue="1.0"
-                  sx={{ mb: 2 }}
-                /> */}
                 <TextField
                   label="Customer ID"
                   fullWidth
@@ -876,7 +856,7 @@ useEffect(() => {
                   }
                 />
 
-                <TextField
+                {/* <TextField
                   label="Version NO."
                   fullWidth
                   sx={{ mb: 2 }}
@@ -887,14 +867,15 @@ useEffect(() => {
                       versionNo: e.target.value,
                     }))
                   }
-                />
+                /> */}
               </Paper>
             </Grid>
-            <TransitionAlerts alertOpen={alertOpen} 
-            handleAlertClose={handleAlertClose} 
-
-            message={ `The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}/>
-            <Box sx={{ p: 1 }}>
+            <TransitionAlerts
+              alertOpen={alertOpen}
+              //   handleAlertClose={handleAlertClose}
+              message={`The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}
+            />
+            <Box sx={{ p: 1, mt: 2 }}>
               <Stack direction="row" spacing={2} justifyContent="flex-end">
                 <Button
                   variant="contained"
@@ -935,38 +916,36 @@ useEffect(() => {
                   Discard
                 </Button>
               </Stack>
-                  
 
-             {/* <Snackbar
-                  open={showSnackbar}
-                      onClose={handleSnackbarClose}
-                  anchorOrigin={{ vertical: "center", horizontal: "right" }}
+              {/* <Snackbar
+                open={showSnackbar}
+                onClose={handleSnackbarClose}
+                anchorOrigin={{ vertical: "center", horizontal: "right" }}
+              >
+                <Alert
+                  ref={snackbarRef}
+                  severity="success"
+                  variant="filled"
+                  icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
+                  sx={{
+                    width: "100%",
+                    fontWeight: 500,
+                    fontSize: "1rem",
+                    boxShadow: 3,
+                    backgroundColor: "#2e7d32",
+                    color: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
                 >
-                  <Alert
-                    ref={snackbarRef}
-                    severity="success"
-                    variant="filled"
-                    icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
-                    sx={{
-                      width: "100%",
-                      fontWeight: 500,
-                      fontSize: "1rem",
-                      boxShadow: 3,
-                      backgroundColor: "#2e7d32",
-                      color: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <Typography fontWeight={500}>
-                        The document of the customer ID {selectedDoc?.id} has been saved successfully.
-                      </Typography>
-                    </Box>
-                  </Alert>
-                </Snackbar>
- */}
-
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Typography fontWeight={500}>
+                      The document of the customer ID {selectedDoc?.id} has been
+                      saved successfully.
+                    </Typography>
+                  </Box>
+                </Alert>
+              </Snackbar> */}
             </Box>
           </Card>
         </Box>

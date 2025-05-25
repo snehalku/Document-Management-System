@@ -19,6 +19,8 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
+import Doc2 from "../assets/Doc2.png";
+
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
@@ -32,8 +34,9 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const projectData = [
   {
-    id: 101,
+    id: "EDB5C12",
     date: "01-05-2025",
+    issueDate: "25-05-2025",
     customerName: "John Livone",
     transactionId: "TXN123",
     dob: "06-09-1986",
@@ -43,12 +46,13 @@ const projectData = [
     documentName: "John_L_202514",
     versionNumber: "1.0",
     status: "Expiring Soon",
-    category: "KYC",
-    subCategory: "Age Proof",
+    category: " AML KYC",
+    subCategory: "ID Proof",
   },
   {
-    id: 102,
+    id: "EDB5C13",
     date: "29-04-2025",
+    issueDate: "24-05-2025",
     customerName: "Jane Smith",
     transactionId: "TXN345",
     dob: "05-05-2003",
@@ -57,13 +61,13 @@ const projectData = [
     documentName: "Jane_S_202513",
     versionNumber: "2.0",
     status: "Expiring Soon",
-
-    category: "KYC",
+    category: " AML KYC",
     subCategory: "Address Proof",
   },
   {
-    id: 103,
+    id: "SDF5K23",
     date: "24-02-2025",
+    issueDate: "23-05-2025",
     customerName: "Sarah Johnson",
     transactionId: "TXN344",
     dob: "18-11-2008",
@@ -72,13 +76,13 @@ const projectData = [
     documentName: "Sarah_J_202512",
     versionNumber: "3.0",
     status: "Expiring Soon",
-
-    category: "KYC",
-    subCategory: "ID Proof",
+    category: " AML KYC",
+    subCategory: "Age Proof",
   },
   {
-    id: 104,
+    id: "HUF5423",
     date: "12-04-2025",
+    issueDate: "22-05-2025",
     customerName: "David V Smith",
     transactionId: "TXN567",
     dob: "03-03-2002",
@@ -87,9 +91,8 @@ const projectData = [
     documentName: "David_V_202511",
     versionNumber: "4.0",
     status: "Expiring Soon",
-
-    category: "KYC",
-    subCategory: "Address Proof",
+    category: " AML KYC",
+    subCategory: "ID Proof",
   },
 ];
 
@@ -98,6 +101,7 @@ const Documents = () => {
   const [searchInputs, setSearchInputs] = useState({
     customerName: "",
     date: "",
+    issueDate: "",
     dob: "",
     IdNo: "",
     documentId: "",
@@ -109,6 +113,8 @@ const Documents = () => {
   const [showSearchFields, setShowSearchFields] = useState({
     customerName: false,
     date: false,
+    issueDate: false,
+
     dob: false,
     IdNo: false,
     documentId: false,
@@ -170,7 +176,7 @@ const Documents = () => {
         >
           View Documents
         </Typography>
-        <Stack
+        {/* <Stack
           direction="row"
           spacing={2}
           sx={{ mb: 3 }}
@@ -196,7 +202,7 @@ const Documents = () => {
               },
             }}
           />
-        </Stack>
+        </Stack> */}
         <TableContainer
           component={Paper}
           sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
@@ -206,60 +212,55 @@ const Documents = () => {
               <TableRow sx={{ bgcolor: "#99caff" }}>
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">Customer ID</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("id")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.id && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.id}
-                        onChange={(e) =>
-                          handleSearchInputChange("id", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell>
-                <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">
-                        Transaction Date
-                      </Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("date")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.date && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.date}
-                        onChange={(e) =>
-                          handleSearchInputChange("date", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
+                    <Typography fontWeight="bold">Customer ID</Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.id}
+                      onChange={(e) =>
+                        handleSearchInputChange("id", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Transaction Date </Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.date}
+                      onChange={(e) =>
+                        handleSearchInputChange("date", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Typography fontWeight="bold">Issue Date </Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.issueDate}
+                      onChange={(e) =>
+                        handleSearchInputChange("issueDate", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
+                  </Stack>
+                </TableCell>
+
+                {/* <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">Customer Name</Typography>
                       <IconButton
                         size="small"
@@ -284,118 +285,122 @@ const Documents = () => {
                       />
                     )}
                   </Stack>
-                </TableCell>
-
+                </TableCell> */}
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">Date of Birth</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("dob")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.dob && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.dob}
-                        onChange={(e) =>
-                          handleSearchInputChange("dob", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
+                    <Typography fontWeight="bold">Customer Name</Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.customerName}
+                      onChange={(e) =>
+                        handleSearchInputChange("customerName", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">ID Number</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("nationalId")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.IdNo && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.IdNo}
-                        onChange={(e) =>
-                          handleSearchInputChange("nationalId", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
+                    <Typography fontWeight="bold">Date of Birth </Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.dob}
+                      onChange={(e) =>
+                        handleSearchInputChange("dob", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">Document ID</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("documentId")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.documentId && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.documentId}
-                        onChange={(e) =>
-                          handleSearchInputChange("documentId", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
+                    <Typography fontWeight="bold">ID Number </Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.IdNo}
+                      onChange={(e) =>
+                        handleSearchInputChange("IdNo", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography fontWeight="bold">Document Name</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("documentName")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.documentName && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.documentName}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "documentName",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
+                    <Typography fontWeight="bold">Doc ID </Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.documentId}
+                      onChange={(e) =>
+                        handleSearchInputChange("documentId", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
                   </Stack>
                 </TableCell>
 
                 <TableCell>
                   <Stack direction="column">
-                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography fontWeight="bold">Document Name</Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.documentName}
+                      onChange={(e) =>
+                        handleSearchInputChange("documentName", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Typography fontWeight="bold">Category </Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.category}
+                      onChange={(e) =>
+                        handleSearchInputChange("category", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
+                  </Stack>
+                </TableCell>
+
+                <TableCell>
+                  <Stack direction="column">
+                    <Typography fontWeight="bold">Sub Category </Typography>
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      placeholder="Search"
+                      value={searchInputs.subCategory}
+                      onChange={(e) =>
+                        handleSearchInputChange("subCategory", e.target.value)
+                      }
+                      sx={{ mt: 1 }}
+                    />
+                  </Stack>
+                </TableCell>
+
+                {/* <TableCell>
+                  <Stack direction="column">
+                    <Stack direction="row" alignItems="center" >
                       <Typography fontWeight="bold">Version No.</Typography>
                       <IconButton
                         size="small"
@@ -420,7 +425,7 @@ const Documents = () => {
                       />
                     )}
                   </Stack>
-                </TableCell>
+                </TableCell> */}
 
                 <TableCell>
                   <Stack direction="row" alignItems="center">
@@ -437,6 +442,8 @@ const Documents = () => {
                     <Typography fontWeight="bold">{project.id}</Typography>
                   </TableCell>
                   <TableCell>{project.date}</TableCell>
+                  <TableCell>{project.issueDate}</TableCell>
+
                   <TableCell>{project.customerName}</TableCell>
                   <TableCell>{project.dob}</TableCell>
                   <TableCell>{project.IdNo}</TableCell>
@@ -444,8 +451,11 @@ const Documents = () => {
                     {project.documentId}
                   </TableCell>
                   <TableCell>{project.documentName}</TableCell>
-                  <TableCell>{project.versionNumber}</TableCell>
-                  <TableCell>
+                  <TableCell>{project.category}</TableCell>
+                  <TableCell>{project.subCategory}</TableCell>
+
+                  {/* <TableCell>{project.versionNumber}</TableCell> */}
+                  {/* <TableCell>
                     <Stack direction="row" spacing={1}>
                       <Tooltip title="View Document">
                         <IconButton
@@ -467,6 +477,18 @@ const Documents = () => {
                         </a>
                       </Tooltip>
                     </Stack>
+                  </TableCell> */}
+                  <TableCell>
+                    <Tooltip title="View and Download">
+                      <IconButton
+                        color="primary"
+                        onClick={() =>
+                          window.open(Doc2, "_blank", "noopener,noreferrer")
+                        }
+                      >
+                        <VisibilityIcon />
+                      </IconButton>
+                    </Tooltip>
                   </TableCell>
                 </TableRow>
               ))}
