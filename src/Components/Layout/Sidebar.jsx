@@ -36,25 +36,24 @@ const Sidebar = () => {
 
   return (
     <Paper
-    elevation={4}
-    sx={{
-      width: {
-        xs: "140px",  // for extra-small screens
-        sm: "160px",  // for small screens
-        md: "200px",  // for medium and up
-      },
-      height: "750px",
-      position: "fixed",
-      top: 0,
-      left: 0,
-      zIndex: 1200,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      transition: "width 0.3s ease",
-    }}
-  >
-  
+      elevation={4}
+      sx={{
+        width: {
+          xs: "140px", // for extra-small screens
+          sm: "160px", // for small screens
+          md: "200px", // for medium and up
+        },
+        height: "750px",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        zIndex: 1200,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        transition: "width 0.3s ease",
+      }}
+    >
       <Box>
         {/* Logo */}
         <Box
@@ -140,7 +139,7 @@ const Sidebar = () => {
           </ListItem>
 
           {/* Projects */}
-          <ListItem
+          {/* <ListItem
             onClick={() => handleMenuItemClick("/previewDocument")}
             sx={{
               borderRadius: "10px",
@@ -173,7 +172,7 @@ const Sidebar = () => {
                 fontSize: "15px",
               }}
             />
-          </ListItem>
+          </ListItem> */}
 
           {/* Reports */}
           <ListItem
