@@ -17,9 +17,18 @@ import VersionControl from "./Pages/VersionControl";
 import ApproveDoc from "./Pages/ApproveDoc";
 import ApproveDocument from "./Pages/ApproveDocument";
 import Archive1 from "./Pages/Archive1";
+import Login from "./Pages/Login";
 
 function App() {
   const router = createBrowserRouter([
+    {
+      path: "login",
+      element: <Login />,
+    },
+    {
+      index: true,
+      element: <Navigate to="/login" />,
+    },
     {
       path: "/",
       element: <AppLayout />,
@@ -32,14 +41,15 @@ function App() {
         //   index: true,
         //   element: <Navigate to="/dashboard" />,
         // },
-        {
-          path: "archiveDocument1",
-          element: <Archive1 />,
-        },
-        {
-          index: true,
-          element: <Navigate to="/archiveDocument1" />,
-        },
+        // {
+        //   path: "archiveDocument1",
+        //   element: <Archive1 />,
+        // },
+        // {
+        //   index: true,
+        //   element: <Navigate to="/archiveDocument1" />,
+        // },
+
         {
           path: "previewDocument",
           element: <PreviewDocument />,
