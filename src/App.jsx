@@ -95,7 +95,7 @@ function App() {
           path: "archiveDocument1",
           element: <Archive1 />,
         },
-         {
+        {
           path: "invoice",
           element: <Invoice />,
         },
