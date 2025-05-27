@@ -122,18 +122,20 @@ const Login = () => {
           </Box>
         </CardContent>
 
-        <CardActions sx={{ justifyContent: "center" }}>
-          <Typography variant="body2">
-            Don&apos;t have an account?{" "}
-            <Link
-              component="button"
-              underline="hover"
-              onClick={() => navigate("/signup")}
-            >
-              Sign up
-            </Link>
-          </Typography>
-        </CardActions>
+        {step === 1 && (
+          <CardActions sx={{ justifyContent: "center" }}>
+            <Typography variant="body2">
+              Don&apos;t have an account?{" "}
+              <Link
+                component="button"
+                underline="hover"
+                onClick={() => navigate("/signup")}
+              >
+                Sign up
+              </Link>
+            </Typography>
+          </CardActions>
+        )}
       </Card>
     </Box>
   );
