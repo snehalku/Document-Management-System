@@ -20,86 +20,50 @@ import {
   TableCell,
   Paper,
 } from "@mui/material";
+import invoice from "../assets/invoice.jpg";
 import Doc2 from "../assets/Doc2.png";
 import Doc3 from "../assets/Doc3.png";
 import SearchIcon from "@mui/icons-material/Search";
-import { Snackbar, Alert } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import TransitionAlerts from "../Components/ui/Notification";
 
 const mockCustomerDocs = [
   {
-    id: "EDB5C13",
-    firstName: "Mets",
-    lastName: "Lilli",
-    transactionId: "TXN123",
+    id: "123",
+    companyName: "Syborgtech",
     date: "2025-04-30",
-    dob: "1988-11-16",
-    expiresOn: "2020-01-02",
-    nationalId: "AS1234567",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
   },
   {
-    id: "EDB5C11",
-    firstName: "John",
-    lastName: "Smith",
-    transactionId: "TXN123",
+    id: "111",
+    companyName: "TCS",
     date: "2025-04-30",
-    dob: "1988-11-16",
     expiresOn: "2032-12-12",
-    nationalId: "A123477",
+    invoiceNo: "123477",
   },
-  {
-    id: "EDB5C12",
-    firstName: "John",
-    lastName: "Livone",
-    transactionId: "TXN123",
+ {
+    id: "125",
+    companyName: "Fujitsu",
     date: "2025-04-30",
-    dob: "1986-09-06",
-    expiresOn: "2030-11-12",
-    nationalId: "A123456",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
   },
-  {
-    id: "EDB5C14",
-    firstName: "David R",
-    lastName: "Smith",
-    transactionId: "TXN123",
+   {
+    id: "126",
+    companyName: "Infosys",
     date: "2025-04-30",
-    dob: "2006-05-01",
-    expiresOn: "2024-08-22",
-    nationalId: "5843216645678904",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
   },
   {
-    id: "EDB5C15",
-    firstName: "Jane Smith",
-    lastName: "Smith",
-    transactionId: "TXN345",
-    date: "2025-04-29",
-    dob: "2007-12-11",
-    expiresOn: "2025-08-12",
-    nationalId: "5843216645678904",
-  },
-  {
-    id: "EDB5C16",
-    firstName: "Angela ",
-    lastName: "Greene",
-    transactionId: "TXN567",
-    date: "2025-04-28",
-    dob: "2002-11-09",
-    expiresOn: "2028-04-30",
-    nationalId: "5843216619642184",
-  },
-  {
-    id: "EDB5C17",
-    firstName: "David ",
-    lastName: "Greene",
-    transactionId: "TXN567",
+    id: "126",
+    companyName: "Syborgtech",
     date: "2025-04-30",
-    dob: "2002-11-09",
-    expiresOn: "2028-04-30",
-    nationalId: "5843216619642184",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
   },
 ];
-const Archive1 = () => {
+const Invoice = () => {
   const [docList, setDocList] = useState([]);
   const [selectedDocName, setSelectedDocName] = useState("");
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -109,10 +73,8 @@ const Archive1 = () => {
   const [docIdentifier, setDocIdentifier] = useState("");
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
-  const [filterFirstName, setFilterFirstName] = useState("");
-  const [filterLastName, setFilterLastName] = useState("");
-  const [filterDob, setFilterDob] = useState("");
-  const [filterNationalId, setFilterNationalId] = useState("");
+  const [filterInvoiceNo, setFilterInvoiceNo] = useState("");
+  const [filterCompanyName, setFilterCompanyName] = useState("");
   const [previewDocPath, setPreviewDocPath] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchCustomer, setSearchCustomer] = useState("");
@@ -120,12 +82,12 @@ const Archive1 = () => {
   const [hideTable, setHideTable] = React.useState(false);
 
   const [columnSearch, setColumnSearch] = useState({
-    firstName: "",
-    lastName: "",
+    invoiceNo: "",
+   companyName: "",
   });
   const [showSearchInput, setShowSearchInput] = useState({
-    firstName: false,
-    lastName: false,
+   invoiceNo: false,
+    companyName: false,
   });
   const [issueDate, setIssueDate] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
@@ -133,7 +95,6 @@ const Archive1 = () => {
     customerId: "",
     issueDate: "",
     expiryDate: "",
-    versionNo: "1.0",
   });
 
   useEffect(() => {
@@ -144,42 +105,6 @@ const Archive1 = () => {
       }));
     }
   }, [selectedDoc]);
-
-  //   const handleSnackbarClose = () => {
-  //     setShowSnackbar(false);
-  //     setFormData({
-  //       customerId: "",
-  //       issueDate: "",
-  //       expiryDate: "",
-  //       versionNo: " ",
-  //     });
-  //     setSelectedDoc(null);
-  //     setPreviewDocPath(Doc3);
-  //   };
-
-  //   const handleAlertClose = () => {
-  //     setAlertOpen(false);
-  //     setFormData({
-  //       customerId: "",
-  //       issueDate: "",
-  //       expiryDate: "",
-  //       versionNo: " ",
-  //     });
-  //     setSelectedDoc(null);
-  //     setHideTable(false);
-  //     showNextDocument();
-  //     setSelectedDate(null);
-  //     setSearchCustomer("");
-  //     setSearchResults("");
-  //     setCategory("");
-  //     setSubcategory("");
-  //     setIssueDate("");
-  //     setExpiryDate("");
-
-  //     setTimeout(() => {
-  //       setPreviewDocPath(Doc3);
-  //     }, 1000);
-  //   };
 
   useEffect(() => {
     const list = [];
@@ -202,10 +127,8 @@ const Archive1 = () => {
       return (
         (!selectedDate || doc.date === selectedDate) &&
         (!searchCustomer ||
-          doc.firstName.toLowerCase().includes(query) ||
-          doc.lastName.toLowerCase().includes(query) ||
-          doc.dob.toLowerCase().includes(query) ||
-          doc.nationalId.toLowerCase().includes(query))
+          doc.invoiceNo.toLowerCase().includes(query) ||
+          doc.companyName.toLowerCase().includes(query) )
       );
     });
     setSearchResults(results);
@@ -217,8 +140,7 @@ const Archive1 = () => {
     setSubcategory(doc.subcategory || "");
     setSelectedDocName(doc.docName);
     setSelectedDate(doc.date);
-    setSearchCustomer(doc.customerName);
-    setDocIdentifier("National ID");
+    setSearchCustomer(doc.invoiceNo);
 
     if (!confirmedDocIds.includes(doc.id)) {
       setConfirmedDocIds([...confirmedDocIds, doc.id]);
@@ -235,12 +157,12 @@ const Archive1 = () => {
       setSelectedDoc(nextDoc);
       setFormData({
         customerId: nextDoc.id,
+         invoiceNo:"",
         issueDate: "",
         expiryDate: "",
-        versionNo: "1.0",
       });
     } else {
-      setSelectedDoc(null); // Or show a message: “All docs verified”
+      setSelectedDoc(null); 
     }
   };
 
@@ -251,9 +173,9 @@ const Archive1 = () => {
       setAlertOpen(false);
       setFormData({
         customerId: "",
+        invoiceNo:"",
         issueDate: "",
         expiryDate: "",
-        versionNo: " ",
       });
       setSelectedDoc(null);
       setHideTable(false);
@@ -287,9 +209,9 @@ const Archive1 = () => {
             setSelectedDoc(nextDoc);
             setFormData({
               customerId: nextDoc.id,
+               invoiceNo:"",
               issueDate: "",
               expiryDate: "",
-              versionNo: "1.0",
             });
           } else {
             setSelectedDoc(null);
@@ -315,18 +237,15 @@ const Archive1 = () => {
       <Box
         sx={{
           bgcolor: "#f2f4f5",
-          //   minHeight: "90vh",
           width: "100%",
           py: 1,
           ml: "70px",
-          //   mt: "2px",
           mr: "24px",
           boxSizing: "border-box",
           overflow: "hidden",
           position: "relative",
           display: "flex",
           flexDirection: "row",
-          // gap: 2,
         }}
       >
         <Card
@@ -339,21 +258,8 @@ const Archive1 = () => {
             overflowY: "hidden",
           }}
         >
-          {/* <Box sx={{ width: "100%", height: "auto" }}>
-            <CardMedia
-              component="img"
-              image={Doc2}
-              alt="Document"
-              sx={{
-                width: "100%",
-                height: "110vh",
-                objectFit: "contain",
-              }}
-            />
-          </Box> */}
-          {/* <Card sx={{ height: "53vh", p: 2 }}> */}
           {(() => {
-            const docPath = previewDocPath || selectedDoc?.path || Doc2;
+            const docPath = previewDocPath || selectedDoc?.path || invoice;
 
             // Check if docPath is an image
             const isImage =
@@ -389,7 +295,7 @@ const Archive1 = () => {
               >
                 <iframe
                   src={`${docPath}#toolbar=0`}
-                  title="KYC Document"
+                  title="Invoice Document"
                   style={{
                     position: "absolute",
                     top: 0,
@@ -414,7 +320,7 @@ const Archive1 = () => {
           }}
         >
           <Typography variant="h5" fontWeight="bold" mb={2}>
-            Archive Document
+            Invoice Document
           </Typography>
           <Box>
             {!hideTable && (
@@ -465,8 +371,8 @@ const Archive1 = () => {
                           },
                         }}
                       >
-                        <MenuItem value="AML KYC">AML KYC</MenuItem>
                         <MenuItem value="Account">Transaction</MenuItem>
+                        <MenuItem value="AML KYC">AML KYC</MenuItem>
                       </Select>
                     </FormControl>
                   </Stack>
@@ -506,15 +412,15 @@ const Archive1 = () => {
                           },
                         }}
                       >
-                        <MenuItem value="ID Proof">ID Proof</MenuItem>
-                        <MenuItem value="Address Proof">Address Proof</MenuItem>
+                        <MenuItem value="Invoice">Invoice</MenuItem>
+                        <MenuItem value="Application Form">Application Form</MenuItem>
                       </Select>
                     </FormControl>
                   </Stack>
                 </Box>
 
                 <TextField
-                  label=" Search by Customer ID, Name, DOB, ID Number"
+                  label=" Search by Customer ID, Invoice No., Company Name"
                   size="small"
                   value={searchCustomer}
                   onChange={(e) => setSearchCustomer(e.target.value)}
@@ -607,23 +513,23 @@ const Archive1 = () => {
                         <TableCell>
                           <Box display="flex" alignItems="center">
                             <Typography fontWeight="bold" mr={1}>
-                              First Name
+                            Invoice No.
                             </Typography>
                             <SearchIcon
                               sx={{ cursor: "pointer" }}
                               onClick={() =>
                                 setShowSearchInput((prev) => ({
                                   ...prev,
-                                  firstName: !prev.firstName,
+                                  firstName: !prev.invoiceNo,
                                 }))
                               }
                             />
                           </Box>
-                          {showSearchInput.firstName && (
+                          {showSearchInput.invoiceNo && (
                             <TextField
                               variant="standard"
                               size="small"
-                              value={columnSearch.firstName}
+                              value={columnSearch.invoiceNo}
                               onChange={(e) => {
                                 const value = e.target.value;
                                 setColumnSearch((prev) => ({
@@ -633,121 +539,48 @@ const Archive1 = () => {
                                 const query = value.toLowerCase();
                                 const filtered = mockCustomerDocs.filter(
                                   (doc) =>
-                                    doc.firstName.toLowerCase().includes(query)
+                                    doc.invoiceNo.toLowerCase().includes(query)
                                 );
                                 setSearchResults(filtered);
                               }}
-                              placeholder="Search First Name"
+                              placeholder="Search Invoice No."
                             />
                           )}
                         </TableCell>
+                       
                         <TableCell>
                           <Box display="flex" alignItems="center">
                             <Typography fontWeight="bold" mr={1}>
-                              Last Name
+                              Company Name
                             </Typography>
                             <SearchIcon
                               sx={{ cursor: "pointer" }}
                               onClick={() =>
                                 setShowSearchInput((prev) => ({
                                   ...prev,
-                                  lastName: !prev.lastName,
+                                  dob: !prev.companyName,
                                 }))
                               }
                             />
                           </Box>
-                          {showSearchInput.lastName && (
+                          {showSearchInput.companyName && (
                             <TextField
                               variant="standard"
                               size="small"
-                              value={columnSearch.lastName}
+                              value={columnSearch.companyName}
                               onChange={(e) => {
                                 const value = e.target.value;
                                 setColumnSearch((prev) => ({
                                   ...prev,
-                                  lastName: value,
+                                  companyName: value,
                                 }));
                                 const query = value.toLowerCase();
                                 const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.lastName.toLowerCase().includes(query)
+                                  (doc) => doc.companyName.toLowerCase().includes(query)
                                 );
                                 setSearchResults(filtered);
                               }}
-                              placeholder="Search Last Name"
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Typography fontWeight="bold" mr={1}>
-                              Date of Birth
-                            </Typography>
-                            <SearchIcon
-                              sx={{ cursor: "pointer" }}
-                              onClick={() =>
-                                setShowSearchInput((prev) => ({
-                                  ...prev,
-                                  dob: !prev.dob,
-                                }))
-                              }
-                            />
-                          </Box>
-                          {showSearchInput.dob && (
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.dob}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  dob: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) => doc.dob.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search Date od Birth"
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Typography fontWeight="bold" mr={1}>
-                              ID Number
-                            </Typography>
-                            <SearchIcon
-                              sx={{ cursor: "pointer" }}
-                              onClick={() =>
-                                setShowSearchInput((prev) => ({
-                                  ...prev,
-                                  nationalId: !prev.nationalId,
-                                }))
-                              }
-                            />
-                          </Box>
-                          {showSearchInput.nationalId && (
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.nationalId}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  nationalId: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.nationalId.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search National ID"
+                              placeholder="Search Company Name"
                             />
                           )}
                         </TableCell>
@@ -758,18 +591,12 @@ const Archive1 = () => {
                       {searchResults
                         .filter(
                           (doc) =>
-                            doc.firstName
+                            doc.invoiceNo
                               .toLowerCase()
-                              .includes(filterFirstName.toLowerCase()) &&
-                            doc.lastName
+                              .includes(filterInvoiceNo.toLowerCase()) &&
+                            doc.companyName
                               .toLowerCase()
-                              .includes(filterLastName.toLowerCase()) &&
-                            doc.dob
-                              .toLowerCase()
-                              .includes(filterDob.toLowerCase()) &&
-                            doc.nationalId
-                              .toLowerCase()
-                              .includes(filterNationalId.toLowerCase())
+                              .includes(filterCompanyName.toLowerCase())
                         )
                         .map((doc) => (
                           <TableRow
@@ -785,10 +612,8 @@ const Archive1 = () => {
                               />
                             </TableCell>
                             <TableCell>{doc.id}</TableCell>
-                            <TableCell>{doc.firstName}</TableCell>
-                            <TableCell>{doc.lastName}</TableCell>
-                            <TableCell>{doc.dob}</TableCell>
-                            <TableCell>{doc.nationalId}</TableCell>
+                            <TableCell>{doc.invoiceNo}</TableCell>
+                            <TableCell>{doc.companyName}</TableCell>
                           </TableRow>
                         ))}
                     </TableBody>
@@ -827,6 +652,14 @@ const Archive1 = () => {
                 />
 
                 <TextField
+                  label="Invoice No."
+                  fullWidth
+                  value={formData.invoiceNo}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                />
+
+                <TextField
                   label="Issue Date"
                   type="date"
                   fullWidth
@@ -855,19 +688,6 @@ const Archive1 = () => {
                     }))
                   }
                 />
-
-                {/* <TextField
-                  label="Version NO."
-                  fullWidth
-                  sx={{ mb: 2 }}
-                  value={formData.versionNo}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      versionNo: e.target.value,
-                    }))
-                  }
-                /> */}
               </Paper>
             </Grid>
             <TransitionAlerts
@@ -916,36 +736,6 @@ const Archive1 = () => {
                   Discard
                 </Button>
               </Stack>
-
-              {/* <Snackbar
-                open={showSnackbar}
-                onClose={handleSnackbarClose}
-                anchorOrigin={{ vertical: "center", horizontal: "right" }}
-              >
-                <Alert
-                  ref={snackbarRef}
-                  severity="success"
-                  variant="filled"
-                  icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
-                  sx={{
-                    width: "100%",
-                    fontWeight: 500,
-                    fontSize: "1rem",
-                    boxShadow: 3,
-                    backgroundColor: "#2e7d32",
-                    color: "#fff",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Typography fontWeight={500}>
-                      The document of the customer ID {selectedDoc?.id} has been
-                      saved successfully.
-                    </Typography>
-                  </Box>
-                </Alert>
-              </Snackbar> */}
             </Box>
           </Card>
         </Box>
@@ -954,4 +744,4 @@ const Archive1 = () => {
   );
 };
 
-export default Archive1;
+export default Invoice;

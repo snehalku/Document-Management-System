@@ -206,6 +206,37 @@ const Sidebar = () => {
             />
           </ListItem>
 
+           <ListItem
+            onClick={() => handleMenuItemClick("/invoice")}
+            sx={{
+              borderRadius: "10px",
+              mt: 2,
+              mb: 1,
+              bgcolor:
+                location.pathname === "/invoice" ? "#d1d4d2" : "transparent",
+              height: "52px",
+              "&:hover": {
+                bgcolor:
+                  location.pathname === "/invoice" ? "#d1d4d2" : "#f5f5f5",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <ListItemIcon
+              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+            >
+              <PreviewIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Invoice Documents"
+              primaryTypographyProps={{
+                fontFamily: "Poppins-Medium, Helvetica",
+                fontWeight: 500,
+                fontSize: "15px",
+              }}
+            />
+          </ListItem>
+
           {/* <ListItem
             onClick={() => handleMenuItemClick("/approveDoc")}
             sx={{
