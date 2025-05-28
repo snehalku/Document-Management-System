@@ -20,7 +20,7 @@ import {
   TableCell,
   Paper,
 } from "@mui/material";
-import invoice from "../assets/invoice.png";
+import invoice1 from "../assets/invoice1.png";
 import Doc2 from "../assets/Doc2.png";
 import Doc3 from "../assets/Doc3.png";
 import SearchIcon from "@mui/icons-material/Search";
@@ -266,7 +266,7 @@ const Invoice = () => {
           }}
         >
           {(() => {
-            const docPath = previewDocPath || selectedDoc?.path || invoice;
+            const docPath = previewDocPath || selectedDoc?.path || invoice1;
 
             // Check if docPath is an image
             const isImage =
