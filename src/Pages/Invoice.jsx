@@ -43,7 +43,7 @@ const mockCustomerDocs = [
     invoiceNo: "123477",
     invoiceDate: "2025-09-26",
   },
- {
+  {
     id: "125",
     companyName: "Fujitsu",
     date: "2025-04-30",
@@ -51,7 +51,7 @@ const mockCustomerDocs = [
     invoiceNo: "123456",
     invoiceDate: "2025-09-25",
   },
-   {
+  {
     id: "126",
     companyName: "Infosys",
     date: "2025-04-30",
@@ -88,10 +88,10 @@ const Invoice = () => {
 
   const [columnSearch, setColumnSearch] = useState({
     invoiceNo: "",
-   companyName: "",
+    companyName: "",
   });
   const [showSearchInput, setShowSearchInput] = useState({
-   invoiceNo: false,
+    invoiceNo: false,
     companyName: false,
   });
   const [issueDate, setIssueDate] = useState("");
@@ -108,6 +108,7 @@ const Invoice = () => {
       setFormData((prev) => ({
         ...prev,
         customerId: selectedDoc.id || "",
+        invoiceNo: selectedDoc.invoiceNo || "",
       }));
     }
   }, [selectedDoc]);
@@ -134,7 +135,7 @@ const Invoice = () => {
         (!selectedDate || doc.date === selectedDate) &&
         (!searchCustomer ||
           doc.invoiceNo.toLowerCase().includes(query) ||
-          doc.companyName.toLowerCase().includes(query) )
+          doc.companyName.toLowerCase().includes(query))
       );
     });
     setSearchResults(results);
@@ -163,12 +164,12 @@ const Invoice = () => {
       setSelectedDoc(nextDoc);
       setFormData({
         customerId: nextDoc.id,
-         invoiceNo:"",
+        invoiceNo: "",
         issueDate: "",
         expiryDate: "",
       });
     } else {
-      setSelectedDoc(null); 
+      setSelectedDoc(null);
     }
   };
 
@@ -179,7 +180,7 @@ const Invoice = () => {
       setAlertOpen(false);
       setFormData({
         customerId: "",
-        invoiceNo:"",
+        invoiceNo: "",
         issueDate: "",
         expiryDate: "",
       });
@@ -215,7 +216,7 @@ const Invoice = () => {
             setSelectedDoc(nextDoc);
             setFormData({
               customerId: nextDoc.id,
-               invoiceNo:"",
+              invoiceNo: "",
               issueDate: "",
               expiryDate: "",
             });
@@ -378,7 +379,7 @@ const Invoice = () => {
                         }}
                       >
                         {/* <MenuItem value="Account">Transaction</MenuItem> */}
-                        <MenuItem value="Account">Accounts</MenuItem>
+                        <MenuItem value="Transaction">Transaction</MenuItem>
                       </Select>
                     </FormControl>
                   </Stack>
@@ -419,7 +420,9 @@ const Invoice = () => {
                         }}
                       >
                         <MenuItem value="Invoice">Invoice</MenuItem>
-                        <MenuItem value="Application Form">Proof of Payment</MenuItem>
+                        <MenuItem value="Application Form">
+                          Proof of Payment
+                        </MenuItem>
                       </Select>
                     </FormControl>
                   </Stack>
@@ -480,80 +483,81 @@ const Invoice = () => {
                           <Typography fontWeight="bold"></Typography>
                         </TableCell>
                         <TableCell>
-                                                 <Typography fontWeight="bold" mb={1}>
-                                                   Customer ID
-                                                 </Typography>
-                                                 <TextField
-                                                   variant="standard"
-                                                   size="small"
-                                                   value={columnSearch.id}
-                                                   onChange={(e) => {
-                                                     const value = e.target.value;
-                                                     setColumnSearch((prev) => ({
-                                                       ...prev,
-                                                       id: value,
-                                                     }));
-                                                     const query = value.toLowerCase();
-                                                     const filtered = mockCustomerDocs.filter((doc) =>
-                                                       String(doc.id).toLowerCase().includes(query)
-                                                     );
-                                                     setSearchResults(filtered);
-                                                   }}
-                                                   placeholder="Search  "
-                                                   fullWidth
-                                                 />
-                                               </TableCell>
-                        
-                      <TableCell>
-                                               <Typography fontWeight="bold" mb={1}>
-                                                 Invoice No.
-                                               </Typography>
-                                               <TextField
-                                                 variant="standard"
-                                                 size="small"
-                                                 value={columnSearch.invoiceNo}
-                                                 onChange={(e) => {
-                                                   const value = e.target.value;
-                                                   setColumnSearch((prev) => ({
-                                                     ...prev,
-                                                     id: value,
-                                                   }));
-                                                   const query = value.toLowerCase();
-                                                   const filtered = mockCustomerDocs.filter((doc) =>
-                                                     String(doc.invoiceNo).toLowerCase().includes(query)
-                                                   );
-                                                   setSearchResults(filtered);
-                                                 }}
-                                                 placeholder="Search  "
-                                                 fullWidth
-                                               />
-                                             </TableCell>
-                       
-                        
+                          <Typography fontWeight="bold" mb={1}>
+                            Customer ID
+                          </Typography>
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.id}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                id: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                String(doc.id).toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search  "
+                            fullWidth
+                          />
+                        </TableCell>
                         <TableCell>
-                                                 <Typography fontWeight="bold" mb={1}>
-                                                   Invoice Date
-                                                 </Typography>
-                                                 <TextField
-                                                   variant="standard"
-                                                   size="small"
-                                                   value={columnSearch.invoiceDate}
-                                                   onChange={(e) => {
-                                                     const value = e.target.value;
-                                                     setColumnSearch((prev) => ({
-                                                       ...prev,
-                                                       id: value,
-                                                     }));
-                                                     const query = value.toLowerCase();
-                                                     const filtered = mockCustomerDocs.filter((doc) =>
-                                                       String(doc.invoiceDate).toLowerCase().includes(query)
-                                                     );
-                                                     setSearchResults(filtered);
-                                                   }}
-                                                   placeholder="Search  "
-                                                   fullWidth
-                                                 />
-                                               </TableCell>
+                          <Typography fontWeight="bold" mb={1}>
+                            Invoice No.
+                          </Typography>
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.invoiceNo}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                invoiceNo: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                String(doc.invoiceNo)
+                                  .toLowerCase()
+                                  .includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search "
+                            fullWidth
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <Typography fontWeight="bold" mb={1}>
+                            Invoice Date
+                          </Typography>
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.invoiceDate}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                invoiceDate: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                String(doc.invoiceDate)
+                                  .toLowerCase()
+                                  .includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search  "
+                            fullWidth
+                          />
+                        </TableCell>
                         {/* <TableCell>
                           <Box display="flex" alignItems="center">
                             <Typography fontWeight="bold" mr={1}>
@@ -619,7 +623,7 @@ const Invoice = () => {
                             </TableCell>
                             <TableCell>{doc.id}</TableCell>
                             <TableCell>{doc.invoiceNo}</TableCell>
-                            <TableCell>{doc.companyName}</TableCell>
+                            <TableCell>{doc.invoiceDate}</TableCell>
                           </TableRow>
                         ))}
                     </TableBody>
@@ -631,7 +635,7 @@ const Invoice = () => {
 
           <Card
             sx={{
-              height: alertOpen ? "62vh" : "50vh",
+              height: alertOpen ? "58vh" : "52vh",
               overflowY: "auto",
               p: 2,
               transition: "height 0.3s ease",
@@ -664,7 +668,6 @@ const Invoice = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 />
-
               </Paper>
             </Grid>
             <TransitionAlerts

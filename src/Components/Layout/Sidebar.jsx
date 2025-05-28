@@ -206,7 +206,7 @@ const Sidebar = () => {
             />
           </ListItem>
 
-           <ListItem
+          {/* <ListItem
             onClick={() => handleMenuItemClick("/invoice")}
             sx={{
               borderRadius: "10px",
@@ -235,7 +235,7 @@ const Sidebar = () => {
                 fontSize: "15px",
               }}
             />
-          </ListItem>
+          </ListItem> */}
 
           {/* <ListItem
             onClick={() => handleMenuItemClick("/approveDoc")}
