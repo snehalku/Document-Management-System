@@ -21,6 +21,8 @@ import {
   Paper,
 } from "@mui/material";
 import invoice1 from "../assets/invoice1.png";
+import invoice3 from "../assets/invoice3.png";
+
 import Doc2 from "../assets/Doc2.png";
 import Doc3 from "../assets/Doc3.png";
 import SearchIcon from "@mui/icons-material/Search";
@@ -194,7 +196,7 @@ const Invoice = () => {
       setSubcategory("");
       setIssueDate("");
       setExpiryDate("");
-      setPreviewDocPath(Doc3);
+      setPreviewDocPath(invoice3);
     }, 3000);
   };
 
