@@ -332,7 +332,7 @@ const Archive1 = () => {
         <Card
           sx={{
             flex: 1.2,
-            height: "85vh",
+            height: "87vh",
             position: "sticky",
             top: 0,
             alignSelf: "flex-start",
@@ -771,7 +771,7 @@ const Archive1 = () => {
 
           <Card
             sx={{
-              height: alertOpen ? "62vh" : "50vh",
+              height: alertOpen ? "62vh" : "52vh",
               overflowY: "auto",
               p: 2,
               transition: "height 0.3s ease",
