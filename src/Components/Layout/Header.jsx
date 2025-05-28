@@ -80,7 +80,7 @@
 //                 fontSize: 16,
 //               }}
 //             >
-//               Admin
+//               Daniel Lewis (Admin)
 //             </Typography>
 //           </Box>
 //         </Box>
@@ -91,43 +91,38 @@
 
 // export default Header;
 
+import React, { useState } from "react";
 import {
   Avatar,
   Box,
   Paper,
   Typography,
-  Menu,
   MenuItem,
-  IconButton,
+  Select,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
-import React, { useState } from "react";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
   const navigate = useNavigate();
 
-  const users = [
-    { name: "Daniel Lewis", role: "Sales", route: "/archiveDocument1" },
-    { name: "Sophia Martinez", role: "Accounts", route: "/invoice" },
-    { name: "Michael Carter ", role: "Legal", route: "/legal" },
-    { name: "Emily Johnson ", role: "HR", route: "/hr" },
+  const departments = [
+    { label: "Sales", route: "/archiveDocument1" },
+    { label: "Accounts", route: "/invoice" },
+    { label: "Legal", route: "/legal" },
+    { label: "HR", route: "/hr" },
   ];
 
-  const [selectedUser, setSelectedUser] = useState(users[0]);
+  const [selectedDept, setSelectedDept] = useState(departments[0].label);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = (user) => {
-    if (user) {
-      setSelectedUser(user);
-      navigate(user.route);
+  const handleChange = (event) => {
+    const selected = event.target.value;
+    setSelectedDept(selected);
+    const dept = departments.find((d) => d.label === selected);
+    if (dept) {
+      navigate(dept.route);
     }
-    setAnchorEl(null);
   };
 
   return (
@@ -179,13 +174,6 @@ const Header = () => {
           </Typography>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Avatar
-              sx={{
-                width: 35,
-                height: 35,
-                bgcolor: "#d9d9d9",
-              }}
-            />
             <Typography
               sx={{
                 fontFamily: "Poppins, Helvetica",
@@ -193,22 +181,28 @@ const Header = () => {
                 fontSize: 16,
               }}
             >
-              {selectedUser.name} ({selectedUser.role})
+              Select Department
             </Typography>
-            <IconButton onClick={handleClick} size="small">
-              <ArrowDropDownIcon />
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={open}
-              onClose={() => setAnchorEl(null)}
+            <FormControl size="small" sx={{ minWidth: 140 }}>
+              <Select value={selectedDept} onChange={handleChange}>
+                {departments.map((dept) => (
+                  <MenuItem key={dept.label} value={dept.label}>
+                    {dept.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Avatar sx={{ width: 35, height: 35, bgcolor: "#d9d9d9" }} />
+            <Typography
+              sx={{
+                fontFamily: "Poppins, Helvetica",
+                fontWeight: 700,
+                fontSize: 16,
+              }}
             >
-              {users.map((user) => (
-                <MenuItem key={user.name} onClick={() => handleClose(user)}>
-                  {user.name} ({user.role})
-                </MenuItem>
-              ))}
-            </Menu>
+              Daniel Lewis (Admin)
+            </Typography>
           </Box>
         </Box>
       </Paper>
