@@ -20,7 +20,7 @@ import {
   TableCell,
   Paper,
 } from "@mui/material";
-import invoice from "../assets/invoice.jpg";
+import invoice from "../assets/invoice.png";
 import Doc2 from "../assets/Doc2.png";
 import Doc3 from "../assets/Doc3.png";
 import SearchIcon from "@mui/icons-material/Search";
@@ -98,6 +98,7 @@ const Invoice = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [formData, setFormData] = useState({
     customerId: "",
+    invoiceNo: "",
     issueDate: "",
     expiryDate: "",
   });
