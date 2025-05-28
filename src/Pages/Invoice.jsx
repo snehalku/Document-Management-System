@@ -78,6 +78,7 @@ const Invoice = () => {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
   const [filterInvoiceNo, setFilterInvoiceNo] = useState("");
+   const [filterInvoiceDate, setFilterInvoiceDate] = useState("");
   const [filterCompanyName, setFilterCompanyName] = useState("");
   const [previewDocPath, setPreviewDocPath] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
