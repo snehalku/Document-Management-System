@@ -39,7 +39,7 @@ const Login = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh", // Full screen height to center vertically
+        height: "100vh",
         p: 2,
       }}
     >

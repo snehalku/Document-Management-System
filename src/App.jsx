@@ -42,14 +42,6 @@ function App() {
         //   index: true,
         //   element: <Navigate to="/dashboard" />,
         // },
-        // {
-        //   path: "archiveDocument1",
-        //   element: <Archive1 />,
-        // },
-        // {
-        //   index: true,
-        //   element: <Navigate to="/archiveDocument1" />,
-        // },
 
         {
           path: "previewDocument",
