@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Box, Toolbar } from "@mui/material";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
@@ -12,24 +13,27 @@ function AppLayout() {
   };
 
   return (
-    <div className="flex flex-col">
+    <Box display="flex" flexDirection="column">
       <Header toggleSidebar={toggleSidebar} />
-      <div className="flex" style={{ marginTop: "64px" }}>
+
+      <Box display="flex" sx={{ marginTop: "64px" }}>
         {" "}
         <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
-        <main
-          className="flex-1 p-4 bg-gray-100"
-          style={{
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            padding: 2,
+            bgcolor: "#f3f4f6",
             marginLeft: "145px",
-            // paddingTop: "10px",
             overflowY: parentScroll ? "auto" : "hidden",
             // height: "calc(100vh - 64px)", // ✅ FIX: Ensure content fits within the screen
           }}
         >
           <Outlet context={{ setParentScroll }} />
-        </main>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 }
 

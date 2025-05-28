@@ -332,7 +332,7 @@ const Archive1 = () => {
         <Card
           sx={{
             flex: 1.2,
-            height: "87vh",
+            height: "85vh",
             position: "sticky",
             top: 0,
             alignSelf: "flex-start",
@@ -403,8 +403,6 @@ const Archive1 = () => {
             );
           })()}
         </Card>
-
-        {/* </Card> */}
 
         <Box
           sx={{
@@ -567,7 +565,7 @@ const Archive1 = () => {
                         <TableCell>
                           <Typography fontWeight="bold"></Typography>
                         </TableCell>
-                        <TableCell>
+                        {/* <TableCell>
                           <Box display="flex" alignItems="center">
                             <Typography fontWeight="bold" mr={1}>
                               Customer ID
@@ -603,153 +601,126 @@ const Archive1 = () => {
                               placeholder="Search Customer ID"
                             />
                           )}
+                        </TableCell> */}
+                        <TableCell>
+                          <Typography fontWeight="bold" mb={1}>
+                            Customer ID
+                          </Typography>
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.id}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                id: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                String(doc.id).toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search  "
+                            fullWidth
+                          />
                         </TableCell>
                         <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Typography fontWeight="bold" mr={1}>
-                              First Name
-                            </Typography>
-                            <SearchIcon
-                              sx={{ cursor: "pointer" }}
-                              onClick={() =>
-                                setShowSearchInput((prev) => ({
-                                  ...prev,
-                                  firstName: !prev.firstName,
-                                }))
-                              }
-                            />
-                          </Box>
-                          {showSearchInput.firstName && (
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.firstName}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  firstName: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.firstName.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search First Name"
-                            />
-                          )}
+                          <Typography fontWeight="bold" mb={1}>
+                            First Name
+                          </Typography>
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.firstName}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                firstName: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                doc.firstName.toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search  "
+                            fullWidth
+                          />
                         </TableCell>
                         <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Typography fontWeight="bold" mr={1}>
-                              Last Name
-                            </Typography>
-                            <SearchIcon
-                              sx={{ cursor: "pointer" }}
-                              onClick={() =>
-                                setShowSearchInput((prev) => ({
-                                  ...prev,
-                                  lastName: !prev.lastName,
-                                }))
-                              }
-                            />
-                          </Box>
-                          {showSearchInput.lastName && (
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.lastName}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  lastName: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.lastName.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search Last Name"
-                            />
-                          )}
+                          <Typography fontWeight="bold" mb={1}>
+                            Last Name
+                          </Typography>
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.lastName}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                lastName: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                doc.lastName.toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search  "
+                            fullWidth
+                          />
                         </TableCell>
                         <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Typography fontWeight="bold" mr={1}>
-                              Date of Birth
-                            </Typography>
-                            <SearchIcon
-                              sx={{ cursor: "pointer" }}
-                              onClick={() =>
-                                setShowSearchInput((prev) => ({
-                                  ...prev,
-                                  dob: !prev.dob,
-                                }))
-                              }
-                            />
-                          </Box>
-                          {showSearchInput.dob && (
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.dob}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  dob: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) => doc.dob.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search Date od Birth"
-                            />
-                          )}
+                          <Typography fontWeight="bold" mb={1}>
+                            Date of Birth
+                          </Typography>
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.dob}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                dob: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                doc.dob.toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search"
+                            fullWidth
+                          />
                         </TableCell>
                         <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Typography fontWeight="bold" mr={1}>
-                              ID Number
-                            </Typography>
-                            <SearchIcon
-                              sx={{ cursor: "pointer" }}
-                              onClick={() =>
-                                setShowSearchInput((prev) => ({
-                                  ...prev,
-                                  nationalId: !prev.nationalId,
-                                }))
-                              }
-                            />
-                          </Box>
-                          {showSearchInput.nationalId && (
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.nationalId}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  nationalId: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.nationalId.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search National ID"
-                            />
-                          )}
+                          <Typography fontWeight="bold" mb={1}>
+                            ID Number
+                          </Typography>
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.nationalId}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                nationalId: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                doc.nationalId.toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search"
+                            fullWidth
+                          />
                         </TableCell>
                       </TableRow>
                     </TableHead>
