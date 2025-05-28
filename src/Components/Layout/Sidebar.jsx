@@ -129,7 +129,7 @@ const Sidebar = () => {
               <ArchiveIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Archive Document 1"
+              primary="Archive Document"
               primaryTypographyProps={{
                 fontFamily: "Poppins-Medium, Helvetica",
                 fontWeight: 500,
