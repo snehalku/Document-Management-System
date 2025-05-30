@@ -104,17 +104,10 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ departments, defValue }) => {
   const navigate = useNavigate();
 
-  const departments = [
-    { label: "Sales", route: "/archiveDocument1" },
-    { label: "Accounts", route: "/invoice" },
-    { label: "Legal", route: "/legal" },
-    { label: "HR", route: "/hr" },
-  ];
-
-  const [selectedDept, setSelectedDept] = useState(departments[0].label);
+  const [selectedDept, setSelectedDept] = useState(defValue);
 
   const handleChange = (event) => {
     const selected = event.target.value;
@@ -130,7 +123,7 @@ const Header = () => {
       sx={{
         position: "fixed",
         top: 0,
-        left: 165,
+        left: 183,
         right: 0,
         zIndex: 1200,
         px: 2,
@@ -142,7 +135,7 @@ const Header = () => {
         elevation={4}
         sx={{
           width: "100%",
-          height: 70,
+          height: 74,
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
@@ -150,6 +143,8 @@ const Header = () => {
           borderLeft: "none",
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
+          boxShadow: "none",
+          // boxShadow: "0px 2px 4px rgba(0.1, 0.1, 0.1, 0 )",
         }}
       >
         <Box
