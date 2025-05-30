@@ -16,21 +16,34 @@ import ViewDocument from "./Pages/ViewDocument";
 import VersionControl from "./Pages/VersionControl";
 import ApproveDoc from "./Pages/ApproveDoc";
 import ApproveDocument from "./Pages/ApproveDocument";
+import Archive1 from "./Pages/Archive1";
+import Login from "./Pages/Login";
+import Invoice from "./Pages/Invoice";
+import InvoiceDocument from "./Pages/InvoiceDocument";
 
 function App() {
   const router = createBrowserRouter([
     {
+      path: "login",
+      element: <Login />,
+    },
+    {
+      index: true,
+      element: <Navigate to="/login" />,
+    },
+    {
       path: "/",
       element: <AppLayout />,
       children: [
-        {
-          path: "dashboard",
-          element: <Dashboard />,
-        },
-        {
-          index: true,
-          element: <Navigate to="/dashboard" />,
-        },
+        // {
+        //   path: "dashboard",
+        //   element: <Dashboard />,
+        // },
+        // {
+        //   index: true,
+        //   element: <Navigate to="/dashboard" />,
+        // },
+
         {
           path: "previewDocument",
           element: <PreviewDocument />,
@@ -70,6 +83,18 @@ function App() {
         {
           path: "approveDocument",
           element: <ApproveDocument />,
+        },
+        {
+          path: "archiveDocument1",
+          element: <Archive1 />,
+        },
+        {
+          path: "invoice",
+          element: <Invoice />,
+        },
+        {
+          path: "invoiceDocument",
+          element: <InvoiceDocument />,
         },
       ],
     },

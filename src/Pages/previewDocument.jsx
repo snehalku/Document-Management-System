@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import passport from "../assets/passport.jpg";
 import idcard from "../assets/idcard.jpg";
+import ID from "../assets/ID.jpg";
+
+// import wordfile from "../assets/wordfile.pdf";
+
 import { Snackbar, Alert, Divider } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {
@@ -177,9 +181,9 @@ const PreviewKycPage = () => {
     setTimeout(() => {
       setPreviewDocPath(idcard);
     }, 3000);
-    setSelectedDate(null);         
-    setSearchCustomer("");        
-    setSearchResults("");  
+    setSelectedDate(null);
+    setSearchCustomer("");
+    setSearchResults("");
     setCategory("");
     setSubcategory("");
     setIssueDate("");
@@ -200,13 +204,13 @@ const PreviewKycPage = () => {
     <Box
       sx={{
         bgcolor: "#f2f4f5",
-        py: 4,
+        py: 2,
         pl: "70px",
-        pt: "12px",
-        pr: "24px",
-        boxSizing: "border-box",
-        overflow: "hidden",
-        position: "relative",
+        // pt: "12px",
+        // pr: "24px",
+        // boxSizing: "border-box",
+        // overflow: "hidden",
+        // position: "relative",
       }}
     >
       <Typography variant="h5" fontWeight="bold" mb={1}>
@@ -346,7 +350,6 @@ const PreviewKycPage = () => {
                             placeholder="Search Customer ID"
                           />
                         )}
-
                       </TableCell>
                       <TableCell>
                         <Box display="flex" alignItems="center">
@@ -544,8 +547,8 @@ const PreviewKycPage = () => {
         sx={{
           p: 2,
           borderRadius: 2,
-          height: '100vh',
-          overflow: 'auto'
+          height: "100vh",
+          overflow: "auto",
         }}
       >
         <Grid container spacing={2}>
@@ -586,7 +589,7 @@ const PreviewKycPage = () => {
                 />
               )}
             </Paper> */}
-             <Paper
+            <Paper
               sx={{
                 height: "110vh",
                 display: "flex",
@@ -635,7 +638,7 @@ const PreviewKycPage = () => {
                 />
               ) : (
                 <iframe
-                  src={`${selectedDoc?.path || passport}#toolbar=0`}
+                  src={`${selectedDoc?.path || ID}#toolbar=0`}
                   title="KYC Document"
                   style={{
                     position: "absolute",
@@ -758,7 +761,7 @@ const PreviewKycPage = () => {
                 <TextField
                   label="Version NO."
                   fullWidth
-                  defaultValue= "1.0"
+                  defaultValue="1.0"
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 />
@@ -812,7 +815,9 @@ const PreviewKycPage = () => {
             autoHideDuration={3000}
             onClose={() => {
               setShowSnackbar(false);
-              const currentIndex = searchResults.findIndex(doc => doc.id === selectedDoc.id);
+              const currentIndex = searchResults.findIndex(
+                (doc) => doc.id === selectedDoc.id
+              );
               const nextDoc = searchResults[currentIndex + 1];
               setSelectedDoc(nextDoc || null);
             }}
@@ -841,7 +846,6 @@ const PreviewKycPage = () => {
               </Box>
             </Alert>
           </Snackbar>
-
         </Box>
       </Paper>
     </Box>

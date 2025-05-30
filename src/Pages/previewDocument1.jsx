@@ -42,12 +42,12 @@ const PreviewDocument1 = () => {
       sx={{
         bgcolor: "#f2f4f5",
         // minHeight: "88vh",
-        py: 4,
-        pl: "70px",
-        pt: "12px",
-        pr: "24px",
-        boxSizing: "border-box",
-        overflow: "hidden",
+        // py: 4,
+        pl: "25px",
+        // pt: "12px",
+        // pr: "24px",
+        // boxSizing: "border-box",
+        // overflow: "hidden",
       }}
     >
       <Typography variant="h5" component="h1" fontWeight="bold" sx={{ mb: 2 }}>

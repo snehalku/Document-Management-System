@@ -6,10 +6,10 @@ import ReportIcon from "@mui/icons-material/Report";
 import GroupIcon from "@mui/icons-material/Group";
 import SecurityIcon from "@mui/icons-material/Security";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import FolderCopyIcon from '@mui/icons-material/FolderCopy';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import PreviewIcon from '@mui/icons-material/Preview';
-import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
+import FolderCopyIcon from "@mui/icons-material/FolderCopy";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import PreviewIcon from "@mui/icons-material/Preview";
+import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 
 import {
   Box,
@@ -27,6 +27,10 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const queryParams = new URLSearchParams(location.search);
+  const department = queryParams.get("department");
+  console.log(department);
+
   const [openAdmin, setOpenAdmin] = React.useState(false);
   //   const [openAuth, setOpenAuth] = React.useState(false);
 
@@ -39,11 +43,11 @@ const Sidebar = () => {
       elevation={4}
       sx={{
         width: {
-          xs: "180px",
-          sm: "220px",
-          md: "270px",
+          xs: "140px", // for extra-small screens
+          sm: "160px", // for small screens
+          md: "201px", // for medium and up
         },
-        height: "100vh",
+        height: "750px",
         position: "fixed",
         top: 0,
         left: 0,
@@ -59,7 +63,7 @@ const Sidebar = () => {
         <Box
           sx={{
             mt: 3,
-            ml: 4,
+            ml: 3,
             fontFamily: "Poppins-Bold, Helvetica",
             fontWeight: 700,
             fontSize: "18px",
@@ -72,84 +76,22 @@ const Sidebar = () => {
         </Box>
 
         {/* Menu Items */}
+
         <List sx={{ mt: 3, px: 1 }}>
-          {/* Dashboard */}
           <ListItem
-            onClick={() => handleMenuItemClick("/dashboard")}
-            sx={{
-              borderRadius: "10px",
-              mb: 1,
-              bgcolor:
-                location.pathname === "/dashboard" ? "#d1d4d2" : "transparent",
-              height: "52px",
-              "&:hover": {
-                bgcolor:
-                  location.pathname === "/dashboard" ? "#d1d4d2" : "#f5f5f5",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ListItemIcon
-              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
-            >
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="Dashboard"
-              primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
-              }}
-            />
-          </ListItem>
-
-          {/* <ListItem
-            onClick={() => handleMenuItemClick("/folders")}
+            onClick={() => handleMenuItemClick("/archiveDocument1")}
             sx={{
               borderRadius: "10px",
               mt: 2,
               mb: 1,
               bgcolor:
-                location.pathname === "/folders" ? "#d1d4d2" : "transparent",
-              height: "52px",
-              "&:hover": {
-                bgcolor:
-                  location.pathname === "/folders" ? "#d1d4d2" : "#f5f5f5",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ListItemIcon
-              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
-            >
-              <FolderCopyIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="Configure Folders"
-              primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
-              }}
-            />
-          </ListItem> */}
-
-          {/* Projects */}
-          <ListItem
-            onClick={() => handleMenuItemClick("/previewDocument")}
-            sx={{
-              borderRadius: "10px",
-              mt: 2,
-              mb: 1,
-              bgcolor:
-                location.pathname === "/previewDocument"
+                location.pathname === "/archiveDocument1"
                   ? "#d1d4d2"
                   : "transparent",
               height: "52px",
               "&:hover": {
                 bgcolor:
-                  location.pathname === "/previewDocument"
+                  location.pathname === "/archiveDocument1"
                     ? "#d1d4d2"
                     : "#f5f5f5",
                 cursor: "pointer",
@@ -162,7 +104,7 @@ const Sidebar = () => {
               <ArchiveIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Archive Document"
+              primary="File Document"
               primaryTypographyProps={{
                 fontFamily: "Poppins-Medium, Helvetica",
                 fontWeight: 500,
@@ -171,7 +113,6 @@ const Sidebar = () => {
             />
           </ListItem>
 
-          {/* Reports */}
           <ListItem
             onClick={() => handleMenuItemClick("/documents")}
             sx={{
@@ -202,19 +143,22 @@ const Sidebar = () => {
               }}
             />
           </ListItem>
-
-          <ListItem
-            onClick={() => handleMenuItemClick("/approveDoc")}
+          {/* <ListItem
+            onClick={() => handleMenuItemClick("/invoiceDocument")}
             sx={{
               borderRadius: "10px",
               mt: 2,
               mb: 1,
               bgcolor:
-                location.pathname === "/approveDoc" ? "#d1d4d2" : "transparent",
+                location.pathname === "/invoiceDocument"
+                  ? "#d1d4d2"
+                  : "transparent",
               height: "52px",
               "&:hover": {
                 bgcolor:
-                  location.pathname === "/approveDoc" ? "#d1d4d2" : "#f5f5f5",
+                  location.pathname === "/invoiceDocument"
+                    ? "#d1d4d2"
+                    : "#f5f5f5",
                 cursor: "pointer",
               },
             }}
@@ -222,70 +166,17 @@ const Sidebar = () => {
             <ListItemIcon
               sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
             >
-              <LibraryAddCheckIcon />
+              <PreviewIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Approve Documents"
+              primary="View Documents"
               primaryTypographyProps={{
                 fontFamily: "Poppins-Medium, Helvetica",
                 fontWeight: 500,
                 fontSize: "15px",
               }}
             />
-          </ListItem>
-
-
-          <ListItem
-            onClick={() => setOpenAdmin(!openAdmin)}
-            sx={{
-              borderRadius: "10px",
-              mt: 2,
-              mb: 1,
-              height: "52px",
-              "&:hover": {
-                bgcolor: "#f5f5f5",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ListItemIcon
-              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
-            >
-              <GroupIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="Admin"
-              primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
-              }}
-            />
-            {openAdmin ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={openAdmin} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding sx={{ pl: 4 }}>
-              <ListItem
-                onClick={() => handleMenuItemClick("/roles")}
-                sx={{ height: 40, mb: 0.5, "&:hover": { bgcolor: "#f5f5f5" } }}
-              >
-                <ListItemText primary="Roles" />
-              </ListItem>
-              <ListItem
-                onClick={() => handleMenuItemClick("/user")}
-                sx={{ height: 40, "&:hover": { bgcolor: "#f5f5f5" } }}
-              >
-                <ListItemText primary="User" />
-              </ListItem>
-              <ListItem
-                onClick={() => handleMenuItemClick("/folders")}
-                sx={{ height: 40, mt: 2, "&:hover": { bgcolor: "#f5f5f5" } }}
-              >
-                <ListItemText primary="Configure Folders" />
-              </ListItem>
-            </List>
-          </Collapse>
-
+          </ListItem> */}
         </List>
       </Box>
 

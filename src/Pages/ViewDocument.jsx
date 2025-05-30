@@ -88,13 +88,13 @@ const ViewDocument = () => {
     <Box
       sx={{
         bgcolor: "#f2f4f5",
-        py: 4,
+        // py: 4,
         pl: "70px",
-        pt: "12px",
-        pr: "24px",
-        boxSizing: "border-box",
-        overflow: "hidden",
-        position: "relative",
+        // pt: "12px",
+        // pr: "24px",
+        // boxSizing: "border-box",
+        // overflow: "hidden",
+        // position: "relative",
         // minHeight: "400vh",
       }}
     >
@@ -107,15 +107,15 @@ const ViewDocument = () => {
         sx={{
           p: 2,
           borderRadius: 2,
-          //   height: '100vh',
-          //   overflow: 'auto'
+            height: '120vh',
+            overflow: 'auto'
         }}
       >
         <Grid container spacing={2}>
           <Grid item size={7}>
             <Paper
               sx={{
-                height: "120vh",
+                height: "150vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -130,7 +130,8 @@ const ViewDocument = () => {
                   alt="KYC"
                   style={{
                     maxWidth: "100%",
-                    maxHeight: "100%",
+                    // maxHeight: "100%",
+                    height:"200px",
                     objectFit: "contain",
                   }}
                 />
@@ -143,7 +144,8 @@ const ViewDocument = () => {
                     top: 0,
                     left: 0,
                     width: "100%",
-                    height: "100%",
+                    // height: "100%",
+                    height:"700px",
                     border: "none",
                   }}
                 />

@@ -24,7 +24,7 @@ import Doc2 from "../assets/Doc2.png";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import agecard from "../assets/agecard.jpg";
+import invoice1 from "../assets/invoice1.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -35,106 +35,67 @@ import Header from "../Components/Layout/Header";
 
 const projectData = [
   {
-    id: "EDB5612",
-    date: "28-05-2025",
-    issueDate: "25-05-2025",
-    customerName: "John Livone",
-    transactionId: "TXN123",
-    dob: "06-09-1986",
-    expiryDate: "12-11-2030",
-    IdNo: "A123456",
-    documentId: "111",
-    documentName: "John_L_202514",
-    versionNumber: "1.0",
-    status: "Expiring Soon",
-    category: " AML KYC",
-    subCategory: "ID Proof",
+    id: "123",
+    invoiceDate: "29-05-2025",
+    invoiceNo: "123456",
+    invoiceAmount: "971",
+    docId: "11",
+    docName: "invoice_2025",
+    category: "Accounts Payable",
+    subCategory: "Purchase Invoice",
   },
   {
-    id: "EDB5617",
-    date: "28-05-2025",
-    issueDate: "24-05-2025",
-    customerName: "Jane Smith",
-    transactionId: "TXN345",
-    dob: "05-05-2003",
-    IdNo: "SD54896",
-    documentId: "112",
-    documentName: "Jane_S_202513",
-    versionNumber: "2.0",
-    status: "Expiring Soon",
-    category: " AML KYC",
-    subCategory: "Address Proof",
+    id: "325",
+    invoiceDate: "29-05-2025",
+    invoiceNo: "451278",
+    invoiceAmount: "4125",
+    docId: "13",
+    docName: "invoice_2024",
+    category: "Accounts Receivable",
+    subCategory: "Sales Invoice",
   },
   {
-    id: "EDB6611",
-    date: "28-05-2025",
-    issueDate: "23-05-2025",
-    customerName: "Sarah Johnson",
-    transactionId: "TXN344",
-    dob: "18-11-2008",
-    IdNo: "AK54789",
-    documentId: "113",
-    documentName: "Sarah_J_202512",
-    versionNumber: "3.0",
-    status: "Expiring Soon",
-    category: " AML KYC",
-    subCategory: "Age Proof",
+    id: "245",
+    invoiceDate: "29-05-2025",
+    invoiceNo: "478569",
+    invoiceAmount: "2365",
+    docId: "10",
+    docName: "invoice_12",
+    category: "Accounts Receivable",
+    subCategory: "Sales Invoice",
   },
   {
-    id: "EDB7712",
-    date: "28-05-2025",
-    issueDate: "22-05-2025",
-    customerName: "David V Smith",
-    transactionId: "TXN567",
-    dob: "03-03-2002",
-    IdNo: "JK54789",
-    documentId: "114",
-    documentName: "David_V_202511",
-    versionNumber: "4.0",
-    status: "Expiring Soon",
-    category: " AML KYC",
-    subCategory: "ID Proof",
-  },
-  {
-    id: "EDC2345",
-    date: "28-05-2025",
-    issueDate: "22-05-2025",
-    customerName: "David R Smith",
-    transactionId: "TXN567",
-    dob: "03-03-2002",
-    IdNo: "JK54789",
-    documentId: "114",
-    documentName: "David_R_202511",
-    versionNumber: "4.0",
-    status: "Expiring Soon",
-    category: " AML KYC",
-    subCategory: "ID Proof",
+    id: "451",
+    invoiceDate: "29-05-2025",
+    invoiceNo: "896541",
+    invoiceAmount: "1254",
+    docId: "14",
+    docName: "invoice_14",
+    category: "Accounts Payable",
+    subCategory: "Purchase Invoice",
   },
 ];
 
-const Documents = () => {
+const InvoiceDocument = () => {
   const navigate = useNavigate();
   const [searchInputs, setSearchInputs] = useState({
-    customerName: "",
-    date: "",
-    issueDate: "",
-    dob: "",
-    IdNo: "",
-    documentId: "",
-    documentName: "",
+    id: "",
+    invoiceDate: "",
+    invoiceNo: "",
+    invoiceAmount: "",
+    docId: "",
+    docName: "",
     category: "",
     subCategory: "",
   });
 
   const [showSearchFields, setShowSearchFields] = useState({
-    customerName: false,
-    date: false,
-    issueDate: false,
-
-    dob: false,
-    IdNo: false,
-    documentId: false,
-    documentName: false,
+    id: false,
+    invoiceDate: false,
+    invoiceNo: false,
+    invoiceAmount: false,
+    docId: false,
+    docName: false,
     category: false,
     subCategory: false,
   });
@@ -169,7 +130,7 @@ const Documents = () => {
 
   return (
     <div>
-      <Header departments={departments} defValue={"Sales"} />
+      <Header departments={departments} defValue={"Accounts"} />
       <Box
         sx={{
           bgcolor: "#f2f4f5",
@@ -236,6 +197,22 @@ const Documents = () => {
                 <TableRow sx={{ bgcolor: "#99caff" }}>
                   <TableCell>
                     <Stack direction="column">
+                      <Typography fontWeight="bold">Invoice Date </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        type="date"
+                        value={searchInputs.invoiceDate}
+                        onChange={(e) =>
+                          handleSearchInputChange("invoiceDate", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell>
+                    <Stack direction="column">
                       <Typography fontWeight="bold">Category </Typography>
                       <TextField
                         size="small"
@@ -277,104 +254,6 @@ const Documents = () => {
                           handleSearchInputChange("id", e.target.value)
                         }
                         sx={{ mt: 1 }}
-                        autoComplete="off"
-                      />
-                    </Stack>
-                  </TableCell>
-                  <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Customer Name</Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.customerName}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "customerName",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Issue Date </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        type="date"
-                        value={searchInputs.issueDate}
-                        onChange={(e) =>
-                          handleSearchInputChange("issueDate", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  {/* <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Customer Name</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("customerName")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.customerName && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.customerName}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "customerName",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell> */}
-
-                  <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Date of Birth </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        type="date"
-                        value={searchInputs.dob}
-                        onChange={(e) =>
-                          handleSearchInputChange("dob", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">ID Number </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.IdNo}
-                        onChange={(e) =>
-                          handleSearchInputChange("IdNo", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
                       />
                     </Stack>
                   </TableCell>
@@ -386,27 +265,57 @@ const Documents = () => {
                         size="small"
                         variant="standard"
                         placeholder="Search"
-                        value={searchInputs.documentId}
+                        value={searchInputs.docId}
                         onChange={(e) =>
-                          handleSearchInputChange("documentId", e.target.value)
+                          handleSearchInputChange("docId", e.target.value)
                         }
                         sx={{ mt: 1 }}
-                        autoComplete="off"
                       />
                     </Stack>
                   </TableCell>
 
                   <TableCell>
                     <Stack direction="column">
-                      <Typography fontWeight="bold">Document Name</Typography>
+                      <Typography fontWeight="bold">Document Name </Typography>
                       <TextField
                         size="small"
                         variant="standard"
                         placeholder="Search"
-                        value={searchInputs.documentName}
+                        value={searchInputs.docName}
+                        onChange={(e) =>
+                          handleSearchInputChange("docName", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell>
+                    <Stack direction="column">
+                      <Typography fontWeight="bold">Invoice No. </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.invoiceNo}
+                        onChange={(e) =>
+                          handleSearchInputChange("invoiceNo", e.target.value)
+                        }
+                        sx={{ mt: 1 }}
+                      />
+                    </Stack>
+                  </TableCell>
+
+                  <TableCell>
+                    <Stack direction="column">
+                      <Typography fontWeight="bold">Invoice Amount</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.invoiceAmount}
                         onChange={(e) =>
                           handleSearchInputChange(
-                            "documentName",
+                            "invoiceAmount",
                             e.target.value
                           )
                         }
@@ -414,35 +323,6 @@ const Documents = () => {
                       />
                     </Stack>
                   </TableCell>
-
-                  {/* <TableCell>
-                  <Stack direction="column">
-                    <Stack direction="row" alignItems="center" >
-                      <Typography fontWeight="bold">Version No.</Typography>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSearchField("versionNumber")}
-                      >
-                        <SearchIcon fontSize="small" />
-                      </IconButton>
-                    </Stack>
-                    {showSearchFields.versionNumber && (
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.versionNumber}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "versionNumber",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                  </Stack>
-                </TableCell> */}
 
                   <TableCell>
                     <Stack direction="row" alignItems="center">
@@ -455,22 +335,19 @@ const Documents = () => {
               <TableBody>
                 {filteredData.map((project) => (
                   <TableRow key={project.id} hover>
+                    <TableCell>{project.invoiceDate}</TableCell>
                     <TableCell>{project.category}</TableCell>
                     <TableCell>{project.subCategory}</TableCell>
+
                     <TableCell>
-                      <Typography>{project.id}</Typography>
+                      <Typography align="center">{project.id}</Typography>
                     </TableCell>
-                    <TableCell>{project.customerName}</TableCell>
 
-                    <TableCell>{project.issueDate}</TableCell>
+                    <TableCell align="center">{project.docId}</TableCell>
+                    <TableCell>{project.docName}</TableCell>
+                    <TableCell align="center">{project.invoiceNo}</TableCell>
 
-                    <TableCell>{project.dob}</TableCell>
-                    <TableCell>{project.IdNo}</TableCell>
-                    <TableCell align="center" sx={{ textAlign: "center" }}>
-                      {project.documentId}
-                    </TableCell>
-                    <TableCell>{project.documentName}</TableCell>
-
+                    <TableCell align="right">{project.invoiceAmount}</TableCell>
                     {/* <TableCell>{project.versionNumber}</TableCell> */}
                     {/* <TableCell>
                     <Stack direction="row" spacing={1}>
@@ -500,7 +377,11 @@ const Documents = () => {
                         <IconButton
                           color="primary"
                           onClick={() =>
-                            window.open(Doc2, "_blank", "noopener,noreferrer")
+                            window.open(
+                              invoice1,
+                              "_blank",
+                              "noopener,noreferrer"
+                            )
                           }
                         >
                           <VisibilityIcon />
@@ -606,4 +487,4 @@ const Documents = () => {
   );
 };
 
-export default Documents;
+export default InvoiceDocument;
