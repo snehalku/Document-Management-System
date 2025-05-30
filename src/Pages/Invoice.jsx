@@ -314,6 +314,10 @@ const Invoice = () => {
             <Box>
               {!hideTable && (
                 <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
+                <Typography variant="body2" fontWeight="700">
+                    Date
+                      <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                </Typography>
                   <TextField
                     label="Search by Invoice Date"
                     type="date"
@@ -334,6 +338,7 @@ const Invoice = () => {
                     >
                       <Typography variant="body2" fontWeight="700">
                         Category
+                        <span style={{ color: "red", marginLeft: "4px" }}>*</span>
                       </Typography>
 
                       <FormControl sx={{ minWidth: 160 }}>
@@ -382,6 +387,7 @@ const Invoice = () => {
                     >
                       <Typography variant="body2" fontWeight="700">
                         Sub Category
+                        <span style={{ color: "red", marginLeft: "4px" }}>*</span>
                       </Typography>
 
                       <FormControl sx={{ minWidth: 160 }}>
