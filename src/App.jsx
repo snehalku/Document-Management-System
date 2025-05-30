@@ -19,6 +19,7 @@ import ApproveDocument from "./Pages/ApproveDocument";
 import Archive1 from "./Pages/Archive1";
 import Login from "./Pages/Login";
 import Invoice from "./Pages/Invoice";
+import InvoiceDocument from "./Pages/InvoiceDocument";
 
 function App() {
   const router = createBrowserRouter([
@@ -90,6 +91,10 @@ function App() {
         {
           path: "invoice",
           element: <Invoice />,
+        },
+        {
+          path: "invoiceDocument",
+          element: <InvoiceDocument />,
         },
       ],
     },
