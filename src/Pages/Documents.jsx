@@ -18,6 +18,8 @@ import {
   Button,
   Menu,
   MenuItem,
+  FormControl,
+  Select,
 } from "@mui/material";
 import Doc2 from "../assets/Doc2.png";
 
@@ -200,33 +202,101 @@ const Documents = () => {
           >
             View Documents
           </Typography>
-          {/* <Stack
-          direction="row"
-          spacing={2}
-          sx={{ mb: 3 }}
-          justifyContent="space-between"
-        >
-          <TextField
-            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, ID No., Document ID, Document Name, Version No."
-            variant="outlined"
-            sx={{
-              width: "72%",
-              bgcolor: "#fff",
-              height: "50px",
-              borderRadius: "10px",
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ mb: 3 }}
+            justifyContent="space-between"
+          >
+            <Box display="flex" flexDirection="row">
+              <Stack
+                direction="row"
+                spacing={2}
+                sx={{ mr: 2 }}
+                justifyContent="flex-start"
+                alignItems="center"
+              >
+                <Typography variant="body2" fontWeight="700">
+                  Category
+                  <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                </Typography>
 
-              "& .MuiOutlinedInput-root": {
-                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
-                "& fieldset": {
-                  border: "none",
-                },
-                "&.Mui-focused": {
-                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
-                },
-              },
-            }}
-          />
-        </Stack> */}
+                <FormControl sx={{ minWidth: 160 }}>
+                  <Select
+                    labelId="application-select-label"
+                    id="application-select"
+                    // value={selectedCategory}
+                    // onChange={(e) => setSelectedCategory(e.target.value)}
+                    defaultValue="AML KYC"
+                    // label="Application"
+                    sx={{
+                      // bgcolor: "#f2f4f5",
+                      height: "36px",
+                      fontSize: "0.8rem",
+                      borderRadius: "4px",
+                      // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
+                      // "& fieldset": { border: "none" },
+                      // "& .MuiSelect-select": {
+                      //   padding: "6px 10px",
+                      //   fontSize: "0.8rem",
+                      // },
+                      // "&.Mui-focused": {
+                      //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
+                      // },
+                    }}
+                  >
+                    {/* <MenuItem value="sel">Select Category</MenuItem> */}
+                    <MenuItem value="AML KYC">AML KYC</MenuItem>
+                    <MenuItem value="Account">Transaction</MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
+
+              <Stack
+                direction="row"
+                spacing={1.5}
+                // sx={{ mb: 2 }}
+                justifyContent="flex-start"
+                alignItems="center"
+              >
+                <Typography variant="body2" fontWeight="700">
+                  Subcategory
+                  <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                </Typography>
+
+                <FormControl sx={{ minWidth: 160 }}>
+                  <Select
+                    labelId="application-select-label"
+                    id="application-select"
+                    defaultValue="ID Proof"
+                    size="small"
+                    sx={{
+                      // bgcolor: "#f2f4f5",
+                      height: "36px",
+                      fontSize: "0.8rem",
+                      borderRadius: "4px",
+                      // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
+                      // "& fieldset": {
+                      //   border: "none",
+                      // },
+                      // "& .MuiSelect-select": {
+                      //   padding: "6px 10px",
+                      //   fontSize: "0.8rem",
+                      // },
+                      // "&.Mui-focused": {
+                      //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
+                      // },
+                    }}
+                  >
+                    {/* <MenuItem value="sel">Select Subcategory</MenuItem> */}
+
+                    <MenuItem value="ID Proof">ID Proof</MenuItem>
+                    <MenuItem value="Address Proof">Address Proof</MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
+            </Box>
+          </Stack>
           <TableContainer
             component={Paper}
             sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
@@ -234,7 +304,7 @@ const Documents = () => {
             <Table>
               <TableHead>
                 <TableRow sx={{ bgcolor: "#99caff" }}>
-                  <TableCell>
+                  {/* <TableCell>
                     <Stack direction="column">
                       <Typography fontWeight="bold">Category </Typography>
                       <TextField
@@ -264,9 +334,13 @@ const Documents = () => {
                         sx={{ mt: 1 }}
                       />
                     </Stack>
-                  </TableCell>
-                  <TableCell>
-                    <Stack direction="column">
+                  </TableCell> */}
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Customer ID</Typography>
                       <TextField
                         size="small"
@@ -276,13 +350,18 @@ const Documents = () => {
                         onChange={(e) =>
                           handleSearchInputChange("id", e.target.value)
                         }
-                        sx={{ mt: 1 }}
                         autoComplete="off"
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Customer Name</Typography>
                       <TextField
                         size="small"
@@ -295,13 +374,18 @@ const Documents = () => {
                             e.target.value
                           )
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Issue Date </Typography>
                       <TextField
                         size="small"
@@ -312,7 +396,8 @@ const Documents = () => {
                         onChange={(e) =>
                           handleSearchInputChange("issueDate", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
@@ -346,8 +431,12 @@ const Documents = () => {
                   </Stack>
                 </TableCell> */}
 
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Date of Birth </Typography>
                       <TextField
                         size="small"
@@ -358,13 +447,18 @@ const Documents = () => {
                         onChange={(e) =>
                           handleSearchInputChange("dob", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">ID Number </Typography>
                       <TextField
                         size="small"
@@ -374,13 +468,18 @@ const Documents = () => {
                         onChange={(e) =>
                           handleSearchInputChange("IdNo", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Document ID </Typography>
                       <TextField
                         size="small"
@@ -390,14 +489,19 @@ const Documents = () => {
                         onChange={(e) =>
                           handleSearchInputChange("documentId", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                         autoComplete="off"
                       />
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Document Name</Typography>
                       <TextField
                         size="small"
@@ -410,7 +514,8 @@ const Documents = () => {
                             e.target.value
                           )
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
@@ -455,21 +560,21 @@ const Documents = () => {
               <TableBody>
                 {filteredData.map((project) => (
                   <TableRow key={project.id} hover>
-                    <TableCell>{project.category}</TableCell>
-                    <TableCell>{project.subCategory}</TableCell>
+                    {/* <TableCell>{project.category}</TableCell> */}
+                    {/* <TableCell>{project.subCategory}</TableCell> */}
                     <TableCell>
-                      <Typography>{project.id}</Typography>
+                      <Typography align="center">{project.id}</Typography>
                     </TableCell>
-                    <TableCell>{project.customerName}</TableCell>
+                    <TableCell align="center">{project.customerName}</TableCell>
 
-                    <TableCell>{project.issueDate}</TableCell>
+                    <TableCell align="center">{project.issueDate}</TableCell>
 
-                    <TableCell>{project.dob}</TableCell>
-                    <TableCell>{project.IdNo}</TableCell>
+                    <TableCell align="center">{project.dob}</TableCell>
+                    <TableCell align="center">{project.IdNo}</TableCell>
                     <TableCell align="center" sx={{ textAlign: "center" }}>
                       {project.documentId}
                     </TableCell>
-                    <TableCell>{project.documentName}</TableCell>
+                    <TableCell align="center">{project.documentName}</TableCell>
 
                     {/* <TableCell>{project.versionNumber}</TableCell> */}
                     {/* <TableCell>
@@ -499,9 +604,7 @@ const Documents = () => {
                       <Tooltip title="View and Download">
                         <IconButton
                           color="primary"
-                          onClick={() =>
-                            window.open(Doc2, "_blank", "noopener,noreferrer")
-                          }
+                          onClick={() => window.open(Doc2)}
                         >
                           <VisibilityIcon />
                         </IconButton>

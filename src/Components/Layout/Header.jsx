@@ -54,13 +54,13 @@
 //             sx={{
 //               fontWeight: 700,
 //               paddingLeft: "25px",
-//               fontFamily: "Poppins-Bold, Helvetica",
+//               fontFamily: "Poppins-Bold, sans-serif",
 //               fontSize: "18px",
 //             }}
 //           >
 //             DOCUMENT MANAGEMENT SYSTEM
 //             {/* -{" "}
-//             <span style={{ fontWeight: 500, opacity: 0.7 }}>
+//             <span style={{ fontWeight: 700, opacity: 0.7 }}>
 //               AML KYC
 //             </span> */}
 //           </Typography>
@@ -75,7 +75,7 @@
 //             />
 //             <Typography
 //               sx={{
-//                 fontFamily: "Poppins, Helvetica",
+//                 fontFamily: "Poppins, sans-serif",
 //                 fontWeight: 700,
 //                 fontSize: 16,
 //               }}
@@ -127,7 +127,7 @@ const Header = ({ departments, defValue }) => {
         right: 0,
         zIndex: 1200,
         px: 2,
-        height: 77,
+        height: 76,
         bgcolor: "#fff",
       }}
     >
@@ -153,7 +153,7 @@ const Header = ({ departments, defValue }) => {
             alignItems: "center",
             justifyContent: "space-between",
             width: "100%",
-            padding: "0 16px",
+            // padding: "0 16px",
           }}
         >
           <Typography
@@ -161,7 +161,7 @@ const Header = ({ departments, defValue }) => {
             sx={{
               fontWeight: 700,
               paddingLeft: "25px",
-              fontFamily: "Poppins-Bold, Helvetica",
+              fontFamily: "Poppins-Bold, sans-serif",
               fontSize: "18px",
             }}
           >
@@ -171,12 +171,12 @@ const Header = ({ departments, defValue }) => {
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Typography
               sx={{
-                fontFamily: "Poppins, Helvetica",
+                fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
                 fontSize: 16,
               }}
             >
-              Select Department
+              Department
             </Typography>
             <FormControl size="small" sx={{ minWidth: 140 }}>
               <Select value={selectedDept} onChange={handleChange}>
@@ -191,7 +191,7 @@ const Header = ({ departments, defValue }) => {
             <Avatar sx={{ width: 35, height: 35, bgcolor: "#d9d9d9" }} />
             <Typography
               sx={{
-                fontFamily: "Poppins, Helvetica",
+                fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
                 fontSize: 16,
               }}

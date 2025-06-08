@@ -20,8 +20,8 @@ import {
   TableCell,
   Paper,
 } from "@mui/material";
-import Doc2 from "../assets/Doc2.png";
-import Doc3 from "../assets/Doc3.png";
+import hr1 from "../assets/hr1.png";
+import hr2 from "../assets/hr2.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { Snackbar, Alert } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -30,78 +30,62 @@ import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
   {
-    id: "EDB5617",
-    firstName: "John",
+    id: "EMP045",
+    firstName: "Andrew",
     lastName: "Lilli",
     transactionId: "TXN123",
     date: "2025-05-28",
     dob: "16-11-1988",
+    doj: "06-06-2025",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
+    degree: "Bsc",
+    department: "IT",
   },
   {
-    id: "AFB7712",
-    firstName: "George ",
-    lastName: "Harrington",
+    id: "EMP001",
+    firstName: "Andrew ",
+    lastName: "Prendergrast",
     transactionId: "TXN123",
     date: "2025-05-28",
     dob: "01-05-2006",
+    doj: "06-06-2025",
+
     expiresOn: "2024-08-22",
     nationalId: "5843216645678904",
+    degree: "BA",
+    department: "Sales",
   },
   {
-    id: "EEA5924",
-    firstName: "John",
+    id: "EMP036",
+    firstName: "Andrew",
     lastName: "Smith",
     transactionId: "TXN123",
     date: "2025-05-28",
     dob: "14-11-1998",
+    doj: "06-06-2025",
+
     expiresOn: "2032-12-12",
     nationalId: "A123477",
+    degree: "MBA",
+    department: "HR",
   },
   {
-    id: "EDB5612",
-    firstName: "John",
+    id: "EMP235",
+    firstName: "Andrew",
     lastName: "Livone",
     transactionId: "TXN123",
     date: "2025-05-28",
     dob: "06-09-1986",
+    doj: "06-06-2025",
+
     expiresOn: "2030-11-12",
     nationalId: "A123456",
+    degree: "BE",
+    department: "IT",
   },
-
-  // {
-  //   id: "GTJ523",
-  //   firstName: "James ",
-  //   lastName: "Ashford",
-  //   transactionId: "TXN345",
-  //   date: "2025-05-28",
-  //   dob: "2007-12-11",
-  //   expiresOn: "2025-08-12",
-  //   nationalId: "5843216645678904",
-  // },
-  // {
-  //   id: "EEA5924",
-  //   firstName: "John ",
-  //   lastName: "Greene",
-  //   transactionId: "TXN567",
-  //   date: "2025-05-28",
-  //   dob: "2002-11-09",
-  //   expiresOn: "2028-04-30",
-  //   nationalId: "5843216619642184",
-  // },
-  // {
-  //   id: "EDB5C17",
-  //   firstName: "David ",
-  //   lastName: "Greene",
-  //   transactionId: "TXN567",
-  //   date: "2025-05-28",
-  //   dob: "2002-11-09",
-  //   expiresOn: "2028-04-30",
-  //   nationalId: "5843216619642184",
-  // },
 ];
-const Archive1 = () => {
+const HR = () => {
   const [docList, setDocList] = useState([]);
   const [selectedDocName, setSelectedDocName] = useState("");
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -114,6 +98,8 @@ const Archive1 = () => {
   const [filterFirstName, setFilterFirstName] = useState("");
   const [filterLastName, setFilterLastName] = useState("");
   const [filterDob, setFilterDob] = useState("");
+  const [filterDoj, setFilterDoj] = useState("");
+
   const [filterNationalId, setFilterNationalId] = useState("");
   const [previewDocPath, setPreviewDocPath] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
@@ -172,8 +158,8 @@ const Archive1 = () => {
         doc.id.toLowerCase().includes(query) ||
         doc.firstName.toLowerCase().includes(query) ||
         doc.lastName.toLowerCase().includes(query) ||
-        doc.dob.toLowerCase().includes(query) ||
-        doc.nationalId.toLowerCase().includes(query)
+        doc.degree.toLowerCase().includes(query) ||
+        doc.department.toLowerCase().includes(query)
       );
     });
     setSearchResults(results);
@@ -233,7 +219,7 @@ const Archive1 = () => {
       setSubcategory("");
       setIssueDate("");
       setExpiryDate("");
-      setPreviewDocPath(Doc3);
+      setPreviewDocPath(hr2);
     }, 3000);
   };
 
@@ -275,36 +261,32 @@ const Archive1 = () => {
     { label: "Sales", route: "/archiveDocument1" },
     { label: "Accounts", route: "/invoice" },
     { label: "HR", route: "/hr" },
+
     { label: "Legal" },
   ];
 
   return (
     <div>
-      <Header departments={departments} defValue={"Sales"} />
+      <Header departments={departments} defValue={"HR"} />
       <Box
         sx={{
           bgcolor: "#f2f4f5",
           height: "100vh",
-          // width: "100vw",
           display: "flex",
           justifyContent: "center",
         }}
       >
         <Box
           sx={{
-            // bgcolor: "#f2f4f5",
-            //   minHeight: "90vh",
             width: "100%",
             py: 1,
             ml: "70px",
-            //   mt: "2px",
-            // mr: "24px",
+
             boxSizing: "border-box",
             overflow: "hidden",
             position: "relative",
             display: "flex",
             flexDirection: "row",
-            // gap: 2,
           }}
         >
           <Card
@@ -317,23 +299,9 @@ const Archive1 = () => {
               overflowY: "hidden",
             }}
           >
-            {/* <Box sx={{ width: "100%", height: "auto" }}>
-            <CardMedia
-              component="img"
-              image={Doc2}
-              alt="Document"
-              sx={{
-                width: "100%",
-                height: "110vh",
-                objectFit: "contain",
-              }}
-            />
-          </Box> */}
-            {/* <Card sx={{ height: "53vh", p: 2 }}> */}
             {(() => {
-              const docPath = previewDocPath || selectedDoc?.path || Doc2;
+              const docPath = previewDocPath || selectedDoc?.path || hr1;
 
-              // Check if docPath is an image
               const isImage =
                 docPath?.toLowerCase().endsWith(".png") ||
                 docPath?.toLowerCase().endsWith(".jpg") ||
@@ -422,7 +390,7 @@ const Archive1 = () => {
                         fontWeight="700"
                         sx={{ mr: 2 }}
                       >
-                        Filing Date
+                        Date
                         <span style={{ color: "red", marginLeft: "4px" }}>
                           *
                         </span>
@@ -480,8 +448,10 @@ const Archive1 = () => {
                             }}
                           >
                             <MenuItem value="sel">Select Category</MenuItem>
-                            <MenuItem value="AML KYC">AML KYC</MenuItem>
-                            <MenuItem value="Account">Transaction</MenuItem>
+                            <MenuItem value="Educational Qualification">
+                              Educational Qualification
+                            </MenuItem>
+                            {/* <MenuItem value="Account">Transaction</MenuItem> */}
                           </Select>
                         </FormControl>
                       </Stack>
@@ -526,17 +496,17 @@ const Archive1 = () => {
                           >
                             <MenuItem value="sel">Select Subcategory</MenuItem>
 
-                            <MenuItem value="ID Proof">ID Proof</MenuItem>
-                            <MenuItem value="Address Proof">
-                              Address Proof
+                            <MenuItem value=" Degree Certificate ">
+                              Degree Certificate
                             </MenuItem>
+                            {/* <MenuItem value="ID Proof">ID Proof</MenuItem> */}
                           </Select>
                         </FormControl>
                       </Stack>
                     </Box>
 
                     <TextField
-                      label=" Search by Customer ID, Customer Name"
+                      label=" Search by Employee ID, Employee Name"
                       size="small"
                       value={searchCustomer}
                       onChange={(e) => setSearchCustomer(e.target.value)}
@@ -601,7 +571,7 @@ const Archive1 = () => {
                           </TableCell>
                           <TableCell>
                             <Typography fontWeight="bold" mb={1}>
-                              Customer ID
+                              Employee ID
                             </Typography>
                             <TextField
                               variant="standard"
@@ -658,7 +628,7 @@ const Archive1 = () => {
                             <TextField
                               variant="standard"
                               size="small"
-                              value={columnSearch.lastName}
+                              value={columnSearch?.lastName}
                               onChange={(e) => {
                                 const value = e.target.value;
                                 setColumnSearch((prev) => ({
@@ -666,11 +636,11 @@ const Archive1 = () => {
                                   lastName: value,
                                 }));
                                 const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.lastName.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
+                                // const filtered = mockCustomerDocs?.filter(
+                                //   (doc) =>
+                                //     doc.lastName.toLowerCase().includes(query)
+                                // );
+                                // setSearchResults(filtered);
                               }}
                               placeholder="Search  "
                               fullWidth
@@ -678,22 +648,22 @@ const Archive1 = () => {
                           </TableCell>
                           <TableCell>
                             <Typography fontWeight="bold" mb={1}>
-                              ID Number
+                              Degree
                             </Typography>
                             <TextField
                               variant="standard"
                               size="small"
-                              value={columnSearch.nationalId}
+                              value={columnSearch.degree}
                               onChange={(e) => {
                                 const value = e.target.value;
                                 setColumnSearch((prev) => ({
                                   ...prev,
-                                  nationalId: value,
+                                  degree: value,
                                 }));
                                 const query = value.toLowerCase();
                                 const filtered = mockCustomerDocs.filter(
                                   (doc) =>
-                                    doc.nationalId.toLowerCase().includes(query)
+                                    doc.degree.toLowerCase().includes(query)
                                 );
                                 setSearchResults(filtered);
                               }}
@@ -702,6 +672,32 @@ const Archive1 = () => {
                             />
                           </TableCell>
                           <TableCell>
+                            <Typography fontWeight="bold" mb={1}>
+                              Department
+                            </Typography>
+                            <TextField
+                              variant="standard"
+                              size="small"
+                              //   type="date"
+                              value={columnSearch.department}
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                setColumnSearch((prev) => ({
+                                  ...prev,
+                                  department: value,
+                                }));
+                                const query = value.toLowerCase();
+                                const filtered = mockCustomerDocs.filter(
+                                  (doc) =>
+                                    doc.department.toLowerCase().includes(query)
+                                );
+                                setSearchResults(filtered);
+                              }}
+                              placeholder="Search"
+                              fullWidth
+                            />
+                          </TableCell>
+                          {/* <TableCell>
                             <Typography fontWeight="bold" mb={1}>
                               Date of Birth
                             </Typography>
@@ -725,6 +721,31 @@ const Archive1 = () => {
                               placeholder="Search"
                               fullWidth
                             />
+                          </TableCell> */}
+                          <TableCell>
+                            <Typography fontWeight="bold" mb={1}>
+                              Date of Joining
+                            </Typography>
+                            <TextField
+                              variant="standard"
+                              size="small"
+                              type="date"
+                              value={columnSearch.doj}
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                setColumnSearch((prev) => ({
+                                  ...prev,
+                                  doj: value,
+                                }));
+                                const query = value.toLowerCase();
+                                const filtered = mockCustomerDocs.filter(
+                                  (doc) => doc.doj.toLowerCase().includes(query)
+                                );
+                                setSearchResults(filtered);
+                              }}
+                              placeholder="Search"
+                              fullWidth
+                            />
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -742,6 +763,9 @@ const Archive1 = () => {
                               doc.dob
                                 .toLowerCase()
                                 .includes(filterDob.toLowerCase()) &&
+                              doc.doj
+                                .toLowerCase()
+                                .includes(filterDoj.toLowerCase()) &&
                               doc.nationalId
                                 .toLowerCase()
                                 .includes(filterNationalId.toLowerCase())
@@ -763,8 +787,10 @@ const Archive1 = () => {
                               <TableCell>{doc.id}</TableCell>
                               <TableCell>{doc.firstName}</TableCell>
                               <TableCell>{doc.lastName}</TableCell>
-                              <TableCell>{doc.nationalId}</TableCell>
-                              <TableCell>{doc.dob}</TableCell>
+                              <TableCell>{doc.degree}</TableCell>
+                              <TableCell>{doc.department}</TableCell>
+                              {/* <TableCell>{doc.dob}</TableCell> */}
+                              <TableCell>{doc.doj}</TableCell>
                             </TableRow>
                           ))}
 
@@ -820,56 +846,11 @@ const Archive1 = () => {
                       </Typography>
 
                       <TextField
-                        label="Customer ID"
+                        label="Employee ID"
                         fullWidth
                         value={formData.customerId}
                         sx={{ mb: 2 }}
                         // disabled={!selectedDoc}
-                      />
-
-                      <TextField
-                        // label="Issue Date"
-                        label={
-                          <span>
-                            Issue Date{" "}
-                            <span style={{ color: "red", fontSize: "22px" }}>
-                              *
-                            </span>
-                          </span>
-                        }
-                        type="date"
-                        fullWidth
-                        sx={{ mb: 2 }}
-                        InputLabelProps={{ shrink: true }}
-                        value={formData.issueDate}
-                        onChange={(e) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            issueDate: e.target.value,
-                          }))
-                        }
-                      />
-
-                      <TextField
-                        label={
-                          <span>
-                            Expiry Date{" "}
-                            <span style={{ color: "red", fontSize: "22px" }}>
-                              *
-                            </span>
-                          </span>
-                        }
-                        type="date"
-                        fullWidth
-                        sx={{ mb: 2 }}
-                        InputLabelProps={{ shrink: true }}
-                        value={formData.expiryDate}
-                        onChange={(e) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            expiryDate: e.target.value,
-                          }))
-                        }
                       />
                     </Paper>
                   </Grid>
@@ -878,7 +859,7 @@ const Archive1 = () => {
                     //   handleAlertClose={handleAlertClose}
                     // message={`The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}
                     message={
-                      "The document of the customer ID EDB5612 has been saved successfully."
+                      "The document of the Employee ID EMP001 has been saved successfully."
                     }
                   />
                   <Box sx={{ p: 1, mt: 2 }}>
@@ -967,4 +948,4 @@ const Archive1 = () => {
   );
 };
 
-export default Archive1;
+export default HR;
