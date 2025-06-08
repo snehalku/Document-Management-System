@@ -907,6 +907,36 @@ const HR = () => {
                         Discard
                       </Button>
                     </Stack>
+
+                    {/* <Snackbar
+               open={showSnackbar}
+               onClose={handleSnackbarClose}
+               anchorOrigin={{ vertical: "center", horizontal: "right" }}
+             >
+               <Alert
+                 ref={snackbarRef}
+                 severity="success"
+                 variant="filled"
+                 icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
+                 sx={{
+                   width: "100%",
+                   fontWeight: 700,
+                   fontSize: "1rem",
+                   boxShadow: 3,
+                   backgroundColor: "#2e7d32",
+                   color: "#fff",
+                   display: "flex",
+                   alignItems: "center",
+                 }}
+               >
+                 <Box sx={{ display: "flex", alignItems: "center" }}>
+                   <Typography fontWeight={500}>
+                     The document of the customer ID {selectedDoc?.id} has been
+                     saved successfully.
+                   </Typography>
+                 </Box>
+               </Alert>
+             </Snackbar> */}
                   </Box>
                 </Card>
               )}

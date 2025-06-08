@@ -36,7 +36,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2032-12-12",
     invoiceNo: "123477",
-    invoiceDate: "2025-05-29",
+    invoiceDate: "22-09-2020",
     invoiceAmount: "4725",
   },
   {
@@ -45,7 +45,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
-    invoiceDate: "2025-05-29",
+    invoiceDate: "22-09-2020",
     invoiceAmount: "8521",
   },
   {
@@ -54,7 +54,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "2025-05-29",
+    invoiceDate: "22-09-2020",
     invoiceAmount: "3569",
   },
   {
@@ -63,18 +63,18 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
-    invoiceDate: "2025-05-29",
+    invoiceDate: "22-09-2020",
     invoiceAmount: "971",
   },
-  {
-    id: "128",
-    companyName: "Syborgtech",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "325698",
-    invoiceDate: "2025-05-29",
-    invoiceAmount: "1452",
-  },
+  // {
+  //   id: "128",
+  //   companyName: "Syborgtech",
+  //   date: "2025-04-30",
+  //   expiresOn: "2025-10-22",
+  //   invoiceNo: "325698",
+  //   invoiceDate: "2025-05-29",
+  //   invoiceAmount: "1452",
+  // },
 ];
 const Invoice = () => {
   const [docList, setDocList] = useState([]);
@@ -93,6 +93,7 @@ const Invoice = () => {
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [hideTable, setHideTable] = React.useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("Select Category");
 
   const [columnSearch, setColumnSearch] = useState({
     invoiceNo: "",
@@ -190,6 +191,7 @@ const Invoice = () => {
         customerId: "",
         invoiceNo: "",
       });
+      setSelectedCategory("Select Category");
       setSelectedDoc(null);
       setHideTable(false);
       showNextDocument();
@@ -207,9 +209,20 @@ const Invoice = () => {
   const departments = [
     { label: "Sales", route: "/archiveDocument1" },
     { label: "Accounts", route: "/invoice" },
+    { label: "HR", route: "/hr" },
     { label: "Legal" },
-    { label: "HR" },
   ];
+
+  const handleFilter = (e) => {
+    const value = e.target.value;
+    setColumnSearch((prev) => ({
+      ...prev,
+      invoiceDate: value,
+    }));
+    const query = value;
+    const filtered = mockCustomerDocs[0];
+    setSearchResults(filtered);
+  };
 
   return (
     <div>
@@ -217,30 +230,34 @@ const Invoice = () => {
       <Box
         sx={{
           bgcolor: "#f2f4f5",
+          height: "100vh",
           display: "flex",
           justifyContent: "center",
         }}
       >
         <Box
           sx={{
-            bgcolor: "#f2f4f5",
+            // bgcolor: "#f2f4f5",
+            //   minHeight: "90vh",
             width: "100%",
             py: 1,
             ml: "70px",
-            mr: "24px",
+            //   mt: "2px",
+            // mr: "24px",
             boxSizing: "border-box",
             overflow: "hidden",
             position: "relative",
             display: "flex",
             flexDirection: "row",
+            // gap: 2,
           }}
         >
           <Card
             sx={{
               flex: 1.2,
-              height: "87vh",
+              height: "84vh",
               position: "sticky",
-              top: 5,
+              marginTop: 2,
               alignSelf: "flex-start",
               overflowY: "hidden",
             }}
@@ -297,177 +314,177 @@ const Invoice = () => {
             })()}
           </Card>
 
-          {/* </Card> */}
-
           <Box
             sx={{
               flex: 1,
-              height: "100vh",
+              // height: "100vh",
               // p: 2,
               pl: 2,
               pr: 2,
+              // overflowY: "auto",
             }}
           >
-            <Typography variant="h6" fontWeight="bold" mb={2}>
-              Invoice Document
-            </Typography>
-            <Box>
+            <Box
+              sx={{
+                position: "sticky",
+              }}
+            >
+              <Typography variant="h6" fontWeight="bold" mb={1} mt={1}>
+                Invoice Document
+              </Typography>
+
               {!hideTable && (
-                <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
-                  <Typography variant="body2" fontWeight="700">
-                    Date
-                    <span style={{ color: "red", marginLeft: "4px" }}>*</span>
-                  </Typography>
-                  <TextField
-                    label="Search by Invoice Date"
-                    type="date"
-                    size="small"
-                    value={selectedDate}
-                    onChange={(e) => setSelectedDate(e.target.value)}
-                    InputLabelProps={{ shrink: true }}
-                    sx={{ width: 160 }}
-                  />
+                <Card
+                  sx={{
+                    backgroundColor: "#fff",
+                    boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
+                    borderRadius: "5px",
+                    padding: 2,
+                    mb: 1,
+                  }}
+                >
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap={2}
+                    flexWrap="wrap"
+                  >
+                    <Typography variant="body2" fontWeight="700">
+                      Invoice Date
+                      <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                    </Typography>
+                    <TextField
+                      // label="Search by Invoice Date"
+                      type="date"
+                      size="small"
+                      value={selectedDate}
+                      onChange={(e) => setSelectedDate(e.target.value)}
+                      InputLabelProps={{ shrink: true }}
+                      sx={{ width: 160 }}
+                    />
 
-                  <Box display="flex" flexDirection="row">
-                    <Stack
-                      direction="row"
-                      spacing={2}
-                      sx={{ mr: 2 }}
-                      justifyContent="flex-start"
-                      alignItems="center"
-                    >
-                      <Typography variant="body2" fontWeight="700">
-                        Category
-                        <span style={{ color: "red", marginLeft: "4px" }}>
-                          *
-                        </span>
-                      </Typography>
+                    <Box display="flex" flexDirection="row">
+                      <Stack
+                        direction="row"
+                        spacing={2}
+                        sx={{ mr: 2 }}
+                        justifyContent="flex-start"
+                        alignItems="center"
+                      >
+                        <Typography variant="body2" fontWeight="700">
+                          Category
+                          <span style={{ color: "red", marginLeft: "4px" }}>
+                            *
+                          </span>
+                        </Typography>
 
-                      <FormControl sx={{ minWidth: 160 }}>
-                        <Select
-                          labelId="application-select-label"
-                          id="application-select"
-                          defaultValue="Select Category"
-                          label="Application"
-                          sx={{
-                            bgcolor: "#f2f4f5",
-                            height: "36px",
-                            fontSize: "0.8rem",
-                            borderRadius: "4px",
-                            boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                            "& fieldset": {
-                              border: "none",
-                            },
-                            "& .MuiSelect-select": {
-                              padding: "6px 10px",
+                        <FormControl sx={{ minWidth: 160 }}>
+                          <Select
+                            labelId="application-select-label"
+                            id="application-select"
+                            defaultValue="Select Category"
+                            value={selectedCategory}
+                            onChange={(e) =>
+                              setSelectedCategory(e.target.value)
+                            }
+                            // label="Application"
+                            sx={{
+                              height: "36px",
                               fontSize: "0.8rem",
-                            },
-                            "&.Mui-focused": {
-                              boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                            },
-                          }}
-                        >
-                          <MenuItem value="Select Category">
-                            Select Category
-                          </MenuItem>
-                          <MenuItem value="Accounts Payable">
-                            Accounts Payable
-                          </MenuItem>
-                          <MenuItem value="Accounts Receivable">
-                            Accounts Receivable
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Stack>
+                              borderRadius: "4px",
+                            }}
+                          >
+                            <MenuItem value="Select Category">
+                              Select Category
+                            </MenuItem>
+                            <MenuItem value="Accounts Payable">
+                              Accounts Payable
+                            </MenuItem>
+                            <MenuItem value="Accounts Receivable">
+                              Accounts Receivable
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Stack>
 
-                    <Stack
-                      direction="row"
-                      spacing={1.5}
-                      // sx={{ mb: 2 }}
-                      justifyContent="flex-start"
-                      alignItems="center"
-                    >
-                      <Typography variant="body2" fontWeight="700">
-                        Sub Category
-                        <span style={{ color: "red", marginLeft: "4px" }}>
-                          *
-                        </span>
-                      </Typography>
+                      <Stack
+                        direction="row"
+                        spacing={1.5}
+                        // sx={{ mb: 2 }}
+                        justifyContent="flex-start"
+                        alignItems="center"
+                      >
+                        <Typography variant="body2" fontWeight="700">
+                          Sub Category
+                          <span style={{ color: "red", marginLeft: "4px" }}>
+                            *
+                          </span>
+                        </Typography>
 
-                      <FormControl sx={{ minWidth: 160 }}>
-                        <Select
-                          labelId="application-select-label"
-                          id="application-select"
-                          defaultValue="Select Subcategory"
-                          size="small"
-                          sx={{
-                            bgcolor: "#f2f4f5",
-                            height: "36px",
-                            fontSize: "0.8rem",
-                            borderRadius: "4px",
-                            boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                            "& fieldset": {
-                              border: "none",
-                            },
-                            "& .MuiSelect-select": {
-                              padding: "6px 10px",
+                        <FormControl sx={{ minWidth: 160 }}>
+                          <Select
+                            labelId="application-select-label"
+                            id="application-select"
+                            defaultValue="Select Subcategory"
+                            size="small"
+                            sx={{
+                              height: "36px",
                               fontSize: "0.8rem",
-                            },
-                            "&.Mui-focused": {
-                              boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                            },
-                          }}
-                        >
-                          <MenuItem value="Select Subcategory">
-                            Select Subcategory
-                          </MenuItem>
-                          <MenuItem value="Purchase Invoice">
-                            Purchase Invoice
-                          </MenuItem>
-                          {/* <MenuItem value="Sales Invoice">
+                              borderRadius: "4px",
+                            }}
+                          >
+                            <MenuItem value="Select Subcategory">
+                              Select Subcategory
+                            </MenuItem>
+                            <MenuItem value="Purchase Invoice">
+                              Purchase Invoice
+                            </MenuItem>
+                            {/* <MenuItem value="Sales Invoice">
                             Sales Invoice
                           </MenuItem> */}
 
-                          <MenuItem value="Application Form">
-                            Proof of Payment
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Stack>
+                            <MenuItem value="Application Form">
+                              Proof of Payment
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Stack>
+                    </Box>
+
+                    <TextField
+                      label=" Search by Customer ID, Invoice No."
+                      size="small"
+                      value={searchCustomer}
+                      onChange={(e) => setSearchCustomer(e.target.value)}
+                      sx={{ width: 415 }}
+                    />
+
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleSearch}
+                      sx={{
+                        height: "36px",
+                        borderRadius: "8px",
+                        bgcolor: "#99CAFF",
+                        color: "black",
+                        px: 2,
+                        fontSize: "0.8rem",
+                        boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
+                        "&:hover": {
+                          bgcolor: "#7bb8ff",
+                        },
+                      }}
+                    >
+                      Get Data
+                    </Button>
                   </Box>
-
-                  <TextField
-                    label=" Search by Customer ID, Invoice No., Invoice Date, Company Name"
-                    size="small"
-                    value={searchCustomer}
-                    onChange={(e) => setSearchCustomer(e.target.value)}
-                    sx={{ mb: 2, width: 400 }}
-                  />
-
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleSearch}
-                    sx={{
-                      mb: 2,
-                      height: "36px",
-                      borderRadius: "8px",
-                      bgcolor: "#99CAFF",
-                      color: "black",
-                      px: 2,
-                      fontSize: "0.8rem",
-                      boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
-                      "&:hover": {
-                        bgcolor: "#7bb8ff",
-                      },
-                    }}
-                  >
-                    Get Data
-                  </Button>
-                </Box>
+                </Card>
               )}
+            </Box>
+            <Box sx={{ overflowY: "auto", height: "375px" }}>
               {!hideTable && searchResults.length > 0 && (
-                <Paper sx={{ p: 2, mb: 2 }}>
+                <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
                   <Typography
                     variant="body2"
                     color="text.secondary"
@@ -475,6 +492,9 @@ const Invoice = () => {
                   >
                     Select the appropriate record from the list below.
                     <span style={{ color: "red" }}>*</span>
+                  </Typography>
+                  <Typography sx={{ mb: 1, fontWeight: "bold" }}>
+                    Customer details from the OLTP system
                   </Typography>
 
                   <TableContainer
@@ -497,22 +517,9 @@ const Invoice = () => {
                             <TextField
                               variant="standard"
                               size="small"
+                              type="date"
                               value={columnSearch.invoiceDate}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  invoiceDate: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    String(doc.invoiceDate)
-                                      .toLowerCase()
-                                      .includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
+                              onChange={handleFilter}
                               placeholder="Search  "
                               fullWidth
                             />
@@ -524,6 +531,7 @@ const Invoice = () => {
                             <TextField
                               variant="standard"
                               size="small"
+                              autoComplete="off"
                               value={columnSearch.id}
                               onChange={(e) => {
                                 const value = e.target.value;
@@ -549,6 +557,7 @@ const Invoice = () => {
                             <TextField
                               variant="standard"
                               size="small"
+                              autoComplete="off"
                               value={columnSearch.invoiceNo}
                               onChange={(e) => {
                                 const value = e.target.value;
@@ -637,95 +646,101 @@ const Invoice = () => {
                   </TableContainer>
                 </Paper>
               )}
-            </Box>
-
-            <Card
-              sx={{
-                height: alertOpen ? "58vh" : "52vh",
-                overflowY: "auto",
-                p: 2,
-                transition: "height 0.3s ease",
-              }}
-            >
-              <Grid item size={5}>
-                <Paper
+              {searchResults.length > 0 && (
+                <Card
                   sx={{
+                    // height: alertOpen ? "58vh" : "50vh",
+                    overflowY: "auto",
                     p: 2,
-                    display: "flex",
-                    flexDirection: "column",
+                    transition: "height 0.3s ease",
                   }}
                 >
-                  <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
-                    Document
-                  </Typography>
+                  <Grid item size={5}>
+                    <Paper
+                      sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <Typography
+                        sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}
+                      >
+                        Document
+                      </Typography>
 
-                  <TextField
-                    label="Customer ID"
-                    fullWidth
-                    value={formData.customerId}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
-                  />
+                      <TextField
+                        label="Customer ID"
+                        fullWidth
+                        value={formData.customerId}
+                        sx={{ mb: 2 }}
+                        // disabled={!selectedDoc}
+                      />
 
-                  <TextField
-                    label="Invoice No."
-                    fullWidth
-                    value={formData.invoiceNo}
-                    sx={{ mb: 2 }}
-                    // disabled={!selectedDoc}
+                      <TextField
+                        label="Invoice No."
+                        fullWidth
+                        value={formData.invoiceNo}
+                        sx={{ mb: 2 }}
+                        // disabled={!selectedDoc}
+                      />
+                    </Paper>
+                  </Grid>
+                  <TransitionAlerts
+                    alertOpen={alertOpen}
+                    //   handleAlertClose={handleAlertClose}
+                    // message={`The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}
+                    message={
+                      "The document of the Invoice No. 123456 has been saved successfully."
+                    }
                   />
-                </Paper>
-              </Grid>
-              <TransitionAlerts
-                alertOpen={alertOpen}
-                //   handleAlertClose={handleAlertClose}
-                message={
-                  "The document of the Invoice No. 123456 has been saved successfully."
-                }
-              />
-              <Box sx={{ p: 1, mt: 2 }}>
-                <Stack direction="row" spacing={2} justifyContent="flex-end">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleSave}
-                    // disabled={selectedDoc === null}
-                    sx={{
-                      borderRadius: "10px",
-                      bgcolor: "#99CAFF",
-                      color: "black",
-                      px: 3,
-                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                      "&:hover": {
-                        bgcolor: "#7bb8ff",
-                      },
-                    }}
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    // onClick={handleDiscard}
-                    // disabled={!selectedDoc}
-                    sx={{
-                      borderRadius: "10px",
-                      bgcolor: "#f2f4f5",
-                      px: 3,
-                      color: "black",
-                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                      border: "none",
-                      "&:hover": {
-                        bgcolor: "#e5e7e8",
-                        border: "none",
-                      },
-                    }}
-                  >
-                    Discard
-                  </Button>
-                </Stack>
-              </Box>
-            </Card>
+                  <Box sx={{ p: 1, mt: 2 }}>
+                    <Stack
+                      direction="row"
+                      spacing={2}
+                      justifyContent="flex-end"
+                    >
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleSave}
+                        // disabled={selectedDoc === null}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#99CAFF",
+                          color: "black",
+                          px: 3,
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          "&:hover": {
+                            bgcolor: "#7bb8ff",
+                          },
+                        }}
+                      >
+                        Save
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#f2f4f5",
+                          px: 3,
+                          color: "black",
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          border: "none",
+                          "&:hover": {
+                            bgcolor: "#e5e7e8",
+                            border: "none",
+                          },
+                        }}
+                      >
+                        Discard
+                      </Button>
+                    </Stack>
+                  </Box>
+                </Card>
+              )}
+            </Box>
           </Box>
         </Box>
       </Box>
