@@ -314,10 +314,10 @@ const Invoice = () => {
             <Box>
               {!hideTable && (
                 <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
-                <Typography variant="body2" fontWeight="700">
+                  <Typography variant="body2" fontWeight="700">
                     Date
-                      <span style={{ color: "red", marginLeft: "4px" }}>*</span>
-                </Typography>
+                    <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                  </Typography>
                   <TextField
                     label="Search by Invoice Date"
                     type="date"
@@ -338,7 +338,9 @@ const Invoice = () => {
                     >
                       <Typography variant="body2" fontWeight="700">
                         Category
-                        <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                        <span style={{ color: "red", marginLeft: "4px" }}>
+                          *
+                        </span>
                       </Typography>
 
                       <FormControl sx={{ minWidth: 160 }}>
@@ -387,7 +389,9 @@ const Invoice = () => {
                     >
                       <Typography variant="body2" fontWeight="700">
                         Sub Category
-                        <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                        <span style={{ color: "red", marginLeft: "4px" }}>
+                          *
+                        </span>
                       </Typography>
 
                       <FormControl sx={{ minWidth: 160 }}>
@@ -592,42 +596,6 @@ const Invoice = () => {
                               fullWidth
                             />
                           </TableCell>
-                          {/* <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Typography fontWeight="bold" mr={1}>
-                              Company Name
-                            </Typography>
-                            <SearchIcon
-                              sx={{ cursor: "pointer" }}
-                              onClick={() =>
-                                setShowSearchInput((prev) => ({
-                                  ...prev,
-                                  dob: !prev.companyName,
-                                }))
-                              }
-                            />
-                          </Box>
-                          {showSearchInput.companyName && (
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.companyName}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  companyName: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) => doc.companyName.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search Company Name"
-                            />
-                          )}
-                        </TableCell> */}
                         </TableRow>
                       </TableHead>
 
@@ -711,7 +679,6 @@ const Invoice = () => {
               <TransitionAlerts
                 alertOpen={alertOpen}
                 //   handleAlertClose={handleAlertClose}
-                // message={`The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}
                 message={
                   "The document of the Invoice No. 123456 has been saved successfully."
                 }
