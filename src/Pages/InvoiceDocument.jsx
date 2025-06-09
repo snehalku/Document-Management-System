@@ -294,6 +294,28 @@ const InvoiceDocument = () => {
                       />
                     </Stack>
                   </TableCell>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold" align="center">
+                        Customer ID
+                      </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.id}
+                        onChange={(e) =>
+                          handleSearchInputChange("id", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
 
                   <TableCell align="center">
                     <Stack
