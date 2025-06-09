@@ -66,6 +66,15 @@ const mockCustomerDocs = [
     invoiceDate: "22-09-2020",
     invoiceAmount: "971",
   },
+  // {
+  //   id: "128",
+  //   companyName: "Syborgtech",
+  //   date: "2025-04-30",
+  //   expiresOn: "2025-10-22",
+  //   invoiceNo: "325698",
+  //   invoiceDate: "2025-05-29",
+  //   invoiceAmount: "1452",
+  // },
 ];
 const Invoice = () => {
   const [docList, setDocList] = useState([]);
@@ -228,15 +237,19 @@ const Invoice = () => {
       >
         <Box
           sx={{
+            // bgcolor: "#f2f4f5",
+            //   minHeight: "90vh",
             width: "100%",
             py: 1,
             ml: "70px",
-
+            //   mt: "2px",
+            // mr: "24px",
             boxSizing: "border-box",
             overflow: "hidden",
             position: "relative",
             display: "flex",
             flexDirection: "row",
+            // gap: 2,
           }}
         >
           <Card
@@ -252,6 +265,7 @@ const Invoice = () => {
             {(() => {
               const docPath = previewDocPath || selectedDoc?.path || invoice1;
 
+              // Check if docPath is an image
               const isImage =
                 docPath?.toLowerCase().endsWith(".png") ||
                 docPath?.toLowerCase().endsWith(".jpg") ||
@@ -303,9 +317,11 @@ const Invoice = () => {
           <Box
             sx={{
               flex: 1,
-
+              // height: "100vh",
+              // p: 2,
               pl: 2,
               pr: 2,
+              // overflowY: "auto",
             }}
           >
             <Box
@@ -423,6 +439,9 @@ const Invoice = () => {
                             <MenuItem value="Purchase Invoice">
                               Purchase Invoice
                             </MenuItem>
+                            {/* <MenuItem value="Sales Invoice">
+                            Sales Invoice
+                          </MenuItem> */}
 
                             <MenuItem value="Application Form">
                               Proof of Payment
@@ -670,6 +689,7 @@ const Invoice = () => {
                   <TransitionAlerts
                     alertOpen={alertOpen}
                     //   handleAlertClose={handleAlertClose}
+                    // message={`The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}
                     message={
                       "The document of the Invoice No. 123456 has been saved successfully."
                     }
