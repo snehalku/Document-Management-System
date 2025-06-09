@@ -6,6 +6,10 @@ import ReportIcon from "@mui/icons-material/Report";
 import GroupIcon from "@mui/icons-material/Group";
 import SecurityIcon from "@mui/icons-material/Security";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import FolderCopyIcon from "@mui/icons-material/FolderCopy";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import PreviewIcon from "@mui/icons-material/Preview";
+import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 
 import {
   Box,
@@ -23,8 +27,12 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [openUserMgmt, setOpenUserMgmt] = React.useState(false);
-  const [openAuth, setOpenAuth] = React.useState(false);
+  const queryParams = new URLSearchParams(location.search);
+  const department = queryParams.get("department");
+  console.log(department);
+
+  const [openAdmin, setOpenAdmin] = React.useState(false);
+  //   const [openAuth, setOpenAuth] = React.useState(false);
 
   const handleMenuItemClick = (path) => {
     navigate(path);
@@ -35,11 +43,11 @@ const Sidebar = () => {
       elevation={4}
       sx={{
         width: {
-          xs: "180px",
-          sm: "220px",
-          md: "270px",
+          xs: "140px", // for extra-small screens
+          sm: "160px", // for small screens
+          md: "200px", // for medium and up
         },
-        height: "100vh",
+        height: "750px",
         position: "fixed",
         top: 0,
         left: 0,
@@ -55,8 +63,8 @@ const Sidebar = () => {
         <Box
           sx={{
             mt: 3,
-            ml: 4,
-            fontFamily: "Poppins-Bold, Helvetica",
+            ml: 3,
+            fontFamily: "Poppins-Bold, sans-serif",
             fontWeight: 700,
             fontSize: "18px",
           }}
@@ -68,50 +76,22 @@ const Sidebar = () => {
         </Box>
 
         {/* Menu Items */}
+
         <List sx={{ mt: 3, px: 1 }}>
-          {/* Dashboard */}
           <ListItem
-            onClick={() => handleMenuItemClick("/dashboard")}
+            onClick={() => handleMenuItemClick("/archiveDocument1")}
             sx={{
               borderRadius: "10px",
+              mt: 2,
               mb: 1,
               bgcolor:
-                location.pathname === "/dashboard" ? "#d1d4d2" : "transparent",
-              height: "52px",
-              "&:hover": {
-                bgcolor:
-                  location.pathname === "/dashboard" ? "#d1d4d2" : "#f5f5f5",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ListItemIcon
-              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
-            >
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="Dashboard"
-              primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
-              }}
-            />
-          </ListItem>
-          <ListItem
-            onClick={() => handleMenuItemClick("/previewDocument1")}
-            sx={{
-              borderRadius: "10px",
-              mb: 1,
-              bgcolor:
-                location.pathname === "/previewDocument1"
+                location.pathname === "/archiveDocument1"
                   ? "#d1d4d2"
                   : "transparent",
               height: "52px",
               "&:hover": {
                 bgcolor:
-                  location.pathname === "/previewDocument1"
+                  location.pathname === "/archiveDocument1"
                     ? "#d1d4d2"
                     : "#f5f5f5",
                 cursor: "pointer",
@@ -121,58 +101,23 @@ const Sidebar = () => {
             <ListItemIcon
               sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
             >
-              <AssignmentIcon />
+              <ArchiveIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Preview Document"
+              primary="File Document"
               primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
+                fontFamily: "Poppins-Medium, sans-serif",
+                fontWeight: 700,
+                fontSize: "16px",
               }}
             />
           </ListItem>
 
-          {/* Projects */}
-          <ListItem
-            onClick={() => handleMenuItemClick("/previewDocument")}
-            sx={{
-              borderRadius: "10px",
-              mb: 1,
-              bgcolor:
-                location.pathname === "/previewDocument"
-                  ? "#d1d4d2"
-                  : "transparent",
-              height: "52px",
-              "&:hover": {
-                bgcolor:
-                  location.pathname === "/previewDocument"
-                    ? "#d1d4d2"
-                    : "#f5f5f5",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ListItemIcon
-              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
-            >
-              <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="Preview Document"
-              primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
-              }}
-            />
-          </ListItem>
-
-          {/* Reports */}
           <ListItem
             onClick={() => handleMenuItemClick("/documents")}
             sx={{
               borderRadius: "10px",
+              mt: 2,
               mb: 1,
               bgcolor:
                 location.pathname === "/documents" ? "#d1d4d2" : "transparent",
@@ -187,17 +132,51 @@ const Sidebar = () => {
             <ListItemIcon
               sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
             >
-              <ReportIcon />
+              <PreviewIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Documents"
+              primary="View Documents"
               primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
+                fontFamily: "Poppins-Medium, sans-serif",
+                fontWeight: 700,
+                fontSize: "16px",
               }}
             />
           </ListItem>
+          {/* <ListItem
+            onClick={() => handleMenuItemClick("/invoiceDocument")}
+            sx={{
+              borderRadius: "10px",
+              mt: 2,
+              mb: 1,
+              bgcolor:
+                location.pathname === "/invoiceDocument"
+                  ? "#d1d4d2"
+                  : "transparent",
+              height: "52px",
+              "&:hover": {
+                bgcolor:
+                  location.pathname === "/invoiceDocument"
+                    ? "#d1d4d2"
+                    : "#f5f5f5",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <ListItemIcon
+              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+            >
+              <PreviewIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="View Documents"
+              primaryTypographyProps={{
+                fontFamily: "Poppins-Medium, sans-serif",
+                fontWeight: 700,
+                fontSize: "15px",
+              }}
+            />
+          </ListItem> */}
         </List>
       </Box>
 
@@ -219,9 +198,9 @@ const Sidebar = () => {
           <ListItemText
             primary="Log Out"
             primaryTypographyProps={{
-              fontFamily: "Poppins-Medium, Helvetica",
-              fontWeight: 500,
-              fontSize: "15px",
+              fontFamily: "Poppins-Medium, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
             }}
           />
         </ListItem>

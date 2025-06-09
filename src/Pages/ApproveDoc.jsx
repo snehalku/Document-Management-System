@@ -1,135 +1,33 @@
-// import React from "react";
-// import { Box, Typography, Alert, Stack, Paper } from "@mui/material";
-// import dayjs from "dayjs";
-
-// // Sample KYC data with expiry dates
-// const kycDocuments = [
-//   {
-//     customerName: "David R Smith",
-//     expiryDate: "2024-08-22",
-//   },
-//   {
-//     customerName: "Jane Smith",
-//     expiryDate: "2025-05-10",
-//   },
-//   {
-//     customerName: "Sarah Johnson",
-//     expiryDate: "2025-05-25",
-//   },
-//   {
-//     customerName: "David V Smith",
-//     expiryDate: "2025-04-15",
-//   },
-// ];
-
-// const Dashboard = () => {
-//   const today = dayjs();
-
-//   const getExpiryStatus = (date) => {
-//     const expiry = dayjs(date);
-//     const daysLeft = expiry.diff(today, "day");
-
-//     if (daysLeft < 0) return "expired";
-//     if (daysLeft <= 15) return "warning";
-//     return "valid";
-//   };
-
-//   const alerts = kycDocuments
-//     .map((doc) => {
-//       const status = getExpiryStatus(doc.expiryDate);
-//       return status !== "valid"
-//         ? {
-//             ...doc,
-//             status,
-//             message:
-//               status === "expired"
-//                 ? `KYC expired for ${doc.customerName} on ${doc.expiryDate}`
-//                 : `KYC for ${doc.customerName} is expiring soon (${doc.expiryDate})`,
-//           }
-//         : null;
-//     })
-//     .filter(Boolean);
-
-//   return (
-//     <Box
-//       sx={{
-//         bgcolor: "#f2f4f5",
-//         display: "flex",
-//         justifyContent: "center",
-//       }}
-//     >
-//       <Box
-//         sx={{
-//           bgcolor: "#f2f4f5",
-//           minHeight: "90vh",
-//           width: "100%",
-//           py: 4,
-//           pl: "70px",
-//           pt: "12px",
-//           pr: "24px",
-//           boxSizing: "border-box",
-//           overflow: "hidden",
-//           position: "relative",
-//         }}
-//       >
-//         <Paper
-//           elevation={3}
-//           sx={{
-//             p: 3,
-//             borderRadius: 2,
-//             bgcolor: "#ffffff",
-//             mb: 4,
-//           }}
-//         >
-//           <Typography variant="h6" fontWeight="bold" gutterBottom>
-//             KYC Expiry Alerts
-//           </Typography>
-
-//           {alerts.length === 0 ? (
-//             <Typography variant="body1">All KYC documents are valid.</Typography>
-//           ) : (
-//             <Stack spacing={2}>
-//               {alerts.map((alert, index) => (
-//                 <Alert
-//                   key={index}
-//                   severity={alert.status === "expired" ? "error" : "warning"}
-//                 >
-//                   {alert.message}
-//                 </Alert>
-//               ))}
-//             </Stack>
-//           )}
-//         </Paper>
-//       </Box>
-//     </Box>
-//   );
-// };
-
-// export default Dashboard;
-
+import React from "react";
 import {
   Box,
-  Grid,
-  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  Stack,
   TableRow,
-  Typography,
-  Card,
-  CardContent,
-  IconButton,
-  Tooltip,
+  Paper,
   TextField,
+  Typography,
+  Stack,
+  IconButton,
+  Pagination,
+  PaginationItem,
+  Tooltip,
+  Button,
+  Menu,
+  MenuItem,
 } from "@mui/material";
-import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from "recharts";
-
-import React from "react";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import agecard from "../assets/agecard.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import NavigateBefore from "@mui/icons-material/NavigateBefore";
+import NavigateNext from "@mui/icons-material/NavigateNext";
 import SearchIcon from "@mui/icons-material/Search";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
@@ -160,7 +58,6 @@ const projectData = [
     documentName: "Jane_S_202513",
     versionNumber: "2.0",
     status: "Pending for Approval",
-
     category: "KYC",
     subCategory: "Address Proof",
   },
@@ -175,7 +72,6 @@ const projectData = [
     documentName: "Sarah_J_202512",
     versionNumber: "3.0",
     status: "Pending for Approval",
-
     category: "KYC",
     subCategory: "ID Proof",
   },
@@ -190,25 +86,14 @@ const projectData = [
   //   documentName: "David_V_202511",
   //   versionNumber: "4.0",
   //   status: "Pending for Approval",
-
   //   category: "KYC",
   //   subCategory: "Address Proof",
   // },
 ];
-const pieData = [
-  { name: "Pending for Approval", value: 120 },
-  { name: "Approved", value: 155 },
-  { name: "Expiring Soon", value: 69 },
-  { name: "Expired", value: 89 },
-];
 
-// const COLORS = ["#FFA726", "#66BB6A", "#29B6F6", "#EF5350"];
-const COLORS = ["#8E44AD", "#2980B9", "#27AE60", "#F39C12"];
-
-const Dashboard = () => {
+const ApproveDoc = () => {
   const navigate = useNavigate();
   const [searchInputs, setSearchInputs] = useState({
-    id: "",
     customerName: "",
     date: "",
     dob: "",
@@ -220,11 +105,10 @@ const Dashboard = () => {
   });
 
   const [showSearchFields, setShowSearchFields] = useState({
-    id: false,
     customerName: false,
     date: false,
     dob: false,
-    IDNo: false,
+    IdNo: false,
     documentId: false,
     documentName: false,
     category: false,
@@ -276,246 +160,15 @@ const Dashboard = () => {
           position: "relative",
         }}
       >
-        <Grid container spacing={3} sx={{ mb: 2, mt: 3 }}>
-          <Grid item xs={12} md={4}>
-            <Card
-              onClick={() => navigate("/documents")}
-              sx={{
-                borderRadius: "10px",
-                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                position: "relative",
-                pb: 2,
-                cursor: "pointer",
-                width: "215px",
-                height: "80px",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
-                },
-              }}
-            >
-              <CardContent sx={{ position: "relative", p: 2 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h7"
-                    component="div"
-                    fontWeight="500"
-                    fontFamily="Poppins, sans-serif"
-                  >
-                    Total Documents
-                  </Typography>
-                </Box>
-                <Typography
-                  variant="h4"
-                  component="div"
-                  fontWeight="bold"
-                  fontFamily="Poppins, sans-serif"
-                  sx={{ mt: 1 }}
-                >
-                  275
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Card
-              onClick={() => navigate("/approveDoc")}
-              sx={{
-                borderRadius: "10px",
-                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                position: "relative",
-                pb: 2,
-                cursor: "pointer",
-                width: "215px",
-                height: "80px",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
-                },
-              }}
-            >
-              <CardContent sx={{ position: "relative", p: 2 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h7"
-                    component="div"
-                    fontWeight="500"
-                    fontFamily="Poppins, sans-serif"
-                  >
-                    Pending for Approval
-                  </Typography>
-                </Box>
-                <Typography
-                  variant="h4"
-                  component="div"
-                  fontWeight="bold"
-                  fontFamily="Poppins, sans-serif"
-                  sx={{ mt: 1 }}
-                >
-                  120
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                borderRadius: "10px",
-                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                position: "relative",
-                pb: 2,
-                cursor: "pointer",
-                width: "215px",
-                height: "80px",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
-                },
-              }}
-            >
-              <CardContent sx={{ position: "relative", p: 2 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h7"
-                    component="div"
-                    fontWeight="500"
-                    fontFamily="Poppins, sans-serif"
-                  >
-                    Approved
-                  </Typography>
-                </Box>
-                <Typography
-                  variant="h4"
-                  component="div"
-                  fontWeight="bold"
-                  fontFamily="Poppins, sans-serif"
-                  sx={{ mt: 1 }}
-                >
-                  155
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                borderRadius: "10px",
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
-                position: "relative",
-                pb: 2,
-                cursor: "pointer",
-                width: "215px",
-                height: "80px",
-
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
-                },
-              }}
-            >
-              <CardContent sx={{ position: "relative", p: 2 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h7"
-                    component="div"
-                    fontWeight="500"
-                    fontFamily="Poppins, sans-serif"
-                  >
-                    Expiring Soon
-                  </Typography>
-                </Box>
-                <Typography
-                  variant="h4"
-                  component="div"
-                  fontWeight="bold"
-                  fontFamily="Poppins, sans-serif"
-                  sx={{ mt: 1 }}
-                >
-                  69
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                borderRadius: "10px",
-                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                position: "relative",
-                pb: 2,
-                cursor: "pointer",
-                width: "215px",
-                height: "80px",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
-                },
-              }}
-            >
-              <CardContent sx={{ position: "relative", p: 2 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h7"
-                    component="div"
-                    fontWeight="500"
-                    fontFamily="Poppins, sans-serif"
-                  >
-                    Expired
-                  </Typography>
-                </Box>
-                <Typography
-                  variant="h4"
-                  component="div"
-                  fontWeight="bold"
-                  fontFamily="Poppins, sans-serif"
-                  sx={{ mt: 1 }}
-                >
-                  89
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-
-        {/* <Stack
+        <Typography
+          variant="h5"
+          component="h1"
+          fontWeight="bold"
+          sx={{ mb: 2 }}
+        >
+          Approve Documents
+        </Typography>
+        <Stack
           direction="row"
           spacing={2}
           sx={{ mb: 3 }}
@@ -541,37 +194,8 @@ const Dashboard = () => {
               },
             }}
           />
-        </Stack> */}
-
-        <Box sx={{ mt: 6, width: "100%", height: 300 }}>
-          <ResponsiveContainer>
-            <PieChart>
-              <Pie
-                data={pieData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, percent }) =>
-                  `${name}: ${(percent * 100).toFixed(0)}%`
-                }
-                outerRadius={100}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {pieData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </Box>
-
-        {/* <TableContainer
+        </Stack>
+        <TableContainer
           component={Paper}
           sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
         >
@@ -837,16 +461,115 @@ const Dashboard = () => {
                           <CheckBoxIcon />
                         </IconButton>
                       </Tooltip>
+                      {/* <Tooltip title="Download Document">
+                        <a
+                          href={agecard}
+                          download="agecard.jpg"
+                          style={{ color: "inherit", textDecoration: "none" }}
+                        >
+                          <IconButton color="secondary">
+                            <FileDownloadIcon />
+                          </IconButton>
+                        </a>
+                      </Tooltip> */}
                     </Stack>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </TableContainer> */}
+        </TableContainer>
+        <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+          <Pagination
+            count={10}
+            shape="rounded"
+            renderItem={(item) => {
+              if (item.type === "previous") {
+                return (
+                  <PaginationItem
+                    component={IconButton}
+                    sx={{
+                      border: "1px solid #a7a6a6",
+
+                      borderRadius: "5px",
+
+                      bgcolor: "#f2f4f5",
+
+                      mx: 0.5,
+                    }}
+                    {...item}
+                    icon={<NavigateBefore fontSize="small" />}
+                  />
+                );
+              }
+
+              if (item.type === "next") {
+                return (
+                  <PaginationItem
+                    component={IconButton}
+                    sx={{
+                      border: "1px solid #a7a6a6",
+
+                      borderRadius: "5px",
+
+                      bgcolor: "#f2f4f5",
+
+                      mx: 0.5,
+                    }}
+                    {...item}
+                    icon={<NavigateNext fontSize="small" />}
+                  />
+                );
+              }
+
+              return (
+                <PaginationItem
+                  {...item}
+                  sx={{
+                    border: "1px solid #a7a6a6",
+
+                    borderRadius: "5px",
+
+                    bgcolor: item.selected ? "#99caff" : "#f2f4f5",
+
+                    mx: 0.5,
+
+                    color: item.selected ? "black" : "#747474",
+                  }}
+                />
+              );
+            }}
+          />
+          <Box>
+            <Button
+              variant="outlined"
+              size="small"
+              sx={{
+                ml: 1,
+                border: "1px solid #a7a6a6",
+                borderRadius: "5px",
+                bgcolor: "#f2f4f5",
+                color: "#747474",
+                fontSize: "10px",
+                textTransform: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              5 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
+            </Button>
+
+            <Menu>
+              <MenuItem>5/page</MenuItem>
+              <MenuItem>10/page</MenuItem>
+              <MenuItem>15/page</MenuItem>
+            </Menu>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
 };
 
-export default Dashboard;
+export default ApproveDoc;
