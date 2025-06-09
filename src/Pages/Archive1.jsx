@@ -69,37 +69,6 @@ const mockCustomerDocs = [
     expiresOn: "2030-11-12",
     nationalId: "A123456",
   },
-
-  // {
-  //   id: "GTJ523",
-  //   firstName: "James ",
-  //   lastName: "Ashford",
-  //   transactionId: "TXN345",
-  //   date: "2025-05-28",
-  //   dob: "2007-12-11",
-  //   expiresOn: "2025-08-12",
-  //   nationalId: "5843216645678904",
-  // },
-  // {
-  //   id: "EEA5924",
-  //   firstName: "John ",
-  //   lastName: "Greene",
-  //   transactionId: "TXN567",
-  //   date: "2025-05-28",
-  //   dob: "2002-11-09",
-  //   expiresOn: "2028-04-30",
-  //   nationalId: "5843216619642184",
-  // },
-  // {
-  //   id: "EDB5C17",
-  //   firstName: "David ",
-  //   lastName: "Greene",
-  //   transactionId: "TXN567",
-  //   date: "2025-05-28",
-  //   dob: "2002-11-09",
-  //   expiresOn: "2028-04-30",
-  //   nationalId: "5843216619642184",
-  // },
 ];
 const Archive1 = () => {
   const [docList, setDocList] = useState([]);
@@ -242,10 +211,8 @@ const Archive1 = () => {
     function handleClickOutside(event) {
       if (snackbarRef.current && !snackbarRef.current.contains(event.target)) {
         if (showSnackbar) {
-          // Close the snackbar
           setShowSnackbar(false);
 
-          // Move to the next document
           const currentIndex = searchResults.findIndex(
             (doc) => doc.id === selectedDoc.id
           );
@@ -292,19 +259,15 @@ const Archive1 = () => {
       >
         <Box
           sx={{
-            // bgcolor: "#f2f4f5",
-            //   minHeight: "90vh",
             width: "100%",
             py: 1,
             ml: "70px",
-            //   mt: "2px",
-            // mr: "24px",
+
             boxSizing: "border-box",
             overflow: "hidden",
             position: "relative",
             display: "flex",
             flexDirection: "row",
-            // gap: 2,
           }}
         >
           <Card
@@ -317,23 +280,9 @@ const Archive1 = () => {
               overflowY: "hidden",
             }}
           >
-            {/* <Box sx={{ width: "100%", height: "auto" }}>
-            <CardMedia
-              component="img"
-              image={Doc2}
-              alt="Document"
-              sx={{
-                width: "100%",
-                height: "110vh",
-                objectFit: "contain",
-              }}
-            />
-          </Box> */}
-            {/* <Card sx={{ height: "53vh", p: 2 }}> */}
             {(() => {
               const docPath = previewDocPath || selectedDoc?.path || Doc2;
 
-              // Check if docPath is an image
               const isImage =
                 docPath?.toLowerCase().endsWith(".png") ||
                 docPath?.toLowerCase().endsWith(".jpg") ||
@@ -385,11 +334,8 @@ const Archive1 = () => {
           <Box
             sx={{
               flex: 1,
-              // height: "100vh",
-              // p: 2,
               pl: 2,
               pr: 2,
-              // overflowY: "auto",
             }}
           >
             <Box
@@ -464,19 +410,9 @@ const Archive1 = () => {
                             defaultValue="sel"
                             // label="Application"
                             sx={{
-                              // bgcolor: "#f2f4f5",
                               height: "36px",
                               fontSize: "0.8rem",
                               borderRadius: "4px",
-                              // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                              // "& fieldset": { border: "none" },
-                              // "& .MuiSelect-select": {
-                              //   padding: "6px 10px",
-                              //   fontSize: "0.8rem",
-                              // },
-                              // "&.Mui-focused": {
-                              //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                              // },
                             }}
                           >
                             <MenuItem value="sel">Select Category</MenuItem>
@@ -511,17 +447,6 @@ const Archive1 = () => {
                               height: "36px",
                               fontSize: "0.8rem",
                               borderRadius: "4px",
-                              // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                              // "& fieldset": {
-                              //   border: "none",
-                              // },
-                              // "& .MuiSelect-select": {
-                              //   padding: "6px 10px",
-                              //   fontSize: "0.8rem",
-                              // },
-                              // "&.Mui-focused": {
-                              //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                              // },
                             }}
                           >
                             <MenuItem value="sel">Select Subcategory</MenuItem>
@@ -876,7 +801,6 @@ const Archive1 = () => {
                   <TransitionAlerts
                     alertOpen={alertOpen}
                     //   handleAlertClose={handleAlertClose}
-                    // message={`The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}
                     message={
                       "The document of the customer ID EDB5612 has been saved successfully."
                     }
@@ -926,36 +850,6 @@ const Archive1 = () => {
                         Discard
                       </Button>
                     </Stack>
-
-                    {/* <Snackbar
-               open={showSnackbar}
-               onClose={handleSnackbarClose}
-               anchorOrigin={{ vertical: "center", horizontal: "right" }}
-             >
-               <Alert
-                 ref={snackbarRef}
-                 severity="success"
-                 variant="filled"
-                 icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
-                 sx={{
-                   width: "100%",
-                   fontWeight: 700,
-                   fontSize: "1rem",
-                   boxShadow: 3,
-                   backgroundColor: "#2e7d32",
-                   color: "#fff",
-                   display: "flex",
-                   alignItems: "center",
-                 }}
-               >
-                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                   <Typography fontWeight={500}>
-                     The document of the customer ID {selectedDoc?.id} has been
-                     saved successfully.
-                   </Typography>
-                 </Box>
-               </Alert>
-             </Snackbar> */}
                   </Box>
                 </Card>
               )}

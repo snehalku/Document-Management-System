@@ -195,18 +195,8 @@ const InvoiceDocument = () => {
                       height: "36px",
                       fontSize: "0.8rem",
                       borderRadius: "4px",
-                      // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                      // "& fieldset": { border: "none" },
-                      // "& .MuiSelect-select": {
-                      //   padding: "6px 10px",
-                      //   fontSize: "0.8rem",
-                      // },
-                      // "&.Mui-focused": {
-                      //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                      // },
                     }}
                   >
-                    {/* <MenuItem value="sel">Select Category</MenuItem> */}
                     <MenuItem value="Accounts Payable">
                       Accounts Payable
                     </MenuItem>
@@ -240,21 +230,8 @@ const InvoiceDocument = () => {
                       height: "36px",
                       fontSize: "0.8rem",
                       borderRadius: "4px",
-                      // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                      // "& fieldset": {
-                      //   border: "none",
-                      // },
-                      // "& .MuiSelect-select": {
-                      //   padding: "6px 10px",
-                      //   fontSize: "0.8rem",
-                      // },
-                      // "&.Mui-focused": {
-                      //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                      // },
                     }}
                   >
-                    {/* <MenuItem value="sel">Select Subcategory</MenuItem> */}
-
                     <MenuItem value="Purchase Invoice">
                       Purchase Invoice
                     </MenuItem>
@@ -294,40 +271,16 @@ const InvoiceDocument = () => {
                       />
                     </Stack>
                   </TableCell>
-                  {/* <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Category </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.category}
-                        onChange={(e) =>
-                          handleSearchInputChange("category", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    </Stack>
-                  </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Sub Category </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.subCategory}
-                        onChange={(e) =>
-                          handleSearchInputChange("subCategory", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    </Stack>
-                  </TableCell> */}
-                  {/* <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Customer ID</Typography>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold" align="center">
+                        Customer ID
+                      </Typography>
                       <TextField
                         size="small"
                         variant="standard"
@@ -336,10 +289,11 @@ const InvoiceDocument = () => {
                         onChange={(e) =>
                           handleSearchInputChange("id", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
-                  </TableCell> */}
+                  </TableCell>
                   <TableCell align="center">
                     <Stack
                       direction="column"
@@ -473,30 +427,7 @@ const InvoiceDocument = () => {
                     <TableCell align="center">{project.invoiceNo}</TableCell>
 
                     <TableCell align="right">{project.invoiceAmount}</TableCell>
-                    {/* <TableCell>{project.versionNumber}</TableCell> */}
-                    {/* <TableCell>
-                    <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
-                        <IconButton
-                          color="primary"
-                          onClick={() => navigate("/viewdocument")}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip title="Download Document">
-                        <a
-                          href={agecard}
-                          download="agecard.jpg"
-                          style={{ color: "inherit", textDecoration: "none" }}
-                        >
-                          <IconButton color="secondary">
-                            <FileDownloadIcon />
-                          </IconButton>
-                        </a>
-                      </Tooltip>
-                    </Stack>
-                  </TableCell> */}
+
                     <TableCell>
                       <Tooltip title="View and Download">
                         <IconButton
