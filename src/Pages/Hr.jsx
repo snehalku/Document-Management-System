@@ -353,11 +353,9 @@ const HR = () => {
           <Box
             sx={{
               flex: 1,
-              // height: "100vh",
-              // p: 2,
+
               pl: 2,
               pr: 2,
-              // overflowY: "auto",
             }}
           >
             <Box
@@ -436,22 +434,12 @@ const HR = () => {
                               height: "36px",
                               fontSize: "0.8rem",
                               borderRadius: "4px",
-                              // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                              // "& fieldset": { border: "none" },
-                              // "& .MuiSelect-select": {
-                              //   padding: "6px 10px",
-                              //   fontSize: "0.8rem",
-                              // },
-                              // "&.Mui-focused": {
-                              //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                              // },
                             }}
                           >
                             <MenuItem value="sel">Select Category</MenuItem>
                             <MenuItem value="Educational Qualification">
                               Educational Qualification
                             </MenuItem>
-                            {/* <MenuItem value="Account">Transaction</MenuItem> */}
                           </Select>
                         </FormControl>
                       </Stack>
@@ -481,17 +469,6 @@ const HR = () => {
                               height: "36px",
                               fontSize: "0.8rem",
                               borderRadius: "4px",
-                              // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                              // "& fieldset": {
-                              //   border: "none",
-                              // },
-                              // "& .MuiSelect-select": {
-                              //   padding: "6px 10px",
-                              //   fontSize: "0.8rem",
-                              // },
-                              // "&.Mui-focused": {
-                              //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                              // },
                             }}
                           >
                             <MenuItem value="sel">Select Subcategory</MenuItem>
@@ -499,7 +476,6 @@ const HR = () => {
                             <MenuItem value=" Degree Certificate ">
                               Degree Certificate
                             </MenuItem>
-                            {/* <MenuItem value="ID Proof">ID Proof</MenuItem> */}
                           </Select>
                         </FormControl>
                       </Stack>
@@ -697,31 +673,6 @@ const HR = () => {
                               fullWidth
                             />
                           </TableCell>
-                          {/* <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
-                              Date of Birth
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              type="date"
-                              value={columnSearch.dob}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  dob: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) => doc.dob.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search"
-                              fullWidth
-                            />
-                          </TableCell> */}
                           <TableCell>
                             <Typography fontWeight="bold" mb={1}>
                               Date of Joining
@@ -857,7 +808,6 @@ const HR = () => {
                   <TransitionAlerts
                     alertOpen={alertOpen}
                     //   handleAlertClose={handleAlertClose}
-                    // message={`The document of the customer ID ${selectedDoc?.id} has been saved successfully.`}
                     message={
                       "The document of the Employee ID EMP001 has been saved successfully."
                     }
@@ -907,36 +857,6 @@ const HR = () => {
                         Discard
                       </Button>
                     </Stack>
-
-                    {/* <Snackbar
-               open={showSnackbar}
-               onClose={handleSnackbarClose}
-               anchorOrigin={{ vertical: "center", horizontal: "right" }}
-             >
-               <Alert
-                 ref={snackbarRef}
-                 severity="success"
-                 variant="filled"
-                 icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
-                 sx={{
-                   width: "100%",
-                   fontWeight: 700,
-                   fontSize: "1rem",
-                   boxShadow: 3,
-                   backgroundColor: "#2e7d32",
-                   color: "#fff",
-                   display: "flex",
-                   alignItems: "center",
-                 }}
-               >
-                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                   <Typography fontWeight={500}>
-                     The document of the customer ID {selectedDoc?.id} has been
-                     saved successfully.
-                   </Typography>
-                 </Box>
-               </Alert>
-             </Snackbar> */}
                   </Box>
                 </Card>
               )}
