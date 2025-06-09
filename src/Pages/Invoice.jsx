@@ -415,7 +415,7 @@ const Invoice = () => {
                         alignItems="center"
                       >
                         <Typography variant="body2" fontWeight="700">
-                          Subcategory
+                          Sub Category
                           <span style={{ color: "red", marginLeft: "4px" }}>
                             *
                           </span>
