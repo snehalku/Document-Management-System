@@ -18,6 +18,8 @@ import {
   Button,
   Menu,
   MenuItem,
+  FormControl,
+  Select,
 } from "@mui/material";
 import Doc2 from "../assets/Doc2.png";
 
@@ -161,33 +163,86 @@ const InvoiceDocument = () => {
           >
             View Documents
           </Typography>
-          {/* <Stack
-          direction="row"
-          spacing={2}
-          sx={{ mb: 3 }}
-          justifyContent="space-between"
-        >
-          <TextField
-            placeholder="Search by Customer ID, Transaction Date, Customer Name, Date of Birth, ID No., Document ID, Document Name, Version No."
-            variant="outlined"
-            sx={{
-              width: "72%",
-              bgcolor: "#fff",
-              height: "50px",
-              borderRadius: "10px",
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ mb: 3 }}
+            justifyContent="space-between"
+          >
+            <Box display="flex" flexDirection="row">
+              <Stack
+                direction="row"
+                spacing={2}
+                sx={{ mr: 2 }}
+                justifyContent="flex-start"
+                alignItems="center"
+              >
+                <Typography variant="body2" fontWeight="700">
+                  Category
+                  <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                </Typography>
 
-              "& .MuiOutlinedInput-root": {
-                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
-                "& fieldset": {
-                  border: "none",
-                },
-                "&.Mui-focused": {
-                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
-                },
-              },
-            }}
-          />
-        </Stack> */}
+                <FormControl sx={{ minWidth: 160 }}>
+                  <Select
+                    labelId="application-select-label"
+                    id="application-select"
+                    // value={selectedCategory}
+                    // onChange={(e) => setSelectedCategory(e.target.value)}
+                    defaultValue="Accounts Payable"
+                    // label="Application"
+                    sx={{
+                      // bgcolor: "#f2f4f5",
+                      height: "36px",
+                      fontSize: "0.8rem",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    <MenuItem value="Accounts Payable">
+                      Accounts Payable
+                    </MenuItem>
+                    <MenuItem value="Accounts Receivable">
+                      Accounts Receivable
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
+
+              <Stack
+                direction="row"
+                spacing={1.5}
+                // sx={{ mb: 2 }}
+                justifyContent="flex-start"
+                alignItems="center"
+              >
+                <Typography variant="body2" fontWeight="700">
+                  Subcategory
+                  <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                </Typography>
+
+                <FormControl sx={{ minWidth: 160 }}>
+                  <Select
+                    labelId="application-select-label"
+                    id="application-select"
+                    defaultValue="Purchase Invoice"
+                    size="small"
+                    sx={{
+                      // bgcolor: "#f2f4f5",
+                      height: "36px",
+                      fontSize: "0.8rem",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    <MenuItem value="Purchase Invoice">
+                      Purchase Invoice
+                    </MenuItem>
+                    <MenuItem value="Proof of Payment">
+                      Proof of Payment
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
+            </Box>
+          </Stack>
           <TableContainer
             component={Paper}
             sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
@@ -195,8 +250,12 @@ const InvoiceDocument = () => {
             <Table>
               <TableHead>
                 <TableRow sx={{ bgcolor: "#99caff" }}>
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Invoice Date </Typography>
                       <TextField
                         size="small"
@@ -207,44 +266,21 @@ const InvoiceDocument = () => {
                         onChange={(e) =>
                           handleSearchInputChange("invoiceDate", e.target.value)
                         }
-                        sx={{ mt: 1 }}
-                      />
-                    </Stack>
-                  </TableCell>
-                  <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Category </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.category}
-                        onChange={(e) =>
-                          handleSearchInputChange("category", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Sub Category </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.subCategory}
-                        onChange={(e) =>
-                          handleSearchInputChange("subCategory", e.target.value)
-                        }
-                        sx={{ mt: 1 }}
-                      />
-                    </Stack>
-                  </TableCell>
-                  <TableCell>
-                    <Stack direction="column">
-                      <Typography fontWeight="bold">Customer ID</Typography>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold" align="center">
+                        Customer ID
+                      </Typography>
                       <TextField
                         size="small"
                         variant="standard"
@@ -253,13 +289,40 @@ const InvoiceDocument = () => {
                         onChange={(e) =>
                           handleSearchInputChange("id", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold" align="center">
+                        Customer ID
+                      </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.id}
+                        onChange={(e) =>
+                          handleSearchInputChange("id", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Document ID </Typography>
                       <TextField
                         size="small"
@@ -269,13 +332,18 @@ const InvoiceDocument = () => {
                         onChange={(e) =>
                           handleSearchInputChange("docId", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Document Name </Typography>
                       <TextField
                         size="small"
@@ -285,12 +353,17 @@ const InvoiceDocument = () => {
                         onChange={(e) =>
                           handleSearchInputChange("docName", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Invoice No. </Typography>
                       <TextField
                         size="small"
@@ -300,13 +373,18 @@ const InvoiceDocument = () => {
                         onChange={(e) =>
                           handleSearchInputChange("invoiceNo", e.target.value)
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="column">
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Invoice Amount</Typography>
                       <TextField
                         size="small"
@@ -319,7 +397,8 @@ const InvoiceDocument = () => {
                             e.target.value
                           )
                         }
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
                   </TableCell>
@@ -335,54 +414,25 @@ const InvoiceDocument = () => {
               <TableBody>
                 {filteredData.map((project) => (
                   <TableRow key={project.id} hover>
-                    <TableCell>{project.invoiceDate}</TableCell>
-                    <TableCell>{project.category}</TableCell>
-                    <TableCell>{project.subCategory}</TableCell>
+                    <TableCell align="center">{project.invoiceDate}</TableCell>
+                    {/* <TableCell>{project.category}</TableCell> */}
+                    {/* <TableCell>{project.subCategory}</TableCell> */}
 
                     <TableCell>
                       <Typography align="center">{project.id}</Typography>
                     </TableCell>
 
                     <TableCell align="center">{project.docId}</TableCell>
-                    <TableCell>{project.docName}</TableCell>
+                    <TableCell align="center">{project.docName}</TableCell>
                     <TableCell align="center">{project.invoiceNo}</TableCell>
 
                     <TableCell align="right">{project.invoiceAmount}</TableCell>
-                    {/* <TableCell>{project.versionNumber}</TableCell> */}
-                    {/* <TableCell>
-                    <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
-                        <IconButton
-                          color="primary"
-                          onClick={() => navigate("/viewdocument")}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip title="Download Document">
-                        <a
-                          href={agecard}
-                          download="agecard.jpg"
-                          style={{ color: "inherit", textDecoration: "none" }}
-                        >
-                          <IconButton color="secondary">
-                            <FileDownloadIcon />
-                          </IconButton>
-                        </a>
-                      </Tooltip>
-                    </Stack>
-                  </TableCell> */}
+
                     <TableCell>
                       <Tooltip title="View and Download">
                         <IconButton
                           color="primary"
-                          onClick={() =>
-                            window.open(
-                              invoice1,
-                              "_blank",
-                              "noopener,noreferrer"
-                            )
-                          }
+                          onClick={() => window.open(invoice1)}
                         >
                           <VisibilityIcon />
                         </IconButton>

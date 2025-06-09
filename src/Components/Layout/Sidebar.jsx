@@ -45,7 +45,7 @@ const Sidebar = () => {
         width: {
           xs: "140px", // for extra-small screens
           sm: "160px", // for small screens
-          md: "201px", // for medium and up
+          md: "200px", // for medium and up
         },
         height: "750px",
         position: "fixed",
@@ -64,7 +64,7 @@ const Sidebar = () => {
           sx={{
             mt: 3,
             ml: 3,
-            fontFamily: "Poppins-Bold, Helvetica",
+            fontFamily: "Poppins-Bold, sans-serif",
             fontWeight: 700,
             fontSize: "18px",
           }}
@@ -106,9 +106,9 @@ const Sidebar = () => {
             <ListItemText
               primary="File Document"
               primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
+                fontFamily: "Poppins-Medium, sans-serif",
+                fontWeight: 700,
+                fontSize: "16px",
               }}
             />
           </ListItem>
@@ -137,9 +137,9 @@ const Sidebar = () => {
             <ListItemText
               primary="View Documents"
               primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
-                fontSize: "15px",
+                fontFamily: "Poppins-Medium, sans-serif",
+                fontWeight: 700,
+                fontSize: "16px",
               }}
             />
           </ListItem>
@@ -171,8 +171,8 @@ const Sidebar = () => {
             <ListItemText
               primary="View Documents"
               primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, Helvetica",
-                fontWeight: 500,
+                fontFamily: "Poppins-Medium, sans-serif",
+                fontWeight: 700,
                 fontSize: "15px",
               }}
             />
@@ -198,9 +198,9 @@ const Sidebar = () => {
           <ListItemText
             primary="Log Out"
             primaryTypographyProps={{
-              fontFamily: "Poppins-Medium, Helvetica",
-              fontWeight: 500,
-              fontSize: "15px",
+              fontFamily: "Poppins-Medium, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
             }}
           />
         </ListItem>
