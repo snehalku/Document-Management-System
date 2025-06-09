@@ -303,7 +303,6 @@ const Invoice = () => {
           <Box
             sx={{
               flex: 1,
-
               pl: 2,
               pr: 2,
             }}
