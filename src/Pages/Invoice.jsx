@@ -237,6 +237,7 @@ const Invoice = () => {
             position: "relative",
             display: "flex",
             flexDirection: "row",
+            // gap: 2,
           }}
         >
           <Card
@@ -303,9 +304,9 @@ const Invoice = () => {
           <Box
             sx={{
               flex: 1,
-
               pl: 2,
               pr: 2,
+              // overflowY: "auto",
             }}
           >
             <Box

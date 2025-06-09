@@ -469,6 +469,17 @@ const HR = () => {
                               height: "36px",
                               fontSize: "0.8rem",
                               borderRadius: "4px",
+                              // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
+                              // "& fieldset": {
+                              //   border: "none",
+                              // },
+                              // "& .MuiSelect-select": {
+                              //   padding: "6px 10px",
+                              //   fontSize: "0.8rem",
+                              // },
+                              // "&.Mui-focused": {
+                              //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
+                              // },
                             }}
                           >
                             <MenuItem value="sel">Select Subcategory</MenuItem>
@@ -476,6 +487,7 @@ const HR = () => {
                             <MenuItem value=" Degree Certificate ">
                               Degree Certificate
                             </MenuItem>
+                            {/* <MenuItem value="ID Proof">ID Proof</MenuItem> */}
                           </Select>
                         </FormControl>
                       </Stack>
