@@ -265,6 +265,7 @@ const HR = () => {
     { label: "Legal" },
   ];
 
+  const today = new Date().toISOString().split("T")[0];
   return (
     <div>
       <Header departments={departments} defValue={"HR"} />
@@ -398,6 +399,7 @@ const HR = () => {
                         type="date"
                         size="small"
                         // value={selectedDate}
+                        defaultValue={today}
                         onChange={(e) => setSelectedDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
                         sx={{ width: 160 }}
@@ -793,7 +795,7 @@ const HR = () => {
                       <Typography
                         sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}
                       >
-                        Document
+                        Additional Information
                       </Typography>
 
                       <TextField
