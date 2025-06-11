@@ -22,6 +22,7 @@ import {
 } from "@mui/material";
 import Doc2 from "../assets/Doc2.png";
 import Doc3 from "../assets/Doc3.png";
+import transactionDoc from "../assets/trDoc.jpg";
 import SearchIcon from "@mui/icons-material/Search";
 import { Snackbar, Alert } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -69,6 +70,26 @@ const mockCustomerDocs = [
     expiresOn: "2030-11-12",
     nationalId: "A123456",
   },
+  {
+    id: "EEA5923",
+    firstName: "John",
+    lastName: "carter",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "14-11-1998",
+    expiresOn: "2032-12-12",
+    nationalId: "A123477",
+  },
+  {
+    id: "EDB5615",
+    firstName: "John",
+    lastName: "Brown",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "06-09-1986",
+    expiresOn: "2030-11-12",
+    nationalId: "A123456",
+  },
 ];
 const Archive1 = () => {
   const [docList, setDocList] = useState([]);
@@ -89,7 +110,8 @@ const Archive1 = () => {
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [hideTable, setHideTable] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("sel");
+  const [selectedCategory, setSelectedCategory] = useState("AML_KYC");
+  const [formCard, setFormCard] = useState(false);
 
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
@@ -146,6 +168,10 @@ const Archive1 = () => {
       );
     });
     setSearchResults(results);
+  };
+
+  const handleSubcategory = () => {
+    handleSearch();
   };
 
   const handleSelectSearchDoc = (doc) => {
@@ -245,6 +271,16 @@ const Archive1 = () => {
     { label: "Legal" },
   ];
 
+  const today = new Date().toISOString().split("T")[0];
+
+  const onCheck = () => {
+    setHideTable(true);
+    setFormCard(true);
+  };
+  const handleCategory = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
   return (
     <div>
       <Header departments={departments} defValue={"Sales"} />
@@ -281,7 +317,10 @@ const Archive1 = () => {
             }}
           >
             {(() => {
-              const docPath = previewDocPath || selectedDoc?.path || Doc2;
+              let docPath = previewDocPath || selectedDoc?.path || Doc2;
+              if (selectedCategory === "Transaction") {
+                docPath = transactionDoc;
+              }
 
               const isImage =
                 docPath?.toLowerCase().endsWith(".png") ||
@@ -378,6 +417,7 @@ const Archive1 = () => {
                         type="date"
                         size="small"
                         // value={selectedDate}
+                        defaultValue={today}
                         onChange={(e) => setSelectedDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
                         sx={{ width: 160 }}
@@ -404,10 +444,8 @@ const Archive1 = () => {
                             labelId="application-select-label"
                             id="application-select"
                             value={selectedCategory}
-                            onChange={(e) =>
-                              setSelectedCategory(e.target.value)
-                            }
-                            defaultValue="sel"
+                            onChange={handleCategory}
+                            defaultValue="AML_KYC"
                             // label="Application"
                             sx={{
                               height: "36px",
@@ -416,8 +454,8 @@ const Archive1 = () => {
                             }}
                           >
                             <MenuItem value="sel">Select Category</MenuItem>
-                            <MenuItem value="AML KYC">AML KYC</MenuItem>
-                            <MenuItem value="Account">Transaction</MenuItem>
+                            <MenuItem value="AML_KYC">AML KYC</MenuItem>
+                            <MenuItem value="Transaction">Transaction</MenuItem>
                           </Select>
                         </FormControl>
                       </Stack>
@@ -437,30 +475,58 @@ const Archive1 = () => {
                         </Typography>
 
                         <FormControl sx={{ minWidth: 160 }}>
-                          <Select
-                            // labelId="application-select-label"
-                            id="application-select"
-                            defaultValue="sel"
-                            size="small"
-                            sx={{
-                              // bgcolor: "#f2f4f5",
-                              height: "36px",
-                              fontSize: "0.8rem",
-                              borderRadius: "4px",
-                            }}
-                          >
-                            <MenuItem value="sel">Select Subcategory</MenuItem>
+                          {selectedCategory === "AML_KYC" ? (
+                            <Select
+                              // labelId="application-select-label"
+                              id="application-select"
+                              defaultValue="sel"
+                              size="small"
+                              onChange={handleSubcategory}
+                              sx={{
+                                // bgcolor: "#f2f4f5",
+                                height: "36px",
+                                fontSize: "0.8rem",
+                                borderRadius: "4px",
+                              }}
+                            >
+                              <MenuItem value="sel">
+                                Select Subcategory
+                              </MenuItem>
 
-                            <MenuItem value="ID Proof">ID Proof</MenuItem>
-                            <MenuItem value="Address Proof">
-                              Address Proof
-                            </MenuItem>
-                          </Select>
+                              <MenuItem value="ID Proof">ID Proof</MenuItem>
+                              <MenuItem value="Address Proof">
+                                Address Proof
+                              </MenuItem>
+                            </Select>
+                          ) : (
+                            <Select
+                              // labelId="application-select-label"
+                              id="application-select"
+                              defaultValue="sel"
+                              size="small"
+                              onChange={handleSubcategory}
+                              sx={{
+                                // bgcolor: "#f2f4f5",
+                                height: "36px",
+                                fontSize: "0.8rem",
+                                borderRadius: "4px",
+                              }}
+                            >
+                              <MenuItem value="sel">
+                                Select Subcategory
+                              </MenuItem>
+
+                              <MenuItem value="ID Proof">New Purchase</MenuItem>
+                              <MenuItem value="Address Proof">
+                                Transfer
+                              </MenuItem>
+                            </Select>
+                          )}
                         </FormControl>
                       </Stack>
                     </Box>
 
-                    <TextField
+                    {/* <TextField
                       label=" Search by Customer ID, Customer Name"
                       size="small"
                       value={searchCustomer}
@@ -487,12 +553,12 @@ const Archive1 = () => {
                       }}
                     >
                       Get Data
-                    </Button>
+                    </Button> */}
                   </Box>
                 </Card>
               )}
             </Box>
-            <Box sx={{ overflowY: "auto", height: "375px" }}>
+            <Box sx={{ overflowY: "auto" }}>
               {!hideTable && searchResults.length > 0 && (
                 <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
                   <Typography
@@ -511,7 +577,7 @@ const Archive1 = () => {
                     component={Paper}
                     sx={{
                       borderRadius: "10px 10px 0 0",
-                      maxHeight: 400,
+                      maxHeight: 361,
                       overflow: "auto",
                     }}
                   >
@@ -681,7 +747,7 @@ const Archive1 = () => {
                               <TableCell>
                                 <Checkbox
                                   checked={confirmedDocIds.includes(doc.id)}
-                                  onChange={() => setHideTable(true)}
+                                  onChange={onCheck}
                                 />
                               </TableCell>
 
@@ -721,7 +787,7 @@ const Archive1 = () => {
                   </TableContainer>
                 </Paper>
               )}
-              {searchResults.length > 0 && (
+              {formCard && (
                 <Card
                   sx={{
                     // height: alertOpen ? "62vh" : "50vh",
@@ -741,7 +807,7 @@ const Archive1 = () => {
                       <Typography
                         sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}
                       >
-                        Document
+                        Additional Information
                       </Typography>
 
                       <TextField
@@ -757,9 +823,9 @@ const Archive1 = () => {
                         label={
                           <span>
                             Issue Date{" "}
-                            <span style={{ color: "red", fontSize: "22px" }}>
+                            {/* <span style={{ color: "red", fontSize: "22px" }}>
                               *
-                            </span>
+                            </span> */}
                           </span>
                         }
                         type="date"
@@ -779,9 +845,9 @@ const Archive1 = () => {
                         label={
                           <span>
                             Expiry Date{" "}
-                            <span style={{ color: "red", fontSize: "22px" }}>
+                            {/* <span style={{ color: "red", fontSize: "22px" }}>
                               *
-                            </span>
+                            </span> */}
                           </span>
                         }
                         type="date"
