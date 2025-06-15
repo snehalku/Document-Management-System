@@ -37,44 +37,83 @@ import Header from "../Components/Layout/Header";
 
 const projectData = [
   {
-    id: "123",
-    invoiceDate: "29-05-2025",
-    invoiceNo: "123456",
-    invoiceAmount: "971",
+    id: "111",
+    companyName: "TCS",
+    date: "2025-04-30",
+    expiresOn: "2032-12-12",
+    invoiceNo: "123477",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "4725",
     docId: "11",
     docName: "invoice_2025",
     category: "Accounts Payable",
     subCategory: "Purchase Invoice",
   },
+
   {
-    id: "325",
-    invoiceDate: "29-05-2025",
-    invoiceNo: "451278",
-    invoiceAmount: "4125",
+    id: "125",
+    companyName: "Fujitsu",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "547896",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "8521",
     docId: "13",
     docName: "invoice_2024",
     category: "Accounts Receivable",
     subCategory: "Sales Invoice",
   },
   {
-    id: "245",
-    invoiceDate: "29-05-2025",
-    invoiceNo: "478569",
-    invoiceAmount: "2365",
-    docId: "10",
-    docName: "invoice_12",
-    category: "Accounts Receivable",
-    subCategory: "Sales Invoice",
+    id: "126",
+    companyName: "Infosys",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "457896",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "3569",
+    docId: "18",
+    docName: "invoice_18",
+    category: "Accounts Payable",
+    subCategory: "Purchase Invoice",
   },
   {
-    id: "451",
-    invoiceDate: "29-05-2025",
-    invoiceNo: "896541",
-    invoiceAmount: "1254",
+    id: "123",
+    companyName: "Syborgtech",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "971",
+    docId: "16",
+    docName: "invoice_16",
+    category: "Accounts Payable",
+    subCategory: "Purchase Invoice",
+  },
+  {
+    id: "127",
+    companyName: "Maitland",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "457896",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "3599",
     docId: "14",
     docName: "invoice_14",
     category: "Accounts Payable",
     subCategory: "Purchase Invoice",
+  },
+  {
+    id: "128",
+    companyName: "SyborgtechGlobal",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "9878",
+    docId: "10",
+    docName: "invoice_12",
+    category: "Accounts Receivable",
+    subCategory: "Sales Invoice",
   },
 ];
 
@@ -200,9 +239,9 @@ const InvoiceDocument = () => {
                     <MenuItem value="Accounts Payable">
                       Accounts Payable
                     </MenuItem>
-                    <MenuItem value="Accounts Receivable">
+                    {/* <MenuItem value="Accounts Receivable">
                       Accounts Receivable
-                    </MenuItem>
+                    </MenuItem> */}
                   </Select>
                 </FormControl>
               </Stack>
@@ -256,6 +295,50 @@ const InvoiceDocument = () => {
                       alignItems="center"
                       justifyContent="center"
                     >
+                      <Typography fontWeight="bold" align="center">
+                        Supplier ID
+                      </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.id}
+                        onChange={(e) =>
+                          handleSearchInputChange("id", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold" align="center">
+                        Supplier Name
+                      </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.id}
+                        onChange={(e) =>
+                          handleSearchInputChange("id", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Typography fontWeight="bold">Invoice Date </Typography>
                       <TextField
                         size="small"
@@ -265,93 +348,6 @@ const InvoiceDocument = () => {
                         value={searchInputs.invoiceDate}
                         onChange={(e) =>
                           handleSearchInputChange("invoiceDate", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold" align="center">
-                        Customer ID
-                      </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.id}
-                        onChange={(e) =>
-                          handleSearchInputChange("id", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold" align="center">
-                        Customer ID
-                      </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.id}
-                        onChange={(e) =>
-                          handleSearchInputChange("id", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Document ID </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.docId}
-                        onChange={(e) =>
-                          handleSearchInputChange("docId", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Document Name </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.docName}
-                        onChange={(e) =>
-                          handleSearchInputChange("docName", e.target.value)
                         }
                         sx={{ mt: 1, width: "100px", textAlign: "center" }}
                         inputProps={{ style: { textAlign: "center" } }}
@@ -402,6 +398,70 @@ const InvoiceDocument = () => {
                       />
                     </Stack>
                   </TableCell>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold">
+                        Transaction Date{" "}
+                      </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        type="date"
+                        value={searchInputs.invoiceDate}
+                        onChange={(e) =>
+                          handleSearchInputChange("invoiceDate", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold">Document ID </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.docId}
+                        onChange={(e) =>
+                          handleSearchInputChange("docId", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
+
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold">Document Name </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.docName}
+                        onChange={(e) =>
+                          handleSearchInputChange("docName", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
 
                   <TableCell>
                     <Stack direction="row" alignItems="center">
@@ -414,19 +474,22 @@ const InvoiceDocument = () => {
               <TableBody>
                 {filteredData.map((project) => (
                   <TableRow key={project.id} hover>
-                    <TableCell align="center">{project.invoiceDate}</TableCell>
+                    <TableCell align="center">{project.id}</TableCell>
                     {/* <TableCell>{project.category}</TableCell> */}
                     {/* <TableCell>{project.subCategory}</TableCell> */}
 
                     <TableCell>
-                      <Typography align="center">{project.id}</Typography>
+                      <Typography align="center">
+                        {project.companyName}
+                      </Typography>
                     </TableCell>
 
+                    <TableCell align="center">{project.invoiceDate}</TableCell>
+                    <TableCell align="center">{project.invoiceNo}</TableCell>
+                    <TableCell align="right">{project.invoiceAmount}</TableCell>
+                    <TableCell align="center">{project.invoiceDate}</TableCell>
                     <TableCell align="center">{project.docId}</TableCell>
                     <TableCell align="center">{project.docName}</TableCell>
-                    <TableCell align="center">{project.invoiceNo}</TableCell>
-
-                    <TableCell align="right">{project.invoiceAmount}</TableCell>
 
                     <TableCell>
                       <Tooltip title="View and Download">

@@ -103,7 +103,7 @@ const Invoice = () => {
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [hideTable, setHideTable] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Select Category");
+  const [selectedCategory, setSelectedCategory] = useState("Accounts");
   const [formCard, setFormCard] = useState(false);
 
   const [columnSearch, setColumnSearch] = useState({
@@ -412,7 +412,7 @@ const Invoice = () => {
                             <MenuItem value="Select Category">
                               Select Category
                             </MenuItem>
-                            <MenuItem value="Accounts Payable">
+                            <MenuItem value="Accounts">
                               Accounts Payable
                             </MenuItem>
                           </Select>
@@ -476,7 +476,7 @@ const Invoice = () => {
                     <span style={{ color: "red" }}>*</span>
                   </Typography>
                   <Typography sx={{ mb: 1, fontWeight: "bold" }}>
-                    Customer details from the OLTP system
+                    Supplier details from the OLTP system
                   </Typography>
 
                   <TableContainer

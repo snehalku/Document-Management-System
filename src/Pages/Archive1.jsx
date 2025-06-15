@@ -91,6 +91,75 @@ const mockCustomerDocs = [
     nationalId: "A123456",
   },
 ];
+const unitHolderDetails = [
+  {
+    id: "UH004",
+    transactionDate: "10/05/2025",
+    transactionNo: "TXN1001",
+    transactionType: "Purchase",
+    fund: "Fund 1",
+    class: "A",
+    amount: "60000",
+    units: "5141.388175",
+    nav: "11.67",
+  },
+  {
+    id: "UH001",
+    transactionDate: "05/03/2025",
+    transactionNo: "TXN1012",
+    transactionType: "Purchase",
+    fund: "Fund 2",
+    class: "B",
+    amount: "70000",
+    units: "3225.806452",
+    nav: "21.7",
+  },
+  {
+    id: "UH056",
+    transactionDate: "10/01/2025",
+    transactionNo: "TXN1032",
+    transactionType: "Purchase",
+    fund: "Fund 5",
+    class: "C",
+    amount: "17000",
+    units: "500",
+    nav: "34",
+  },
+  {
+    id: "UH045",
+    transactionDate: "10/03/2025",
+    transactionNo: "TXN1025",
+    transactionType: "Purchase",
+    fund: "Fund 4",
+    class: "D",
+    amount: "40000",
+    units: "3174.603175",
+    nav: "12.6",
+  },
+  {
+    id: "UH002",
+    transactionDate: "01/05/2025",
+    transactionNo: "TXN1002",
+    transactionType: "Purchase",
+    fund: "Fund 6",
+    class: "E",
+    amount: "18000",
+    units: "818.1818182",
+    nav: "22",
+  },
+  {
+    id: "UH025",
+    transactionDate: "04/02/2025",
+    transactionNo: "TXN1031",
+    transactionType: "Purchase",
+    fund: "Fund 4",
+    class: "F",
+    amount: "15000",
+    units: "652.173913",
+    nav: "23",
+  },
+];
+
 const Archive1 = () => {
   const [docList, setDocList] = useState([]);
   const [selectedDocName, setSelectedDocName] = useState("");
@@ -109,6 +178,7 @@ const Archive1 = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [searchUnitResult, setSearchUnitResults] = useState([]);
   const [hideTable, setHideTable] = React.useState(false);
   const [selectedCategory, setSelectedCategory] = useState("AML_KYC");
   const [formCard, setFormCard] = useState(false);
@@ -128,6 +198,18 @@ const Archive1 = () => {
     issueDate: "",
     expiryDate: "",
     // versionNo: "1.0",
+  });
+
+  const [unitColumnSearch, setUnitColumnSearch] = useState({
+    id: "",
+    transactionDate: "",
+    transactionNo: "",
+    transactionType: "",
+    fund: "",
+    class: "",
+    amount: "",
+    units: "",
+    nav: "",
   });
 
   useEffect(() => {
@@ -170,8 +252,30 @@ const Archive1 = () => {
     setSearchResults(results);
   };
 
+  const handleSUnitearch = () => {
+    const query = searchCustomer.toLowerCase();
+
+    const results = unitHolderDetails.filter((doc) => {
+      return (
+        !searchCustomer || // Return all if query is empty
+        doc.id.toLowerCase().includes(query) ||
+        doc.transactionDate.toLowerCase().includes(query) ||
+        doc.transactionNo.toLowerCase().includes(query) ||
+        doc.transactionType.toLowerCase().includes(query) ||
+        doc.fund.toLowerCase().includes(query) ||
+        doc.class.toLowerCase().includes(query) ||
+        doc.amount.toString().toLowerCase().includes(query) ||
+        doc.units.toString().toLowerCase().includes(query) ||
+        doc.nav.toString().toLowerCase().includes(query)
+      );
+    });
+
+    setSearchUnitResults(results);
+  };
+
   const handleSubcategory = () => {
     handleSearch();
+    handleSUnitearch();
   };
 
   const handleSelectSearchDoc = (doc) => {
@@ -375,6 +479,7 @@ const Archive1 = () => {
               flex: 1,
               pl: 2,
               pr: 2,
+              width: "50%",
             }}
           >
             <Box
@@ -525,268 +630,582 @@ const Archive1 = () => {
                         </FormControl>
                       </Stack>
                     </Box>
-
-                    {/* <TextField
-                      label=" Search by Customer ID, Customer Name"
-                      size="small"
-                      value={searchCustomer}
-                      onChange={(e) => setSearchCustomer(e.target.value)}
-                      sx={{ width: 415 }}
-                      autoComplete="off"
-                    />
-
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleSearch}
-                      sx={{
-                        height: "36px",
-                        borderRadius: "8px",
-                        bgcolor: "#99CAFF",
-                        color: "black",
-                        px: 2,
-                        fontSize: "0.8rem",
-                        boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
-                        "&:hover": {
-                          bgcolor: "#7bb8ff",
-                        },
-                      }}
-                    >
-                      Get Data
-                    </Button> */}
                   </Box>
                 </Card>
               )}
             </Box>
-            <Box sx={{ overflowY: "auto" }}>
-              {!hideTable && searchResults.length > 0 && (
-                <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ mb: 1 }}
-                  >
-                    Select the appropriate record from the list below.
-                    <span style={{ color: "red" }}>*</span>
-                  </Typography>
-                  <Typography sx={{ mb: 1, fontWeight: "bold" }}>
-                    Customer details from the OLTP system
-                  </Typography>
+            <Box sx={{ overflowY: "auto", overflowX: "auto" }}>
+              {selectedCategory === "AML_KYC" ? (
+                <div>
+                  {!hideTable && searchResults.length > 0 && (
+                    <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                          mb: 1,
+                        }}
+                      >
+                        Select the appropriate record from the list below.
+                        <span style={{ color: "red" }}>*</span>
+                      </Typography>
+                      <Typography sx={{ mb: 1, fontWeight: "bold" }}>
+                        Customer details from the OLTP system
+                      </Typography>
 
-                  <TableContainer
-                    component={Paper}
-                    sx={{
-                      borderRadius: "10px 10px 0 0",
-                      maxHeight: 361,
-                      overflow: "auto",
-                    }}
-                  >
-                    <Table size="small">
-                      <TableHead>
-                        <TableRow
-                          sx={{ bgcolor: "#99caff", "& td": { py: 0.5 } }}
-                        >
-                          {" "}
-                          <TableCell>
-                            <Typography fontWeight="bold"></Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
-                              Customer ID
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.id}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  id: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    String(doc.id).toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search  "
-                              fullWidth
-                              autoComplete="off"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
-                              First Name
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.firstName}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  firstName: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.firstName.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search  "
-                              fullWidth
-                              autoComplete="off"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
-                              Last Name
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.lastName}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  lastName: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.lastName.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search  "
-                              fullWidth
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
-                              ID Number
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              value={columnSearch.nationalId}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  nationalId: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    doc.nationalId.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search"
-                              fullWidth
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
-                              Date of Birth
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              type="date"
-                              value={columnSearch.dob}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  dob: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) => doc.dob.toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search"
-                              fullWidth
-                            />
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-
-                      <TableBody>
-                        {searchResults
-                          .filter(
-                            (doc) =>
-                              doc.firstName
-                                .toLowerCase()
-                                .includes(filterFirstName.toLowerCase()) &&
-                              doc.lastName
-                                .toLowerCase()
-                                .includes(filterLastName.toLowerCase()) &&
-                              doc.dob
-                                .toLowerCase()
-                                .includes(filterDob.toLowerCase()) &&
-                              doc.nationalId
-                                .toLowerCase()
-                                .includes(filterNationalId.toLowerCase())
-                          )
-                          .map((doc) => (
+                      <TableContainer
+                        component={Paper}
+                        sx={{
+                          borderRadius: "10px 10px 0 0",
+                          maxHeight: 361,
+                          maxwidth: 200,
+                          overflow: "auto",
+                        }}
+                      >
+                        <Table size="small">
+                          <TableHead>
                             <TableRow
-                              key={doc.id}
-                              hover
-                              onClick={() => handleSelectSearchDoc(doc)}
-                              sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
+                              sx={{ bgcolor: "#99caff", "& td": { py: 0.5 } }}
                             >
+                              {" "}
                               <TableCell>
-                                <Checkbox
-                                  checked={confirmedDocIds.includes(doc.id)}
-                                  onChange={onCheck}
+                                <Typography fontWeight="bold"></Typography>
+                              </TableCell>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Customer ID
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={columnSearch.id}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setColumnSearch((prev) => ({
+                                      ...prev,
+                                      id: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = mockCustomerDocs.filter(
+                                      (doc) =>
+                                        String(doc.id)
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search  "
+                                  fullWidth
+                                  autoComplete="off"
+                                />
+                              </TableCell>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  First Name
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={columnSearch.firstName}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setColumnSearch((prev) => ({
+                                      ...prev,
+                                      firstName: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = mockCustomerDocs.filter(
+                                      (doc) =>
+                                        doc.firstName
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search  "
+                                  fullWidth
+                                  autoComplete="off"
+                                />
+                              </TableCell>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Last Name
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={columnSearch.lastName}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setColumnSearch((prev) => ({
+                                      ...prev,
+                                      lastName: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = mockCustomerDocs.filter(
+                                      (doc) =>
+                                        doc.lastName
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search  "
+                                  fullWidth
+                                />
+                              </TableCell>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  ID Number
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={columnSearch.nationalId}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setColumnSearch((prev) => ({
+                                      ...prev,
+                                      nationalId: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = mockCustomerDocs.filter(
+                                      (doc) =>
+                                        doc.nationalId
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Date of Birth
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  type="date"
+                                  value={columnSearch.dob}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setColumnSearch((prev) => ({
+                                      ...prev,
+                                      dob: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = mockCustomerDocs.filter(
+                                      (doc) =>
+                                        doc.dob.toLowerCase().includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+                            </TableRow>
+                          </TableHead>
+
+                          <TableBody>
+                            {searchResults
+                              .filter(
+                                (doc) =>
+                                  doc.firstName
+                                    .toLowerCase()
+                                    .includes(filterFirstName.toLowerCase()) &&
+                                  doc.lastName
+                                    .toLowerCase()
+                                    .includes(filterLastName.toLowerCase()) &&
+                                  doc.dob
+                                    .toLowerCase()
+                                    .includes(filterDob.toLowerCase()) &&
+                                  doc.nationalId
+                                    .toLowerCase()
+                                    .includes(filterNationalId.toLowerCase())
+                              )
+                              .map((doc) => (
+                                <TableRow
+                                  key={doc.id}
+                                  hover
+                                  onClick={() => handleSelectSearchDoc(doc)}
+                                  sx={{
+                                    cursor: "pointer",
+                                    "& td": { py: 0.5 },
+                                  }}
+                                >
+                                  <TableCell>
+                                    <Checkbox
+                                      checked={confirmedDocIds.includes(doc.id)}
+                                      onChange={onCheck}
+                                    />
+                                  </TableCell>
+
+                                  <TableCell>{doc.id}</TableCell>
+                                  <TableCell>{doc.firstName}</TableCell>
+                                  <TableCell>{doc.lastName}</TableCell>
+                                  <TableCell>{doc.nationalId}</TableCell>
+                                  <TableCell>{doc.dob}</TableCell>
+                                </TableRow>
+                              ))}
+
+                            {searchResults.filter(
+                              (doc) =>
+                                doc.firstName
+                                  .toLowerCase()
+                                  .includes(filterFirstName.toLowerCase()) &&
+                                doc.lastName
+                                  .toLowerCase()
+                                  .includes(filterLastName.toLowerCase()) &&
+                                doc.dob
+                                  .toLowerCase()
+                                  .includes(filterDob.toLowerCase()) &&
+                                doc.nationalId
+                                  .toLowerCase()
+                                  .includes(filterNationalId.toLowerCase())
+                            ).length === 0 && (
+                              <TableRow>
+                                <TableCell colSpan={6} align="center">
+                                  <Typography color="text.secondary">
+                                    No records found.
+                                  </Typography>
+                                </TableCell>
+                              </TableRow>
+                            )}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    </Paper>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  {!hideTable && searchResults.length > 0 && (
+                    <Paper
+                      sx={{
+                        p: 2,
+                        mb: 2,
+                        mt: 1,
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                          mb: 1,
+                        }}
+                      >
+                        Select the appropriate record from the list below.
+                        <span style={{ color: "red" }}>*</span>
+                      </Typography>
+                      <Typography sx={{ mb: 1, fontWeight: "bold" }}>
+                        Unitholder details from the OLTP system
+                      </Typography>
+
+                      <TableContainer
+                        component={Paper}
+                        sx={{
+                          borderRadius: "10px 10px 0 0",
+                          maxHeight: 361,
+                          maxwidth: 200,
+                          overflow: "auto",
+                        }}
+                      >
+                        <Table size="small">
+                          <TableHead>
+                            <TableRow
+                              sx={{ bgcolor: "#99caff", "& td": { py: 0.5 } }}
+                            >
+                              <TableCell></TableCell>
+
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Unitholder ID
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.id}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      id: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.id.toLowerCase().includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
                                 />
                               </TableCell>
 
-                              <TableCell>{doc.id}</TableCell>
-                              <TableCell>{doc.firstName}</TableCell>
-                              <TableCell>{doc.lastName}</TableCell>
-                              <TableCell>{doc.nationalId}</TableCell>
-                              <TableCell>{doc.dob}</TableCell>
-                            </TableRow>
-                          ))}
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Transaction Date
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.transactionDate}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      transactionDate: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.transactionDate
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
 
-                        {searchResults.filter(
-                          (doc) =>
-                            doc.firstName
-                              .toLowerCase()
-                              .includes(filterFirstName.toLowerCase()) &&
-                            doc.lastName
-                              .toLowerCase()
-                              .includes(filterLastName.toLowerCase()) &&
-                            doc.dob
-                              .toLowerCase()
-                              .includes(filterDob.toLowerCase()) &&
-                            doc.nationalId
-                              .toLowerCase()
-                              .includes(filterNationalId.toLowerCase())
-                        ).length === 0 && (
-                          <TableRow>
-                            <TableCell colSpan={6} align="center">
-                              <Typography color="text.secondary">
-                                No records found.
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        )}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </Paper>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Transaction No.
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.transactionNo}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      transactionNo: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.transactionNo
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Transaction Type
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.transactionType}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      transactionType: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.transactionType
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Fund
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.fund}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      fund: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.fund.toLowerCase().includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Class
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.class}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      class: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.class.toLowerCase().includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Amount
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.amount}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      amount: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.amount.toLowerCase().includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Units
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.units}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      units: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.units.toLowerCase().includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  NAV
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.nav}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      nav: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.nav.toLowerCase().includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+                            </TableRow>
+                          </TableHead>
+
+                          <TableBody>
+                            {searchUnitResult.map((doc) => (
+                              <TableRow
+                                key={doc.id}
+                                hover
+                                onClick={() => handleSelectSearchDoc(doc)}
+                                sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
+                              >
+                                <TableCell>
+                                  <Checkbox
+                                    checked={confirmedDocIds.includes(doc.id)}
+                                    onChange={onCheck}
+                                  />
+                                </TableCell>
+                                <TableCell>{doc.id}</TableCell>
+                                <TableCell>{doc.transactionDate}</TableCell>
+                                <TableCell>{doc.transactionNo}</TableCell>
+                                <TableCell>{doc.transactionType}</TableCell>
+                                <TableCell>{doc.fund}</TableCell>
+                                <TableCell>{doc.class}</TableCell>
+                                <TableCell>{doc.amount}</TableCell>
+                                <TableCell>{doc.units}</TableCell>
+                                <TableCell>{doc.nav}</TableCell>
+                              </TableRow>
+                            ))}
+
+                            {searchUnitResult.length === 0 && (
+                              <TableRow>
+                                <TableCell colSpan={10} align="center">
+                                  <Typography color="text.secondary">
+                                    No records found.
+                                  </Typography>
+                                </TableCell>
+                              </TableRow>
+                            )}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    </Paper>
+                  )}
+                </div>
               )}
+
               {formCard && (
                 <Card
                   sx={{
