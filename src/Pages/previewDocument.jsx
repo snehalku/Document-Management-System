@@ -830,7 +830,7 @@ const PreviewKycPage = () => {
               icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
               sx={{
                 width: "100%",
-                fontWeight: 500,
+                fontWeight: 700,
                 fontSize: "1rem",
                 boxShadow: 3,
                 backgroundColor: "#2e7d32",
