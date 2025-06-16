@@ -106,7 +106,7 @@ const HR = () => {
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [hideTable, setHideTable] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("sel");
+  const [selectedCategory, setSelectedCategory] = useState("Educational Qualification");
 
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
@@ -165,6 +165,9 @@ const HR = () => {
     setSearchResults(results);
   };
 
+  const handleSubcategory = () => {
+    handleSearch();
+  }; 
   const handleSelectSearchDoc = (doc) => {
     setSelectedDoc(doc);
     setCategory(doc.category || "");
@@ -265,6 +268,7 @@ const HR = () => {
     { label: "Legal" },
   ];
 
+  const today = new Date().toISOString().split("T")[0];
   return (
     <div>
       <Header departments={departments} defValue={"HR"} />
@@ -398,6 +402,7 @@ const HR = () => {
                         type="date"
                         size="small"
                         // value={selectedDate}
+                        defaultValue={today}
                         onChange={(e) => setSelectedDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
                         sx={{ width: 160 }}
@@ -423,6 +428,7 @@ const HR = () => {
                           <Select
                             labelId="application-select-label"
                             id="application-select"
+                            //  defaultValue="Select Category"
                             value={selectedCategory}
                             onChange={(e) =>
                               setSelectedCategory(e.target.value)
@@ -460,10 +466,11 @@ const HR = () => {
 
                         <FormControl sx={{ minWidth: 160 }}>
                           <Select
-                            // labelId="application-select-label"
+                            labelId="application-select-label"
                             id="application-select"
                             defaultValue="sel"
                             size="small"
+                             onChange={handleSubcategory}
                             sx={{
                               // bgcolor: "#f2f4f5",
                               height: "36px",
@@ -480,35 +487,6 @@ const HR = () => {
                         </FormControl>
                       </Stack>
                     </Box>
-
-                    <TextField
-                      label=" Search by Employee ID, Employee Name"
-                      size="small"
-                      value={searchCustomer}
-                      onChange={(e) => setSearchCustomer(e.target.value)}
-                      sx={{ width: 415 }}
-                      autoComplete="off"
-                    />
-
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleSearch}
-                      sx={{
-                        height: "36px",
-                        borderRadius: "8px",
-                        bgcolor: "#99CAFF",
-                        color: "black",
-                        px: 2,
-                        fontSize: "0.8rem",
-                        boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
-                        "&:hover": {
-                          bgcolor: "#7bb8ff",
-                        },
-                      }}
-                    >
-                      Get Data
-                    </Button>
                   </Box>
                 </Card>
               )}
@@ -793,7 +771,7 @@ const HR = () => {
                       <Typography
                         sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}
                       >
-                        Document
+                        Additional Information
                       </Typography>
 
                       <TextField

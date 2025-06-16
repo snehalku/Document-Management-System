@@ -21,6 +21,7 @@ import Login from "./Pages/Login";
 import Invoice from "./Pages/Invoice";
 import InvoiceDocument from "./Pages/InvoiceDocument";
 import HR from "./Pages/Hr";
+import HrDocument from "./Pages/HrDocument";
 
 function App() {
   const router = createBrowserRouter([
@@ -100,6 +101,10 @@ function App() {
         {
           path: "hr",
           element: <HR />,
+        },
+         {
+          path: "hrDocument",
+          element: <HrDocument />,
         },
       ],
     },
