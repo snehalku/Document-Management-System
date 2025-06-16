@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Table,
@@ -141,6 +141,12 @@ const Documents = () => {
     subCategory: false,
   });
   const [selectedCategory, setSelectedCategory] = useState("AML_KYC");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("ID Proof");
+  useEffect(() => {
+    if (selectedCategory === "Transaction") {
+      setSelectedSubcategory("newPurchase");
+    }
+  });
 
   const handleSearchInputChange = (field, value) => {
     setSearchInputs((prev) => ({
@@ -171,7 +177,16 @@ const Documents = () => {
   ];
 
   const handleCategory = (e) => {
-    setSelectedCategory(e.target.value);
+    const newCategory = e.target.value;
+    setSelectedCategory(newCategory);
+
+    if (newCategory === "AML_KYC") {
+      setSelectedSubcategory("ID Proof");
+    } else if (newCategory === "Transaction") {
+      setSelectedSubcategory("New Purchase");
+    } else {
+      setSelectedSubcategory("sel");
+    }
   };
 
   const handleSubcategory = () => {
@@ -281,6 +296,7 @@ const Documents = () => {
                       id="application-select"
                       defaultValue="ID Proof"
                       size="small"
+                      value={selectedSubcategory}
                       onChange={handleSubcategory}
                       sx={{
                         // bgcolor: "#f2f4f5",
@@ -298,7 +314,8 @@ const Documents = () => {
                     <Select
                       // labelId="application-select-label"
                       id="application-select"
-                      value="Address Proof"
+                      defaultValue="sel"
+                      value={selectedSubcategory}
                       size="small"
                       onChange={handleSubcategory}
                       sx={{
@@ -311,12 +328,12 @@ const Documents = () => {
                       <MenuItem value="sel">Select Subcategory</MenuItem>
 
                       <MenuItem value="newPurchase">New Purchase</MenuItem>
-                      <MenuItem value="Address Proof">
+                      <MenuItem value="Additional Purchase">
                         Additional Purchase
                       </MenuItem>
-                      <MenuItem value="Address Proof">Redempyion</MenuItem>
-                      <MenuItem value="Address Proof">Switch</MenuItem>
-                      <MenuItem value="Address Proof">Transfer</MenuItem>
+                      <MenuItem value="Redemption">Redemption</MenuItem>
+                      <MenuItem value="Switch">Switch</MenuItem>
+                      <MenuItem value="Transfer">Transfer</MenuItem>
                     </Select>
                   )}
                 </FormControl>
