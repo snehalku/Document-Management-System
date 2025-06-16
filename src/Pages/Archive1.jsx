@@ -623,6 +623,13 @@ const Archive1 = () => {
 
                               <MenuItem value="ID Proof">New Purchase</MenuItem>
                               <MenuItem value="Address Proof">
+                                Additional Purchase
+                              </MenuItem>
+                              <MenuItem value="Address Proof">
+                                Redempyion
+                              </MenuItem>
+                              <MenuItem value="Address Proof">Switch</MenuItem>
+                              <MenuItem value="Address Proof">
                                 Transfer
                               </MenuItem>
                             </Select>
@@ -940,7 +947,7 @@ const Archive1 = () => {
                                       (doc) =>
                                         doc.id.toLowerCase().includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
@@ -954,6 +961,7 @@ const Archive1 = () => {
                                 <TextField
                                   variant="standard"
                                   size="small"
+                                  type="date"
                                   value={unitColumnSearch.transactionDate}
                                   onChange={(e) => {
                                     const value = e.target.value;
@@ -968,7 +976,7 @@ const Archive1 = () => {
                                           .toLowerCase()
                                           .includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
@@ -996,7 +1004,7 @@ const Archive1 = () => {
                                           .toLowerCase()
                                           .includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
@@ -1024,7 +1032,7 @@ const Archive1 = () => {
                                           .toLowerCase()
                                           .includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
@@ -1050,7 +1058,7 @@ const Archive1 = () => {
                                       (doc) =>
                                         doc.fund.toLowerCase().includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
@@ -1076,7 +1084,7 @@ const Archive1 = () => {
                                       (doc) =>
                                         doc.class.toLowerCase().includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
@@ -1102,7 +1110,7 @@ const Archive1 = () => {
                                       (doc) =>
                                         doc.amount.toLowerCase().includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
@@ -1128,7 +1136,7 @@ const Archive1 = () => {
                                       (doc) =>
                                         doc.units.toLowerCase().includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
@@ -1154,7 +1162,7 @@ const Archive1 = () => {
                                       (doc) =>
                                         doc.nav.toLowerCase().includes(query)
                                     );
-                                    setSearchResults(filtered);
+                                    setSearchUnitResults(filtered);
                                   }}
                                   placeholder="Search"
                                   fullWidth
