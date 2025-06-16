@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Table,
@@ -140,6 +140,13 @@ const Documents = () => {
     category: false,
     subCategory: false,
   });
+  const [selectedCategory, setSelectedCategory] = useState("AML_KYC");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("ID Proof");
+  useEffect(() => {
+    if (selectedCategory === "Transaction") {
+      setSelectedSubcategory("newPurchase");
+    }
+  });
 
   const handleSearchInputChange = (field, value) => {
     setSearchInputs((prev) => ({
@@ -168,6 +175,24 @@ const Documents = () => {
     { label: "Legal" },
     { label: "HR" },
   ];
+
+  const handleCategory = (e) => {
+    const newCategory = e.target.value;
+    setSelectedCategory(newCategory);
+
+    if (newCategory === "AML_KYC") {
+      setSelectedSubcategory("ID Proof");
+    } else if (newCategory === "Transaction") {
+      setSelectedSubcategory("New Purchase");
+    } else {
+      setSelectedSubcategory("sel");
+    }
+  };
+
+  const handleSubcategory = () => {
+    // handleSearch();
+    // handleSUnitearch();
+  };
 
   return (
     <div>
@@ -225,9 +250,9 @@ const Documents = () => {
                   <Select
                     labelId="application-select-label"
                     id="application-select"
-                    // value={selectedCategory}
-                    // onChange={(e) => setSelectedCategory(e.target.value)}
-                    defaultValue="AML KYC"
+                    value={selectedCategory}
+                    onChange={handleCategory}
+                    defaultValue="AML_KYC"
                     // label="Application"
                     sx={{
                       // bgcolor: "#f2f4f5",
@@ -246,8 +271,8 @@ const Documents = () => {
                     }}
                   >
                     {/* <MenuItem value="sel">Select Category</MenuItem> */}
-                    <MenuItem value="AML KYC">AML KYC</MenuItem>
-                    <MenuItem value="Account">Transaction</MenuItem>
+                    <MenuItem value="AML_KYC">AML KYC</MenuItem>
+                    <MenuItem value="Transaction">Transaction</MenuItem>
                   </Select>
                 </FormControl>
               </Stack>
@@ -265,34 +290,52 @@ const Documents = () => {
                 </Typography>
 
                 <FormControl sx={{ minWidth: 160 }}>
-                  <Select
-                    labelId="application-select-label"
-                    id="application-select"
-                    defaultValue="ID Proof"
-                    size="small"
-                    sx={{
-                      // bgcolor: "#f2f4f5",
-                      height: "36px",
-                      fontSize: "0.8rem",
-                      borderRadius: "4px",
-                      // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                      // "& fieldset": {
-                      //   border: "none",
-                      // },
-                      // "& .MuiSelect-select": {
-                      //   padding: "6px 10px",
-                      //   fontSize: "0.8rem",
-                      // },
-                      // "&.Mui-focused": {
-                      //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                      // },
-                    }}
-                  >
-                    {/* <MenuItem value="sel">Select Subcategory</MenuItem> */}
+                  {selectedCategory === "AML_KYC" ? (
+                    <Select
+                      // labelId="application-select-label"
+                      id="application-select"
+                      defaultValue="ID Proof"
+                      size="small"
+                      value={selectedSubcategory}
+                      onChange={handleSubcategory}
+                      sx={{
+                        // bgcolor: "#f2f4f5",
+                        height: "36px",
+                        fontSize: "0.8rem",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      <MenuItem value="sel">Select Subcategory</MenuItem>
 
-                    <MenuItem value="ID Proof">ID Proof</MenuItem>
-                    <MenuItem value="Address Proof">Address Proof</MenuItem>
-                  </Select>
+                      <MenuItem value="ID Proof">ID Proof</MenuItem>
+                      <MenuItem value="Address Proof">Address Proof</MenuItem>
+                    </Select>
+                  ) : (
+                    <Select
+                      // labelId="application-select-label"
+                      id="application-select"
+                      defaultValue="sel"
+                      value={selectedSubcategory}
+                      size="small"
+                      onChange={handleSubcategory}
+                      sx={{
+                        // bgcolor: "#f2f4f5",
+                        height: "36px",
+                        fontSize: "0.8rem",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      <MenuItem value="sel">Select Subcategory</MenuItem>
+
+                      <MenuItem value="newPurchase">New Purchase</MenuItem>
+                      <MenuItem value="Additional Purchase">
+                        Additional Purchase
+                      </MenuItem>
+                      <MenuItem value="Redemption">Redemption</MenuItem>
+                      <MenuItem value="Switch">Switch</MenuItem>
+                      <MenuItem value="Transfer">Transfer</MenuItem>
+                    </Select>
+                  )}
                 </FormControl>
               </Stack>
             </Box>
