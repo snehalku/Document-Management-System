@@ -21,9 +21,7 @@ import {
   FormControl,
   Select,
 } from "@mui/material";
-import Doc2 from "../assets/Doc2.png";
-
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import hr1 from "../assets/hr1.png";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import invoice1 from "../assets/invoice1.png";
@@ -35,110 +33,92 @@ import NavigateNext from "@mui/icons-material/NavigateNext";
 import SearchIcon from "@mui/icons-material/Search";
 import Header from "../Components/Layout/Header";
 
-const projectData = [
+const mockCustomerDocs = [
   {
-    id: "111",
-    companyName: "TCS",
-    date: "2025-04-30",
-    expiresOn: "2032-12-12",
-    invoiceNo: "123477",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "4725",
+    id: "EMP045",
+    firstName: "Andrew",
+    lastName: "Lilli",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "16-11-1988",
+    doj: "06-06-2025",
+    expiresOn: "2020-01-02",
+    nationalId: "AS1234567",
+    degree: "Bsc",
+    department: "IT",
     docId: "11",
-    docName: "invoice_2025",
-    category: "Accounts Payable",
-    subCategory: "Purchase Invoice",
+    docName: "Andrew_L_202513",
   },
-
   {
-    id: "125",
-    companyName: "Fujitsu",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "547896",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "8521",
+    id: "EMP001",
+    firstName: "Andrew ",
+    lastName: "Prendergrast",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "01-05-2006",
+    doj: "06-06-2025",
+   docId: "12",
+    docName: "Andrew_P_202513",
+    expiresOn: "2024-08-22",
+    nationalId: "5843216645678904",
+    degree: "BA",
+    department: "Sales",
+  },
+  {
+    id: "EMP036",
+    firstName: "Andrew",
+    lastName: "Smith",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "14-11-1998",
+    doj: "06-06-2025",
     docId: "13",
-    docName: "invoice_2024",
-    category: "Accounts Receivable",
-    subCategory: "Sales Invoice",
+    docName: "Andrew_S_202513",
+    expiresOn: "2032-12-12",
+    nationalId: "A123477",
+    degree: "MBA",
+    department: "HR",
   },
   {
-    id: "126",
-    companyName: "Infosys",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "457896",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "3569",
-    docId: "18",
-    docName: "invoice_18",
-    category: "Accounts Payable",
-    subCategory: "Purchase Invoice",
-  },
-  {
-    id: "123",
-    companyName: "Syborgtech",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "123456",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "971",
-    docId: "16",
-    docName: "invoice_16",
-    category: "Accounts Payable",
-    subCategory: "Purchase Invoice",
-  },
-  {
-    id: "127",
-    companyName: "Maitland",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "457896",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "3599",
+    id: "EMP235",
+    firstName: "Andrew",
+    lastName: "Livone",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "06-09-1986",
+    doj: "06-06-2025",
     docId: "14",
-    docName: "invoice_14",
-    category: "Accounts Payable",
-    subCategory: "Purchase Invoice",
-  },
-  {
-    id: "128",
-    companyName: "SyborgtechGlobal",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "123456",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "9878",
-    docId: "10",
-    docName: "invoice_12",
-    category: "Accounts Receivable",
-    subCategory: "Sales Invoice",
+    docName: "Andrew_L_202513",
+    expiresOn: "2030-11-12",
+    nationalId: "A123456",
+    degree: "BE",
+    department: "IT",
   },
 ];
 
-const InvoiceDocument = () => {
+const HrDocument = () => {
   const navigate = useNavigate();
+    const [subcategory, setSubcategory] = useState("");
   const [searchInputs, setSearchInputs] = useState({
     id: "",
-    invoiceDate: "",
-    invoiceNo: "",
-    invoiceAmount: "",
+     firstName: "",
+     lastName: "",
+     doj: "",
     docId: "",
     docName: "",
-    category: "",
-    subCategory: "",
+    degree: "",
+    department: "",
   });
 
   const [showSearchFields, setShowSearchFields] = useState({
     id: false,
-    invoiceDate: false,
-    invoiceNo: false,
-    invoiceAmount: false,
+    firstName: false,
+    lastName: false,
+    doj: false,
     docId: false,
     docName: false,
-    category: false,
-    subCategory: false,
+    degree: false,
+    department: false,
   });
 
   const handleSearchInputChange = (field, value) => {
@@ -147,6 +127,11 @@ const InvoiceDocument = () => {
       [field]: value,
     }));
   };
+const handleSubcategory = () => {
+    handleSearch();
+  }; 
+
+  const [selectedCategory, setSelectedCategory] = useState("Educational Qualification");
 
   const toggleSearchField = (field) => {
     setShowSearchFields((prev) => ({
@@ -155,7 +140,7 @@ const InvoiceDocument = () => {
     }));
   };
 
-  const filteredData = projectData.filter((item) =>
+  const filteredData = mockCustomerDocs.filter((item) =>
     Object.keys(searchInputs).every((key) =>
       String(item[key] || "")
         .toLowerCase()
@@ -167,18 +152,16 @@ const InvoiceDocument = () => {
     { label: "Accounts", route: "/invoiceDocument" },
     { label: "HR", route: "/hrDocument" },
     { label: "Legal" },
-
   ];
 
   return (
     <div>
-      <Header departments={departments} defValue={"Accounts"} />
+      <Header departments={departments} defValue={"HR"} />
       <Box
         sx={{
           bgcolor: "#f2f4f5",
           display: "flex",
           justifyContent: "center",
-          // width: "100%",
         }}
       >
         <Box
@@ -222,29 +205,27 @@ const InvoiceDocument = () => {
                   <span style={{ color: "red", marginLeft: "4px" }}>*</span>
                 </Typography>
 
-                <FormControl sx={{ minWidth: 160 }}>
-                  <Select
-                    labelId="application-select-label"
-                    id="application-select"
-                    // value={selectedCategory}
-                    // onChange={(e) => setSelectedCategory(e.target.value)}
-                    defaultValue="Accounts Payable"
-                    // label="Application"
-                    sx={{
-                      // bgcolor: "#f2f4f5",
-                      height: "36px",
-                      fontSize: "0.8rem",
-                      borderRadius: "4px",
-                    }}
-                  >
-                    <MenuItem value="Accounts Payable">
-                      Accounts Payable
-                    </MenuItem>
-                    {/* <MenuItem value="Accounts Receivable">
-                      Accounts Receivable
-                    </MenuItem> */}
-                  </Select>
-                </FormControl>
+                 <FormControl sx={{ minWidth: 160 }}>
+                                          <Select
+                                            labelId="application-select-label"
+                                            id="application-select"
+                                            value={selectedCategory}
+                                            onChange={(e) =>
+                                              setSelectedCategory(e.target.value)
+                                            }
+                                            defaultValue="sel"
+                                            sx={{
+                                              height: "36px",
+                                              fontSize: "0.8rem",
+                                              borderRadius: "4px",
+                                            }}
+                                          >
+                                            <MenuItem value="sel">Select Category</MenuItem>
+                                            <MenuItem value="Educational Qualification">
+                                              Educational Qualification
+                                            </MenuItem>
+                                          </Select>
+                                        </FormControl>
               </Stack>
 
               <Stack
@@ -263,20 +244,16 @@ const InvoiceDocument = () => {
                   <Select
                     labelId="application-select-label"
                     id="application-select"
-                    defaultValue="Purchase Invoice"
+                    defaultValue="Degree Certificate"
                     size="small"
                     sx={{
-                      // bgcolor: "#f2f4f5",
                       height: "36px",
                       fontSize: "0.8rem",
                       borderRadius: "4px",
                     }}
                   >
-                    <MenuItem value="Purchase Invoice">
-                      Purchase Invoice
-                    </MenuItem>
-                    <MenuItem value="Proof of Payment">
-                      Proof of Payment
+                     <MenuItem value="Degree Certificate">
+                         Degree Certificate
                     </MenuItem>
                   </Select>
                 </FormControl>
@@ -297,7 +274,7 @@ const InvoiceDocument = () => {
                       justifyContent="center"
                     >
                       <Typography fontWeight="bold" align="center">
-                        Supplier ID
+                         Employee ID
                       </Typography>
                       <TextField
                         size="small"
@@ -319,7 +296,7 @@ const InvoiceDocument = () => {
                       justifyContent="center"
                     >
                       <Typography fontWeight="bold" align="center">
-                        Supplier Name
+                       First Name
                       </Typography>
                       <TextField
                         size="small"
@@ -340,7 +317,7 @@ const InvoiceDocument = () => {
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Typography fontWeight="bold">Invoice Date </Typography>
+                      <Typography fontWeight="bold"> Last Name </Typography>
                       <TextField
                         size="small"
                         variant="standard"
@@ -361,7 +338,7 @@ const InvoiceDocument = () => {
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Typography fontWeight="bold">Invoice No. </Typography>
+                      <Typography fontWeight="bold">  Degree </Typography>
                       <TextField
                         size="small"
                         variant="standard"
@@ -382,7 +359,7 @@ const InvoiceDocument = () => {
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Typography fontWeight="bold">Invoice Amount</Typography>
+                      <Typography fontWeight="bold"> Department</Typography>
                       <TextField
                         size="small"
                         variant="standard"
@@ -406,7 +383,7 @@ const InvoiceDocument = () => {
                       justifyContent="center"
                     >
                       <Typography fontWeight="bold">
-                        Transaction Date{" "}
+                       Date of Joining{" "}
                       </Typography>
                       <TextField
                         size="small"
@@ -481,14 +458,14 @@ const InvoiceDocument = () => {
 
                     <TableCell>
                       <Typography align="center">
-                        {project.companyName}
+                        {project.firstName}
                       </Typography>
                     </TableCell>
 
-                    <TableCell align="center">{project.invoiceDate}</TableCell>
-                    <TableCell align="center">{project.invoiceNo}</TableCell>
-                    <TableCell align="right">{project.invoiceAmount}</TableCell>
-                    <TableCell align="center">{project.invoiceDate}</TableCell>
+                    <TableCell align="center">{project.lastName}</TableCell>
+                    <TableCell align="center">{project.degree}</TableCell>
+                    <TableCell align="center">{project.department}</TableCell>
+                    <TableCell align="center">{project.doj}</TableCell>
                     <TableCell align="center">{project.docId}</TableCell>
                     <TableCell align="center">{project.docName}</TableCell>
 
@@ -496,7 +473,7 @@ const InvoiceDocument = () => {
                       <Tooltip title="View and Download">
                         <IconButton
                           color="primary"
-                          onClick={() => window.open(invoice1)}
+                          onClick={() => window.open(hr1)}
                         >
                           <VisibilityIcon />
                         </IconButton>
@@ -601,4 +578,4 @@ const InvoiceDocument = () => {
   );
 };
 
-export default InvoiceDocument;
+export default HrDocument;
