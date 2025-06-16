@@ -626,7 +626,7 @@ const Archive1 = () => {
                                 Additional Purchase
                               </MenuItem>
                               <MenuItem value="Address Proof">
-                                Redempyion
+                                Redemption
                               </MenuItem>
                               <MenuItem value="Address Proof">Switch</MenuItem>
                               <MenuItem value="Address Proof">
