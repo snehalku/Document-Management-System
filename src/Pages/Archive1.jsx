@@ -48,7 +48,7 @@ const mockCustomerDocs = [
     date: "2025-05-28",
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
-    nationalId: "5843216645678904",
+    nationalId: "584324",
   },
   {
     id: "EEA5924",

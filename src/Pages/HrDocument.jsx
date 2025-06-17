@@ -57,7 +57,7 @@ const mockCustomerDocs = [
     date: "2025-05-28",
     dob: "01-05-2006",
     doj: "06-06-2025",
-   docId: "12",
+    docId: "12",
     docName: "Andrew_P_202513",
     expiresOn: "2024-08-22",
     nationalId: "5843216645678904",
@@ -98,12 +98,12 @@ const mockCustomerDocs = [
 
 const HrDocument = () => {
   const navigate = useNavigate();
-    const [subcategory, setSubcategory] = useState("");
+  const [subcategory, setSubcategory] = useState("");
   const [searchInputs, setSearchInputs] = useState({
     id: "",
-     firstName: "",
-     lastName: "",
-     doj: "",
+    firstName: "",
+    lastName: "",
+    doj: "",
     docId: "",
     docName: "",
     degree: "",
@@ -127,11 +127,13 @@ const HrDocument = () => {
       [field]: value,
     }));
   };
-const handleSubcategory = () => {
+  const handleSubcategory = () => {
     handleSearch();
-  }; 
+  };
 
-  const [selectedCategory, setSelectedCategory] = useState("Educational Qualification");
+  const [selectedCategory, setSelectedCategory] = useState(
+    "Educational Qualification"
+  );
 
   const toggleSearchField = (field) => {
     setShowSearchFields((prev) => ({
@@ -205,27 +207,25 @@ const handleSubcategory = () => {
                   <span style={{ color: "red", marginLeft: "4px" }}>*</span>
                 </Typography>
 
-                 <FormControl sx={{ minWidth: 160 }}>
-                                          <Select
-                                            labelId="application-select-label"
-                                            id="application-select"
-                                            value={selectedCategory}
-                                            onChange={(e) =>
-                                              setSelectedCategory(e.target.value)
-                                            }
-                                            defaultValue="sel"
-                                            sx={{
-                                              height: "36px",
-                                              fontSize: "0.8rem",
-                                              borderRadius: "4px",
-                                            }}
-                                          >
-                                            <MenuItem value="sel">Select Category</MenuItem>
-                                            <MenuItem value="Educational Qualification">
-                                              Educational Qualification
-                                            </MenuItem>
-                                          </Select>
-                                        </FormControl>
+                <FormControl sx={{ minWidth: 160 }}>
+                  <Select
+                    labelId="application-select-label"
+                    id="application-select"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    defaultValue="sel"
+                    sx={{
+                      height: "36px",
+                      fontSize: "0.8rem",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    <MenuItem value="sel">Select Category</MenuItem>
+                    <MenuItem value="Educational Qualification">
+                      Educational Qualification
+                    </MenuItem>
+                  </Select>
+                </FormControl>
               </Stack>
 
               <Stack
@@ -252,8 +252,8 @@ const handleSubcategory = () => {
                       borderRadius: "4px",
                     }}
                   >
-                     <MenuItem value="Degree Certificate">
-                         Degree Certificate
+                    <MenuItem value="Degree Certificate">
+                      Degree Certificate
                     </MenuItem>
                   </Select>
                 </FormControl>
@@ -262,7 +262,7 @@ const handleSubcategory = () => {
           </Stack>
           <TableContainer
             component={Paper}
-            sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
+            sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 450 }}
           >
             <Table>
               <TableHead>
@@ -274,7 +274,7 @@ const handleSubcategory = () => {
                       justifyContent="center"
                     >
                       <Typography fontWeight="bold" align="center">
-                         Employee ID
+                        Employee ID
                       </Typography>
                       <TextField
                         size="small"
@@ -296,7 +296,7 @@ const handleSubcategory = () => {
                       justifyContent="center"
                     >
                       <Typography fontWeight="bold" align="center">
-                       First Name
+                        First Name
                       </Typography>
                       <TextField
                         size="small"
@@ -338,7 +338,7 @@ const handleSubcategory = () => {
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Typography fontWeight="bold">  Degree </Typography>
+                      <Typography fontWeight="bold"> Degree </Typography>
                       <TextField
                         size="small"
                         variant="standard"
@@ -383,7 +383,7 @@ const handleSubcategory = () => {
                       justifyContent="center"
                     >
                       <Typography fontWeight="bold">
-                       Date of Joining{" "}
+                        Date of Joining{" "}
                       </Typography>
                       <TextField
                         size="small"

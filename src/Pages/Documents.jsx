@@ -220,19 +220,19 @@ const Documents = () => {
     subCategory: false,
   });
 
-   const [unitColumnSearch, setUnitColumnSearch] = useState({
-      id: "",
-      transactionDate: "",
-      transactionNo: "",
-      transactionType: "",
-      fund: "",
-      class: "",
-      amount: "",
-      units: "",
-      nav: "",
-    });
-  
-     const handleSUnitearch = () => {
+  const [unitColumnSearch, setUnitColumnSearch] = useState({
+    id: "",
+    transactionDate: "",
+    transactionNo: "",
+    transactionType: "",
+    fund: "",
+    class: "",
+    amount: "",
+    units: "",
+    nav: "",
+  });
+
+  const handleSUnitearch = () => {
     const query = searchCustomer.toLowerCase();
 
     const results = unitHolderDetails.filter((doc) => {
@@ -283,7 +283,7 @@ const Documents = () => {
     )
   );
 
-   const filteredDataHolder = unitHolderDetails.filter((item) =>
+  const filteredDataHolder = unitHolderDetails.filter((item) =>
     Object.keys(searchInputs).every((key) =>
       String(item[key] || "")
         .toLowerCase()
@@ -293,10 +293,8 @@ const Documents = () => {
   const departments = [
     { label: "Sales", route: "/documents" },
     { label: "Accounts", route: "/invoiceDocument" },
-      { label: "HR", route: "/hrDocument" },
+    { label: "HR", route: "/hrDocument" },
     { label: "Legal" },
-
-
   ];
 
   const handleCategory = (e) => {
@@ -463,15 +461,15 @@ const Documents = () => {
               </Stack>
             </Box>
           </Stack>
-          {selectedCategory==="AML_KYC"?  
-           <TableContainer
-            component={Paper}
-            sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
-          >
-            <Table>
-              <TableHead>
-                <TableRow sx={{ bgcolor: "#99caff" }}>
-                  {/* <TableCell>
+          {selectedCategory === "AML_KYC" ? (
+            <TableContainer
+              component={Paper}
+              sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 450 }}
+            >
+              <Table>
+                <TableHead>
+                  <TableRow sx={{ bgcolor: "#99caff" }}>
+                    {/* <TableCell>
                     <Stack direction="column">
                       <Typography fontWeight="bold">Category </Typography>
                       <TextField
@@ -502,74 +500,74 @@ const Documents = () => {
                       />
                     </Stack>
                   </TableCell> */}
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Customer ID1</Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.id}
-                        onChange={(e) =>
-                          handleSearchInputChange("id", e.target.value)
-                        }
-                        autoComplete="off"
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Customer Name</Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.customerName}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "customerName",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Customer ID1</Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={searchInputs.id}
+                          onChange={(e) =>
+                            handleSearchInputChange("id", e.target.value)
+                          }
+                          autoComplete="off"
+                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Customer Name</Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={searchInputs.customerName}
+                          onChange={(e) =>
+                            handleSearchInputChange(
+                              "customerName",
+                              e.target.value
+                            )
+                          }
+                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Issue Date </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        type="date"
-                        value={searchInputs.issueDate}
-                        onChange={(e) =>
-                          handleSearchInputChange("issueDate", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Issue Date </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          type="date"
+                          value={searchInputs.issueDate}
+                          onChange={(e) =>
+                            handleSearchInputChange("issueDate", e.target.value)
+                          }
+                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
 
-                  {/* <TableCell>
+                    {/* <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center">
                       <Typography fontWeight="bold">Customer Name</Typography>
@@ -598,96 +596,101 @@ const Documents = () => {
                   </Stack>
                 </TableCell> */}
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Date of Birth </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        type="date"
-                        value={searchInputs.dob}
-                        onChange={(e) =>
-                          handleSearchInputChange("dob", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">
+                          Date of Birth{" "}
+                        </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          type="date"
+                          value={searchInputs.dob}
+                          onChange={(e) =>
+                            handleSearchInputChange("dob", e.target.value)
+                          }
+                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">ID Number </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.IdNo}
-                        onChange={(e) =>
-                          handleSearchInputChange("IdNo", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">ID Number </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={searchInputs.IdNo}
+                          onChange={(e) =>
+                            handleSearchInputChange("IdNo", e.target.value)
+                          }
+                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Document ID </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.documentId}
-                        onChange={(e) =>
-                          handleSearchInputChange("documentId", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                        autoComplete="off"
-                      />
-                    </Stack>
-                  </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Document ID </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={searchInputs.documentId}
+                          onChange={(e) =>
+                            handleSearchInputChange(
+                              "documentId",
+                              e.target.value
+                            )
+                          }
+                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                          autoComplete="off"
+                        />
+                      </Stack>
+                    </TableCell>
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Document Name</Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.documentName}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "documentName",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Document Name</Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={searchInputs.documentName}
+                          onChange={(e) =>
+                            handleSearchInputChange(
+                              "documentName",
+                              e.target.value
+                            )
+                          }
+                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
 
-                  {/* <TableCell>
+                    {/* <TableCell>
                   <Stack direction="column">
                     <Stack direction="row" alignItems="center" >
                       <Typography fontWeight="bold">Version No.</Typography>
@@ -716,35 +719,39 @@ const Documents = () => {
                   </Stack>
                 </TableCell> */}
 
-                  <TableCell>
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Action</Typography>
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-
-              <TableBody>
-                {filteredData.map((project) => (
-                  <TableRow key={project.id} hover>
-                    {/* <TableCell>{project.category}</TableCell> */}
-                    {/* <TableCell>{project.subCategory}</TableCell> */}
                     <TableCell>
-                      <Typography align="center">{project.id}</Typography>
+                      <Stack direction="row" alignItems="center">
+                        <Typography fontWeight="bold">Action</Typography>
+                      </Stack>
                     </TableCell>
-                    <TableCell align="center">{project.customerName}</TableCell>
+                  </TableRow>
+                </TableHead>
 
-                    <TableCell align="center">{project.issueDate}</TableCell>
+                <TableBody>
+                  {filteredData.map((project) => (
+                    <TableRow key={project.id} hover>
+                      {/* <TableCell>{project.category}</TableCell> */}
+                      {/* <TableCell>{project.subCategory}</TableCell> */}
+                      <TableCell>
+                        <Typography align="center">{project.id}</Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        {project.customerName}
+                      </TableCell>
 
-                    <TableCell align="center">{project.dob}</TableCell>
-                    <TableCell align="center">{project.IdNo}</TableCell>
-                    <TableCell align="center" sx={{ textAlign: "center" }}>
-                      {project.documentId}
-                    </TableCell>
-                    <TableCell align="center">{project.documentName}</TableCell>
+                      <TableCell align="center">{project.issueDate}</TableCell>
 
-                    {/* <TableCell>{project.versionNumber}</TableCell> */}
-                    {/* <TableCell>
+                      <TableCell align="center">{project.dob}</TableCell>
+                      <TableCell align="center">{project.IdNo}</TableCell>
+                      <TableCell align="center" sx={{ textAlign: "center" }}>
+                        {project.documentId}
+                      </TableCell>
+                      <TableCell align="center">
+                        {project.documentName}
+                      </TableCell>
+
+                      {/* <TableCell>{project.versionNumber}</TableCell> */}
+                      {/* <TableCell>
                     <Stack direction="row" spacing={1}>
                       <Tooltip title="View Document">
                         <IconButton
@@ -767,318 +774,343 @@ const Documents = () => {
                       </Tooltip>
                     </Stack>
                   </TableCell> */}
+                      <TableCell>
+                        <Tooltip title="View and Download">
+                          <IconButton
+                            color="primary"
+                            onClick={() => window.open(Doc2)}
+                          >
+                            <VisibilityIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            <TableContainer
+              component={Paper}
+              sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 450 }}
+            >
+              <Table>
+                <TableHead>
+                  <TableRow sx={{ bgcolor: "#99caff" }}>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Unitholder ID</Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.id}
+                          onChange={(e) =>
+                            handleSearchInputChange("id", e.target.value)
+                          }
+                          autoComplete="off"
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">
+                          Transaction Date
+                        </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          type="date"
+                          value={unitColumnSearch.transactionDate}
+                          onChange={(e) =>
+                            handleSearchInputChange(
+                              "transactionDate",
+                              e.target.value
+                            )
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">
+                          Transaction No.{" "}
+                        </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.transactionNo}
+                          onChange={(e) =>
+                            handleSearchInputChange(
+                              "transactionNo",
+                              e.target.value
+                            )
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">
+                          Transaction Type{" "}
+                        </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.transactionType}
+                          onChange={(e) =>
+                            handleSearchInputChange(
+                              " transactionType",
+                              e.target.value
+                            )
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Fund </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.fund}
+                          onChange={(e) =>
+                            handleSearchInputChange(" fund", e.target.value)
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Class </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.class}
+                          onChange={(e) =>
+                            handleSearchInputChange("class", e.target.value)
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                          autoComplete="off"
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Amount </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.amount}
+                          onChange={(e) =>
+                            handleSearchInputChange("amount", e.target.value)
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                          autoComplete="off"
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Units </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.units}
+                          onChange={(e) =>
+                            handleSearchInputChange("units", e.target.value)
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                          autoComplete="off"
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Nav </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.nav}
+                          onChange={(e) =>
+                            handleSearchInputChange("nav", e.target.value)
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                          autoComplete="off"
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Document ID </Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.documentId}
+                          onChange={(e) =>
+                            handleSearchInputChange(
+                              "documentId",
+                              e.target.value
+                            )
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                          autoComplete="off"
+                        />
+                      </Stack>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Typography fontWeight="bold">Document Name</Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          placeholder="Search"
+                          value={unitColumnSearch.documentName}
+                          onChange={(e) =>
+                            handleSearchInputChange(
+                              "documentName",
+                              e.target.value
+                            )
+                          }
+                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                          inputProps={{ style: { textAlign: "center" } }}
+                        />
+                      </Stack>
+                    </TableCell>
+
                     <TableCell>
-                      <Tooltip title="View and Download">
-                        <IconButton
-                          color="primary"
-                          onClick={() => window.open(Doc2)}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
+                      <Stack direction="row" alignItems="center">
+                        <Typography fontWeight="bold">Action</Typography>
+                      </Stack>
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>:
-             <TableContainer
-            component={Paper}
-            sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
-          >
-            <Table>
-              <TableHead>
-                <TableRow sx={{ bgcolor: "#99caff" }}>
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Unitholder ID</Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch.id}
-                        onChange={(e) =>
-                          handleSearchInputChange("id", e.target.value)
-                        }
-                        autoComplete="off"
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Transaction Date</Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                         type="date"
-                        value={unitColumnSearch.transactionDate}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "transactionDate",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                </TableHead>
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Transaction No. </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch.transactionNo}
-                        onChange={(e) =>
-                          handleSearchInputChange("transactionNo", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                <TableBody>
+                  {filteredDataHolder.map((unitHolder) => (
+                    <TableRow key={unitHolder.id} hover>
+                      {/* <TableCell>{project.category}</TableCell> */}
+                      {/* <TableCell>{project.subCategory}</TableCell> */}
+                      <TableCell>
+                        <Typography align="center">{unitHolder.id}</Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        {unitHolder.transactionDate}
+                      </TableCell>
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Transaction Type </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch. transactionType}
-                        onChange={(e) =>
-                          handleSearchInputChange(" transactionType", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                      <TableCell align="center">
+                        {unitHolder.transactionNo}
+                      </TableCell>
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Fund </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch. fund}
-                        onChange={(e) =>
-                          handleSearchInputChange(" fund", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
+                      <TableCell align="center">
+                        {unitHolder.transactionType}
+                      </TableCell>
+                      <TableCell align="center">{unitHolder.fund}</TableCell>
+                      <TableCell align="center">{unitHolder.class}</TableCell>
+                      <TableCell align="center">{unitHolder.amount}</TableCell>
+                      <TableCell align="center">{unitHolder.units}</TableCell>
+                      <TableCell align="center">{unitHolder.nav}</TableCell>
+                      <TableCell align="center" sx={{ textAlign: "center" }}>
+                        {unitHolder.documentId}
+                      </TableCell>
+                      <TableCell align="center">
+                        {unitHolder.documentName}
+                      </TableCell>
 
-                   <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Class </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch.class}
-                        onChange={(e) =>
-                          handleSearchInputChange("class", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                        autoComplete="off"
-                      />
-                    </Stack>
-                  </TableCell>
+                      <TableCell>
+                        <Tooltip title="View and Download">
+                          <IconButton
+                            color="primary"
+                            onClick={() => window.open(transactionDoc)}
+                          >
+                            <VisibilityIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
 
-                   <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Amount </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch.amount}
-                        onChange={(e) =>
-                          handleSearchInputChange("amount", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                        autoComplete="off"
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Units </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch.units}
-                        onChange={(e) =>
-                          handleSearchInputChange("units", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                        autoComplete="off"
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Nav </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch.nav}
-                        onChange={(e) =>
-                          handleSearchInputChange("nav", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                        autoComplete="off"
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Document ID </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch.documentId}
-                        onChange={(e) =>
-                          handleSearchInputChange("documentId", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                        autoComplete="off"
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Document Name</Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={unitColumnSearch.documentName}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "documentName",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell>
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Action</Typography>
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-
-              <TableBody>
-                {filteredDataHolder.map((unitHolder) => (
-                  <TableRow key={unitHolder.id} hover>
-                    {/* <TableCell>{project.category}</TableCell> */}
-                    {/* <TableCell>{project.subCategory}</TableCell> */}
-                    <TableCell>
-                      <Typography align="center">{unitHolder.id}</Typography>
-                    </TableCell>
-                    <TableCell align="center">{unitHolder.transactionDate}</TableCell>
-
-                    <TableCell align="center">{unitHolder.transactionNo}</TableCell>
-
-                    <TableCell align="center">{unitHolder.transactionType}</TableCell>
-                    <TableCell align="center">{unitHolder.fund}</TableCell>
-                    <TableCell align="center">{unitHolder.class}</TableCell>
-                    <TableCell align="center">{unitHolder.amount}</TableCell>
-                    <TableCell align="center">{unitHolder.units}</TableCell>
-                    <TableCell align="center">{unitHolder.nav}</TableCell>
-                    <TableCell align="center" sx={{ textAlign: "center" }}>
-                      {unitHolder.documentId}
-                    </TableCell>
-                    <TableCell align="center">{unitHolder.documentName}</TableCell>
-
-                    <TableCell>
-                      <Tooltip title="View and Download">
-                        <IconButton
-                          color="primary"
-                          onClick={() => window.open(transactionDoc)}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>}
-         
           <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
             <Pagination
               count={10}
