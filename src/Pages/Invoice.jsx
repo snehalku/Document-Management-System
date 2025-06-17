@@ -31,6 +31,15 @@ import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
   {
+    id: "123",
+    companyName: "Syborgtech",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "971",
+  },
+  {
     id: "111",
     companyName: "TCS",
     date: "2025-04-30",
@@ -57,15 +66,7 @@ const mockCustomerDocs = [
     invoiceDate: "06-06-2025",
     invoiceAmount: "3569",
   },
-  {
-    id: "123",
-    companyName: "Syborgtech",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "123456",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "971",
-  },
+
   {
     id: "127",
     companyName: "Maitland",
@@ -213,6 +214,7 @@ const Invoice = () => {
       });
       setSelectedCategory("Select Category");
       setSelectedDoc(null);
+      setFormCard(false);
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
