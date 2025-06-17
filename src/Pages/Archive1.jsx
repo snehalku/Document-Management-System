@@ -22,7 +22,8 @@ import {
 } from "@mui/material";
 import Doc2 from "../assets/Doc2.png";
 import Doc3 from "../assets/Doc3.png";
-import transactionDoc from "../assets/trDoc.jpg";
+import transactionDoc from "../assets/trDoc1.png";
+import transactionDoc1 from "../assets/trDoc2.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { Snackbar, Alert } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -30,6 +31,16 @@ import TransitionAlerts from "../Components/ui/Notification";
 import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
+  {
+    id: "EDB5612",
+    firstName: "John",
+    lastName: "Livone",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "06-09-1986",
+    expiresOn: "2030-11-12",
+    nationalId: "A123456",
+  },
   {
     id: "EDB5617",
     firstName: "John",
@@ -60,16 +71,7 @@ const mockCustomerDocs = [
     expiresOn: "2032-12-12",
     nationalId: "A123477",
   },
-  {
-    id: "EDB5612",
-    firstName: "John",
-    lastName: "Livone",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "06-09-1986",
-    expiresOn: "2030-11-12",
-    nationalId: "A123456",
-  },
+
   {
     id: "EEA5923",
     firstName: "John",
@@ -197,6 +199,7 @@ const Archive1 = () => {
     customerId: "",
     issueDate: "",
     expiryDate: "",
+    unitHolderId: "",
     // versionNo: "1.0",
   });
 
@@ -290,6 +293,9 @@ const Archive1 = () => {
     if (!confirmedDocIds.includes(doc.id)) {
       setConfirmedDocIds([...confirmedDocIds, doc.id]);
     }
+    // else{
+    //   setConfirmedDocIds([...confirmedDocIds]);
+    // }
   };
 
   const showNextDocument = () => {
@@ -312,6 +318,12 @@ const Archive1 = () => {
   };
 
   const handleSave = () => {
+    if (selectedCategory === "AML_KYC") {
+    setPreviewDocPath(Doc3);
+  }
+   if(selectedCategory === "Transaction") {
+    setPreviewDocPath(transactionDoc1);
+  }
     setAlertOpen(true);
 
     setTimeout(() => {
@@ -322,17 +334,19 @@ const Archive1 = () => {
         expiryDate: "",
         // versionNo: " ",
       });
-      setSelectedDoc(null);
+      setSelectedDoc(null); 
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
-      setSelectedCategory("sel"), setSearchCustomer("");
+      setSelectedCategory(selectedCategory),
+      setSearchCustomer("");
       setSearchResults("");
       setCategory("");
       setSubcategory("");
       setIssueDate("");
       setExpiryDate("");
-      setPreviewDocPath(Doc3);
+      setFormCard(false);
+      // setPreviewDocPath(Doc3);
     }, 3000);
   };
 
@@ -383,6 +397,7 @@ const Archive1 = () => {
   };
   const handleCategory = (e) => {
     setSelectedCategory(e.target.value);
+    setPreviewDocPath("")
   };
 
   return (
@@ -421,9 +436,12 @@ const Archive1 = () => {
             }}
           >
             {(() => {
-              let docPath = previewDocPath || selectedDoc?.path || Doc2;
+              let docPath ;
+              if (selectedCategory === "AML_KYC") {
+                docPath = previewDocPath || selectedDoc?.path || Doc2;
+              }
               if (selectedCategory === "Transaction") {
-                docPath = transactionDoc;
+                docPath = previewDocPath || selectedDoc?.path || transactionDoc;
               }
 
               const isImage =
@@ -479,7 +497,7 @@ const Archive1 = () => {
               flex: 1,
               pl: 2,
               pr: 2,
-              width: "50%",
+              width: "60%",
             }}
           >
             <Box
@@ -641,7 +659,7 @@ const Archive1 = () => {
                 </Card>
               )}
             </Box>
-            <Box sx={{ overflowY: "auto", overflowX: "auto" }}>
+            <Box sx={{overflowX: "auto" }}>
               {selectedCategory === "AML_KYC" ? (
                 <div>
                   {!hideTable && searchResults.length > 0 && (
@@ -665,8 +683,8 @@ const Archive1 = () => {
                         sx={{
                           borderRadius: "10px 10px 0 0",
                           maxHeight: 361,
-                          maxwidth: 200,
-                          overflow: "auto",
+                          // maxwidth: 220,
+                          // overflowY: "auto",
                         }}
                       >
                         <Table size="small">
@@ -1214,7 +1232,7 @@ const Archive1 = () => {
                 </div>
               )}
 
-              {formCard && (
+              {formCard && selectedCategory == "AML_KYC" && (
                 <Card
                   sx={{
                     // height: alertOpen ? "62vh" : "50vh",
@@ -1345,7 +1363,96 @@ const Archive1 = () => {
                     </Stack>
                   </Box>
                 </Card>
-              )}
+              )  }
+                 {formCard && selectedCategory == "Transaction" && (
+                <Card
+                  sx={{
+                    // height: alertOpen ? "62vh" : "50vh",
+                    overflowY: "auto",
+                    p: 2,
+                    transition: "height 0.3s ease",
+                  }}
+                >
+                  <Grid item size={5}>
+                    <Paper
+                      sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <Typography
+                        sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}
+                      >
+                        Additional Information
+                      </Typography>
+
+                      <TextField
+                        label="UnitHolder ID"
+                        fullWidth
+                        value={formData.customerId}
+                        sx={{ mb: 2 }}
+                        // disabled={!selectedDoc}
+                      />
+
+                     
+                    </Paper>
+                  </Grid>
+                  <TransitionAlerts
+                    alertOpen={alertOpen}
+                    //   handleAlertClose={handleAlertClose}
+                    message={
+                      "The document of the UnitHolder ID UH004 has been saved successfully."
+                    }
+                  />
+                  <Box sx={{ p: 1, mt: 2 }}>
+                    <Stack
+                      direction="row"
+                      spacing={2}
+                      justifyContent="flex-end"
+                    >
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleSave}
+                        // disabled={selectedDoc === null}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#99CAFF",
+                          color: "black",
+                          px: 3,
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          "&:hover": {
+                            bgcolor: "#7bb8ff",
+                          },
+                        }}
+                      >
+                        Save
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                        // onClick={handleDiscard}
+                        // disabled={!selectedDoc}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#f2f4f5",
+                          px: 3,
+                          color: "black",
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          border: "none",
+                          "&:hover": {
+                            bgcolor: "#e5e7e8",
+                            border: "none",
+                          },
+                        }}
+                      >
+                        Discard
+                      </Button>
+                    </Stack>
+                  </Box>
+                </Card>
+              )  }
             </Box>
           </Box>
         </Box>

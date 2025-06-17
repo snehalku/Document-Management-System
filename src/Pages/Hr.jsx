@@ -29,20 +29,7 @@ import TransitionAlerts from "../Components/ui/Notification";
 import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
-  {
-    id: "EMP045",
-    firstName: "Andrew",
-    lastName: "Lilli",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "16-11-1988",
-    doj: "06-06-2025",
-    expiresOn: "2020-01-02",
-    nationalId: "AS1234567",
-    degree: "Bsc",
-    department: "IT",
-  },
-  {
+   {
     id: "EMP001",
     firstName: "Andrew ",
     lastName: "Prendergrast",
@@ -56,6 +43,20 @@ const mockCustomerDocs = [
     degree: "BA",
     department: "Sales",
   },
+  {
+    id: "EMP045",
+    firstName: "Andrew",
+    lastName: "Lilli",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "16-11-1988",
+    doj: "06-06-2025",
+    expiresOn: "2020-01-02",
+    nationalId: "AS1234567",
+    degree: "Bsc",
+    department: "IT",
+  },
+ 
   {
     id: "EMP036",
     firstName: "Andrew",
@@ -99,7 +100,7 @@ const HR = () => {
   const [filterLastName, setFilterLastName] = useState("");
   const [filterDob, setFilterDob] = useState("");
   const [filterDoj, setFilterDoj] = useState("");
-
+const [formCard, setFormCard] = useState(false);
   const [filterNationalId, setFilterNationalId] = useState("");
   const [previewDocPath, setPreviewDocPath] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
@@ -165,6 +166,12 @@ const HR = () => {
     setSearchResults(results);
   };
 
+  const onCheck = () => {
+    setHideTable(true);
+    setFormCard(true);
+  };
+
+
   const handleSubcategory = () => {
     handleSearch();
   }; 
@@ -213,6 +220,7 @@ const HR = () => {
         // versionNo: " ",
       });
       setSelectedDoc(null);
+      setFormCard(false);
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
@@ -491,7 +499,7 @@ const HR = () => {
                 </Card>
               )}
             </Box>
-            <Box sx={{ overflowY: "auto", height: "375px" }}>
+            <Box sx={{ overflowY: "auto" }}>
               {!hideTable && searchResults.length > 0 && (
                 <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
                   <Typography
@@ -503,7 +511,7 @@ const HR = () => {
                     <span style={{ color: "red" }}>*</span>
                   </Typography>
                   <Typography sx={{ mb: 1, fontWeight: "bold" }}>
-                    Customer details from the OLTP system
+                    Employee details from the OLTP system
                   </Typography>
 
                   <TableContainer
@@ -523,6 +531,7 @@ const HR = () => {
                           <TableCell>
                             <Typography fontWeight="bold"></Typography>
                           </TableCell>
+                        
                           <TableCell>
                             <Typography fontWeight="bold" mb={1}>
                               Employee ID
@@ -709,7 +718,7 @@ const HR = () => {
                               <TableCell>
                                 <Checkbox
                                   checked={confirmedDocIds.includes(doc.id)}
-                                  onChange={() => setHideTable(true)}
+                                  onChange={onCheck}
                                 />
                               </TableCell>
 
@@ -751,7 +760,7 @@ const HR = () => {
                   </TableContainer>
                 </Paper>
               )}
-              {searchResults.length > 0 && (
+              {formCard && (
                 <Card
                   sx={{
                     // height: alertOpen ? "62vh" : "50vh",
@@ -779,7 +788,7 @@ const HR = () => {
                         fullWidth
                         value={formData.customerId}
                         sx={{ mb: 2 }}
-                        // disabled={!selectedDoc}
+                       
                       />
                     </Paper>
                   </Grid>
