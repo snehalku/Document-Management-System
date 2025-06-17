@@ -167,7 +167,6 @@ const InvoiceDocument = () => {
     { label: "Accounts", route: "/invoiceDocument" },
     { label: "HR", route: "/hrDocument" },
     { label: "Legal" },
-
   ];
 
   return (
@@ -285,7 +284,7 @@ const InvoiceDocument = () => {
           </Stack>
           <TableContainer
             component={Paper}
-            sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
+            sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 450 }}
           >
             <Table>
               <TableHead>
