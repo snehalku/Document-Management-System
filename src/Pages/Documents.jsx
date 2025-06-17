@@ -380,15 +380,6 @@ const Documents = () => {
                       height: "36px",
                       fontSize: "0.8rem",
                       borderRadius: "4px",
-                      // boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.2)",
-                      // "& fieldset": { border: "none" },
-                      // "& .MuiSelect-select": {
-                      //   padding: "6px 10px",
-                      //   fontSize: "0.8rem",
-                      // },
-                      // "&.Mui-focused": {
-                      //   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                      // },
                     }}
                   >
                     {/* <MenuItem value="sel">Select Category</MenuItem> */}
@@ -506,7 +497,7 @@ const Documents = () => {
                         alignItems="center"
                         justifyContent="center"
                       >
-                        <Typography fontWeight="bold">Customer ID1</Typography>
+                        <Typography fontWeight="bold">Customer ID</Typography>
                         <TextField
                           size="small"
                           variant="standard"
@@ -720,8 +711,27 @@ const Documents = () => {
                 </TableCell> */}
 
                     <TableCell>
-                      <Stack direction="row" alignItems="center">
+                      <Stack direction="column" alignItems="right">
                         <Typography fontWeight="bold">Action</Typography>
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          autoComplete="off"
+                          sx={{
+                            mt: 1,
+                            width: "100px",
+                            "& .MuiInput-underline:before": {
+                              borderBottom: "none",
+                            },
+                            "& .MuiInput-underline:after": {
+                              borderBottom: "none",
+                            },
+                            "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                              {
+                                borderBottom: "none",
+                              },
+                          }}
+                        />
                       </Stack>
                     </TableCell>
                   </TableRow>
