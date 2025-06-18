@@ -409,7 +409,6 @@ const Archive1 = () => {
           // width: "100vw",
           display: "flex",
           justifyContent: "center",
-          mt: 1,
         }}
       >
         <Box

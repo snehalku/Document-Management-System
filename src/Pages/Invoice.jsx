@@ -257,7 +257,6 @@ const Invoice = () => {
           height: "100vh",
           display: "flex",
           justifyContent: "center",
-          mt: 1,
         }}
       >
         <Box
