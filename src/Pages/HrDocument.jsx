@@ -35,22 +35,7 @@ import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
   {
-    id: "EMP045",
-    firstName: "Andrew",
-    lastName: "Lilli",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "16-11-1988",
-    doj: "06-06-2025",
-    expiresOn: "2020-01-02",
-    nationalId: "AS1234567",
-    degree: "Bsc",
-    department: "IT",
-    docId: "11",
-    docName: "Andrew_L_202513",
-  },
-  {
-    id: "EMP001",
+    id: "EMP342",
     firstName: "Andrew ",
     lastName: "Prendergrast",
     transactionId: "TXN123",
@@ -64,6 +49,22 @@ const mockCustomerDocs = [
     degree: "BA",
     department: "Sales",
   },
+  {
+    id: "EMP451",
+    firstName: "Andrew",
+    lastName: "Lilli",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "16-11-1988",
+    doj: "06-06-2025",
+    expiresOn: "2020-01-02",
+    nationalId: "AS1234567",
+    degree: "Bsc",
+    department: "IT",
+    docId: "11",
+    docName: "Andrew_L_202513",
+  },
+  
   {
     id: "EMP036",
     firstName: "Andrew",
