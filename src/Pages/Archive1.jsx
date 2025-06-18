@@ -318,15 +318,16 @@ const Archive1 = () => {
   };
 
   const handleSave = () => {
-    if (selectedCategory === "AML_KYC") {
-      setPreviewDocPath(Doc3);
-    }
-    if (selectedCategory === "Transaction") {
-      setPreviewDocPath(transactionDoc1);
-    }
+   
     setAlertOpen(true);
 
     setTimeout(() => {
+       if (selectedCategory === "AML_KYC") {
+    setPreviewDocPath(Doc3);
+  }
+   if(selectedCategory === "Transaction") {
+    setPreviewDocPath(transactionDoc1);
+  }
       setAlertOpen(false);
       setFormData({
         customerId: "",

@@ -29,8 +29,8 @@ import TransitionAlerts from "../Components/ui/Notification";
 import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
-  {
-    id: "EMP001",
+   {
+    id: "EMP342",
     firstName: "Andrew ",
     lastName: "Prendergrast",
     transactionId: "TXN123",
@@ -44,7 +44,7 @@ const mockCustomerDocs = [
     department: "Sales",
   },
   {
-    id: "EMP045",
+    id: "EMP451",
     firstName: "Andrew",
     lastName: "Lilli",
     transactionId: "TXN123",
@@ -123,19 +123,24 @@ const HR = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [formData, setFormData] = useState({
     customerId: "",
+    firstName: "",
     issueDate: "",
     expiryDate: "",
     // versionNo: "1.0",
   });
 
   useEffect(() => {
-    if (selectedDoc) {
-      setFormData((prev) => ({
-        ...prev,
-        customerId: selectedDoc.id || "",
-      }));
-    }
-  }, [selectedDoc]);
+  if (selectedDoc) {
+    setFormData((prev) => ({
+      ...prev,
+      customerId: selectedDoc.id || "",
+      firstName: selectedDoc.firstName || "",
+      lastName: selectedDoc.lastName || "",
+      employeeName: `${selectedDoc.firstName || ""} ${selectedDoc.lastName || ""}`.trim(),
+    }));
+  }
+}, [selectedDoc]);
+
 
   useEffect(() => {
     const list = [];
@@ -790,6 +795,13 @@ const HR = () => {
                         value={formData.customerId}
                         sx={{ mb: 2 }}
                       />
+
+                       <TextField
+                          label="Employee Name"
+                          fullWidth
+                          value={`${formData.firstName} ${formData.lastName || ""}`}
+                          sx={{ mb: 2 }}
+                        />
                     </Paper>
                   </Grid>
                   <TransitionAlerts
