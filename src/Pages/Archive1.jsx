@@ -319,11 +319,11 @@ const Archive1 = () => {
 
   const handleSave = () => {
     if (selectedCategory === "AML_KYC") {
-    setPreviewDocPath(Doc3);
-  }
-   if(selectedCategory === "Transaction") {
-    setPreviewDocPath(transactionDoc1);
-  }
+      setPreviewDocPath(Doc3);
+    }
+    if (selectedCategory === "Transaction") {
+      setPreviewDocPath(transactionDoc1);
+    }
     setAlertOpen(true);
 
     setTimeout(() => {
@@ -334,12 +334,11 @@ const Archive1 = () => {
         expiryDate: "",
         // versionNo: " ",
       });
-      setSelectedDoc(null); 
+      setSelectedDoc(null);
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
-      setSelectedCategory(selectedCategory),
-      setSearchCustomer("");
+      setSelectedCategory(selectedCategory), setSearchCustomer("");
       setSearchResults("");
       setCategory("");
       setSubcategory("");
@@ -397,7 +396,7 @@ const Archive1 = () => {
   };
   const handleCategory = (e) => {
     setSelectedCategory(e.target.value);
-    setPreviewDocPath("")
+    setPreviewDocPath("");
   };
 
   return (
@@ -410,6 +409,7 @@ const Archive1 = () => {
           // width: "100vw",
           display: "flex",
           justifyContent: "center",
+          mt: 1,
         }}
       >
         <Box
@@ -436,7 +436,7 @@ const Archive1 = () => {
             }}
           >
             {(() => {
-              let docPath ;
+              let docPath;
               if (selectedCategory === "AML_KYC") {
                 docPath = previewDocPath || selectedDoc?.path || Doc2;
               }
@@ -659,7 +659,7 @@ const Archive1 = () => {
                 </Card>
               )}
             </Box>
-            <Box sx={{overflowX: "auto" }}>
+            <Box sx={{ overflowX: "auto" }}>
               {selectedCategory === "AML_KYC" ? (
                 <div>
                   {!hideTable && searchResults.length > 0 && (
@@ -1363,8 +1363,8 @@ const Archive1 = () => {
                     </Stack>
                   </Box>
                 </Card>
-              )  }
-                 {formCard && selectedCategory == "Transaction" && (
+              )}
+              {formCard && selectedCategory == "Transaction" && (
                 <Card
                   sx={{
                     // height: alertOpen ? "62vh" : "50vh",
@@ -1394,8 +1394,6 @@ const Archive1 = () => {
                         sx={{ mb: 2 }}
                         // disabled={!selectedDoc}
                       />
-
-                     
                     </Paper>
                   </Grid>
                   <TransitionAlerts
@@ -1452,7 +1450,7 @@ const Archive1 = () => {
                     </Stack>
                   </Box>
                 </Card>
-              )  }
+              )}
             </Box>
           </Box>
         </Box>

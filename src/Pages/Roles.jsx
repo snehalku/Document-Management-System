@@ -71,7 +71,11 @@ const Roles = () => {
     <div>
       <Header departments={departments} defValue={"Sales"} />
       <Box
-        sx={{ bgcolor: "#f2f4f5", display: "flex", justifyContent: "center" }}
+        sx={{
+          bgcolor: "#f2f4f5",
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
         <Box
           sx={{
@@ -98,6 +102,7 @@ const Roles = () => {
             </Typography>
             <Button
               variant="contained"
+              onClick={() => navigate("/createRole")}
               sx={{
                 mt: 1,
                 bgcolor: "#99caff",
@@ -110,7 +115,7 @@ const Roles = () => {
                 },
               }}
             >
-              Create Roles
+              Create Role
             </Button>
           </Stack>
 
@@ -143,7 +148,9 @@ const Roles = () => {
 
                   <TableCell>
                     <Stack direction="column">
-                      <Typography fontWeight="bold">Permission</Typography>
+                      <Typography fontWeight="bold">
+                        Role Description
+                      </Typography>
                       <TextField
                         size="small"
                         variant="standard"
@@ -207,7 +214,10 @@ const Roles = () => {
                       <TableCell>
                         <Stack direction="row" spacing={1}>
                           <Tooltip title="Edit">
-                            <IconButton color="primary">
+                            <IconButton
+                              color="primary"
+                              onClick={() => navigate("/editRole")}
+                            >
                               <EditIcon />
                             </IconButton>
                           </Tooltip>

@@ -119,6 +119,7 @@ const User = () => {
             </Typography>
             <Button
               variant="contained"
+              onClick={() => navigate("/createUser")}
               sx={{
                 mt: 1,
                 bgcolor: "#99caff",
@@ -205,7 +206,7 @@ const User = () => {
                     </Stack>
                   </TableCell>
                   <TableCell>
-                    <Stack direction="column" alignItems="center">
+                    <Stack direction="column">
                       <Typography fontWeight="bold">Responsibility</Typography>
                       <TextField
                         size="small"
@@ -279,7 +280,10 @@ const User = () => {
                       <TableCell>
                         <Stack direction="row" spacing={1}>
                           <Tooltip title="Edit">
-                            <IconButton color="primary">
+                            <IconButton
+                              color="primary"
+                              onClick={() => navigate("/editUser")}
+                            >
                               <EditIcon />
                             </IconButton>
                           </Tooltip>
