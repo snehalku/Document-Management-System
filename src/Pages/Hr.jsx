@@ -29,7 +29,7 @@ import TransitionAlerts from "../Components/ui/Notification";
 import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
-   {
+  {
     id: "EMP342",
     firstName: "Andrew ",
     lastName: "Prendergrast",
@@ -130,17 +130,18 @@ const HR = () => {
   });
 
   useEffect(() => {
-  if (selectedDoc) {
-    setFormData((prev) => ({
-      ...prev,
-      customerId: selectedDoc.id || "",
-      firstName: selectedDoc.firstName || "",
-      lastName: selectedDoc.lastName || "",
-      employeeName: `${selectedDoc.firstName || ""} ${selectedDoc.lastName || ""}`.trim(),
-    }));
-  }
-}, [selectedDoc]);
-
+    if (selectedDoc) {
+      setFormData((prev) => ({
+        ...prev,
+        customerId: selectedDoc.id || "",
+        firstName: selectedDoc.firstName || "",
+        lastName: selectedDoc.lastName || "",
+        employeeName: `${selectedDoc.firstName || ""} ${
+          selectedDoc.lastName || ""
+        }`.trim(),
+      }));
+    }
+  }, [selectedDoc]);
 
   useEffect(() => {
     const list = [];
@@ -292,7 +293,6 @@ const HR = () => {
           height: "100vh",
           display: "flex",
           justifyContent: "center",
-          mt: 1,
         }}
       >
         <Box
@@ -796,12 +796,14 @@ const HR = () => {
                         sx={{ mb: 2 }}
                       />
 
-                       <TextField
-                          label="Employee Name"
-                          fullWidth
-                          value={`${formData.firstName} ${formData.lastName || ""}`}
-                          sx={{ mb: 2 }}
-                        />
+                      <TextField
+                        label="Employee Name"
+                        fullWidth
+                        value={`${formData.firstName} ${
+                          formData.lastName || ""
+                        }`}
+                        sx={{ mb: 2 }}
+                      />
                     </Paper>
                   </Grid>
                   <TransitionAlerts
