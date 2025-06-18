@@ -284,7 +284,7 @@ const InvoiceDocument = () => {
           </Stack>
           <TableContainer
             component={Paper}
-            sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 450 }}
+            sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
           >
             <Table>
               <TableHead>

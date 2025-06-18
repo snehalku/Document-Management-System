@@ -455,7 +455,7 @@ const Documents = () => {
           {selectedCategory === "AML_KYC" ? (
             <TableContainer
               component={Paper}
-              sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 450 }}
+              sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
             >
               <Table>
                 <TableHead>
@@ -802,7 +802,7 @@ const Documents = () => {
           ) : (
             <TableContainer
               component={Paper}
-              sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 450 }}
+              sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
             >
               <Table>
                 <TableHead>

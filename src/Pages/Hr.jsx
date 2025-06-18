@@ -29,7 +29,7 @@ import TransitionAlerts from "../Components/ui/Notification";
 import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
-   {
+  {
     id: "EMP001",
     firstName: "Andrew ",
     lastName: "Prendergrast",
@@ -56,7 +56,7 @@ const mockCustomerDocs = [
     degree: "Bsc",
     department: "IT",
   },
- 
+
   {
     id: "EMP036",
     firstName: "Andrew",
@@ -100,14 +100,16 @@ const HR = () => {
   const [filterLastName, setFilterLastName] = useState("");
   const [filterDob, setFilterDob] = useState("");
   const [filterDoj, setFilterDoj] = useState("");
-const [formCard, setFormCard] = useState(false);
+  const [formCard, setFormCard] = useState(false);
   const [filterNationalId, setFilterNationalId] = useState("");
   const [previewDocPath, setPreviewDocPath] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [hideTable, setHideTable] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Educational Qualification");
+  const [selectedCategory, setSelectedCategory] = useState(
+    "Educational Qualification"
+  );
 
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
@@ -171,10 +173,9 @@ const [formCard, setFormCard] = useState(false);
     setFormCard(true);
   };
 
-
   const handleSubcategory = () => {
     handleSearch();
-  }; 
+  };
   const handleSelectSearchDoc = (doc) => {
     setSelectedDoc(doc);
     setCategory(doc.category || "");
@@ -286,6 +287,7 @@ const [formCard, setFormCard] = useState(false);
           height: "100vh",
           display: "flex",
           justifyContent: "center",
+          mt: 1,
         }}
       >
         <Box
@@ -478,7 +480,7 @@ const [formCard, setFormCard] = useState(false);
                             id="application-select"
                             defaultValue="sel"
                             size="small"
-                             onChange={handleSubcategory}
+                            onChange={handleSubcategory}
                             sx={{
                               // bgcolor: "#f2f4f5",
                               height: "36px",
@@ -531,7 +533,6 @@ const [formCard, setFormCard] = useState(false);
                           <TableCell>
                             <Typography fontWeight="bold"></Typography>
                           </TableCell>
-                        
                           <TableCell>
                             <Typography fontWeight="bold" mb={1}>
                               Employee ID
@@ -788,7 +789,6 @@ const [formCard, setFormCard] = useState(false);
                         fullWidth
                         value={formData.customerId}
                         sx={{ mb: 2 }}
-                       
                       />
                     </Paper>
                   </Grid>
