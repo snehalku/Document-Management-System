@@ -376,10 +376,23 @@ const handleSaveDialog = () => {
                     defaultValue="C:\\kycdocuments\\sourcefolder"
                     size="small"
                   />
-                  <Button
+                   <input
+  type="file"
+  webkitdirectory="true"
+  multiple
+  hidden
+  ref={sourceInputRef}
+  onChange={(e) => handleFolderSelect(e, "Source")}
+/>
+
+<Button
   variant="contained"
-  onClick={() => handleOpenDialog("source")} // or "destination", "discard"
-  sx={{ bgcolor: "#99caff", color: "#000", "&:hover": { bgcolor: "#80bfff" } }}
+  onClick={() => sourceInputRef.current.click()}
+  sx={{
+    bgcolor: "#99caff",
+    color: "#000",
+    "&:hover": { bgcolor: "#80bfff" },
+  }}
 >
   Update
 </Button>
@@ -387,31 +400,6 @@ const handleSaveDialog = () => {
                 </Box>
               </CardContent>
             </Card>
-<Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-  <Box sx={{ p: 3, width: 400 }}>
-    <Typography variant="h6" sx={{ mb: 2 }}>
-      Update {editingKey.charAt(0).toUpperCase() + editingKey.slice(1)} Folder Path
-    </Typography>
-
-    <TextField
-      fullWidth
-      label="Folder Path"
-      variant="outlined"
-      value={tempPath}
-      onChange={(e) => setTempPath(e.target.value)}
-      sx={{ mb: 2 }}
-    />
-
-    <Box display="flex" justifyContent="flex-end" gap={2}>
-      <Button onClick={() => setDialogOpen(false)} color="secondary" variant="outlined">
-        Cancel
-      </Button>
-      <Button onClick={handleSaveDialog} color="primary" variant="contained">
-        Save
-      </Button>
-    </Box>
-  </Box>
-</Dialog>
 
             <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
               <CardContent>
@@ -466,19 +454,27 @@ const handleSaveDialog = () => {
                     defaultValue="C:\\kycdocuments\\discardfolder"
                     size="small"
                   />
-                  <Button
-                    variant="contained"
-                    component="label"
-                    sx={{
-                      bgcolor: "#99caff",
-                      color: "#000",
-                      "&:hover": {
-                        bgcolor: "#80bfff",
-                      },
-                    }}
-                  >
-                    Update
-                  </Button>
+                  <input
+  type="file"
+  webkitdirectory="true"
+  multiple
+  hidden
+  ref={discardInputRef}
+  onChange={(e) => handleFolderSelect(e, "Discard")}
+/>
+
+<Button
+  variant="contained"
+  onClick={() => discardInputRef.current.click()}
+  sx={{
+    bgcolor: "#99caff",
+    color: "#000",
+    "&:hover": { bgcolor: "#80bfff" },
+  }}
+>
+  Update
+</Button>
+
                 </Box>
               </CardContent>
             </Card>
