@@ -26,17 +26,22 @@ import NavigateBefore from "@mui/icons-material/NavigateBefore";
 import NavigateNext from "@mui/icons-material/NavigateNext";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Header from "../Components/Layout/Header";
+import { useState } from "react";
 
 const roles = [
   {
     name: "Emily Johnson",
     mail: "emilyjohnson@gmail.com",
+    mobNo: "+1234567890",
     role: "Admin",
     responsibility: "Manages all users, departments, and documents.",
   },
   {
     name: "Michael Carter",
     mail: "michaelcarter@gmail.com",
+    mobNo: "+1234567891",
+
     role: "Chartered Accountant (CA)",
     responsibility:
       "Views and assigns parameters to Accounts-related documents.",
@@ -44,264 +49,375 @@ const roles = [
   {
     name: "Daniel Lewis	",
     mail: "daniellewis@gmail.com",
-    role: "KYC Officer",
-    responsibility: "Views and assigns parameters to KYC-related documents.",
+    mobNo: "+1234567892",
+
+    role: "Sales Manager",
+    responsibility: "Views and assigns parameters to Sales-related documents.",
   },
   {
     name: "Sophia Martinez	",
     mail: "sophiamartinez@gmail.com",
-    role: "Finance Officer",
-    responsibility:
-      "Views and assigns parameters to Finance-related documents.",
+    mobNo: "+1234567893",
+
+    role: "HR",
+    responsibility: "Views and assigns parameters to HR-related documents.",
   },
 ];
 
 const User = () => {
   const navigate = useNavigate();
+  const departments = [
+    { label: "Sales", route: "/documents" },
+    { label: "Accounts", route: "/invoiceDocument" },
+    { label: "HR", route: "/hrDocument" },
+    { label: "Legal" },
+  ];
+  const [searchInputs, setSearchInputs] = useState({
+    name: "",
+    mail: "",
+    role: "",
+  });
+  const handleSearchInputChange = (field, value) => {
+    setSearchInputs((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   return (
-    <Box
-      sx={{
-        bgcolor: "#f2f4f5",
-        display: "flex",
-        justifyContent: "center",
-        // width: "100%",
-      }}
-    >
+    <div>
+      <Header departments={departments} defValue={"Sales"} />
+
       <Box
         sx={{
           bgcolor: "#f2f4f5",
-          minHeight: "90vh",
-          width: "100%",
-          py: 4,
-          pl: "70px",
-          pt: "12px",
-          pr: "24px",
-          boxSizing: "border-box",
-          overflow: "hidden",
-          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          // width: "100%",
         }}
       >
-        <Typography
-          variant="h5"
-          component="h1"
-          fontWeight="bold"
-          sx={{ mb: 2 }}
+        <Box
+          sx={{
+            bgcolor: "#f2f4f5",
+            minHeight: "90vh",
+            width: "100%",
+            py: 4,
+            pl: "70px",
+            pt: "20px",
+            pr: "24px",
+            boxSizing: "border-box",
+            overflow: "hidden",
+            position: "relative",
+          }}
         >
-          User
-        </Typography>
-        <Stack
-          direction="row"
-          spacing={2}
-          sx={{ mb: 3 }}
-          justifyContent="space-between"
-        >
-          <TextField
-            placeholder="Search User"
-            variant="outlined"
-            sx={{
-              width: "50%",
-              bgcolor: "#fff",
-              height: "50px",
-              borderRadius: "10px",
-
-              "& .MuiOutlinedInput-root": {
-                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
-                "& fieldset": {
-                  border: "none",
-                },
-                "&.Mui-focused": {
-                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
-                },
-              },
-            }}
-          />
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#99caff",
-              width: "150px",
-              color: "black",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                bgcolor: "#88b9ee",
-              },
-            }}
+          <Stack
+            display="flex"
+            direction="row"
+            sx={{ mb: 2 }}
+            justifyContent="space-between"
           >
-            Create User
-          </Button>
-        </Stack>
-        <TableContainer
-          component={Paper}
-          sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
-        >
-          <Table>
-            <TableHead>
-              <TableRow sx={{ bgcolor: "#99caff" }}>
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Name</Typography>
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Mail</Typography>
-                    {/* <ArrowDropDown /> */}
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Role</Typography>
-                  </Stack>
-                </TableCell>
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Responsibility</Typography>
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Stack direction="row" alignItems="center">
-                    <Typography fontWeight="bold">Action</Typography>
-                  </Stack>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody>
-              {roles.map((role, index) => (
-                <TableRow key={index} hover>
-                  <TableCell>{role.name}</TableCell>
-                  <TableCell>{role.mail}</TableCell>
-                  <TableCell>{role.role}</TableCell>
-                  <TableCell>{role.responsibility}</TableCell>
+            <Typography
+              variant="h6"
+              component="h1"
+              fontWeight="bold"
+              sx={{ mb: 1 }}
+            >
+              User
+            </Typography>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/createUser")}
+              sx={{
+                mt: 1,
+                bgcolor: "#99caff",
+                width: "150px",
+                color: "black",
+                borderRadius: "10px",
+                fontWeight: "bold",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                "&:hover": {
+                  bgcolor: "#88b9ee",
+                },
+              }}
+            >
+              Create User
+            </Button>
+          </Stack>
+          <TableContainer
+            component={Paper}
+            sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 450 }}
+          >
+            <Table>
+              <TableHead>
+                <TableRow sx={{ bgcolor: "#99caff" }}>
+                  <TableCell>
+                    <Stack direction="column">
+                      <Typography fontWeight="bold">Name</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.name}
+                        onChange={(e) =>
+                          handleSearchInputChange("name", e.target.value)
+                        }
+                        autoComplete="off"
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                        }}
+                      />
+                    </Stack>
+                  </TableCell>
 
                   <TableCell>
-                    <Stack direction="row" spacing={1}>
-                      <Tooltip title="Edit">
-                        <IconButton
-                          color="primary"
-                          onClick={() => {
-                            /* handle edit here */
-                          }}
-                        >
-                          <EditIcon />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip title="Delete">
-                        <IconButton
-                          color="error"
-                          onClick={() => {
-                            /* handle delete here */
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </Tooltip>
+                    <Stack direction="column">
+                      <Typography fontWeight="bold">Mail</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.mail}
+                        onChange={(e) =>
+                          handleSearchInputChange("mail", e.target.value)
+                        }
+                        autoComplete="off"
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                        }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell>
+                    <Stack direction="column">
+                      <Typography fontWeight="bold">Mobile Number</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.mobNo}
+                        onChange={(e) =>
+                          handleSearchInputChange("mobNo", e.target.value)
+                        }
+                        autoComplete="off"
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                        }}
+                      />
+                    </Stack>
+                  </TableCell>
+
+                  <TableCell>
+                    <Stack direction="column">
+                      <Typography fontWeight="bold">Role</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.role}
+                        onChange={(e) =>
+                          handleSearchInputChange("role", e.target.value)
+                        }
+                        autoComplete="off"
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                        }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell>
+                    <Stack direction="column">
+                      <Typography fontWeight="bold">Responsibility</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        autoComplete="off"
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                          "& .MuiInput-underline:before": {
+                            borderBottom: "none",
+                          },
+                          "& .MuiInput-underline:after": {
+                            borderBottom: "none",
+                          },
+                          "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                            {
+                              borderBottom: "none",
+                            },
+                        }}
+                      />
+                    </Stack>
+                  </TableCell>
+
+                  <TableCell>
+                    <Stack direction="column" alignItems="center">
+                      <Typography fontWeight="bold">Action</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        autoComplete="off"
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                          "& .MuiInput-underline:before": {
+                            borderBottom: "none",
+                          },
+                          "& .MuiInput-underline:after": {
+                            borderBottom: "none",
+                          },
+                          "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                            {
+                              borderBottom: "none",
+                            },
+                        }}
+                      />
                     </Stack>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-          <Pagination
-            count={10}
-            shape="rounded"
-            renderItem={(item) => {
-              if (item.type === "previous") {
+              </TableHead>
+
+              <TableBody>
+                {roles
+                  .filter((role) => {
+                    const nameMatch = role.name
+                      .toLowerCase()
+                      .includes(searchInputs.name.toLowerCase());
+                    const mailMatch = role.mail
+                      .toLowerCase()
+                      .includes(searchInputs.mail.toLowerCase());
+                    const roleMatch = role.role
+                      .toLowerCase()
+                      .includes(searchInputs.role.toLowerCase());
+                    return nameMatch && mailMatch && roleMatch;
+                  })
+                  .map((role, index) => (
+                    <TableRow key={index} hover>
+                      <TableCell>{role.name}</TableCell>
+                      <TableCell>{role.mail}</TableCell>
+                      <TableCell>{role.mobNo}</TableCell>
+
+                      <TableCell>{role.role}</TableCell>
+                      <TableCell>{role.responsibility}</TableCell>
+                      <TableCell>
+                        <Stack direction="row" spacing={1}>
+                          <Tooltip title="Edit">
+                            <IconButton
+                              color="primary"
+                              onClick={() => navigate("/editUser")}
+                            >
+                              <EditIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Delete">
+                            <IconButton color="error">
+                              <DeleteIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </Stack>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+            <Pagination
+              count={10}
+              shape="rounded"
+              renderItem={(item) => {
+                if (item.type === "previous") {
+                  return (
+                    <PaginationItem
+                      component={IconButton}
+                      sx={{
+                        border: "1px solid #a7a6a6",
+
+                        borderRadius: "5px",
+
+                        bgcolor: "#f2f4f5",
+
+                        mx: 0.5,
+                      }}
+                      {...item}
+                      icon={<NavigateBefore fontSize="small" />}
+                    />
+                  );
+                }
+
+                if (item.type === "next") {
+                  return (
+                    <PaginationItem
+                      component={IconButton}
+                      sx={{
+                        border: "1px solid #a7a6a6",
+
+                        borderRadius: "5px",
+
+                        bgcolor: "#f2f4f5",
+
+                        mx: 0.5,
+                      }}
+                      {...item}
+                      icon={<NavigateNext fontSize="small" />}
+                    />
+                  );
+                }
+
                 return (
                   <PaginationItem
-                    component={IconButton}
+                    {...item}
                     sx={{
                       border: "1px solid #a7a6a6",
 
                       borderRadius: "5px",
 
-                      bgcolor: "#f2f4f5",
+                      bgcolor: item.selected ? "#99caff" : "#f2f4f5",
 
                       mx: 0.5,
+
+                      color: item.selected ? "black" : "#747474",
                     }}
-                    {...item}
-                    icon={<NavigateBefore fontSize="small" />}
                   />
                 );
-              }
-
-              if (item.type === "next") {
-                return (
-                  <PaginationItem
-                    component={IconButton}
-                    sx={{
-                      border: "1px solid #a7a6a6",
-
-                      borderRadius: "5px",
-
-                      bgcolor: "#f2f4f5",
-
-                      mx: 0.5,
-                    }}
-                    {...item}
-                    icon={<NavigateNext fontSize="small" />}
-                  />
-                );
-              }
-
-              return (
-                <PaginationItem
-                  {...item}
-                  sx={{
-                    border: "1px solid #a7a6a6",
-
-                    borderRadius: "5px",
-
-                    bgcolor: item.selected ? "#99caff" : "#f2f4f5",
-
-                    mx: 0.5,
-
-                    color: item.selected ? "black" : "#747474",
-                  }}
-                />
-              );
-            }}
-          />
-          <Box>
-            <Button
-              variant="outlined"
-              size="small"
-              sx={{
-                ml: 1,
-                border: "1px solid #a7a6a6",
-                borderRadius: "5px",
-                bgcolor: "#f2f4f5",
-                color: "#747474",
-                fontSize: "10px",
-                textTransform: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
               }}
-            >
-              5 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
-            </Button>
+            />
+            <Box>
+              <Button
+                variant="outlined"
+                size="small"
+                sx={{
+                  ml: 1,
+                  border: "1px solid #a7a6a6",
+                  borderRadius: "5px",
+                  bgcolor: "#f2f4f5",
+                  color: "#747474",
+                  fontSize: "10px",
+                  textTransform: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
+                }}
+              >
+                5 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
+              </Button>
 
-            <Menu>
-              <MenuItem>5/page</MenuItem>
-              <MenuItem>10/page</MenuItem>
-              <MenuItem>15/page</MenuItem>
-            </Menu>
+              <Menu>
+                <MenuItem>5/page</MenuItem>
+                <MenuItem>10/page</MenuItem>
+                <MenuItem>15/page</MenuItem>
+              </Menu>
+            </Box>
           </Box>
         </Box>
       </Box>
-    </Box>
+    </div>
   );
 };
 

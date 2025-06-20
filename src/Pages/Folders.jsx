@@ -172,7 +172,7 @@
 
 // export default Folders;
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   Button,
   Box,
@@ -187,6 +187,8 @@ import {
   MenuItem,
   TextField,
 } from "@mui/material";
+import Header from "../Components/Layout/Header";
+import { Dialog } from "@mui/material";
 
 const folderPaths = [
   {
@@ -212,6 +214,18 @@ const Folders = () => {
     }
   };
 
+  const sourceInputRef = useRef(null);
+  const destinationInputRef = useRef(null);
+  const discardInputRef = useRef(null);
+
+  const handleFolderSelect = (e, label) => {
+    const files = Array.from(e.target.files);
+    if (files.length > 0) {
+      console.log(`📁 ${label} Folder Selected:`);
+      console.log(files);
+    }
+  };
+
   const handleFolderDestination = (e) => {
     const files = Array.from(e.target.files);
     if (files.length > 0) {
@@ -227,185 +241,217 @@ const Folders = () => {
       console.log(files);
     }
   };
+  const departments = [
+    { label: "Sales", route: "/documents" },
+    { label: "Accounts", route: "/invoiceDocument" },
+    { label: "HR", route: "/hrDocument" },
+    { label: "Legal" },
+  ];
+
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [editingKey, setEditingKey] = React.useState(""); // source, destination, discard
+  const [tempPath, setTempPath] = React.useState(""); // temporary input
+  const [folderPaths, setFolderPaths] = useState({
+    source: "C:\\kycdocuments\\sourcefolder",
+    // destination: "C:\\kycdocuments\\destinationfolder",
+    // discard: "C:\\kycdocuments\\discardfolder",
+  });
+
+  const handleOpenDialog = (key) => {
+    setEditingKey(key);
+    setTempPath(folderPaths[key]);
+    setDialogOpen(true);
+  };
+  const handleSaveDialog = () => {
+    setFolderPaths((prev) => ({
+      ...prev,
+      [editingKey]: tempPath,
+    }));
+    setDialogOpen(false);
+  };
 
   return (
-    <Box sx={{ bgcolor: "#f2f4f5", display: "flex", justifyContent: "center" }}>
+    <div>
+      <Header departments={departments} defValue={"Sales"} />
+
       <Box
         sx={{
           bgcolor: "#f2f4f5",
-          minHeight: "90vh",
-          width: "100%",
-          py: 4,
-          pl: "70px",
-          pt: "12px",
-          pr: "24px",
-          boxSizing: "border-box",
-          overflow: "hidden",
-          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          // width: "100%",
         }}
       >
-        <Typography variant="h5" fontWeight="bold" mb={1}>
-          Folders
-        </Typography>
-        <Stack
-          direction="row"
-          spacing={2}
-          sx={{ mb: 2 }}
-          justifyContent="flex-start"
-          alignItems="center"
+        <Box
+          sx={{
+            bgcolor: "#f2f4f5",
+            minHeight: "90vh",
+            width: "100%",
+            py: 4,
+            pl: "70px",
+            pt: "20px",
+            pr: "24px",
+            boxSizing: "border-box",
+            overflow: "hidden",
+            position: "relative",
+          }}
         >
-          <Typography variant="subtitle1" fontWeight="bold">
-            Select Department
+          <Typography
+            variant="h6"
+            component="h1"
+            fontWeight="bold"
+            sx={{ mb: 1 }}
+          >
+            Folders
           </Typography>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ mb: 2 }}
+            justifyContent="flex-start"
+            alignItems="center"
+          >
+            <Typography variant="subtitle1" fontWeight="bold">
+              Select Department
+            </Typography>
 
-          <FormControl sx={{ minWidth: 150 }}>
-            <Select
-              labelId="application-select-label"
-              id="application-select"
-              defaultValue="AML KYC"
-              label="Application"
-              sx={{
-                bgcolor: "#f2f4f5",
-                height: "45px",
-                borderRadius: "5px",
-                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
-                "& fieldset": {
-                  border: "none",
-                },
-                "&.Mui-focused": {
-                  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
-                },
-              }}
-            >
-              <MenuItem value="AML KYC">AML KYC</MenuItem>
-              <MenuItem value="Account">Accounts</MenuItem>
-            </Select>
-          </FormControl>
-        </Stack>
-
-        <Box display="flex" flexDirection="row" gap={3} mb={4}>
-          {/* <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
-            <CardContent>
-              <Button
-                variant="contained"
-                component="label"
+            <FormControl sx={{ minWidth: 150 }}>
+              <Select
+                labelId="application-select-label"
+                id="application-select"
+                defaultValue="sales"
                 sx={{
-                  bgcolor: "#99caff",
-                  color: "#000",
-                  "&:hover": {
-                    bgcolor: "#80bfff",
-                  },
+                  // bgcolor: "#f2f4f5",
+                  height: "45px",
+                  borderRadius: "5px",
                 }}
               >
-                Source Folder
-                <input
-                  type="file"
-                  webkitdirectory="true"
-                  directory=""
-                  multiple
-                  hidden
-                  onChange={handleFolderSource}
-                />
-              </Button>
-              <p>C:\documents\sourcefolder</p>
-            </CardContent>
-          </Card> */}
+                <MenuItem value="sales">Sales</MenuItem>
+                <MenuItem value="accounts">Accounts</MenuItem>
+                <MenuItem value="hr">HR</MenuItem>
+                <MenuItem value="legal">Legal</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
 
-          <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
-            <CardContent>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                Source Folder
-              </Typography>
+          <Box display="flex" flexDirection="row" gap={3} mb={4}>
+            <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
+              <CardContent>
+                <Typography variant="h6" sx={{ mb: 2 }}>
+                  Source Folder
+                </Typography>
 
-              <Box display="flex" alignItems="center" gap={2}>
-                <TextField
-                  label="Folder Path"
-                  variant="outlined"
-                  fullWidth
-                  defaultValue="C:\\kycdocuments\\sourcefolder"
-                  size="small"
-                />
-                <Button
-                  variant="contained"
-                  component="label"
-                  sx={{
-                    bgcolor: "#99caff",
-                    color: "#000",
-                    "&:hover": {
-                      bgcolor: "#80bfff",
-                    },
-                  }}
-                >
-                  Update
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
+                <Box display="flex" alignItems="center" gap={2}>
+                  <TextField
+                    label="Folder Path"
+                    variant="outlined"
+                    fullWidth
+                    defaultValue="C:\\kycdocuments\\sourcefolder"
+                    size="small"
+                  />
+                  <input
+                    type="file"
+                    webkitdirectory="true"
+                    multiple
+                    hidden
+                    ref={sourceInputRef}
+                    onChange={(e) => handleFolderSource(e, "Source")}
+                  />
 
-          <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
-            <CardContent>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                Destination Folder
-              </Typography>
+                  <Button
+                    variant="contained"
+                    onClick={() => sourceInputRef.current.click()}
+                    sx={{
+                      bgcolor: "#99caff",
+                      color: "#000",
+                      "&:hover": { bgcolor: "#80bfff" },
+                    }}
+                  >
+                    Update
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
 
-              <Box display="flex" alignItems="center" gap={2}>
-                <TextField
-                  label="Folder Path"
-                  variant="outlined"
-                  fullWidth
-                  defaultValue="C:\\kycdocuments\\destinationfolder"
-                  size="small"
-                />
-                <Button
-                  variant="contained"
-                  component="label"
-                  sx={{
-                    bgcolor: "#99caff",
-                    color: "#000",
-                    "&:hover": {
-                      bgcolor: "#80bfff",
-                    },
-                  }}
-                >
-                  Update
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
+            <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
+              <CardContent>
+                <Typography variant="h6" sx={{ mb: 2 }}>
+                  Destination Folder
+                </Typography>
 
-          <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
-            <CardContent>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                Discard Folder
-              </Typography>
+                <Box display="flex" alignItems="center" gap={2}>
+                  <TextField
+                    label="Folder Path"
+                    variant="outlined"
+                    fullWidth
+                    defaultValue="C:\\kycdocuments\\destinationfolder"
+                    size="small"
+                  />
+                  <input
+                    type="file"
+                    webkitdirectory="true"
+                    multiple
+                    hidden
+                    ref={destinationInputRef}
+                    onChange={(e) => handleFolderSelect(e, "Destination")}
+                  />
 
-              <Box display="flex" alignItems="center" gap={2}>
-                <TextField
-                  label="Folder Path"
-                  variant="outlined"
-                  fullWidth
-                  defaultValue="C:\\kycdocuments\\discardfolder"
-                  size="small"
-                />
-                <Button
-                  variant="contained"
-                  component="label"
-                  sx={{
-                    bgcolor: "#99caff",
-                    color: "#000",
-                    "&:hover": {
-                      bgcolor: "#80bfff",
-                    },
-                  }}
-                >
-                  Update
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
+                  <Button
+                    variant="contained"
+                    onClick={() => destinationInputRef.current.click()}
+                    sx={{
+                      bgcolor: "#99caff",
+                      color: "#000",
+                      "&:hover": { bgcolor: "#80bfff" },
+                    }}
+                  >
+                    Update
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+
+            <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
+              <CardContent>
+                <Typography variant="h6" sx={{ mb: 2 }}>
+                  Discard Folder
+                </Typography>
+
+                <Box display="flex" alignItems="center" gap={2}>
+                  <TextField
+                    label="Folder Path"
+                    variant="outlined"
+                    fullWidth
+                    defaultValue="C:\\kycdocuments\\discardfolder"
+                    size="small"
+                  />
+                  <input
+                    type="file"
+                    webkitdirectory="true"
+                    multiple
+                    hidden
+                    ref={discardInputRef}
+                    onChange={(e) => handleFolderSelect(e, "Discard")}
+                  />
+
+                  <Button
+                    variant="contained"
+                    onClick={() => discardInputRef.current.click()}
+                    sx={{
+                      bgcolor: "#99caff",
+                      color: "#000",
+                      "&:hover": { bgcolor: "#80bfff" },
+                    }}
+                  >
+                    Update
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </div>
   );
 };
 

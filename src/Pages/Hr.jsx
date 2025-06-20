@@ -30,20 +30,7 @@ import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
   {
-    id: "EMP045",
-    firstName: "Andrew",
-    lastName: "Lilli",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "16-11-1988",
-    doj: "06-06-2025",
-    expiresOn: "2020-01-02",
-    nationalId: "AS1234567",
-    degree: "Bsc",
-    department: "IT",
-  },
-  {
-    id: "EMP001",
+    id: "EMP342",
     firstName: "Andrew ",
     lastName: "Prendergrast",
     transactionId: "TXN123",
@@ -56,6 +43,20 @@ const mockCustomerDocs = [
     degree: "BA",
     department: "Sales",
   },
+  {
+    id: "EMP451",
+    firstName: "Andrew",
+    lastName: "Lilli",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "16-11-1988",
+    doj: "06-06-2025",
+    expiresOn: "2020-01-02",
+    nationalId: "AS1234567",
+    degree: "Bsc",
+    department: "IT",
+  },
+
   {
     id: "EMP036",
     firstName: "Andrew",
@@ -99,14 +100,16 @@ const HR = () => {
   const [filterLastName, setFilterLastName] = useState("");
   const [filterDob, setFilterDob] = useState("");
   const [filterDoj, setFilterDoj] = useState("");
-
+  const [formCard, setFormCard] = useState(false);
   const [filterNationalId, setFilterNationalId] = useState("");
   const [previewDocPath, setPreviewDocPath] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [hideTable, setHideTable] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("sel");
+  const [selectedCategory, setSelectedCategory] = useState(
+    "Educational Qualification"
+  );
 
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
@@ -120,6 +123,7 @@ const HR = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [formData, setFormData] = useState({
     customerId: "",
+    firstName: "",
     issueDate: "",
     expiryDate: "",
     // versionNo: "1.0",
@@ -130,6 +134,11 @@ const HR = () => {
       setFormData((prev) => ({
         ...prev,
         customerId: selectedDoc.id || "",
+        firstName: selectedDoc.firstName || "",
+        lastName: selectedDoc.lastName || "",
+        employeeName: `${selectedDoc.firstName || ""} ${
+          selectedDoc.lastName || ""
+        }`.trim(),
       }));
     }
   }, [selectedDoc]);
@@ -165,6 +174,14 @@ const HR = () => {
     setSearchResults(results);
   };
 
+  const onCheck = () => {
+    setHideTable(true);
+    setFormCard(true);
+  };
+
+  const handleSubcategory = () => {
+    handleSearch();
+  };
   const handleSelectSearchDoc = (doc) => {
     setSelectedDoc(doc);
     setCategory(doc.category || "");
@@ -210,6 +227,7 @@ const HR = () => {
         // versionNo: " ",
       });
       setSelectedDoc(null);
+      setFormCard(false);
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
@@ -265,6 +283,7 @@ const HR = () => {
     { label: "Legal" },
   ];
 
+  const today = new Date().toISOString().split("T")[0];
   return (
     <div>
       <Header departments={departments} defValue={"HR"} />
@@ -398,6 +417,7 @@ const HR = () => {
                         type="date"
                         size="small"
                         // value={selectedDate}
+                        defaultValue={today}
                         onChange={(e) => setSelectedDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
                         sx={{ width: 160 }}
@@ -423,6 +443,7 @@ const HR = () => {
                           <Select
                             labelId="application-select-label"
                             id="application-select"
+                            //  defaultValue="Select Category"
                             value={selectedCategory}
                             onChange={(e) =>
                               setSelectedCategory(e.target.value)
@@ -460,10 +481,11 @@ const HR = () => {
 
                         <FormControl sx={{ minWidth: 160 }}>
                           <Select
-                            // labelId="application-select-label"
+                            labelId="application-select-label"
                             id="application-select"
                             defaultValue="sel"
                             size="small"
+                            onChange={handleSubcategory}
                             sx={{
                               // bgcolor: "#f2f4f5",
                               height: "36px",
@@ -480,40 +502,11 @@ const HR = () => {
                         </FormControl>
                       </Stack>
                     </Box>
-
-                    <TextField
-                      label=" Search by Employee ID, Employee Name"
-                      size="small"
-                      value={searchCustomer}
-                      onChange={(e) => setSearchCustomer(e.target.value)}
-                      sx={{ width: 415 }}
-                      autoComplete="off"
-                    />
-
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleSearch}
-                      sx={{
-                        height: "36px",
-                        borderRadius: "8px",
-                        bgcolor: "#99CAFF",
-                        color: "black",
-                        px: 2,
-                        fontSize: "0.8rem",
-                        boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
-                        "&:hover": {
-                          bgcolor: "#7bb8ff",
-                        },
-                      }}
-                    >
-                      Get Data
-                    </Button>
                   </Box>
                 </Card>
               )}
             </Box>
-            <Box sx={{ overflowY: "auto", height: "375px" }}>
+            <Box sx={{ overflowY: "auto" }}>
               {!hideTable && searchResults.length > 0 && (
                 <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
                   <Typography
@@ -525,7 +518,7 @@ const HR = () => {
                     <span style={{ color: "red" }}>*</span>
                   </Typography>
                   <Typography sx={{ mb: 1, fontWeight: "bold" }}>
-                    Customer details from the OLTP system
+                    Employee details from the OLTP system
                   </Typography>
 
                   <TableContainer
@@ -731,7 +724,7 @@ const HR = () => {
                               <TableCell>
                                 <Checkbox
                                   checked={confirmedDocIds.includes(doc.id)}
-                                  onChange={() => setHideTable(true)}
+                                  onChange={onCheck}
                                 />
                               </TableCell>
 
@@ -773,7 +766,7 @@ const HR = () => {
                   </TableContainer>
                 </Paper>
               )}
-              {searchResults.length > 0 && (
+              {formCard && (
                 <Card
                   sx={{
                     // height: alertOpen ? "62vh" : "50vh",
@@ -793,7 +786,7 @@ const HR = () => {
                       <Typography
                         sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}
                       >
-                        Document
+                        Additional Information
                       </Typography>
 
                       <TextField
@@ -801,7 +794,15 @@ const HR = () => {
                         fullWidth
                         value={formData.customerId}
                         sx={{ mb: 2 }}
-                        // disabled={!selectedDoc}
+                      />
+
+                      <TextField
+                        label="Employee Name"
+                        fullWidth
+                        value={`${formData.firstName} ${
+                          formData.lastName || ""
+                        }`}
+                        sx={{ mb: 2 }}
                       />
                     </Paper>
                   </Grid>
@@ -809,7 +810,7 @@ const HR = () => {
                     alertOpen={alertOpen}
                     //   handleAlertClose={handleAlertClose}
                     message={
-                      "The document of the Employee ID EMP001 has been saved successfully."
+                      "The document of the Employee ID EMP342 has been saved successfully."
                     }
                   />
                   <Box sx={{ p: 1, mt: 2 }}>

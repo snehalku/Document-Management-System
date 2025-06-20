@@ -31,12 +31,21 @@ import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
   {
+    id: "123",
+    companyName: "Syborgtech",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "971",
+  },
+  {
     id: "111",
     companyName: "TCS",
     date: "2025-04-30",
     expiresOn: "2032-12-12",
     invoiceNo: "123477",
-    invoiceDate: "22-09-2020",
+    invoiceDate: "06-06-2025",
     invoiceAmount: "4725",
   },
   {
@@ -45,7 +54,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
-    invoiceDate: "22-09-2020",
+    invoiceDate: "06-06-2025",
     invoiceAmount: "8521",
   },
   {
@@ -54,17 +63,27 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "22-09-2020",
+    invoiceDate: "06-06-2025",
     invoiceAmount: "3569",
   },
+
   {
-    id: "123",
-    companyName: "Syborgtech",
+    id: "127",
+    companyName: "Maitland",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "457896",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "3599",
+  },
+  {
+    id: "128",
+    companyName: "SyborgtechGlobal",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
-    invoiceDate: "22-09-2020",
-    invoiceAmount: "971",
+    invoiceDate: "06-06-2025",
+    invoiceAmount: "9878",
   },
 ];
 const Invoice = () => {
@@ -78,13 +97,15 @@ const Invoice = () => {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
   const [filterInvoiceNo, setFilterInvoiceNo] = useState("");
+  const [filterInvoiceDate, setFilterInvoiceDate] = useState("");
   const [filterCompanyName, setFilterCompanyName] = useState("");
   const [previewDocPath, setPreviewDocPath] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [hideTable, setHideTable] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Select Category");
+  const [selectedCategory, setSelectedCategory] = useState("Accounts");
+  const [formCard, setFormCard] = useState(false);
 
   const [columnSearch, setColumnSearch] = useState({
     invoiceNo: "",
@@ -141,6 +162,15 @@ const Invoice = () => {
     setSearchResults(results);
   };
 
+  const handleSubcategory = () => {
+    handleSearch();
+  };
+
+  const onCheck = () => {
+    setHideTable(true);
+    setFormCard(true);
+  };
+
   const handleSelectSearchDoc = (doc) => {
     setSelectedDoc(doc);
     setCategory(doc.category || "");
@@ -184,6 +214,7 @@ const Invoice = () => {
       });
       setSelectedCategory("Select Category");
       setSelectedDoc(null);
+      setFormCard(false);
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
@@ -214,6 +245,8 @@ const Invoice = () => {
     const filtered = mockCustomerDocs[0];
     setSearchResults(filtered);
   };
+
+  const today = new Date().toISOString().split("T")[0];
 
   return (
     <div>
@@ -340,7 +373,8 @@ const Invoice = () => {
                       // label="Search by Invoice Date"
                       type="date"
                       size="small"
-                      value={selectedDate}
+                      // value={selectedDate}
+                      defaultValue={today}
                       onChange={(e) => setSelectedDate(e.target.value)}
                       InputLabelProps={{ shrink: true }}
                       sx={{ width: 160 }}
@@ -380,11 +414,8 @@ const Invoice = () => {
                             <MenuItem value="Select Category">
                               Select Category
                             </MenuItem>
-                            <MenuItem value="Accounts Payable">
+                            <MenuItem value="Accounts">
                               Accounts Payable
-                            </MenuItem>
-                            <MenuItem value="Accounts Receivable">
-                              Accounts Receivable
                             </MenuItem>
                           </Select>
                         </FormControl>
@@ -410,6 +441,7 @@ const Invoice = () => {
                             id="application-select"
                             defaultValue="Select Subcategory"
                             size="small"
+                            onChange={handleSubcategory}
                             sx={{
                               height: "36px",
                               fontSize: "0.8rem",
@@ -430,39 +462,11 @@ const Invoice = () => {
                         </FormControl>
                       </Stack>
                     </Box>
-
-                    <TextField
-                      label=" Search by Customer ID, Invoice No."
-                      size="small"
-                      value={searchCustomer}
-                      onChange={(e) => setSearchCustomer(e.target.value)}
-                      sx={{ width: 415 }}
-                    />
-
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleSearch}
-                      sx={{
-                        height: "36px",
-                        borderRadius: "8px",
-                        bgcolor: "#99CAFF",
-                        color: "black",
-                        px: 2,
-                        fontSize: "0.8rem",
-                        boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
-                        "&:hover": {
-                          bgcolor: "#7bb8ff",
-                        },
-                      }}
-                    >
-                      Get Data
-                    </Button>
                   </Box>
                 </Card>
               )}
             </Box>
-            <Box sx={{ overflowY: "auto", height: "375px" }}>
+            <Box sx={{ overflowY: "auto" }}>
               {!hideTable && searchResults.length > 0 && (
                 <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
                   <Typography
@@ -474,12 +478,16 @@ const Invoice = () => {
                     <span style={{ color: "red" }}>*</span>
                   </Typography>
                   <Typography sx={{ mb: 1, fontWeight: "bold" }}>
-                    Customer details from the OLTP system
+                    Supplier details from the OLTP system
                   </Typography>
 
                   <TableContainer
                     component={Paper}
-                    sx={{ borderRadius: "10px 10px 0 0" }}
+                    sx={{
+                      borderRadius: "10px 10px 0 0",
+                      maxHeight: 355,
+                      overflow: "auto",
+                    }}
                   >
                     <Table size="small">
                       <TableHead>
@@ -492,21 +500,7 @@ const Invoice = () => {
                           </TableCell>
                           <TableCell>
                             <Typography fontWeight="bold" mb={1}>
-                              Invoice Date
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              type="date"
-                              value={columnSearch.invoiceDate}
-                              onChange={handleFilter}
-                              placeholder="Search  "
-                              fullWidth
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
-                              Customer ID
+                              Supplier ID
                             </Typography>
                             <TextField
                               variant="standard"
@@ -526,6 +520,46 @@ const Invoice = () => {
                                 );
                                 setSearchResults(filtered);
                               }}
+                              placeholder="Search  "
+                              fullWidth
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <Typography fontWeight="bold" mb={1}>
+                              Supplier Name
+                            </Typography>
+                            <TextField
+                              variant="standard"
+                              size="small"
+                              autoComplete="off"
+                              value={columnSearch.companyName}
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                setColumnSearch((prev) => ({
+                                  ...prev,
+                                  id: value,
+                                }));
+                                const query = value.toLowerCase();
+                                const filtered = mockCustomerDocs.filter(
+                                  (doc) =>
+                                    String(doc.id).toLowerCase().includes(query)
+                                );
+                                setSearchResults(filtered);
+                              }}
+                              placeholder="Search  "
+                              fullWidth
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <Typography fontWeight="bold" mb={1}>
+                              Invoice Date
+                            </Typography>
+                            <TextField
+                              variant="standard"
+                              size="small"
+                              type="date"
+                              value={columnSearch.invoiceDate}
+                              onChange={handleFilter}
                               placeholder="Search  "
                               fullWidth
                             />
@@ -585,6 +619,20 @@ const Invoice = () => {
                               fullWidth
                             />
                           </TableCell>
+                          <TableCell>
+                            <Typography fontWeight="bold" mb={1}>
+                              Transaction Date
+                            </Typography>
+                            <TextField
+                              variant="standard"
+                              size="small"
+                              type="date"
+                              value={columnSearch.invoiceDate}
+                              onChange={handleFilter}
+                              placeholder="Search  "
+                              fullWidth
+                            />
+                          </TableCell>
                         </TableRow>
                       </TableHead>
 
@@ -609,16 +657,19 @@ const Invoice = () => {
                               <TableCell>
                                 <Checkbox
                                   checked={confirmedDocIds.includes(doc.id)}
-                                  onChange={() => setHideTable(true)}
+                                  onChange={onCheck}
                                 />
                               </TableCell>
+                              <TableCell>{doc.id}</TableCell>
+
+                              <TableCell>{doc.companyName}</TableCell>
                               <TableCell>{doc.invoiceDate}</TableCell>
 
-                              <TableCell>{doc.id}</TableCell>
                               <TableCell>{doc.invoiceNo}</TableCell>
                               <TableCell align="right">
                                 {doc.invoiceAmount}
                               </TableCell>
+                              <TableCell>{doc.invoiceDate}</TableCell>
                             </TableRow>
                           ))}
                       </TableBody>
@@ -626,7 +677,7 @@ const Invoice = () => {
                   </TableContainer>
                 </Paper>
               )}
-              {searchResults.length > 0 && (
+              {formCard && (
                 <Card
                   sx={{
                     // height: alertOpen ? "58vh" : "50vh",
@@ -646,11 +697,11 @@ const Invoice = () => {
                       <Typography
                         sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}
                       >
-                        Document
+                        Additional Information
                       </Typography>
 
                       <TextField
-                        label="Customer ID"
+                        label="Supplier ID"
                         fullWidth
                         value={formData.customerId}
                         sx={{ mb: 2 }}

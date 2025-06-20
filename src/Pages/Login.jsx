@@ -75,6 +75,7 @@ const Login = () => {
                   placeholder="sarahjohnson@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="off"
                 />
                 <TextField
                   label="Password"
@@ -84,6 +85,7 @@ const Login = () => {
                   placeholder="********"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="off"
                 />
               </>
             ) : (
@@ -95,6 +97,7 @@ const Login = () => {
                 placeholder="1234"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
+                autoComplete="off"
               />
             )}
 
@@ -125,7 +128,7 @@ const Login = () => {
         {step === 1 && (
           <CardActions sx={{ justifyContent: "center" }}>
             <Typography variant="body2">
-              Don&apos;t have an account?{" "}
+              Don't have an account?{" "}
               <Link
                 component="button"
                 underline="hover"

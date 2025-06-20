@@ -116,6 +116,7 @@ const Header = ({ departments, defValue }) => {
     if (dept) {
       navigate(dept.route);
     }
+    console.log("dept", dept);
   };
 
   return (

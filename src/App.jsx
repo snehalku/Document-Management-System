@@ -21,6 +21,11 @@ import Login from "./Pages/Login";
 import Invoice from "./Pages/Invoice";
 import InvoiceDocument from "./Pages/InvoiceDocument";
 import HR from "./Pages/Hr";
+import HrDocument from "./Pages/HrDocument";
+import EditRole from "./Pages/EditRole";
+import CreateRole from "./Pages/CreateRole";
+import EditUser from "./Pages/EditUser";
+import CreateUser from "./Pages/CreateUser";
 
 function App() {
   const router = createBrowserRouter([
@@ -100,6 +105,30 @@ function App() {
         {
           path: "hr",
           element: <HR />,
+        },
+        {
+          path: "hrDocument",
+          element: <HrDocument />,
+        },
+        {
+          path: "dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "editRole",
+          element: <EditRole />,
+        },
+        {
+          path: "createRole",
+          element: <CreateRole />,
+        },
+        {
+          path: "editUser",
+          element: <EditUser />,
+        },
+        {
+          path: "createUser",
+          element: <CreateUser />,
         },
       ],
     },
