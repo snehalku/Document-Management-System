@@ -33,12 +33,15 @@ const roles = [
   {
     name: "Emily Johnson",
     mail: "emilyjohnson@gmail.com",
+    mobNo: "+1234567890",
     role: "Admin",
     responsibility: "Manages all users, departments, and documents.",
   },
   {
     name: "Michael Carter",
     mail: "michaelcarter@gmail.com",
+    mobNo: "+1234567891",
+
     role: "Chartered Accountant (CA)",
     responsibility:
       "Views and assigns parameters to Accounts-related documents.",
@@ -46,12 +49,16 @@ const roles = [
   {
     name: "Daniel Lewis	",
     mail: "daniellewis@gmail.com",
+    mobNo: "+1234567892",
+
     role: "Sales Manager",
     responsibility: "Views and assigns parameters to Sales-related documents.",
   },
   {
     name: "Sophia Martinez	",
     mail: "sophiamartinez@gmail.com",
+    mobNo: "+1234567893",
+
     role: "HR",
     responsibility: "Views and assigns parameters to HR-related documents.",
   },
@@ -185,6 +192,25 @@ const User = () => {
                       />
                     </Stack>
                   </TableCell>
+                  <TableCell>
+                    <Stack direction="column">
+                      <Typography fontWeight="bold">Mobile Number</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.mobNo}
+                        onChange={(e) =>
+                          handleSearchInputChange("mobNo", e.target.value)
+                        }
+                        autoComplete="off"
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                        }}
+                      />
+                    </Stack>
+                  </TableCell>
 
                   <TableCell>
                     <Stack direction="column">
@@ -275,6 +301,8 @@ const User = () => {
                     <TableRow key={index} hover>
                       <TableCell>{role.name}</TableCell>
                       <TableCell>{role.mail}</TableCell>
+                      <TableCell>{role.mobNo}</TableCell>
+
                       <TableCell>{role.role}</TableCell>
                       <TableCell>{role.responsibility}</TableCell>
                       <TableCell>
