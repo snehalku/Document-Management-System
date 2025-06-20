@@ -10,6 +10,9 @@ import {
   Typography,
   Stack,
   Grid,
+  FormControl,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import React from "react";
 import { useState } from "react";
@@ -69,11 +72,13 @@ const CreateUser = () => {
                   mb: 2,
                 }}
               >
-                <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
+                <Box
+                  sx={{ display: "flex", alignItems: "center", flex: 1, mb: 1 }}
+                >
                   <Typography
                     variant="body1"
                     fontWeight="500"
-                    sx={{ mr: 6, whiteSpace: "nowrap" }}
+                    sx={{ mr: 9.5, whiteSpace: "nowrap" }}
                   >
                     Name <span style={{ color: "red" }}>*</span>
                   </Typography>
@@ -85,7 +90,9 @@ const CreateUser = () => {
                   />
                 </Box>
 
-                <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
+                <Box
+                  sx={{ display: "flex", alignItems: "center", flex: 1, mb: 1 }}
+                >
                   <Typography
                     variant="body1"
                     fontWeight="500"
@@ -107,15 +114,16 @@ const CreateUser = () => {
                   display: "flex",
                   flexDirection: "row",
                   gap: 2,
+                  mb: 2,
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
                   <Typography
                     variant="body1"
                     fontWeight="500"
-                    sx={{ mr: 7, whiteSpace: "nowrap" }}
+                    sx={{ mr: 2, whiteSpace: "nowrap" }}
                   >
-                    Role <span style={{ color: "red" }}>*</span>
+                    Mobile Number <span style={{ color: "red" }}>*</span>
                   </Typography>
                   <TextField
                     fullWidth
@@ -140,6 +148,44 @@ const CreateUser = () => {
                     placeholder="Enter Responsibility"
                   />
                 </Box>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  flex: 1,
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  fontWeight="500"
+                  sx={{ mr: 4.5, whiteSpace: "nowrap" }}
+                >
+                  Assign Role <span style={{ color: "red" }}>*</span>
+                </Typography>
+
+                <FormControl sx={{ minWidth: 160 }}>
+                  <Select
+                    labelId="application-select-label"
+                    id="application-select"
+                    defaultValue="Select Role"
+                    size="small"
+                    sx={{
+                      height: "38px",
+                      fontSize: "0.8rem",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    <MenuItem value="Select Role">Select Role</MenuItem>
+                    <MenuItem value="Sales Manager  ">Sales Manager </MenuItem>
+
+                    <MenuItem value="Chartered Accountant">
+                      Chartered Accountant
+                    </MenuItem>
+                    <MenuItem value="HR">HR </MenuItem>
+                  </Select>
+                </FormControl>
               </Box>
             </Box>
           </Paper>

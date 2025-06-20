@@ -249,26 +249,26 @@ const Folders = () => {
   ];
 
   const [dialogOpen, setDialogOpen] = React.useState(false);
-const [editingKey, setEditingKey] = React.useState(""); // source, destination, discard
-const [tempPath, setTempPath] = React.useState("");     // temporary input
-const [folderPaths, setFolderPaths] = useState({
-  source: "C:\\kycdocuments\\sourcefolder",
-  // destination: "C:\\kycdocuments\\destinationfolder",
-  // discard: "C:\\kycdocuments\\discardfolder",
-});
+  const [editingKey, setEditingKey] = React.useState(""); // source, destination, discard
+  const [tempPath, setTempPath] = React.useState(""); // temporary input
+  const [folderPaths, setFolderPaths] = useState({
+    source: "C:\\kycdocuments\\sourcefolder",
+    // destination: "C:\\kycdocuments\\destinationfolder",
+    // discard: "C:\\kycdocuments\\discardfolder",
+  });
 
-const handleOpenDialog = (key) => {
-  setEditingKey(key);
-  setTempPath(folderPaths[key]);
-  setDialogOpen(true);
-};
-const handleSaveDialog = () => {
-  setFolderPaths((prev) => ({
-    ...prev,
-    [editingKey]: tempPath,
-  }));
-  setDialogOpen(false);
-};
+  const handleOpenDialog = (key) => {
+    setEditingKey(key);
+    setTempPath(folderPaths[key]);
+    setDialogOpen(true);
+  };
+  const handleSaveDialog = () => {
+    setFolderPaths((prev) => ({
+      ...prev,
+      [editingKey]: tempPath,
+    }));
+    setDialogOpen(false);
+  };
 
   return (
     <div>
@@ -335,33 +335,6 @@ const handleSaveDialog = () => {
           </Stack>
 
           <Box display="flex" flexDirection="row" gap={3} mb={4}>
-            {/* <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
-            <CardContent>
-              <Button
-                variant="contained"
-                component="label"
-                sx={{
-                  bgcolor: "#99caff",
-                  color: "#000",
-                  "&:hover": {
-                    bgcolor: "#80bfff",
-                  },
-                }}
-              >
-                Source Folder
-                <input
-                  type="file"
-                  webkitdirectory="true"
-                  directory=""
-                  multiple
-                  hidden
-                  onChange={handleFolderSource}
-                />
-              </Button>
-              <p>C:\documents\sourcefolder</p>
-            </CardContent>
-          </Card> */}
-
             <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
               <CardContent>
                 <Typography variant="h6" sx={{ mb: 2 }}>
@@ -376,42 +349,29 @@ const handleSaveDialog = () => {
                     defaultValue="C:\\kycdocuments\\sourcefolder"
                     size="small"
                   />
-                  <Button
-  variant="contained"
-  onClick={() => handleOpenDialog("source")} // or "destination", "discard"
-  sx={{ bgcolor: "#99caff", color: "#000", "&:hover": { bgcolor: "#80bfff" } }}
->
-  Update
-</Button>
+                  <input
+                    type="file"
+                    webkitdirectory="true"
+                    multiple
+                    hidden
+                    ref={sourceInputRef}
+                    onChange={(e) => handleFolderSource(e, "Source")}
+                  />
 
+                  <Button
+                    variant="contained"
+                    onClick={() => sourceInputRef.current.click()}
+                    sx={{
+                      bgcolor: "#99caff",
+                      color: "#000",
+                      "&:hover": { bgcolor: "#80bfff" },
+                    }}
+                  >
+                    Update
+                  </Button>
                 </Box>
               </CardContent>
             </Card>
-<Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-  <Box sx={{ p: 3, width: 400 }}>
-    <Typography variant="h6" sx={{ mb: 2 }}>
-      Update {editingKey.charAt(0).toUpperCase() + editingKey.slice(1)} Folder Path
-    </Typography>
-
-    <TextField
-      fullWidth
-      label="Folder Path"
-      variant="outlined"
-      value={tempPath}
-      onChange={(e) => setTempPath(e.target.value)}
-      sx={{ mb: 2 }}
-    />
-
-    <Box display="flex" justifyContent="flex-end" gap={2}>
-      <Button onClick={() => setDialogOpen(false)} color="secondary" variant="outlined">
-        Cancel
-      </Button>
-      <Button onClick={handleSaveDialog} color="primary" variant="contained">
-        Save
-      </Button>
-    </Box>
-  </Box>
-</Dialog>
 
             <Card elevation={3} sx={{ borderRadius: 2, bgcolor: "#ffffff" }}>
               <CardContent>
@@ -427,27 +387,26 @@ const handleSaveDialog = () => {
                     defaultValue="C:\\kycdocuments\\destinationfolder"
                     size="small"
                   />
-                 <input
-  type="file"
-  webkitdirectory="true"
-  multiple
-  hidden
-  ref={destinationInputRef}
-  onChange={(e) => handleFolderSelect(e, "Destination")}
-/>
+                  <input
+                    type="file"
+                    webkitdirectory="true"
+                    multiple
+                    hidden
+                    ref={destinationInputRef}
+                    onChange={(e) => handleFolderSelect(e, "Destination")}
+                  />
 
-<Button
-  variant="contained"
-  onClick={() => destinationInputRef.current.click()}
-  sx={{
-    bgcolor: "#99caff",
-    color: "#000",
-    "&:hover": { bgcolor: "#80bfff" },
-  }}
->
-  Update
-</Button>
-
+                  <Button
+                    variant="contained"
+                    onClick={() => destinationInputRef.current.click()}
+                    sx={{
+                      bgcolor: "#99caff",
+                      color: "#000",
+                      "&:hover": { bgcolor: "#80bfff" },
+                    }}
+                  >
+                    Update
+                  </Button>
                 </Box>
               </CardContent>
             </Card>
