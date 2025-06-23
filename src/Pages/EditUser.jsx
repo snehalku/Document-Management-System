@@ -13,6 +13,8 @@ import {
   Select,
   MenuItem,
   Grid,
+  OutlinedInput,
+  Chip,
 } from "@mui/material";
 import React from "react";
 import { useState } from "react";
@@ -21,6 +23,10 @@ import Header from "../Components/Layout/Header";
 
 const EditUser = () => {
   const navigate = useNavigate();
+
+  const roles = ["Sales Manager", "Chartered Accountant", "HR", "Admin"];
+  const [selectedRoles, setSelectedRoles] = useState(["Admin"]); // default selected
+
   const departments = [
     { label: "Sales", route: "/documents" },
     { label: "Accounts", route: "/invoiceDocument" },
@@ -149,7 +155,7 @@ const EditUser = () => {
                   />
                 </Box>
               </Box>
-              <Box
+              {/* <Box
                 sx={{
                   display: "flex",
                   flexDirection: "row",
@@ -184,6 +190,52 @@ const EditUser = () => {
                       Chartered Accountant
                     </MenuItem>
                     <MenuItem value="HR">HR </MenuItem>
+                  </Select>
+                </FormControl>
+              </Box> */}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  flex: 1,
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  fontWeight="500"
+                  sx={{ mr: 2.5, whiteSpace: "nowrap" }}
+                >
+                  Assigned Role <span style={{ color: "red" }}>*</span>
+                </Typography>
+                <FormControl sx={{ minWidth: 240 }}>
+                  <Select
+                    multiple
+                    displayEmpty
+                    size="small"
+                    value={selectedRoles}
+                    onChange={(e) => setSelectedRoles(e.target.value)}
+                    input={<OutlinedInput />}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <em>Select Role</em>;
+                      }
+                      return selected.join(", ");
+                    }}
+                    sx={{
+                      height: "38px",
+                      fontSize: "0.8rem",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    <MenuItem disabled value="">
+                      <em>Select Role</em>
+                    </MenuItem>
+                    {roles.map((role) => (
+                      <MenuItem key={role} value={role}>
+                        {role}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </Box>
