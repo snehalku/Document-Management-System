@@ -79,7 +79,7 @@ const Sidebar = () => {
         {/* Menu Items */}
 
         <List sx={{ mt: 3, px: 1 }}>
-          <ListItem
+          {/* <ListItem
             onClick={() => handleMenuItemClick("/dashboard")}
             sx={{
               borderRadius: "10px",
@@ -108,7 +108,7 @@ const Sidebar = () => {
                 fontSize: "16px",
               }}
             />
-          </ListItem>
+          </ListItem> */}
           <ListItem
             onClick={() => handleMenuItemClick("/archiveDocument1")}
             sx={{
@@ -206,6 +206,7 @@ const Sidebar = () => {
               onClick={() => handleMenuItemClick("/roles")}
               sx={{
                 height: 40,
+                cursor: "pointer",
                 mb: 0.5,
                 "&:hover": { bgcolor: "#f5f5f5" },
               }}
@@ -214,13 +215,21 @@ const Sidebar = () => {
             </ListItem>
             <ListItem
               onClick={() => handleMenuItemClick("/user")}
-              sx={{ height: 40, "&:hover": { bgcolor: "#f5f5f5" } }}
+              sx={{
+                height: 40,
+                cursor: "pointer",
+                "&:hover": { bgcolor: "#f5f5f5" },
+              }}
             >
               <ListItemText primary="User" />
             </ListItem>
             <ListItem
               onClick={() => handleMenuItemClick("/folders")}
-              sx={{ height: 40, "&:hover": { bgcolor: "#f5f5f5" } }}
+              sx={{
+                height: 40,
+                cursor: "pointer",
+                "&:hover": { bgcolor: "#f5f5f5" },
+              }}
             >
               <ListItemText primary="Folder" />
             </ListItem>
