@@ -1,177 +1,3 @@
-// import React, { useState } from "react";
-// import {
-//   Grid,
-//   Card,
-//   CardContent,
-//   Typography,
-//   Button,
-//   Stack,
-//   Divider,
-//   Select,
-//   MenuItem,
-//   InputLabel,
-//   FormControl,
-//   Box,
-//   Paper,
-// } from "@mui/material";
-
-// const Folders = () => {
-//   const [sourceDocs, setSourceDocs] = useState([
-//     { id: 1, name: "passport.pdf" },
-//     { id: 2, name: "aadhaar.jpg" },
-//     { id: 3, name: "pan.png" },
-//   ]);
-
-//   const [selectedDoc, setSelectedDoc] = useState(null);
-//   const [category, setCategory] = useState("");
-//   const [subCategory, setSubCategory] = useState("");
-
-//   const handleMove = () => {
-//     if (selectedDoc && category && subCategory) {
-//       console.log("Moved Document", {
-//         ...selectedDoc,
-//         category,
-//         subCategory,
-//       });
-
-//       setSourceDocs(prev => prev.filter(doc => doc.id !== selectedDoc.id));
-//       setSelectedDoc(null);
-//       setCategory("");
-//       setSubCategory("");
-//     }
-//   };
-
-//   return (
-//     <Box
-//     sx={{
-//       bgcolor: "#f2f4f5",
-//       display: "flex",
-//       justifyContent: "center",
-//     }}
-//   >
-//     <Box
-//       sx={{
-//         bgcolor: "#f2f4f5",
-//         minHeight: "90vh",
-//         width: "100%",
-//         py: 4,
-//         pl: "70px",
-//         pt: "12px",
-//         pr: "24px",
-//         boxSizing: "border-box",
-//         overflow: "hidden",
-//         position: "relative",
-//       }}
-//     >
-//       <Paper
-//         elevation={3}
-//         sx={{
-//           p: 3,
-//           borderRadius: 2,
-//           bgcolor: "#ffffff",
-//           mb: 4,
-//         }}
-//       >
-//     <Grid container spacing={4}>
-//       {/* Source Folder */}
-//       <Grid item xs={12} md={6}>
-//         <Card variant="outlined" sx={{ height: '100%' }}>
-//           <CardContent>
-//             <Typography variant="h6" gutterBottom>📂 Source Folder</Typography>
-//             <Divider sx={{ mb: 2 }} />
-//             <Stack spacing={1}>
-//               {sourceDocs.length === 0 && (
-//                 <Typography>No documents in source folder.</Typography>
-//               )}
-//               {sourceDocs.map((doc) => (
-//                 <Box
-//                   key={doc.id}
-//                   sx={{
-//                     display: "flex",
-//                     justifyContent: "space-between",
-//                     alignItems: "center",
-//                     border: "1px solid #ccc",
-//                     borderRadius: 1,
-//                     p: 1,
-//                   }}
-//                 >
-//                   <Typography>{doc.name}</Typography>
-//                   <Button
-//                     size="small"
-//                     variant="contained"
-//                     onClick={() => setSelectedDoc(doc)}
-//                   >
-//                     Select
-//                   </Button>
-//                 </Box>
-//               ))}
-//             </Stack>
-//           </CardContent>
-//         </Card>
-//       </Grid>
-
-//       {/* Destination Folder */}
-//       <Grid item xs={12} md={6}>
-//         <Card variant="outlined" sx={{ height: '100%' }}>
-//           <CardContent>
-//             <Typography variant="h6" gutterBottom>📁 Destination Folder</Typography>
-//             <Divider sx={{ mb: 2 }} />
-//             {selectedDoc ? (
-//               <Box>
-//                 <Typography mb={2}>
-//                   Moving: <strong>{selectedDoc.name}</strong>
-//                 </Typography>
-
-//                 <FormControl fullWidth sx={{ mb: 2 }}>
-//                   <InputLabel>Category</InputLabel>
-//                   <Select
-//                     value={category}
-//                     label="Category"
-//                     onChange={(e) => setCategory(e.target.value)}
-//                   >
-//                     <MenuItem value="KYC">KYC</MenuItem>
-//                     <MenuItem value="Finance">Finance</MenuItem>
-//                     <MenuItem value="HR">HR</MenuItem>
-//                   </Select>
-//                 </FormControl>
-
-//                 <FormControl fullWidth sx={{ mb: 2 }}>
-//                   <InputLabel>Sub Category</InputLabel>
-//                   <Select
-//                     value={subCategory}
-//                     label="Sub Category"
-//                     onChange={(e) => setSubCategory(e.target.value)}
-//                   >
-//                     <MenuItem value="ID Proof">ID Proof</MenuItem>
-//                     <MenuItem value="Address Proof">Address Proof</MenuItem>
-//                     <MenuItem value="Tax Doc">Tax Doc</MenuItem>
-//                   </Select>
-//                 </FormControl>
-
-//                 <Button
-//                   variant="contained"
-//                   fullWidth
-//                   onClick={handleMove}
-//                   disabled={!category || !subCategory}
-//                 >
-//                   Confirm Move
-//                 </Button>
-//               </Box>
-//             ) : (
-//               <Typography>Select a document from Source folder.</Typography>
-//             )}
-//           </CardContent>
-//         </Card>
-//       </Grid>
-//     </Grid>
-//     </Paper>
-//     </Box>
-//     </Box>
-//   );
-// };
-
-// export default Folders;
-
 import React, { useRef, useState } from "react";
 import {
   Button,
@@ -188,7 +14,6 @@ import {
   TextField,
 } from "@mui/material";
 import Header from "../Components/Layout/Header";
-import { Dialog } from "@mui/material";
 
 const folderPaths = [
   {
@@ -206,14 +31,16 @@ const folderPaths = [
 ];
 
 const Folders = () => {
-  const handleFolderSource = (e) => {
-    const files = Array.from(e.target.files);
-    if (files.length > 0) {
-      console.log("📁 Source Folder Selected:");
-      console.log(files);
-    }
-  };
-
+ const handleFolderSource = (e) => {
+  const files = Array.from(e.target.files);
+  if (files.length > 0) {
+    const fullPath = files[0].webkitRelativePath;
+    const folderName = fullPath.split("/")[0]; // gets the folder name
+    setSourceFolderName(folderName);
+    console.log("📁 Source Folder Selected:", folderName);
+    console.log(files);
+  }
+};
   const sourceInputRef = useRef(null);
   const destinationInputRef = useRef(null);
   const discardInputRef = useRef(null);
@@ -248,28 +75,7 @@ const Folders = () => {
     { label: "Legal" },
   ];
 
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-  const [editingKey, setEditingKey] = React.useState(""); // source, destination, discard
-  const [tempPath, setTempPath] = React.useState(""); // temporary input
-  const [folderPaths, setFolderPaths] = useState({
-    source: "C:\\kycdocuments\\sourcefolder",
-    // destination: "C:\\kycdocuments\\destinationfolder",
-    // discard: "C:\\kycdocuments\\discardfolder",
-  });
-
-  const handleOpenDialog = (key) => {
-    setEditingKey(key);
-    setTempPath(folderPaths[key]);
-    setDialogOpen(true);
-  };
-  const handleSaveDialog = () => {
-    setFolderPaths((prev) => ({
-      ...prev,
-      [editingKey]: tempPath,
-    }));
-    setDialogOpen(false);
-  };
-
+const [sourceFolderName, setSourceFolderName] = useState("");
   return (
     <div>
       <Header departments={departments} defValue={"Sales"} />
