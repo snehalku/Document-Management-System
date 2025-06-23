@@ -79,7 +79,7 @@ const Sidebar = () => {
         {/* Menu Items */}
 
         <List sx={{ mt: 3, px: 1 }}>
-          <ListItem
+          {/* <ListItem
             onClick={() => handleMenuItemClick("/dashboard")}
             sx={{
               borderRadius: "10px",
@@ -108,7 +108,7 @@ const Sidebar = () => {
                 fontSize: "16px",
               }}
             />
-          </ListItem>
+          </ListItem> */}
           <ListItem
             onClick={() => handleMenuItemClick("/archiveDocument1")}
             sx={{
