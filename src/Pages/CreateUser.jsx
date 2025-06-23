@@ -221,7 +221,7 @@ const CreateUser = () => {
                     input={<OutlinedInput />}
                     renderValue={(selected) => {
                       if (selected.length === 0) {
-                        return <em>Select Role</em>;
+                        return <>Select Role</>;
                       }
                       return selected.join(", ");
                     }}
