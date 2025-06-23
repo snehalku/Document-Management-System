@@ -231,7 +231,7 @@ const HR = () => {
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
-      setSelectedCategory("sel"), setSearchCustomer("");
+      setSelectedCategory(selectedCategory),  setSearchCustomer("");
       setSearchResults("");
       setCategory("");
       setSubcategory("");

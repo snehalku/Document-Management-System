@@ -218,6 +218,7 @@ const Invoice = () => {
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
+      setSelectedCategory(selectedCategory),
       setSearchCustomer("");
       setSearchResults("");
       setCategory("");
@@ -226,6 +227,10 @@ const Invoice = () => {
       setExpiryDate("");
       setPreviewDocPath(invoice3);
     }, 3000);
+  };
+
+   const handleCategory = (e) => {
+    setSelectedCategory(e.target.value);
   };
 
   const departments = [
@@ -399,11 +404,9 @@ const Invoice = () => {
                           <Select
                             labelId="application-select-label"
                             id="application-select"
-                            defaultValue="Select Category"
+                            // defaultValue="Select Category"
                             value={selectedCategory}
-                            onChange={(e) =>
-                              setSelectedCategory(e.target.value)
-                            }
+                            onChange={handleCategory}
                             // label="Application"
                             sx={{
                               height: "36px",
