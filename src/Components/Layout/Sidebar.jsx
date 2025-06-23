@@ -206,6 +206,7 @@ const Sidebar = () => {
               onClick={() => handleMenuItemClick("/roles")}
               sx={{
                 height: 40,
+                cursor: "pointer",
                 mb: 0.5,
                 "&:hover": { bgcolor: "#f5f5f5" },
               }}
@@ -214,13 +215,21 @@ const Sidebar = () => {
             </ListItem>
             <ListItem
               onClick={() => handleMenuItemClick("/user")}
-              sx={{ height: 40, "&:hover": { bgcolor: "#f5f5f5" } }}
+              sx={{
+                height: 40,
+                cursor: "pointer",
+                "&:hover": { bgcolor: "#f5f5f5" },
+              }}
             >
               <ListItemText primary="User" />
             </ListItem>
             <ListItem
               onClick={() => handleMenuItemClick("/folders")}
-              sx={{ height: 40, "&:hover": { bgcolor: "#f5f5f5" } }}
+              sx={{
+                height: 40,
+                cursor: "pointer",
+                "&:hover": { bgcolor: "#f5f5f5" },
+              }}
             >
               <ListItemText primary="Folder" />
             </ListItem>
