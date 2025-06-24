@@ -170,7 +170,7 @@ const Header = ({ departments, defValue }) => {
           </Typography>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Typography
+            {/* <Typography
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
@@ -187,7 +187,7 @@ const Header = ({ departments, defValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-            </FormControl>
+            </FormControl> */}
 
             <Avatar sx={{ width: 35, height: 35, bgcolor: "#d9d9d9" }} />
             <Typography

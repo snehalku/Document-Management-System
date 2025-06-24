@@ -102,14 +102,14 @@ function App() {
           path: "invoiceDocument",
           element: <InvoiceDocument />,
         },
-        {
-          path: "hr",
-          element: <HR />,
-        },
-        {
-          path: "hrDocument",
-          element: <HrDocument />,
-        },
+        // {
+        //   path: "hr",
+        //   element: <HR />,
+        // },
+        // {
+        //   path: "hrDocument",
+        //   element: <HrDocument />,
+        // },
         {
           path: "dashboard",
           element: <Dashboard />,

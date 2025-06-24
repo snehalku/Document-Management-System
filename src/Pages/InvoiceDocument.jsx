@@ -42,7 +42,7 @@ const projectData = [
     date: "2025-04-30",
     expiresOn: "2032-12-12",
     invoiceNo: "123477",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "22-06-2025",
     invoiceAmount: "4725",
     docId: "11",
     docName: "invoice_2025",
@@ -56,12 +56,12 @@ const projectData = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "22-06-2025",
     invoiceAmount: "8521",
     docId: "13",
     docName: "invoice_2024",
     category: "Accounts Receivable",
-    subCategory: "Sales Invoice",
+    subCategory: "Credit Note",
   },
   {
     id: "126",
@@ -69,20 +69,20 @@ const projectData = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "22-06-2025",
     invoiceAmount: "3569",
     docId: "18",
     docName: "invoice_18",
     category: "Accounts Payable",
-    subCategory: "Purchase Invoice",
+    subCategory: "Proof of Payment",
   },
   {
     id: "123",
-    companyName: "Syborgtech",
+    companyName: "Infotech",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "22-06-2025",
     invoiceAmount: "971",
     docId: "16",
     docName: "invoice_16",
@@ -95,25 +95,12 @@ const projectData = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "22-06-2025",
     invoiceAmount: "3599",
     docId: "14",
     docName: "invoice_14",
     category: "Accounts Payable",
     subCategory: "Purchase Invoice",
-  },
-  {
-    id: "128",
-    companyName: "SyborgtechGlobal",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "123456",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "9878",
-    docId: "10",
-    docName: "invoice_12",
-    category: "Accounts Receivable",
-    subCategory: "Sales Invoice",
   },
 ];
 
@@ -210,6 +197,23 @@ const InvoiceDocument = () => {
           >
             <Box display="flex" flexDirection="row">
               <Stack
+                display="flex"
+                flexDirection="row"
+                alignItems="center"
+                marginRight="20px"
+              >
+                <Typography variant="body2" fontWeight="700" sx={{ mr: 2 }}>
+                  Invoice Date
+                  <span style={{ color: "red", marginLeft: "4px" }}>*</span>
+                </Typography>
+                <TextField
+                  type="date"
+                  size="small"
+                  defaultValue="2025-06-22"
+                  sx={{ width: 160 }}
+                />
+              </Stack>
+              <Stack
                 direction="row"
                 spacing={2}
                 sx={{ mr: 2 }}
@@ -274,6 +278,7 @@ const InvoiceDocument = () => {
                     <MenuItem value="Purchase Invoice">
                       Purchase Invoice
                     </MenuItem>
+                    <MenuItem value="Credit Note">Credit Note</MenuItem>
                     <MenuItem value="Proof of Payment">
                       Proof of Payment
                     </MenuItem>
@@ -289,6 +294,93 @@ const InvoiceDocument = () => {
             <Table>
               <TableHead>
                 <TableRow sx={{ bgcolor: "#99caff" }}>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold">Invoice Date </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        type="date"
+                        value={searchInputs.invoiceDate}
+                        onChange={(e) =>
+                          handleSearchInputChange("invoiceDate", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold">Invoice No. </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.invoiceNo}
+                        onChange={(e) =>
+                          handleSearchInputChange("invoiceNo", e.target.value)
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold">Invoice Amount</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.invoiceAmount}
+                        onChange={(e) =>
+                          handleSearchInputChange(
+                            "invoiceAmount",
+                            e.target.value
+                          )
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  {/* <TableCell align="center">
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography fontWeight="bold">Subcategory </Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.invoiceAmount}
+                        onChange={(e) =>
+                          handleSearchInputChange(
+                            "invoiceAmount",
+                            e.target.value
+                          )
+                        }
+                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        inputProps={{ style: { textAlign: "center" } }}
+                      />
+                    </Stack>
+                  </TableCell> */}
                   <TableCell align="center">
                     <Stack
                       direction="column"
@@ -333,94 +425,7 @@ const InvoiceDocument = () => {
                       />
                     </Stack>
                   </TableCell>
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Invoice Date </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        type="date"
-                        value={searchInputs.invoiceDate}
-                        onChange={(e) =>
-                          handleSearchInputChange("invoiceDate", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Invoice No. </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.invoiceNo}
-                        onChange={(e) =>
-                          handleSearchInputChange("invoiceNo", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
 
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">Invoice Amount</Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        value={searchInputs.invoiceAmount}
-                        onChange={(e) =>
-                          handleSearchInputChange(
-                            "invoiceAmount",
-                            e.target.value
-                          )
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Stack
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography fontWeight="bold">
-                        Transaction Date{" "}
-                      </Typography>
-                      <TextField
-                        size="small"
-                        variant="standard"
-                        placeholder="Search"
-                        type="date"
-                        value={searchInputs.invoiceDate}
-                        onChange={(e) =>
-                          handleSearchInputChange("invoiceDate", e.target.value)
-                        }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                        inputProps={{ style: { textAlign: "center" } }}
-                      />
-                    </Stack>
-                  </TableCell>
                   <TableCell align="center">
                     <Stack
                       direction="column"
@@ -431,12 +436,25 @@ const InvoiceDocument = () => {
                       <TextField
                         size="small"
                         variant="standard"
-                        placeholder="Search"
+                        // placeholder="Search"
                         value={searchInputs.docId}
                         onChange={(e) =>
                           handleSearchInputChange("docId", e.target.value)
                         }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                          "& .MuiInput-underline:before": {
+                            borderBottom: "none",
+                          },
+                          "& .MuiInput-underline:after": {
+                            borderBottom: "none",
+                          },
+                          "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                            {
+                              borderBottom: "none",
+                            },
+                        }}
                         inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
@@ -452,12 +470,25 @@ const InvoiceDocument = () => {
                       <TextField
                         size="small"
                         variant="standard"
-                        placeholder="Search"
+                        // placeholder="Search"
                         value={searchInputs.docName}
                         onChange={(e) =>
                           handleSearchInputChange("docName", e.target.value)
                         }
-                        sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                          "& .MuiInput-underline:before": {
+                            borderBottom: "none",
+                          },
+                          "& .MuiInput-underline:after": {
+                            borderBottom: "none",
+                          },
+                          "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                            {
+                              borderBottom: "none",
+                            },
+                        }}
                         inputProps={{ style: { textAlign: "center" } }}
                       />
                     </Stack>
@@ -474,20 +505,24 @@ const InvoiceDocument = () => {
               <TableBody>
                 {filteredData.map((project) => (
                   <TableRow key={project.id} hover>
-                    <TableCell align="center">{project.id}</TableCell>
-                    {/* <TableCell>{project.category}</TableCell> */}
-                    {/* <TableCell>{project.subCategory}</TableCell> */}
+                    <TableCell align="center">{project.invoiceDate}</TableCell>
+                    <TableCell align="center">{project.invoiceNo}</TableCell>
+                   <TableCell align="right">
+                      {new Intl.NumberFormat("en-IN", {
+                        style: "currency",
+                        currency: "INR",
+                        minimumFractionDigits: 0,
+                      }).format(project.invoiceAmount)}
+                    </TableCell>
 
+                    {/* <TableCell align="center">{project.subCategory}</TableCell> */}
+                    <TableCell align="center">{project.id}</TableCell>
                     <TableCell>
                       <Typography align="center">
                         {project.companyName}
                       </Typography>
                     </TableCell>
 
-                    <TableCell align="center">{project.invoiceDate}</TableCell>
-                    <TableCell align="center">{project.invoiceNo}</TableCell>
-                    <TableCell align="right">{project.invoiceAmount}</TableCell>
-                    <TableCell align="center">{project.invoiceDate}</TableCell>
                     <TableCell align="center">{project.docId}</TableCell>
                     <TableCell align="center">{project.docName}</TableCell>
 

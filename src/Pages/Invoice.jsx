@@ -31,21 +31,12 @@ import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
   {
-    id: "123",
-    companyName: "Syborgtech",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "123456",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "971",
-  },
-  {
     id: "111",
     companyName: "TCS",
     date: "2025-04-30",
     expiresOn: "2032-12-12",
     invoiceNo: "123477",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "23-06-2025",
     invoiceAmount: "4725",
   },
   {
@@ -54,7 +45,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "23-06-2025",
     invoiceAmount: "8521",
   },
   {
@@ -63,33 +54,50 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "23-06-2025",
     invoiceAmount: "3569",
   },
-
+  {
+    id: "123",
+    companyName: "Infotech",
+    date: "2025-04-30",
+    expiresOn: "2025-10-22",
+    invoiceNo: "123456",
+    invoiceDate: "23-06-2025",
+    invoiceAmount: "972",
+  },
   {
     id: "127",
     companyName: "Maitland",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "06-06-2025",
+    invoiceDate: "23-06-2025",
     invoiceAmount: "3599",
-  },
-  {
-    id: "128",
-    companyName: "SyborgtechGlobal",
-    date: "2025-04-30",
-    expiresOn: "2025-10-22",
-    invoiceNo: "123456",
-    invoiceDate: "06-06-2025",
-    invoiceAmount: "9878",
   },
 ];
 const Invoice = () => {
+  const [zoom, setZoom] = useState(1);
+  const [selectedDoc, setSelectedDoc] = useState(mockCustomerDocs[0]);
+  const [previewDocPath, setPreviewDocPath] = useState(null);
+
+  const handleZoomIn = () => {
+    setZoom((prev) => Math.min(prev + 0.2, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoom((prev) => Math.max(prev - 0.2, 0.5));
+  };
+
+  const docPath = previewDocPath || selectedDoc?.path || invoice1;
+  const isImage =
+    docPath?.toLowerCase().endsWith(".png") ||
+    docPath?.toLowerCase().endsWith(".jpg") ||
+    docPath?.toLowerCase().endsWith(".jpeg") ||
+    docPath?.toLowerCase().endsWith(".gif");
   const [docList, setDocList] = useState([]);
   const [selectedDocName, setSelectedDocName] = useState("");
-  const [selectedDoc, setSelectedDoc] = useState(null);
+  // const [selectedDoc, setSelectedDoc] = useState(null);
   const [category, setCategory] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [confirmedDocIds, setConfirmedDocIds] = useState([]);
@@ -99,7 +107,7 @@ const Invoice = () => {
   const [filterInvoiceNo, setFilterInvoiceNo] = useState("");
   const [filterInvoiceDate, setFilterInvoiceDate] = useState("");
   const [filterCompanyName, setFilterCompanyName] = useState("");
-  const [previewDocPath, setPreviewDocPath] = useState(null);
+  // const [previewDocPath, setPreviewDocPath] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -218,8 +226,7 @@ const Invoice = () => {
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
-      setSelectedCategory(selectedCategory),
-      setSearchCustomer("");
+      setSelectedCategory(selectedCategory), setSearchCustomer("");
       setSearchResults("");
       setCategory("");
       setSubcategory("");
@@ -229,7 +236,7 @@ const Invoice = () => {
     }, 3000);
   };
 
-   const handleCategory = (e) => {
+  const handleCategory = (e) => {
     setSelectedCategory(e.target.value);
   };
 
@@ -277,7 +284,7 @@ const Invoice = () => {
             flexDirection: "row",
           }}
         >
-          <Card
+          {/* <Card
             sx={{
               flex: 1.2,
               height: "84vh",
@@ -322,7 +329,7 @@ const Invoice = () => {
                   }}
                 >
                   <iframe
-                    src={`${docPath}#toolbar=0`}
+                    src={`${docPath}`}
                     title="Invoice Document"
                     style={{
                       position: "absolute",
@@ -336,7 +343,107 @@ const Invoice = () => {
                 </Box>
               );
             })()}
-          </Card>
+          </Card> */}
+
+          <Box direction="column">
+            <Card
+              sx={{
+                flex: 1.2,
+                height: "80vh",
+                position: "sticky",
+                marginTop: 2,
+                alignSelf: "center",
+                overflow: "auto",
+                p: 1,
+              }}
+            >
+              <Stack
+                direction="row"
+                justifyContent="flex-end"
+                spacing={2}
+                sx={{ mt: 1, mb: 1 }}
+              >
+                <Button
+                  variant="outlined"
+                  onClick={handleZoomIn}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "1px solid #ccc",
+                    minWidth: "40px",
+                    fontWeight: "bold",
+                    mx: 1,
+                    "&:hover": {
+                      backgroundColor: "#f5f5f5",
+                    },
+                  }}
+                >
+                  +
+                </Button>
+
+                <Button
+                  variant="outlined"
+                  onClick={handleZoomOut}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "1px solid #ccc",
+                    minWidth: "40px",
+                    fontWeight: "bold",
+                    mx: 1,
+                    "&:hover": {
+                      backgroundColor: "#f5f5f5",
+                    },
+                  }}
+                >
+                  -
+                </Button>
+              </Stack>
+              <Box
+                sx={{
+                  transform: `scale(${zoom})`,
+                  transformOrigin: "top left",
+                  transition: "transform 0.3s ease",
+                  width: isImage ? "fit-content" : "100%",
+                }}
+              >
+                {isImage ? (
+                  <CardMedia
+                    component="img"
+                    image={docPath}
+                    alt="Document"
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      borderRadius: 2,
+                      boxShadow: 2,
+                    }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: "80vh",
+                      borderRadius: 2,
+                      overflow: "hidden",
+                      boxShadow: 2,
+                    }}
+                  >
+                    <iframe
+                      src={docPath}
+                      title="Invoice Document"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                      }}
+                    />
+                  </Box>
+                )}
+              </Box>
+            </Card>
+          </Box>
 
           <Box
             sx={{
@@ -503,58 +610,6 @@ const Invoice = () => {
                           </TableCell>
                           <TableCell>
                             <Typography fontWeight="bold" mb={1}>
-                              Supplier ID
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              autoComplete="off"
-                              value={columnSearch.id}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  id: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    String(doc.id).toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search  "
-                              fullWidth
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
-                              Supplier Name
-                            </Typography>
-                            <TextField
-                              variant="standard"
-                              size="small"
-                              autoComplete="off"
-                              value={columnSearch.companyName}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                setColumnSearch((prev) => ({
-                                  ...prev,
-                                  id: value,
-                                }));
-                                const query = value.toLowerCase();
-                                const filtered = mockCustomerDocs.filter(
-                                  (doc) =>
-                                    String(doc.id).toLowerCase().includes(query)
-                                );
-                                setSearchResults(filtered);
-                              }}
-                              placeholder="Search  "
-                              fullWidth
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography fontWeight="bold" mb={1}>
                               Invoice Date
                             </Typography>
                             <TextField
@@ -624,14 +679,52 @@ const Invoice = () => {
                           </TableCell>
                           <TableCell>
                             <Typography fontWeight="bold" mb={1}>
-                              Transaction Date
+                              Supplier ID
                             </Typography>
                             <TextField
                               variant="standard"
                               size="small"
-                              type="date"
-                              value={columnSearch.invoiceDate}
-                              onChange={handleFilter}
+                              autoComplete="off"
+                              value={columnSearch.id}
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                setColumnSearch((prev) => ({
+                                  ...prev,
+                                  id: value,
+                                }));
+                                const query = value.toLowerCase();
+                                const filtered = mockCustomerDocs.filter(
+                                  (doc) =>
+                                    String(doc.id).toLowerCase().includes(query)
+                                );
+                                setSearchResults(filtered);
+                              }}
+                              placeholder="Search  "
+                              fullWidth
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <Typography fontWeight="bold" mb={1}>
+                              Supplier Name
+                            </Typography>
+                            <TextField
+                              variant="standard"
+                              size="small"
+                              autoComplete="off"
+                              value={columnSearch.companyName}
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                setColumnSearch((prev) => ({
+                                  ...prev,
+                                  id: value,
+                                }));
+                                const query = value.toLowerCase();
+                                const filtered = mockCustomerDocs.filter(
+                                  (doc) =>
+                                    String(doc.id).toLowerCase().includes(query)
+                                );
+                                setSearchResults(filtered);
+                              }}
                               placeholder="Search  "
                               fullWidth
                             />
@@ -663,16 +756,14 @@ const Invoice = () => {
                                   onChange={onCheck}
                                 />
                               </TableCell>
-                              <TableCell>{doc.id}</TableCell>
-
-                              <TableCell>{doc.companyName}</TableCell>
                               <TableCell>{doc.invoiceDate}</TableCell>
-
                               <TableCell>{doc.invoiceNo}</TableCell>
                               <TableCell align="right">
                                 {doc.invoiceAmount}
                               </TableCell>
-                              <TableCell>{doc.invoiceDate}</TableCell>
+                              <TableCell>{doc.id}</TableCell>
+
+                              <TableCell>{doc.companyName}</TableCell>
                             </TableRow>
                           ))}
                       </TableBody>
