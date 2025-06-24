@@ -140,7 +140,7 @@ const Invoice = () => {
         // ...prev,
         customerId: selectedDoc.id || "",
         invoiceNo: selectedDoc.invoiceNo || "",
-         invoiceAmount: selectedDoc.invoiceAmount || "",
+        invoiceAmount: selectedDoc.invoiceAmount || "",
       });
     }
   }, [selectedDoc]);
@@ -190,7 +190,7 @@ const Invoice = () => {
     setSelectedDocName(doc.docName);
     setSelectedDate(doc.date);
     setSearchCustomer(doc.invoiceNo);
-   setConfirmedDocIds([]);
+    setConfirmedDocIds([]);
     // if (!confirmedDocIds.includes(doc.id)) {
     //   setConfirmedDocIds([...confirmedDocIds, doc.id]);
     // }
@@ -214,7 +214,7 @@ const Invoice = () => {
       setSelectedDoc(null);
     }
   };
- useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setDisable(false);
     }, 5000);
@@ -224,7 +224,7 @@ const Invoice = () => {
 
   const handleSave = () => {
     setAlertOpen(true);
-    setDisable(true); 
+    setDisable(true);
     setTimeout(() => {
       setAlertOpen(false);
       setFormData({
@@ -764,15 +764,15 @@ const Invoice = () => {
                               sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
                             >
                               <TableCell>
-                                                                 <Checkbox
-                                                                   checked={confirmedDocIds.includes(doc.id)}
-                                                                   onChange={() => onCheck(doc.id)}
-                                                                 />
-                                                               </TableCell>
+                                <Checkbox
+                                  checked={confirmedDocIds.includes(doc.id)}
+                                  onChange={() => onCheck(doc.id)}
+                                />
+                              </TableCell>
                               <TableCell>{doc.invoiceDate}</TableCell>
                               <TableCell>{doc.invoiceNo}</TableCell>
-                              <TableCell  align="right">₹
-                                {doc.invoiceAmount}
+                              <TableCell align="right">
+                                ₹{doc.invoiceAmount}
                               </TableCell>
                               <TableCell>{doc.id}</TableCell>
 
@@ -782,31 +782,26 @@ const Invoice = () => {
                       </TableBody>
                     </Table>
                   </TableContainer>
-                   <Box
-                                          display="flex"
-                                          justifyContent="flex-end"
-                                          mt={2}
-                                          mb={1}
-                                        >
-                                          <Button
-                                            variant="outlined"
-                                            color="secondary"
-                                            sx={{
-                                              borderRadius: "10px",
-                                              bgcolor: "#f2f4f5",
-                                              px: 3,
-                                              color: "black",
-                                              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                                              border: "none",
-                                              "&:hover": {
-                                                bgcolor: "#e5e7e8",
-                                                border: "none",
-                                              },
-                                            }}
-                                          >
-                                            Discard
-                                          </Button>
-                                        </Box>
+                  <Box display="flex" justifyContent="flex-end" mt={2} mb={1}>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      sx={{
+                        borderRadius: "10px",
+                        bgcolor: "#f2f4f5",
+                        px: 3,
+                        color: "black",
+                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                        border: "none",
+                        "&:hover": {
+                          bgcolor: "#e5e7e8",
+                          border: "none",
+                        },
+                      }}
+                    >
+                      Discard
+                    </Button>
+                  </Box>
                 </Paper>
               )}
               {formCard && (
@@ -853,8 +848,10 @@ const Invoice = () => {
                         fullWidth
                         value={formData.invoiceAmount}
                         sx={{ mb: 2 }}
-                         InputProps={{
-                          startAdornment: <span style={{ marginRight: 4 }}>₹</span>,
+                        InputProps={{
+                          startAdornment: (
+                            <span style={{ marginRight: 4 }}>₹</span>
+                          ),
                         }}
                       />
                     </Paper>
@@ -873,42 +870,42 @@ const Invoice = () => {
                       justifyContent="flex-end"
                     >
                       <Button
-                                             variant="contained"
-                                             color="primary"
-                                             onClick={handleSave}
-                                             disabled={disable}
-                                             sx={{
-                                               borderRadius: "10px",
-                                               bgcolor: "#99CAFF",
-                                               color: "black",
-                                               px: 3,
-                                               boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                                               "&:hover": {
-                                                 bgcolor: "#7bb8ff",
-                                               },
-                                             }}
-                                           >
-                                             Save
-                                           </Button>
-                                           <Button
-                                             variant="outlined"
-                                             color="secondary"
-                                             disabled={disable}
-                                             sx={{
-                                               borderRadius: "10px",
-                                               bgcolor: "#f2f4f5",
-                                               px: 3,
-                                               color: "black",
-                                               boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                                               border: "none",
-                                               "&:hover": {
-                                                 bgcolor: "#e5e7e8",
-                                                 border: "none",
-                                               },
-                                             }}
-                                           >
-                                             Discard
-                                           </Button>
+                        variant="contained"
+                        color="primary"
+                        onClick={handleSave}
+                        disabled={disable}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#99CAFF",
+                          color: "black",
+                          px: 3,
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          "&:hover": {
+                            bgcolor: "#7bb8ff",
+                          },
+                        }}
+                      >
+                        Save
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                        disabled={disable}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#f2f4f5",
+                          px: 3,
+                          color: "black",
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          border: "none",
+                          "&:hover": {
+                            bgcolor: "#e5e7e8",
+                            border: "none",
+                          },
+                        }}
+                      >
+                        Discard
+                      </Button>
                     </Stack>
                   </Box>
                 </Card>
