@@ -22,6 +22,7 @@ import {
 } from "@mui/material";
 import Doc2 from "../assets/Doc2.png";
 import Doc3 from "../assets/Doc3.png";
+import blankImage from "../assets/blank.png"
 import transactionDoc from "../assets/trDoc1.png";
 import transactionDoc1 from "../assets/trDoc2.png";
 import SearchIcon from "@mui/icons-material/Search";
@@ -184,7 +185,7 @@ const Archive1 = () => {
   const [filterLastName, setFilterLastName] = useState("");
   const [filterDob, setFilterDob] = useState("");
   const [filterNationalId, setFilterNationalId] = useState("");
-  const [previewDocPath, setPreviewDocPath] = useState(null);
+  const [previewDocPath, setPreviewDocPath] = useState(Doc2);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -350,6 +351,9 @@ setConfirmedDocIds([]);
       if (selectedCategory === "AML_KYC") {
         setPreviewDocPath(Doc3);
       }
+      if (previewDocPath === Doc3) {
+        setPreviewDocPath(blankImage)
+      }
       if (selectedCategory === "Transaction") {
         setPreviewDocPath(transactionDoc1);
       }
@@ -358,6 +362,7 @@ setConfirmedDocIds([]);
         customerId: "",
         issueDate: "",
         expiryDate: "",
+        filingDate: "2025-06-20",
         // versionNo: " ",
       });
       setSelectedDoc(null);
@@ -488,7 +493,7 @@ setConfirmedDocIds([]);
             {(() => {
               let docPath;
               if (selectedCategory === "AML_KYC") {
-                docPath = previewDocPath || selectedDoc?.path || Doc2;
+                docPath = previewDocPath || selectedDoc?.path;
               }
               if (selectedCategory === "Transaction") {
                 docPath = previewDocPath || selectedDoc?.path || transactionDoc;
