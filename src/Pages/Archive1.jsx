@@ -31,16 +31,7 @@ import TransitionAlerts from "../Components/ui/Notification";
 import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
-  {
-    id: "EDB5612",
-    firstName: "John",
-    lastName: "Livone",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "06-09-1986",
-    expiresOn: "2030-11-12",
-    nationalId: "A123456",
-  },
+ 
   {
     id: "EDB5617",
     firstName: "John",
@@ -50,6 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
+     filingDate: "2025-06-20",
   },
   {
     id: "AFB7712",
@@ -60,6 +52,7 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
+     filingDate: "2025-06-20",
   },
   {
     id: "EEA5924",
@@ -70,8 +63,20 @@ const mockCustomerDocs = [
     dob: "14-11-1998",
     expiresOn: "2032-12-12",
     nationalId: "A123477",
+     filingDate: "2025-06-20",
   },
 
+   {
+    id: "EDB5612",
+    firstName: "John",
+    lastName: "Livone",
+    transactionId: "TXN123",
+    date: "2025-05-28",
+    dob: "06-09-1986",
+    expiresOn: "2030-11-12",
+    nationalId: "A123456",
+    filingDate: "2025-06-20",
+  },
   {
     id: "EEA5923",
     firstName: "John",
@@ -81,33 +86,25 @@ const mockCustomerDocs = [
     dob: "14-11-1998",
     expiresOn: "2032-12-12",
     nationalId: "A123477",
+     filingDate: "2025-06-20",
   },
   {
-    id: "EDB5615",
-    firstName: "John",
-    lastName: "Brown",
+    id: "EDB5C13",
+    firstName: "Mets",
+    lastName: "Lilli",
     transactionId: "TXN123",
     date: "2025-05-28",
-    dob: "06-09-1986",
-    expiresOn: "2030-11-12",
-    nationalId: "A123456",
+    dob: "08-01-1980",
+    expiresOn: "2020-01-02",
+    nationalId: "3800108",
+     filingDate: "2025-06-20",
   },
 ];
 const unitHolderDetails = [
-  {
-    id: "UH326",
-    transactionDate: "10/05/2025",
-    transactionNo: "TXN1001",
-    transactionType: "Purchase",
-    fund: "Fund 1",
-    class: "A",
-    amount: "60000",
-    units: "5141.388175",
-    nav: "11.67",
-  },
+  
   {
     id: "UH253",
-    transactionDate: "05/03/2025",
+    transactionDate: "2025-06-22",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
@@ -118,7 +115,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH056",
-    transactionDate: "10/01/2025",
+    transactionDate: "2025-06-22",
     transactionNo: "TXN1032",
     transactionType: "Purchase",
     fund: "Fund 5",
@@ -128,8 +125,19 @@ const unitHolderDetails = [
     nav: "34",
   },
   {
+    id: "UH326",
+    transactionDate: "2025-06-22",
+    transactionNo: "TXN1001",
+    transactionType: "Purchase",
+    fund: "Fund 1",
+    class: "A",
+    amount: "60000",
+    units: "5141.388175",
+    nav: "11.67",
+  },
+  {
     id: "UH045",
-    transactionDate: "10/03/2025",
+    transactionDate: "2025-06-22",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -140,7 +148,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH002",
-    transactionDate: "01/05/2025",
+    transactionDate: "2025-06-22",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
@@ -151,7 +159,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH025",
-    transactionDate: "04/02/2025",
+    transactionDate: "2025-06-22",
     transactionNo: "TXN1031",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -184,6 +192,7 @@ const Archive1 = () => {
   const [hideTable, setHideTable] = React.useState(false);
   const [selectedCategory, setSelectedCategory] = useState("AML_KYC");
   const [formCard, setFormCard] = useState(false);
+const [savedCustomerId, setSavedCustomerId] = useState("");
 
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
@@ -197,6 +206,8 @@ const Archive1 = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [formData, setFormData] = useState({
     customerId: "",
+     firstName: "",
+    filingDate: "2025-06-20",
     issueDate: "",
     expiryDate: "",
     unitHolderId: "",
@@ -220,6 +231,20 @@ const Archive1 = () => {
       setFormData((prev) => ({
         ...prev,
         customerId: selectedDoc.id || "",
+         firstName: selectedDoc.firstName || "",
+        lastName: selectedDoc.lastName || "",
+        customerName: `${selectedDoc.firstName || ""} ${
+          selectedDoc.lastName || ""
+        }`.trim(),
+      }));
+    }
+    if (selectedDoc) {
+      setUnitColumnSearch((prev) => ({
+        ...prev,
+        customerId: selectedDoc.id || "",
+         transactionDate: selectedDoc.transactionDate || "",
+        transactionNo: selectedDoc.transactionNo || "",
+      amount: selectedDoc.amount || "",
       }));
     }
   }, [selectedDoc]);
@@ -239,6 +264,7 @@ const Archive1 = () => {
     }
   }, [selectedDocName, docList]);
 
+  
   const handleSearch = () => {
     const query = searchCustomer.toLowerCase();
     const results = mockCustomerDocs.filter((doc) => {
@@ -289,10 +315,10 @@ const Archive1 = () => {
     setSelectedDate(doc.date);
     setSearchCustomer(doc.customerName);
     setDocIdentifier("National ID");
-
-    if (!confirmedDocIds.includes(doc.id)) {
-      setConfirmedDocIds([...confirmedDocIds, doc.id]);
-    }
+setConfirmedDocIds([]);
+    // if (!confirmedDocIds.includes(doc.id)) {
+    //   setConfirmedDocIds([...confirmedDocIds, doc.id]);
+    // }
     // else{
     //   setConfirmedDocIds([...confirmedDocIds]);
     // }
@@ -327,7 +353,7 @@ const Archive1 = () => {
       if (selectedCategory === "Transaction") {
         setPreviewDocPath(transactionDoc1);
       }
-      setAlertOpen(false);
+      setAlertOpen(true);
       setFormData({
         customerId: "",
         issueDate: "",
@@ -338,13 +364,17 @@ const Archive1 = () => {
       setHideTable(false);
       showNextDocument();
       setSelectedDate(null);
-      setSelectedCategory(selectedCategory), setSearchCustomer("");
+      setSelectedCategory(selectedCategory), 
+      setSearchCustomer("");
       setSearchResults("");
       setCategory("");
       setSubcategory("");
       setIssueDate("");
       setExpiryDate("");
       setFormCard(false);
+      setConfirmedDocIds([]); 
+      setFormData({ ...initialState });
+      setSavedCustomerId(formData.customerId);
       // setPreviewDocPath(Doc3);
     }, 3000);
   };
@@ -390,14 +420,35 @@ const Archive1 = () => {
 
   const today = new Date().toISOString().split("T")[0];
 
-  const onCheck = () => {
-    setHideTable(true);
-    setFormCard(true);
-  };
+  // const onCheck = () => {
+  //   setHideTable(true);
+  //   setFormCard(true);
+  // };
+  const onCheck = (id) => {
+  // Mark the current doc as selected
+  setConfirmedDocIds([id]);
+  setHideTable(true);
+  setFormCard(true);
+};
+
   const handleCategory = (e) => {
     setSelectedCategory(e.target.value);
     setPreviewDocPath("");
   };
+
+  useEffect(() => {
+  if (alertOpen) {
+    const timer = setTimeout(() => setAlertOpen(false), 3000);
+    return () => clearTimeout(timer);
+  }
+}, [alertOpen]);
+
+  const dateLabel =
+  selectedCategory === "AML_KYC"
+    ? "Filing Date"
+    : selectedCategory === "Transaction"
+    ? "Transaction Date"
+    : "Date";
 
   return (
     <div>
@@ -529,7 +580,7 @@ const Archive1 = () => {
                         fontWeight="700"
                         sx={{ mr: 2 }}
                       >
-                        Filing Date
+                       {dateLabel}
                         <span style={{ color: "red", marginLeft: "4px" }}>
                           *
                         </span>
@@ -778,6 +829,33 @@ const Archive1 = () => {
                                   fullWidth
                                 />
                               </TableCell>
+
+                               <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Filing Date
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={columnSearch.filingDate}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setColumnSearch((prev) => ({
+                                      ...prev,
+                                      filingDate: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = mockCustomerDocs.filter(
+                                      (doc) =>
+                                        doc.filingDate.toLowerCase().includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+
                               <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   ID Number
@@ -844,6 +922,9 @@ const Archive1 = () => {
                                   doc.lastName
                                     .toLowerCase()
                                     .includes(filterLastName.toLowerCase()) &&
+                                    doc.filingDate
+                                    .toLowerCase()
+                                    .includes(filterLastName.toLowerCase()) &&
                                   doc.dob
                                     .toLowerCase()
                                     .includes(filterDob.toLowerCase()) &&
@@ -864,13 +945,15 @@ const Archive1 = () => {
                                   <TableCell>
                                     <Checkbox
                                       checked={confirmedDocIds.includes(doc.id)}
-                                      onChange={onCheck}
+                                      onChange={() => onCheck(doc.id)}
                                     />
+
                                   </TableCell>
 
                                   <TableCell>{doc.id}</TableCell>
                                   <TableCell>{doc.firstName}</TableCell>
                                   <TableCell>{doc.lastName}</TableCell>
+                                  <TableCell>{doc.filingDate}</TableCell>
                                   <TableCell>{doc.nationalId}</TableCell>
                                   <TableCell>{doc.dob}</TableCell>
                                 </TableRow>
@@ -1262,6 +1345,34 @@ const Archive1 = () => {
                         // disabled={!selectedDoc}
                       />
 
+                     <TextField
+                        // label="Issue Date"
+                        label={
+                          <span>
+                            Filing Date{" "}
+                          </span>
+                        }
+                        type="date"
+                        fullWidth
+                        sx={{ mb: 2 }}
+                        InputLabelProps={{ shrink: true }}
+                        value={formData.filingDate}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            filingDate: e.target.value,
+                          }))
+                        }
+                      />
+
+                      <TextField
+                                              label="Customer Name"
+                                              fullWidth
+                                              value={`${formData.firstName} ${
+                                                formData.lastName || ""
+                                              }`}
+                                              sx={{ mb: 2 }}
+                                            />
                       <TextField
                         // label="Issue Date"
                         label={
@@ -1306,15 +1417,18 @@ const Archive1 = () => {
                           }))
                         }
                       />
+
+                      
+
+
                     </Paper>
                   </Grid>
                   <TransitionAlerts
                     alertOpen={alertOpen}
-                    //   handleAlertClose={handleAlertClose}
-                    message={
-                      "The document of the customer ID EDB5612 has been saved successfully."
-                    }
+                   message={`The document of the customer ID ${formData.customerId} has been saved successfully.`}
+
                   />
+
                   <Box sx={{ p: 1, mt: 2 }}>
                     <Stack
                       direction="row"
@@ -1389,7 +1503,41 @@ const Archive1 = () => {
                       <TextField
                         label="UnitHolder ID"
                         fullWidth
-                        value={formData.customerId}
+                        value={unitColumnSearch.customerId}
+                        sx={{ mb: 2 }}
+                        // disabled={!selectedDoc}
+                      />
+
+                    <TextField
+                        // label="Issue Date"
+                        label={
+                          <span>
+                            Transaction Date{" "}
+                          </span>
+                        }
+                        type="date"
+                        fullWidth
+                        sx={{ mb: 2 }}
+                        InputLabelProps={{ shrink: true }}
+                        value={unitColumnSearch.transactionDate}
+                        onChange={(e) =>
+                          setUnitColumnSearch((prev) => ({
+                            ...prev,
+                            transactionDate: e.target.value,
+                          }))
+                        }
+                      />
+                       <TextField
+                        label="Transaction No."
+                        fullWidth
+                        value={unitColumnSearch.transactionNo}
+                        sx={{ mb: 2 }}
+                        // disabled={!selectedDoc}
+                      />
+                       <TextField
+                        label="Amount"
+                        fullWidth
+                        value={unitColumnSearch.amount}
                         sx={{ mb: 2 }}
                         // disabled={!selectedDoc}
                       />
