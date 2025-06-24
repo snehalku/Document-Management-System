@@ -77,17 +77,17 @@ const mockCustomerDocs = [
     nationalId: "A123456",
     filingDate: "2025-06-20",
   },
-  {
-    id: "EEA5923",
-    firstName: "John",
-    lastName: "carter",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "14-11-1998",
-    expiresOn: "2032-12-12",
-    nationalId: "A123477",
-    filingDate: "2025-06-20",
-  },
+  // {
+  //   id: "EEA5923",
+  //   firstName: "John",
+  //   lastName: "carter",
+  //   transactionId: "TXN123",
+  //   date: "2025-05-28",
+  //   dob: "14-11-1998",
+  //   expiresOn: "2032-12-12",
+  //   nationalId: "A123477",
+  //   filingDate: "2025-06-20",
+  // },
   {
     id: "EDB5C13",
     firstName: "Mets",
@@ -112,17 +112,17 @@ const unitHolderDetails = [
     units: "3225.806452",
     nav: "21.7",
   },
-  {
-    id: "UH056",
-    transactionDate: "2025-06-22",
-    transactionNo: "TXN1032",
-    transactionType: "Purchase",
-    fund: "Fund 5",
-    class: "C",
-    amount: "17000",
-    units: "500",
-    nav: "34",
-  },
+  // {
+  //   id: "UH056",
+  //   transactionDate: "2025-06-22",
+  //   transactionNo: "TXN1032",
+  //   transactionType: "Purchase",
+  //   fund: "Fund 5",
+  //   class: "C",
+  //   amount: "17000",
+  //   units: "500",
+  //   nav: "34",
+  // },
   {
     id: "UH326",
     transactionDate: "2025-06-22",
@@ -969,6 +969,7 @@ const Archive1 = () => {
                                   placeholder="Search  "
                                   fullWidth
                                   autoComplete="off"
+                                   inputProps={{ style: { textAlign: "center" } }}
                                 />
                               </TableCell>
                               <TableCell>
