@@ -540,6 +540,7 @@ const Archive1 = () => {
                   docPath = blankImage;
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Card
             sx={{
               flex: 1.2,
@@ -561,6 +562,8 @@ const Archive1 = () => {
               if (selectedCategory === "sel") {
                 docPath = blankImage;
               }
+=======
+>>>>>>> cb576e1 (Cosmetic changes)
 =======
 >>>>>>> cb576e1 (Cosmetic changes)
 
