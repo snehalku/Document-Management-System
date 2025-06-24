@@ -511,7 +511,7 @@ setConfirmedDocIds([]);
             {(() => {
               let docPath;
               if (selectedCategory === "AML_KYC") {
-                docPath = previewDocPath || selectedDoc?.path || Doc2;
+                docPath = previewDocPath || selectedDoc?.path;
               }
               if (selectedCategory === "Transaction") {
                 docPath = previewDocPath || selectedDoc?.path || transactionDoc;
