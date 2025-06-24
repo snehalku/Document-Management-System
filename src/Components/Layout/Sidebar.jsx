@@ -78,10 +78,21 @@ const Sidebar = () => {
             style={{ width: "150px", height: "auto" }}
           />
         </Box>
+        <Box
+          sx={{
+            ml: 4,
+            mt: 2,
+            fontFamily: "Poppins-Medium, sans-serif",
+            fontWeight: 700,
+            fontSize: "20px",
+          }}
+        >
+          {department}
+        </Box>
 
         {/* Menu Items */}
 
-        <List sx={{ mt: 3, px: 1 }}>
+        <List sx={{ px: 1 }}>
           <ListItem
             onClick={() => handleMenuItemClick("/dashboard")}
             sx={{
