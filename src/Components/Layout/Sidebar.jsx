@@ -29,14 +29,16 @@ const Sidebar = () => {
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
-  const department = queryParams.get("department");
-  console.log(department);
+  const department = localStorage?.getItem("selectedDepartment");
 
   const [openAdmin, setOpenAdmin] = React.useState(false);
   //   const [openAuth, setOpenAuth] = React.useState(false);
 
   const handleMenuItemClick = (path) => {
     navigate(path);
+  };
+  const handleClick = () => {
+    navigate("/dashboard");
   };
 
   return (
@@ -69,6 +71,7 @@ const Sidebar = () => {
             fontWeight: 700,
             fontSize: "18px",
           }}
+          onClick={handleClick}
         >
           <img
             src="src/assets/syborg-techLogo.png"
@@ -79,7 +82,7 @@ const Sidebar = () => {
         {/* Menu Items */}
 
         <List sx={{ mt: 3, px: 1 }}>
-          {/* <ListItem
+          <ListItem
             onClick={() => handleMenuItemClick("/dashboard")}
             sx={{
               borderRadius: "10px",
@@ -108,73 +111,148 @@ const Sidebar = () => {
                 fontSize: "16px",
               }}
             />
-          </ListItem> */}
-          <ListItem
-            onClick={() => handleMenuItemClick("/archiveDocument1")}
-            sx={{
-              borderRadius: "10px",
-              mt: 2,
-              mb: 1,
-              bgcolor:
-                location.pathname === "/archiveDocument1"
-                  ? "#d1d4d2"
-                  : "transparent",
-              height: "52px",
-              "&:hover": {
+          </ListItem>
+          {department === "Sales" && (
+            <ListItem
+              onClick={() => handleMenuItemClick("/archiveDocument1")}
+              sx={{
+                borderRadius: "10px",
+                mt: 2,
+                mb: 1,
                 bgcolor:
                   location.pathname === "/archiveDocument1"
                     ? "#d1d4d2"
-                    : "#f5f5f5",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ListItemIcon
-              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
-            >
-              <ArchiveIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="File Document"
-              primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, sans-serif",
-                fontWeight: 700,
-                fontSize: "16px",
+                    : "transparent",
+                height: "52px",
+                "&:hover": {
+                  bgcolor:
+                    location.pathname === "/archiveDocument1"
+                      ? "#d1d4d2"
+                      : "#f5f5f5",
+                  cursor: "pointer",
+                },
               }}
-            />
-          </ListItem>
-
-          <ListItem
-            onClick={() => handleMenuItemClick("/documents")}
-            sx={{
-              borderRadius: "10px",
-              mt: 2,
-              mb: 1,
-              bgcolor:
-                location.pathname === "/documents" ? "#d1d4d2" : "transparent",
-              height: "52px",
-              "&:hover": {
+            >
+              <ListItemIcon
+                sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+              >
+                <ArchiveIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="File Document"
+                primaryTypographyProps={{
+                  fontFamily: "Poppins-Medium, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                }}
+              />
+            </ListItem>
+          )}
+          {department === "Accounts" && (
+            <ListItem
+              onClick={() => handleMenuItemClick("/invoice")}
+              sx={{
+                borderRadius: "10px",
+                mt: 2,
+                mb: 1,
                 bgcolor:
-                  location.pathname === "/documents" ? "#d1d4d2" : "#f5f5f5",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ListItemIcon
-              sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
-            >
-              <PreviewIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="View Documents"
-              primaryTypographyProps={{
-                fontFamily: "Poppins-Medium, sans-serif",
-                fontWeight: 700,
-                fontSize: "16px",
+                  location.pathname === "/invoice" ? "#d1d4d2" : "transparent",
+                height: "52px",
+                "&:hover": {
+                  bgcolor:
+                    location.pathname === "/invoice" ? "#d1d4d2" : "#f5f5f5",
+                  cursor: "pointer",
+                },
               }}
-            />
-          </ListItem>
+            >
+              <ListItemIcon
+                sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+              >
+                <ArchiveIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="File Document"
+                primaryTypographyProps={{
+                  fontFamily: "Poppins-Medium, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                }}
+              />
+            </ListItem>
+          )}
+
+          {department === "Sales" && (
+            <ListItem
+              onClick={() => handleMenuItemClick("/documents")}
+              sx={{
+                borderRadius: "10px",
+                mt: 2,
+                mb: 1,
+                bgcolor:
+                  location.pathname === "/documents"
+                    ? "#d1d4d2"
+                    : "transparent",
+                height: "52px",
+                "&:hover": {
+                  bgcolor:
+                    location.pathname === "/documents" ? "#d1d4d2" : "#f5f5f5",
+                  cursor: "pointer",
+                },
+              }}
+            >
+              <ListItemIcon
+                sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+              >
+                <PreviewIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="View Documents"
+                primaryTypographyProps={{
+                  fontFamily: "Poppins-Medium, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                }}
+              />
+            </ListItem>
+          )}
+          {department === "Accounts" && (
+            <ListItem
+              onClick={() => handleMenuItemClick("/invoiceDocument")}
+              sx={{
+                borderRadius: "10px",
+                mt: 2,
+                mb: 1,
+                bgcolor:
+                  location.pathname === "/invoiceDocument"
+                    ? "#d1d4d2"
+                    : "transparent",
+                height: "52px",
+                "&:hover": {
+                  bgcolor:
+                    location.pathname === "/invoiceDocument"
+                      ? "#d1d4d2"
+                      : "#f5f5f5",
+                  cursor: "pointer",
+                },
+              }}
+            >
+              <ListItemIcon
+                sx={{ minWidth: "36px", ml: "8px", color: "#000000" }}
+              >
+                <PreviewIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="View Documents"
+                primaryTypographyProps={{
+                  fontFamily: "Poppins-Medium, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                }}
+              />
+            </ListItem>
+          )}
         </List>
+
         <ListItem
           onClick={() => setOpenAdmin(!openAdmin)}
           sx={{
