@@ -540,6 +540,9 @@ const Archive1 = () => {
                   docPath = blankImage;
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b59e5db171b8330d0392313e95f01b50897ac6cc
           <Card
             sx={{
               flex: 1.2,
