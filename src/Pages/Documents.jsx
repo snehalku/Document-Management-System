@@ -125,7 +125,7 @@ const projectData = [
 const unitHolderDetails = [
   {
     id: "UH253",
-    transactionDate: "22/06/2025",
+    transactionDate: "23/06/2025",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
@@ -139,7 +139,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH056",
-    transactionDate: "22/06/2025",
+    transactionDate: "23/06/2025",
     transactionNo: "TXN1032",
     transactionType: "Purchase",
     fund: "Fund 5",
@@ -153,7 +153,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH326",
-    transactionDate: "22/06/2025",
+    transactionDate: "23/06/2025",
     transactionNo: "TXN1001",
     transactionType: "Purchase",
     fund: "Fund 1",
@@ -167,7 +167,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH045",
-    transactionDate: "22/06/2025",
+    transactionDate: "23/06/2025",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -181,7 +181,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH002",
-    transactionDate: "22/06/2025",
+    transactionDate: "23/06/2025",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
@@ -495,291 +495,311 @@ const Documents = () => {
             </Box>
           </Stack>
           {selectedCategory === "AML_KYC" ? (
-            <TableContainer
-              component={Paper}
-              sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
-            >
-              <Table>
-                <TableHead>
-                  <TableRow sx={{ bgcolor: "#99caff" }}>
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Filing Date </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          type="date"
-                          value={searchInputs.date}
-                          onChange={(e) =>
-                            handleSearchInputChange("date", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Customer ID</Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={searchInputs.id}
-                          onChange={(e) =>
-                            handleSearchInputChange("id", e.target.value)
-                          }
-                          autoComplete="off"
-                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Customer Name</Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={searchInputs.customerName}
-                          onChange={(e) =>
-                            handleSearchInputChange(
-                              "customerName",
-                              e.target.value
-                            )
-                          }
-                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
+            <Box>
+              <TableContainer
+                component={Paper}
+                sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
+              >
+                <Table>
+                  <TableHead>
+                    <TableRow sx={{ bgcolor: "#99caff" }}>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Filing Date{" "}
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            type="date"
+                            value={searchInputs.date}
+                            onChange={(e) =>
+                              handleSearchInputChange("date", e.target.value)
+                            }
+                            sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">Customer ID</Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={searchInputs.id}
+                            onChange={(e) =>
+                              handleSearchInputChange("id", e.target.value)
+                            }
+                            autoComplete="off"
+                            sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Customer Name
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={searchInputs.customerName}
+                            onChange={(e) =>
+                              handleSearchInputChange(
+                                "customerName",
+                                e.target.value
+                              )
+                            }
+                            sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Date of Birth</Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          type="date"
-                          value={searchInputs.dob}
-                          onChange={(e) =>
-                            handleSearchInputChange("dob", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Date of Birth
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            type="date"
+                            value={searchInputs.dob}
+                            onChange={(e) =>
+                              handleSearchInputChange("dob", e.target.value)
+                            }
+                            sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">ID Number </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={searchInputs.IdNo}
-                          onChange={(e) =>
-                            handleSearchInputChange("IdNo", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">ID Number </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={searchInputs.IdNo}
+                            onChange={(e) =>
+                              handleSearchInputChange("IdNo", e.target.value)
+                            }
+                            sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Issue Date </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          type="date"
-                          value={searchInputs.issueDate}
-                          onChange={(e) =>
-                            handleSearchInputChange("issueDate", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Expiry Date </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          type="date"
-                          value={searchInputs.expiryDate}
-                          onChange={(e) =>
-                            handleSearchInputChange(
-                              "expiryDate",
-                              e.target.value
-                            )
-                          }
-                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Document ID </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          value={searchInputs.documentId}
-                          onChange={(e) =>
-                            handleSearchInputChange(
-                              "documentId",
-                              e.target.value
-                            )
-                          }
-                          sx={{
-                            mt: 1,
-                            width: "100px",
-                            "& .MuiInput-underline:before": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:after": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:hover:not(.Mui-disabled):before":
-                              {
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">Issue Date </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            type="date"
+                            value={searchInputs.issueDate}
+                            onChange={(e) =>
+                              handleSearchInputChange(
+                                "issueDate",
+                                e.target.value
+                              )
+                            }
+                            sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Expiry Date{" "}
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            type="date"
+                            value={searchInputs.expiryDate}
+                            onChange={(e) =>
+                              handleSearchInputChange(
+                                "expiryDate",
+                                e.target.value
+                              )
+                            }
+                            sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Document ID{" "}
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            value={searchInputs.documentId}
+                            onChange={(e) =>
+                              handleSearchInputChange(
+                                "documentId",
+                                e.target.value
+                              )
+                            }
+                            sx={{
+                              mt: 1,
+                              width: "100px",
+                              "& .MuiInput-underline:before": {
                                 borderBottom: "none",
                               },
-                          }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                          autoComplete="off"
-                        />
-                      </Stack>
-                    </TableCell>
-
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Document Name</Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          value={searchInputs.documentName}
-                          onChange={(e) =>
-                            handleSearchInputChange(
-                              "documentName",
-                              e.target.value
-                            )
-                          }
-                          sx={{
-                            mt: 1,
-                            width: "100px",
-                            "& .MuiInput-underline:before": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:after": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:hover:not(.Mui-disabled):before":
-                              {
+                              "& .MuiInput-underline:after": {
                                 borderBottom: "none",
                               },
-                          }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
+                              "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                                {
+                                  borderBottom: "none",
+                                },
+                            }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                            autoComplete="off"
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell>
-                      <Stack direction="column" alignItems="right">
-                        <Typography fontWeight="bold">Action</Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          autoComplete="off"
-                          sx={{
-                            mt: 1,
-                            width: "100px",
-                            "& .MuiInput-underline:before": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:after": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:hover:not(.Mui-disabled):before":
-                              {
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Document Name
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            value={searchInputs.documentName}
+                            onChange={(e) =>
+                              handleSearchInputChange(
+                                "documentName",
+                                e.target.value
+                              )
+                            }
+                            sx={{
+                              mt: 1,
+                              width: "100px",
+                              "& .MuiInput-underline:before": {
                                 borderBottom: "none",
                               },
-                          }}
-                        />
-                      </Stack>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
+                              "& .MuiInput-underline:after": {
+                                borderBottom: "none",
+                              },
+                              "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                                {
+                                  borderBottom: "none",
+                                },
+                            }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
 
-                <TableBody>
-                  {filteredData.map((project) => (
-                    <TableRow key={project.id} hover>
-                      <TableCell>{project.date}</TableCell>
                       <TableCell>
-                        <Typography align="center">{project.id}</Typography>
+                        <Stack direction="column" alignItems="right">
+                          <Typography fontWeight="bold">Action</Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            autoComplete="off"
+                            sx={{
+                              mt: 1,
+                              width: "100px",
+                              "& .MuiInput-underline:before": {
+                                borderBottom: "none",
+                              },
+                              "& .MuiInput-underline:after": {
+                                borderBottom: "none",
+                              },
+                              "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                                {
+                                  borderBottom: "none",
+                                },
+                            }}
+                          />
+                        </Stack>
                       </TableCell>
-                      <TableCell align="center">
-                        {project.customerName}
-                      </TableCell>
+                    </TableRow>
+                  </TableHead>
 
-                      <TableCell align="center">{project.dob}</TableCell>
-                      <TableCell align="center">{project.IdNo}</TableCell>
+                  <TableBody>
+                    {filteredData.map((project) => (
+                      <TableRow key={project.id} hover>
+                        <TableCell>{project.date}</TableCell>
+                        <TableCell>
+                          <Typography align="center">{project.id}</Typography>
+                        </TableCell>
+                        <TableCell align="center">
+                          {project.customerName}
+                        </TableCell>
 
-                      <TableCell align="center">{project.issueDate}</TableCell>
-                      <TableCell align="center">{project.expiryDate}</TableCell>
-                      <TableCell align="center" sx={{ textAlign: "center" }}>
-                        {project.documentId}
-                      </TableCell>
-                      <TableCell align="center">
-                        {project.documentName}
-                      </TableCell>
+                        <TableCell align="center">{project.dob}</TableCell>
+                        <TableCell align="center">{project.IdNo}</TableCell>
 
-                      {/* <TableCell>
+                        <TableCell align="center">
+                          {project.issueDate}
+                        </TableCell>
+                        <TableCell align="center">
+                          {project.expiryDate}
+                        </TableCell>
+                        <TableCell align="center" sx={{ textAlign: "center" }}>
+                          {project.documentId}
+                        </TableCell>
+                        <TableCell align="center">
+                          {project.documentName}
+                        </TableCell>
+
+                        {/* <TableCell>
                     <Stack direction="row" spacing={1}>
                       <Tooltip title="View Document">
                         <IconButton
@@ -802,428 +822,578 @@ const Documents = () => {
                       </Tooltip>
                     </Stack>
                   </TableCell> */}
-                      <TableCell>
-                        <Tooltip title="View and Download">
-                          <IconButton
-                            color="primary"
-                            onClick={() => window.open(Doc2)}
-                          >
-                            <VisibilityIcon />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                        <TableCell>
+                          <Tooltip title="View and Download">
+                            <IconButton
+                              color="primary"
+                              onClick={() => window.open(Doc2)}
+                            >
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+                <Pagination
+                  count={10}
+                  shape="rounded"
+                  renderItem={(item) => {
+                    if (item.type === "previous") {
+                      return (
+                        <PaginationItem
+                          component={IconButton}
+                          sx={{
+                            border: "1px solid #a7a6a6",
+
+                            borderRadius: "5px",
+
+                            bgcolor: "#f2f4f5",
+
+                            mx: 0.5,
+                          }}
+                          {...item}
+                          icon={<NavigateBefore fontSize="small" />}
+                        />
+                      );
+                    }
+
+                    if (item.type === "next") {
+                      return (
+                        <PaginationItem
+                          component={IconButton}
+                          sx={{
+                            border: "1px solid #a7a6a6",
+
+                            borderRadius: "5px",
+
+                            bgcolor: "#f2f4f5",
+
+                            mx: 0.5,
+                          }}
+                          {...item}
+                          icon={<NavigateNext fontSize="small" />}
+                        />
+                      );
+                    }
+
+                    return (
+                      <PaginationItem
+                        {...item}
+                        sx={{
+                          border: "1px solid #a7a6a6",
+
+                          borderRadius: "5px",
+
+                          bgcolor: item.selected ? "#99caff" : "#f2f4f5",
+
+                          mx: 0.5,
+
+                          color: item.selected ? "black" : "#747474",
+                        }}
+                      />
+                    );
+                  }}
+                />
+                <Box>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    sx={{
+                      ml: 1,
+                      border: "1px solid #a7a6a6",
+                      borderRadius: "5px",
+                      bgcolor: "#f2f4f5",
+                      color: "#747474",
+                      fontSize: "10px",
+                      textTransform: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
+                    }}
+                  >
+                    5 / Pages{" "}
+                    <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
+                  </Button>
+
+                  <Menu>
+                    <MenuItem>5/page</MenuItem>
+                    <MenuItem>10/page</MenuItem>
+                    <MenuItem>15/page</MenuItem>
+                  </Menu>
+                </Box>
+              </Box>
+            </Box>
           ) : null}
           {selectedSubcategory === "newPurchase" && (
-            <TableContainer
-              component={Paper}
-              sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
-            >
-              <Table>
-                <TableHead>
-                  <TableRow sx={{ bgcolor: "#99caff" }}>
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">
-                          Transaction Date
-                        </Typography>
+            <Box>
+              <TableContainer
+                component={Paper}
+                sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
+              >
+                <Table>
+                  <TableHead>
+                    <TableRow sx={{ bgcolor: "#99caff" }}>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Transaction Date
+                          </Typography>
 
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          type="date"
-                          value={unitColumnSearch.transactionDate}
-                          onChange={(e) =>
-                            handleSearchInputChange1(
-                              "transactionDate",
-                              e.target.value
-                            )
-                          }
-                          sx={{ mt: 1, width: "100px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Unitholder ID</Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={unitColumnSearch.id}
-                          onChange={(e) =>
-                            handleSearchInputChange1("id", e.target.value)
-                          }
-                          autoComplete="off"
-                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            type="date"
+                            value={unitColumnSearch.transactionDate}
+                            onChange={(e) =>
+                              handleSearchInputChange1(
+                                "transactionDate",
+                                e.target.value
+                              )
+                            }
+                            sx={{ mt: 1, width: "100px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Unitholder ID
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={unitColumnSearch.id}
+                            onChange={(e) =>
+                              handleSearchInputChange1("id", e.target.value)
+                            }
+                            autoComplete="off"
+                            sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">
-                          Transaction No.
-                        </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={unitColumnSearch.transactionNo}
-                          onChange={(e) =>
-                            handleSearchInputChange1(
-                              "transactionNo",
-                              e.target.value
-                            )
-                          }
-                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Transaction No.
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={unitColumnSearch.transactionNo}
+                            onChange={(e) =>
+                              handleSearchInputChange1(
+                                "transactionNo",
+                                e.target.value
+                              )
+                            }
+                            sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Transaction Type
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={unitColumnSearch.transactionType}
+                            onChange={(e) =>
+                              handleSearchInputChange1(
+                                "transactionType",
+                                e.target.value
+                              )
+                            }
+                            sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Fund </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={unitColumnSearch.fund}
-                          onChange={(e) =>
-                            handleSearchInputChange1("fund", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">Fund </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={unitColumnSearch.fund}
+                            onChange={(e) =>
+                              handleSearchInputChange1("fund", e.target.value)
+                            }
+                            sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Class </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={unitColumnSearch.class}
-                          onChange={(e) =>
-                            handleSearchInputChange1("class", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                          autoComplete="off"
-                        />
-                      </Stack>
-                    </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">Class </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={unitColumnSearch.class}
+                            onChange={(e) =>
+                              handleSearchInputChange1("class", e.target.value)
+                            }
+                            sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                            autoComplete="off"
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Amount </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={unitColumnSearch.amount}
-                          onChange={(e) =>
-                            handleSearchInputChange1("amount", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                          autoComplete="off"
-                        />
-                      </Stack>
-                    </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">Amount </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={unitColumnSearch.amount}
+                            onChange={(e) =>
+                              handleSearchInputChange1("amount", e.target.value)
+                            }
+                            sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                            autoComplete="off"
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Units </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={unitColumnSearch.units}
-                          onChange={(e) =>
-                            handleSearchInputChange1("units", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                          autoComplete="off"
-                        />
-                      </Stack>
-                    </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">Units </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={unitColumnSearch.units}
+                            onChange={(e) =>
+                              handleSearchInputChange1("units", e.target.value)
+                            }
+                            sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                            autoComplete="off"
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Nav </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          placeholder="Search"
-                          value={unitColumnSearch.nav}
-                          onChange={(e) =>
-                            handleSearchInputChange1("nav", e.target.value)
-                          }
-                          sx={{ mt: 1, width: "70px", textAlign: "center" }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                          autoComplete="off"
-                        />
-                      </Stack>
-                    </TableCell>
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">Nav </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            placeholder="Search"
+                            value={unitColumnSearch.nav}
+                            onChange={(e) =>
+                              handleSearchInputChange1("nav", e.target.value)
+                            }
+                            sx={{ mt: 1, width: "70px", textAlign: "center" }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                            autoComplete="off"
+                          />
+                        </Stack>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Document ID </Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          // placeholder="Search"
-                          value={unitColumnSearch.documentId}
-                          onChange={(e) =>
-                            handleSearchInputChange1(
-                              "documentId",
-                              e.target.value
-                            )
-                          }
-                          sx={{
-                            mt: 1,
-                            width: "100px",
-                            "& .MuiInput-underline:before": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:after": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:hover:not(.Mui-disabled):before":
-                              {
+                      <TableCell align="center">
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Document ID{" "}
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            // placeholder="Search"
+                            value={unitColumnSearch.documentId}
+                            onChange={(e) =>
+                              handleSearchInputChange1(
+                                "documentId",
+                                e.target.value
+                              )
+                            }
+                            sx={{
+                              mt: 1,
+                              width: "100px",
+                              "& .MuiInput-underline:before": {
                                 borderBottom: "none",
                               },
-                          }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                          autoComplete="off"
-                        />
-                      </Stack>
-                    </TableCell>
-
-                    <TableCell align="center">
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Typography fontWeight="bold">Document Name</Typography>
-                        <TextField
-                          size="small"
-                          variant="standard"
-                          // placeholder="Search"
-                          value={unitColumnSearch.documentName}
-                          onChange={(e) =>
-                            handleSearchInputChange1(
-                              "documentName",
-                              e.target.value
-                            )
-                          }
-                          sx={{
-                            mt: 1,
-                            width: "100px",
-                            "& .MuiInput-underline:before": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:after": {
-                              borderBottom: "none",
-                            },
-                            "& .MuiInput-underline:hover:not(.Mui-disabled):before":
-                              {
+                              "& .MuiInput-underline:after": {
                                 borderBottom: "none",
                               },
-                          }}
-                          inputProps={{ style: { textAlign: "center" } }}
-                        />
-                      </Stack>
-                    </TableCell>
-
-                    <TableCell>
-                      <Stack direction="row" alignItems="center">
-                        <Typography fontWeight="bold">Action</Typography>
-                      </Stack>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-
-                <TableBody>
-                  {filteredDataHolder.map((unitHolder) => (
-                    <TableRow key={unitHolder.id} hover>
-                      <TableCell align="center">
-                        {unitHolder.transactionDate}
-                      </TableCell>
-                      <TableCell>
-                        <Typography align="center">{unitHolder.id}</Typography>
+                              "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                                {
+                                  borderBottom: "none",
+                                },
+                            }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                            autoComplete="off"
+                          />
+                        </Stack>
                       </TableCell>
 
                       <TableCell align="center">
-                        {unitHolder.transactionNo}
-                      </TableCell>
-
-                      <TableCell align="center">{unitHolder.fund}</TableCell>
-                      <TableCell align="center">{unitHolder.class}</TableCell>
-                      <TableCell align="center">{unitHolder.amount}</TableCell>
-                      <TableCell align="center">{unitHolder.units}</TableCell>
-                      <TableCell align="center">{unitHolder.nav}</TableCell>
-
-                      <TableCell align="center" sx={{ textAlign: "center" }}>
-                        {unitHolder.documentId}
-                      </TableCell>
-                      <TableCell align="center">
-                        {unitHolder.documentName}
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography fontWeight="bold">
+                            Document Name
+                          </Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            // placeholder="Search"
+                            value={unitColumnSearch.documentName}
+                            onChange={(e) =>
+                              handleSearchInputChange1(
+                                "documentName",
+                                e.target.value
+                              )
+                            }
+                            sx={{
+                              mt: 1,
+                              width: "100px",
+                              "& .MuiInput-underline:before": {
+                                borderBottom: "none",
+                              },
+                              "& .MuiInput-underline:after": {
+                                borderBottom: "none",
+                              },
+                              "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                                {
+                                  borderBottom: "none",
+                                },
+                            }}
+                            inputProps={{ style: { textAlign: "center" } }}
+                          />
+                        </Stack>
                       </TableCell>
 
                       <TableCell>
-                        <Tooltip title="View and Download">
-                          <IconButton
-                            color="primary"
-                            onClick={() => window.open(transactionDoc)}
-                          >
-                            <VisibilityIcon />
-                          </IconButton>
-                        </Tooltip>
+                        <Stack direction="row" alignItems="center">
+                          <Typography fontWeight="bold">Action</Typography>
+                          <TextField
+                            size="small"
+                            variant="standard"
+                            autoComplete="off"
+                            sx={{
+                              mt: 1,
+                              width: "100px",
+                              "& .MuiInput-underline:before": {
+                                borderBottom: "none",
+                              },
+                              "& .MuiInput-underline:after": {
+                                borderBottom: "none",
+                              },
+                              "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                                {
+                                  borderBottom: "none",
+                                },
+                            }}
+                          />
+                        </Stack>
                       </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          )}
-          <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-            <Pagination
-              count={10}
-              shape="rounded"
-              renderItem={(item) => {
-                if (item.type === "previous") {
-                  return (
-                    <PaginationItem
-                      component={IconButton}
-                      sx={{
-                        border: "1px solid #a7a6a6",
+                  </TableHead>
 
-                        borderRadius: "5px",
+                  <TableBody>
+                    {filteredDataHolder.map((unitHolder) => (
+                      <TableRow key={unitHolder.id} hover>
+                        <TableCell align="center">
+                          {unitHolder.transactionDate}
+                        </TableCell>
+                        <TableCell>
+                          <Typography align="center">
+                            {unitHolder.id}
+                          </Typography>
+                        </TableCell>
 
-                        bgcolor: "#f2f4f5",
+                        <TableCell align="center">
+                          {unitHolder.transactionNo}
+                        </TableCell>
+                        <TableCell align="center">
+                          {unitHolder.transactionType}
+                        </TableCell>
 
-                        mx: 0.5,
-                      }}
-                      {...item}
-                      icon={<NavigateBefore fontSize="small" />}
-                    />
-                  );
-                }
+                        <TableCell align="center">{unitHolder.fund}</TableCell>
+                        <TableCell align="center">{unitHolder.class}</TableCell>
+                        <TableCell align="center">
+                          {unitHolder.amount}
+                        </TableCell>
+                        <TableCell align="center">{unitHolder.units}</TableCell>
+                        <TableCell align="center">{unitHolder.nav}</TableCell>
 
-                if (item.type === "next") {
-                  return (
-                    <PaginationItem
-                      component={IconButton}
-                      sx={{
-                        border: "1px solid #a7a6a6",
+                        <TableCell align="center" sx={{ textAlign: "center" }}>
+                          {unitHolder.documentId}
+                        </TableCell>
+                        <TableCell align="center">
+                          {unitHolder.documentName}
+                        </TableCell>
 
-                        borderRadius: "5px",
+                        <TableCell>
+                          <Tooltip title="View and Download">
+                            <IconButton
+                              color="primary"
+                              onClick={() => window.open(transactionDoc)}
+                            >
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+                <Pagination
+                  count={10}
+                  shape="rounded"
+                  renderItem={(item) => {
+                    if (item.type === "previous") {
+                      return (
+                        <PaginationItem
+                          component={IconButton}
+                          sx={{
+                            border: "1px solid #a7a6a6",
 
-                        bgcolor: "#f2f4f5",
+                            borderRadius: "5px",
 
-                        mx: 0.5,
-                      }}
-                      {...item}
-                      icon={<NavigateNext fontSize="small" />}
-                    />
-                  );
-                }
+                            bgcolor: "#f2f4f5",
 
-                return (
-                  <PaginationItem
-                    {...item}
+                            mx: 0.5,
+                          }}
+                          {...item}
+                          icon={<NavigateBefore fontSize="small" />}
+                        />
+                      );
+                    }
+
+                    if (item.type === "next") {
+                      return (
+                        <PaginationItem
+                          component={IconButton}
+                          sx={{
+                            border: "1px solid #a7a6a6",
+
+                            borderRadius: "5px",
+
+                            bgcolor: "#f2f4f5",
+
+                            mx: 0.5,
+                          }}
+                          {...item}
+                          icon={<NavigateNext fontSize="small" />}
+                        />
+                      );
+                    }
+
+                    return (
+                      <PaginationItem
+                        {...item}
+                        sx={{
+                          border: "1px solid #a7a6a6",
+
+                          borderRadius: "5px",
+
+                          bgcolor: item.selected ? "#99caff" : "#f2f4f5",
+
+                          mx: 0.5,
+
+                          color: item.selected ? "black" : "#747474",
+                        }}
+                      />
+                    );
+                  }}
+                />
+                <Box>
+                  <Button
+                    variant="outlined"
+                    size="small"
                     sx={{
+                      ml: 1,
                       border: "1px solid #a7a6a6",
-
                       borderRadius: "5px",
-
-                      bgcolor: item.selected ? "#99caff" : "#f2f4f5",
-
-                      mx: 0.5,
-
-                      color: item.selected ? "black" : "#747474",
+                      bgcolor: "#f2f4f5",
+                      color: "#747474",
+                      fontSize: "10px",
+                      textTransform: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
                     }}
-                  />
-                );
-              }}
-            />
-            <Box>
-              <Button
-                variant="outlined"
-                size="small"
-                sx={{
-                  ml: 1,
-                  border: "1px solid #a7a6a6",
-                  borderRadius: "5px",
-                  bgcolor: "#f2f4f5",
-                  color: "#747474",
-                  fontSize: "10px",
-                  textTransform: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "4px",
-                }}
-              >
-                5 / Pages <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
-              </Button>
+                  >
+                    5 / Pages{" "}
+                    <KeyboardArrowDownIcon sx={{ fontSize: "16px" }} />
+                  </Button>
 
-              <Menu>
-                <MenuItem>5/page</MenuItem>
-                <MenuItem>10/page</MenuItem>
-                <MenuItem>15/page</MenuItem>
-              </Menu>
+                  <Menu>
+                    <MenuItem>5/page</MenuItem>
+                    <MenuItem>10/page</MenuItem>
+                    <MenuItem>15/page</MenuItem>
+                  </Menu>
+                </Box>
+              </Box>
             </Box>
-          </Box>
+          )}
         </Box>
       </Box>
     </div>
