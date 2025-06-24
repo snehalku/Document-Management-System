@@ -21,7 +21,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Components/Layout/Header";
 
-const roles = ["Sales Manager", "Chartered Accountant", "HR"];
+// const roles = ["Sales Manager", "Chartered Accountant", "HR"];
+const roles = ["Processor", "View Role"];
 const CreateUser = () => {
   const navigate = useNavigate();
   const departments = [
@@ -145,6 +146,22 @@ const CreateUser = () => {
                   <Typography
                     variant="body1"
                     fontWeight="500"
+                    sx={{ mr: 4, whiteSpace: "nowrap" }}
+                  >
+                    User Name <span style={{ color: "red" }}>*</span>
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    variant="outlined"
+                    size="small"
+                    placeholder="Enter User Name"
+                  />
+                </Box>
+
+                {/* <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
+                  <Typography
+                    variant="body1"
+                    fontWeight="500"
                     sx={{ mr: 2, whiteSpace: "nowrap" }}
                   >
                     Responsibility <span style={{ color: "red" }}>*</span>
@@ -155,7 +172,7 @@ const CreateUser = () => {
                     size="small"
                     placeholder="Enter Responsibility"
                   />
-                </Box>
+                </Box> */}
               </Box>
               {/* <Box
                 sx={{
@@ -195,6 +212,13 @@ const CreateUser = () => {
                   </Select>
                 </FormControl>
               </Box> */}
+              <Box sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 2,
+                  mb: 2,
+                }}>
+
               <Box
                 sx={{
                   display: "flex",
@@ -241,6 +265,7 @@ const CreateUser = () => {
                     ))}
                   </Select>
                 </FormControl>
+              </Box>
               </Box>
             </Box>
           </Paper>

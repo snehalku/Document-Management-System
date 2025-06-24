@@ -64,7 +64,7 @@ const EditRole = () => {
                   fullWidth
                   variant="outlined"
                   size="small"
-                  defaultValue="Admin"
+                  defaultValue="Processor"
                 />
               </Box>
 

@@ -24,8 +24,9 @@ import Header from "../Components/Layout/Header";
 const EditUser = () => {
   const navigate = useNavigate();
 
-  const roles = ["Sales Manager", "Chartered Accountant", "HR", "Admin"];
-  const [selectedRoles, setSelectedRoles] = useState(["Admin"]); // default selected
+  // const roles = ["Sales Manager", "Chartered Accountant", "HR", "Admin"];
+  const roles = ["Processor", "View Role"];
+  const [selectedRoles, setSelectedRoles] = useState(["Processor"]); // default selected
 
   const departments = [
     { label: "Sales", route: "/documents" },
@@ -92,7 +93,7 @@ const EditUser = () => {
                     fullWidth
                     variant="outlined"
                     size="small"
-                    defaultValue="Emily Johnson	"
+                    defaultValue="Daniel Lewis	"
                   />
                 </Box>
 
@@ -110,7 +111,7 @@ const EditUser = () => {
                     fullWidth
                     variant="outlined"
                     size="small"
-                    defaultValue="emilyjohnson@gmail.com"
+                    defaultValue="daniellewis@gmail.com"
                   />
                 </Box>
               </Box>
@@ -143,6 +144,22 @@ const EditUser = () => {
                   <Typography
                     variant="body1"
                     fontWeight="500"
+                    sx={{ mr: 4, whiteSpace: "nowrap" }}
+                  >
+                    User Name <span style={{ color: "red" }}>*</span>
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    variant="outlined"
+                    size="small"
+                    defaultValue="daniellewis"
+                  />
+                </Box>
+
+                {/* <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
+                  <Typography
+                    variant="body1"
+                    fontWeight="500"
                     sx={{ mr: 2, whiteSpace: "nowrap" }}
                   >
                     Responsibility <span style={{ color: "red" }}>*</span>
@@ -153,7 +170,7 @@ const EditUser = () => {
                     size="small"
                     defaultValue="Manages all users, departments, and documents."
                   />
-                </Box>
+                </Box> */}
               </Box>
               {/* <Box
                 sx={{
@@ -193,6 +210,14 @@ const EditUser = () => {
                   </Select>
                 </FormControl>
               </Box> */}
+              <Box
+              sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 2,
+                  mb: 2,
+                }}>
+
               <Box
                 sx={{
                   display: "flex",
@@ -238,6 +263,7 @@ const EditUser = () => {
                     ))}
                   </Select>
                 </FormControl>
+              </Box>
               </Box>
             </Box>
           </Paper>

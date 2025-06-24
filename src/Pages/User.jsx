@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import {
   Box,
   Table,
@@ -31,37 +31,42 @@ import { useState } from "react";
 
 const roles = [
   {
-    name: "Emily Johnson",
-    mail: "emilyjohnson@gmail.com",
+    // name: "Emily Johnson",
+    name: "Daniel Lewis	",
+    // mail: "emilyjohnson@gmail.com",
+    mail: "daniellewis@gmail.com",
     mobNo: "+1234567890",
-    role: "Admin",
-    responsibility: "Manages all users, departments, and documents.",
+    // role: "Admin",
+    userName: "daniellewis",
+    role: "Processor",
+    // responsibility: "Manages all users, departments, and documents.",
   },
   {
     name: "Michael Carter",
     mail: "michaelcarter@gmail.com",
     mobNo: "+1234567891",
-
-    role: "Chartered Accountant (CA)",
-    responsibility:
-      "Views and assigns parameters to Accounts-related documents.",
+    // role: "Chartered Accountant (CA)",
+    userName: "michaelcarter",
+    role: "View Role",
+    // responsibility:
+    //   "Views and assigns parameters to Accounts-related documents.",
   },
-  {
-    name: "Daniel Lewis	",
-    mail: "daniellewis@gmail.com",
-    mobNo: "+1234567892",
-
-    role: "Sales Manager",
-    responsibility: "Views and assigns parameters to Sales-related documents.",
-  },
-  {
-    name: "Sophia Martinez	",
-    mail: "sophiamartinez@gmail.com",
-    mobNo: "+1234567893",
-
-    role: "HR",
-    responsibility: "Views and assigns parameters to HR-related documents.",
-  },
+  // {
+  //   name: "Daniel Lewis	",
+  //   mail: "daniellewis@gmail.com",
+  //   mobNo: "+1234567892",
+  //   // role: "Sales Manager",
+  //   role: "View Role",
+  //   responsibility: "Views and assigns parameters to Sales-related documents.",
+  // },
+  // {
+  //   name: "Sophia Martinez	",
+  //   mail: "sophiamartinez@gmail.com",
+  //   mobNo: "+1234567893",
+  //   // role: "HR",
+  //   role: "View Role",
+  //   responsibility: "Views and assigns parameters to HR-related documents.",
+  // },
 ];
 
 const User = () => {
@@ -75,6 +80,7 @@ const User = () => {
   const [searchInputs, setSearchInputs] = useState({
     name: "",
     mail: "",
+    userName: "",
     role: "",
   });
   const handleSearchInputChange = (field, value) => {
@@ -214,6 +220,26 @@ const User = () => {
 
                   <TableCell>
                     <Stack direction="column">
+                      <Typography fontWeight="bold">User Name</Typography>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        placeholder="Search"
+                        value={searchInputs.userName}
+                        onChange={(e) =>
+                          handleSearchInputChange("userName", e.target.value)
+                        }
+                        autoComplete="off"
+                        sx={{
+                          mt: 1,
+                          width: "100px",
+                        }}
+                      />
+                    </Stack>
+                  </TableCell>
+
+                  <TableCell>
+                    <Stack direction="column">
                       <Typography fontWeight="bold">Role</Typography>
                       <TextField
                         size="small"
@@ -231,7 +257,7 @@ const User = () => {
                       />
                     </Stack>
                   </TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <Stack direction="column">
                       <Typography fontWeight="bold">Responsibility</Typography>
                       <TextField
@@ -254,7 +280,7 @@ const User = () => {
                         }}
                       />
                     </Stack>
-                  </TableCell>
+                  </TableCell> */}
 
                   <TableCell>
                     <Stack direction="column" alignItems="center">
@@ -302,9 +328,9 @@ const User = () => {
                       <TableCell>{role.name}</TableCell>
                       <TableCell>{role.mail}</TableCell>
                       <TableCell>{role.mobNo}</TableCell>
-
+                      <TableCell>{role.userName}</TableCell>
                       <TableCell>{role.role}</TableCell>
-                      <TableCell>{role.responsibility}</TableCell>
+                      {/* <TableCell>{role.responsibility}</TableCell> */}
                       <TableCell>
                         <Stack direction="row" spacing={1}>
                           <Tooltip title="Edit">
