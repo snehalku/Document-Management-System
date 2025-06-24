@@ -759,7 +759,7 @@ const Invoice = () => {
                               </TableCell>
                               <TableCell>{doc.invoiceDate}</TableCell>
                               <TableCell>{doc.invoiceNo}</TableCell>
-                              <TableCell align="right">
+                              <TableCell  align="right">₹
                                 {doc.invoiceAmount}
                               </TableCell>
                               <TableCell>{doc.id}</TableCell>
