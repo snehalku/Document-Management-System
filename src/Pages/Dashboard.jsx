@@ -242,6 +242,11 @@ const Dashboard = () => {
     { label: "Legal" },
   ];
 
+  const handleNavigate = (path, dep) => {
+    navigate(path);
+    localStorage.setItem("selectedDepartment", dep);
+  };
+
   return (
     <div>
       <Header departments={departments} defValue={"Sales"} />
@@ -279,7 +284,7 @@ const Dashboard = () => {
           <Grid container spacing={3} sx={{ mb: 2, mt: 2 }}>
             <Grid item xs={12} md={4}>
               <Card
-                // onClick={() => navigate("/documents")}
+                onClick={() => handleNavigate("/archiveDocument1", "Sales")}
                 sx={{
                   borderRadius: "10px",
                   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
@@ -300,7 +305,8 @@ const Dashboard = () => {
                     sx={{
                       display: "flex",
                       justifyContent: "space-between",
-                      alignItems: "center",
+                      flexDirection: "column",
+                      gap: 1,
                     }}
                   >
                     <Typography
@@ -310,6 +316,9 @@ const Dashboard = () => {
                       fontFamily="Poppins, sans-serif"
                     >
                       Sales
+                    </Typography>
+                    <Typography fontFamily="Poppins, sans-serif">
+                      Pending Documents - 2
                     </Typography>
                   </Box>
                   {/* <Typography
@@ -327,7 +336,7 @@ const Dashboard = () => {
 
             <Grid item xs={12} md={4}>
               <Card
-                // onClick={() => navigate("/approveDoc")}
+                onClick={() => handleNavigate("/invoice", "Accounts")}
                 sx={{
                   borderRadius: "10px",
                   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
@@ -347,8 +356,10 @@ const Dashboard = () => {
                   <Box
                     sx={{
                       display: "flex",
+                      flexDirection: "column",
                       justifyContent: "space-between",
-                      alignItems: "center",
+                      gap: 1,
+                      // alignItems: "center",
                     }}
                   >
                     <Typography
@@ -359,12 +370,20 @@ const Dashboard = () => {
                     >
                       Accounts
                     </Typography>
+                    <Typography
+                      // variant="h6"
+                      // component="div"
+                      // fontWeight="500"
+                      fontFamily="Poppins, sans-serif"
+                    >
+                      Pending Documents - 2
+                    </Typography>
                   </Box>
                 </CardContent>
               </Card>
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            {/* <Grid item xs={12} md={4}>
               <Card
                 sx={{
                   borderRadius: "10px",
@@ -400,7 +419,7 @@ const Dashboard = () => {
                   </Box>
                 </CardContent>
               </Card>
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12} md={4}>
               <Card
@@ -423,8 +442,10 @@ const Dashboard = () => {
                   <Box
                     sx={{
                       display: "flex",
+                      flexDirection: "column",
                       justifyContent: "space-between",
-                      alignItems: "center",
+                      gap: 1,
+                      // alignItems: "center",
                     }}
                   >
                     <Typography
@@ -435,12 +456,20 @@ const Dashboard = () => {
                     >
                       Legal
                     </Typography>
+                    <Typography
+                      // variant="h6"
+                      // component="div"
+                      // fontWeight="500"
+                      fontFamily="Poppins, sans-serif"
+                    >
+                      Pending Documents - 0
+                    </Typography>
                   </Box>
                 </CardContent>
               </Card>
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            {/* <Grid item xs={12} md={4}>
               <Card
                 sx={{
                   borderRadius: "10px",
@@ -476,7 +505,7 @@ const Dashboard = () => {
                   </Box>
                 </CardContent>
               </Card>
-            </Grid>
+            </Grid> */}
           </Grid>
 
           {/* <Stack

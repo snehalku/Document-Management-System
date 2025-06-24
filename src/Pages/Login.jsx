@@ -29,7 +29,7 @@ const Login = () => {
   const handleOtpVerification = (e) => {
     e.preventDefault();
     setError("");
-    navigate("/archiveDocument1");
+    navigate("/dashboard");
   };
 
   return (
