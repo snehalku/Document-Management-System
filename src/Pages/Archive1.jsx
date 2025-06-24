@@ -193,6 +193,29 @@ const Archive1 = () => {
   const [formCard, setFormCard] = useState(false);
   const [savedCustomerId, setSavedCustomerId] = useState("");
   const [disable, setDisable] = useState(false);
+  const [zoom, setZoom] = useState(1);
+
+  const handleZoomIn = () => {
+    setZoom((prev) => Math.min(prev + 0.2, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoom((prev) => Math.max(prev - 0.2, 0.5));
+  };
+  const docPath =
+    selectedCategory === "AML_KYC"
+      ? previewDocPath || selectedDoc?.path
+      : selectedCategory === "Transaction"
+      ? previewDocPath || selectedDoc?.path || transactionDoc
+      : selectedCategory === "sel"
+      ? blankImage
+      : null;
+
+  const isImage =
+    docPath?.toLowerCase().endsWith(".png") ||
+    docPath?.toLowerCase().endsWith(".jpg") ||
+    docPath?.toLowerCase().endsWith(".jpeg") ||
+    docPath?.toLowerCase().endsWith(".gif");
 
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
@@ -493,6 +516,29 @@ const Archive1 = () => {
             flexDirection: "row",
           }}
         >
+          {/* <Box direction="column" width="50%">
+            <Card
+              sx={{
+                flex: 1.2,
+                height: "84vh",
+                position: "sticky",
+                marginTop: 2,
+                alignSelf: "flex-start",
+                overflowY: "hidden",
+              }}
+            >
+              {(() => {
+                let docPath;
+                if (selectedCategory === "AML_KYC") {
+                  docPath = previewDocPath || selectedDoc?.path;
+                }
+                if (selectedCategory === "Transaction") {
+                  docPath =
+                    previewDocPath || selectedDoc?.path || transactionDoc;
+                }
+                if (selectedCategory === "sel") {
+                  docPath = blankImage;
+                }
           <Card
             sx={{
               flex: 1.2,
@@ -515,60 +561,163 @@ const Archive1 = () => {
                 docPath = blankImage;
               }
 
-              const isImage =
-                docPath?.toLowerCase().endsWith(".png") ||
-                docPath?.toLowerCase().endsWith(".jpg") ||
-                docPath?.toLowerCase().endsWith(".jpeg") ||
-                docPath?.toLowerCase().endsWith(".gif");
+                const isImage =
+                  docPath?.toLowerCase().endsWith(".png") ||
+                  docPath?.toLowerCase().endsWith(".jpg") ||
+                  docPath?.toLowerCase().endsWith(".jpeg") ||
+                  docPath?.toLowerCase().endsWith(".gif");
 
-              return isImage ? (
-                <CardMedia
-                  component="img"
-                  image={docPath}
-                  alt="Document"
-                  sx={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
-                    borderRadius: 2,
-                    boxShadow: 2,
-                  }}
-                />
-              ) : (
-                <Box
-                  sx={{
-                    position: "relative",
-                    width: "100%",
-                    height: "100%",
-                    mt: 1,
-                    borderRadius: 2,
-                    overflow: "hidden",
-                    boxShadow: 2,
-                  }}
-                >
-                  <iframe
-                    src={`${docPath}#toolbar=0`}
-                    title="KYC Document"
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      border: "none",
+                return isImage ? (
+                  <CardMedia
+                    component="img"
+                    image={docPath}
+                    alt="Document"
+                    sx={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      borderRadius: 2,
+                      boxShadow: 2,
                     }}
                   />
-                </Box>
-              );
-            })()}
-          </Card>
+                ) : (
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
+                      mt: 1,
+                      borderRadius: 2,
+                      overflow: "hidden",
+                      boxShadow: 2,
+                    }}
+                  >
+                    <iframe
+                      src={`${docPath}#toolbar=0`}
+                      title="KYC Document"
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                      }}
+                    />
+                  </Box>
+                );
+              })()}
+            </Card>
+          </Box> */}
+          <Box direction="column" width="50%">
+            <Card
+              sx={{
+                flex: 1.2,
+                height: "80vh",
+                position: "sticky",
+                marginTop: 2,
+                alignSelf: "center",
+                overflow: "auto",
+                p: 1,
+              }}
+            >
+              {/* Zoom Buttons */}
+              <Stack
+                direction="row"
+                justifyContent="flex-end"
+                spacing={2}
+                sx={{ mt: 1, mb: 1 }}
+              >
+                <Button
+                  variant="outlined"
+                  onClick={handleZoomIn}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "1px solid #ccc",
+                    minWidth: "40px",
+                    fontWeight: "bold",
+                    mx: 1,
+                    "&:hover": {
+                      backgroundColor: "#f5f5f5",
+                    },
+                  }}
+                >
+                  +
+                </Button>
+
+                <Button
+                  variant="outlined"
+                  onClick={handleZoomOut}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "1px solid #ccc",
+                    minWidth: "40px",
+                    fontWeight: "bold",
+                    mx: 1,
+                    "&:hover": {
+                      backgroundColor: "#f5f5f5",
+                    },
+                  }}
+                >
+                  -
+                </Button>
+              </Stack>
+
+              {/* Preview Area */}
+              <Box
+                sx={{
+                  transform: `scale(${zoom})`,
+                  transformOrigin: "top left",
+                  transition: "transform 0.3s ease",
+                  width: isImage ? "fit-content" : "100%",
+                }}
+              >
+                {isImage ? (
+                  <CardMedia
+                    component="img"
+                    image={docPath}
+                    alt="Document"
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      borderRadius: 2,
+                      boxShadow: 2,
+                    }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: "80vh",
+                      borderRadius: 2,
+                      overflow: "hidden",
+                      boxShadow: 2,
+                    }}
+                  >
+                    <iframe
+                      src={`${docPath}#toolbar=0`}
+                      title="Document Preview"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                      }}
+                    />
+                  </Box>
+                )}
+              </Box>
+            </Card>
+          </Box>
 
           <Box
             sx={{
               flex: 1,
               pl: 2,
               pr: 2,
-              width: "60%",
+              width: "50%",
             }}
           >
             <Box
@@ -1363,9 +1512,9 @@ const Archive1 = () => {
                                 <TableCell>{doc.transactionType}</TableCell>
                                 <TableCell>{doc.fund}</TableCell>
                                 <TableCell>{doc.class}</TableCell>
-                                <TableCell align="right">₹{doc.amount}</TableCell>
+                                <TableCell>{doc.amount}</TableCell>
                                 <TableCell>{doc.units}</TableCell>
-                                <TableCell align="right">₹{doc.nav}</TableCell>
+                                <TableCell>{doc.nav}</TableCell>
                               </TableRow>
                             ))}
 
@@ -1623,11 +1772,8 @@ const Archive1 = () => {
                         fullWidth
                         value={unitColumnSearch.amount}
                         sx={{ mb: 2 }}
-                        InputProps={{
-                          startAdornment: <span style={{ marginRight: 4 }}>₹</span>,
-                        }}
+                        // disabled={!selectedDoc}
                       />
-
                     </Paper>
                   </Grid>
                   <TransitionAlerts
@@ -1660,26 +1806,6 @@ const Archive1 = () => {
                         }}
                       >
                         Save
-                      </Button>
-                     
-                      <Button
-                        variant="outlined"
-                        color="secondary"
-                      disabled={disable}
-                        sx={{
-                          borderRadius: "10px",
-                          bgcolor: "#f2f4f5",
-                          px: 3,
-                          color: "black",
-                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                          border: "none",
-                          "&:hover": {
-                            bgcolor: "#e5e7e8",
-                            border: "none",
-                          },
-                        }}
-                      >
-                        Discard
                       </Button>
 
                       <Button
