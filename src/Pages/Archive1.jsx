@@ -539,6 +539,7 @@ const Archive1 = () => {
                 if (selectedCategory === "sel") {
                   docPath = blankImage;
                 }
+<<<<<<< HEAD
           <Card
             sx={{
               flex: 1.2,
@@ -560,6 +561,8 @@ const Archive1 = () => {
               if (selectedCategory === "sel") {
                 docPath = blankImage;
               }
+=======
+>>>>>>> cb576e1 (Cosmetic changes)
 
                 const isImage =
                   docPath?.toLowerCase().endsWith(".png") ||
