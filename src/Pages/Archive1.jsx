@@ -539,6 +539,27 @@ const Archive1 = () => {
                 if (selectedCategory === "sel") {
                   docPath = blankImage;
                 }
+          <Card
+            sx={{
+              flex: 1.2,
+              height: "84vh",
+              position: "sticky",
+              marginTop: 2,
+              alignSelf: "flex-start",
+              overflowY: "hidden",
+            }}
+          >
+            {(() => {
+              let docPath;
+              if (selectedCategory === "AML_KYC") {
+                docPath = previewDocPath || selectedDoc?.path;
+              }
+              if (selectedCategory === "Transaction") {
+                docPath = previewDocPath || selectedDoc?.path || transactionDoc;
+              }
+              if (selectedCategory === "sel") {
+                docPath = blankImage;
+              }
 
                 const isImage =
                   docPath?.toLowerCase().endsWith(".png") ||
