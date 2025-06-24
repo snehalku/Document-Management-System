@@ -345,7 +345,7 @@ const Invoice = () => {
             })()}
           </Card> */}
 
-          <Box direction="column">
+          <Box direction="column" width="50%">
             <Card
               sx={{
                 flex: 1.2,
@@ -450,6 +450,7 @@ const Invoice = () => {
               flex: 1,
               pl: 2,
               pr: 2,
+              width: "50%",
             }}
           >
             <Box
