@@ -1363,9 +1363,9 @@ const Archive1 = () => {
                                 <TableCell>{doc.transactionType}</TableCell>
                                 <TableCell>{doc.fund}</TableCell>
                                 <TableCell>{doc.class}</TableCell>
-                                <TableCell>{doc.amount}</TableCell>
+                                <TableCell align="right">₹{doc.amount}</TableCell>
                                 <TableCell>{doc.units}</TableCell>
-                                <TableCell>{doc.nav}</TableCell>
+                                <TableCell align="right">₹{doc.nav}</TableCell>
                               </TableRow>
                             ))}
 
@@ -1623,8 +1623,11 @@ const Archive1 = () => {
                         fullWidth
                         value={unitColumnSearch.amount}
                         sx={{ mb: 2 }}
-                        // disabled={!selectedDoc}
+                        InputProps={{
+                          startAdornment: <span style={{ marginRight: 4 }}>₹</span>,
+                        }}
                       />
+
                     </Paper>
                   </Grid>
                   <TransitionAlerts
@@ -1657,6 +1660,26 @@ const Archive1 = () => {
                         }}
                       >
                         Save
+                      </Button>
+                     
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                      disabled={disable}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#f2f4f5",
+                          px: 3,
+                          color: "black",
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          border: "none",
+                          "&:hover": {
+                            bgcolor: "#e5e7e8",
+                            border: "none",
+                          },
+                        }}
+                      >
+                        Discard
                       </Button>
 
                       <Button

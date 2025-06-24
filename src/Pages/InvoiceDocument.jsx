@@ -494,11 +494,30 @@ const InvoiceDocument = () => {
                     </Stack>
                   </TableCell>
 
-                  <TableCell>
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Action</Typography>
-                    </Stack>
-                  </TableCell>
+                 <TableCell>
+                                         <Stack direction="column" alignItems="right">
+                                           <Typography fontWeight="bold">Action</Typography>
+                                           <TextField
+                                             size="small"
+                                             variant="standard"
+                                             autoComplete="off"
+                                             sx={{
+                                               mt: 1,
+                                               width: "100px",
+                                               "& .MuiInput-underline:before": {
+                                                 borderBottom: "none",
+                                               },
+                                               "& .MuiInput-underline:after": {
+                                                 borderBottom: "none",
+                                               },
+                                               "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                                                 {
+                                                   borderBottom: "none",
+                                                 },
+                                             }}
+                                           />
+                                         </Stack>
+                                       </TableCell>
                 </TableRow>
               </TableHead>
 
@@ -507,15 +526,7 @@ const InvoiceDocument = () => {
                   <TableRow key={project.id} hover>
                     <TableCell align="center">{project.invoiceDate}</TableCell>
                     <TableCell align="center">{project.invoiceNo}</TableCell>
-                   <TableCell align="right">
-                      {new Intl.NumberFormat("en-IN", {
-                        style: "currency",
-                        currency: "INR",
-                        minimumFractionDigits: 0,
-                      }).format(project.invoiceAmount)}
-                    </TableCell>
-
-                    {/* <TableCell align="center">{project.subCategory}</TableCell> */}
+                  <TableCell align="right">₹ {project.invoiceAmount}</TableCell>
                     <TableCell align="center">{project.id}</TableCell>
                     <TableCell>
                       <Typography align="center">
