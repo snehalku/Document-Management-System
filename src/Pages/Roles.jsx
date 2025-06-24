@@ -28,24 +28,35 @@ import Header from "../Components/Layout/Header";
 import { useNavigate } from "react-router-dom";
 
 const roles = [
+  // {
+  //   roleName: "Admin",
+  //   permission:
+  //     "Full access: view, assign parameters, manage users, departments, and documents.",
+  // },
+
+  // {
+  //   roleName: "Sales Manager",
+  //   permission: "Can view and assign parameters for Sales documents.",
+  // },
+  // {
+  //   roleName: "Chartered Accountant",
+  //   permission:
+  //     "Can view documents and assign parameters related to Accounts only.",
+  // },
+  // {
+  //   roleName: "HR ",
+  //   permission: "Can view and assign parameters for HR documents.",
+  // },
+
   {
-    roleName: "Admin",
+    roleName: "Processor",
     permission:
       "Full access: view, assign parameters, manage users, departments, and documents.",
   },
 
   {
-    roleName: "Sales Manager",
+    roleName: "View Role",
     permission: "Can view and assign parameters for Sales documents.",
-  },
-  {
-    roleName: "Chartered Accountant",
-    permission:
-      "Can view documents and assign parameters related to Accounts only.",
-  },
-  {
-    roleName: "HR ",
-    permission: "Can view and assign parameters for HR documents.",
   },
 ];
 
