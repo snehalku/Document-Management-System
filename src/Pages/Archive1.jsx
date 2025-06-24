@@ -541,6 +541,11 @@ const Archive1 = () => {
                 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> b59e5db171b8330d0392313e95f01b50897ac6cc
+>>>>>>> d8b97130535e0fa699abfc68dfe35b894fa18929
           <Card
             sx={{
               flex: 1.2,
