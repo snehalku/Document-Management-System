@@ -194,6 +194,7 @@ const Archive1 = () => {
   const [selectedCategory, setSelectedCategory] = useState("AML_KYC");
   const [formCard, setFormCard] = useState(false);
 const [savedCustomerId, setSavedCustomerId] = useState("");
+const [disable, setDisable] = useState(false);
 
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
@@ -208,7 +209,7 @@ const [savedCustomerId, setSavedCustomerId] = useState("");
   const [formData, setFormData] = useState({
     customerId: "",
      firstName: "",
-    filingDate: "2025-06-20",
+    filingDate: "",
     issueDate: "",
     expiryDate: "",
     unitHolderId: "",
@@ -227,12 +228,22 @@ const [savedCustomerId, setSavedCustomerId] = useState("");
     nav: "",
   });
 
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setDisable(false);
+  }, 5000);
+
+  return () => clearTimeout(timer);
+}, [disable]);
+  
+
   useEffect(() => {
     if (selectedDoc) {
       setFormData((prev) => ({
         ...prev,
         customerId: selectedDoc.id || "",
-         firstName: selectedDoc.firstName || "",
+        filingDate: selectedDoc.filingDate || "",
+        firstName: selectedDoc.firstName || "",
         lastName: selectedDoc.lastName || "",
         customerName: `${selectedDoc.firstName || ""} ${
           selectedDoc.lastName || ""
@@ -344,45 +355,52 @@ setConfirmedDocIds([]);
     }
   };
 
-  const handleSave = () => {
-    setAlertOpen(true);
+ const handleSave = () => {
+  setAlertOpen(true); // show success alert
+  setDisable(true); // immediately hide discard button
 
-    setTimeout(() => {
-      if (selectedCategory === "AML_KYC") {
-        setPreviewDocPath(Doc3);
-      }
-      if (previewDocPath === Doc3) {
-        setPreviewDocPath(blankImage)
-      }
-      if (selectedCategory === "Transaction") {
-        setPreviewDocPath(transactionDoc1);
-      }
-      setAlertOpen(true);
-      setFormData({
-        customerId: "",
-        issueDate: "",
-        expiryDate: "",
-        filingDate: "2025-06-20",
-        // versionNo: " ",
-      });
-      setSelectedDoc(null);
-      setHideTable(false);
-      showNextDocument();
-      setSelectedDate(null);
-      setSelectedCategory(selectedCategory), 
-      setSearchCustomer("");
-      setSearchResults("");
-      setCategory("");
-      setSubcategory("");
-      setIssueDate("");
-      setExpiryDate("");
-      setFormCard(false);
-      setConfirmedDocIds([]); 
-      setFormData({ ...initialState });
-      setSavedCustomerId(formData.customerId);
-      // setPreviewDocPath(Doc3);
-    }, 3000);
-  };
+  // Save the current customer ID before clearing it
+  const currentCustomerId = formData.customerId;
+  setSavedCustomerId(currentCustomerId);
+
+  setTimeout(() => {
+    if (selectedCategory === "AML_KYC") {
+      setPreviewDocPath(Doc3);
+    }
+    if (previewDocPath === Doc3) {
+      setPreviewDocPath(blankImage);
+    }
+    if (selectedCategory === "Transaction") {
+      setPreviewDocPath(transactionDoc1);
+    }
+
+    // Reset all form and UI states
+    setFormData({
+      customerId: "",
+      issueDate: "",
+      expiryDate: "",
+      filingDate: "2025-06-20",
+    });
+    setSelectedDoc(null);
+    setHideTable(false);
+    showNextDocument();
+    setSelectedDate(null);
+    setSelectedCategory(selectedCategory);
+    setSearchCustomer("");
+    setSearchResults("");
+    setCategory("");
+    setSubcategory("");
+    setIssueDate("");
+    setExpiryDate("");
+    setFormCard(false);
+    setConfirmedDocIds([]);
+    setFormData({ ...initialState });
+
+    // Simulate document change + re-enable discard button
+    // wait for next doc to appear
+  }, 3000); // wait for alert
+};
+
 
   const snackbarRef = useRef(null);
   useEffect(() => {
@@ -493,10 +511,13 @@ setConfirmedDocIds([]);
             {(() => {
               let docPath;
               if (selectedCategory === "AML_KYC") {
-                docPath = previewDocPath || selectedDoc?.path;
+                docPath = previewDocPath || selectedDoc?.path || Doc2;
               }
               if (selectedCategory === "Transaction") {
                 docPath = previewDocPath || selectedDoc?.path || transactionDoc;
+              }
+                if (selectedCategory === "sel") {
+                docPath =blankImage;
               }
 
               const isImage =
@@ -718,7 +739,7 @@ setConfirmedDocIds([]);
               {selectedCategory === "AML_KYC" ? (
                 <div>
                   {!hideTable && searchResults.length > 0 && (
-                    <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
+                    <Paper sx={{ p: 2, mb: 2, mt: 1,overflowY:"auto",maxHeight:400 }}>
                       <Typography
                         variant="body2"
                         color="text.secondary"
@@ -738,15 +759,23 @@ setConfirmedDocIds([]);
                         sx={{
                           borderRadius: "10px 10px 0 0",
                           maxHeight: 361,
-                          // maxwidth: 220,
-                          // overflowY: "auto",
+                          maxwidth: 220,
+                          overflow: "auto",
                         }}
                       >
                         <Table size="small">
                           <TableHead>
                             <TableRow
-                              sx={{ bgcolor: "#99caff", "& td": { py: 0.5 } }}
-                            >
+                                sx={{
+                                  bgcolor: "#99caff",
+                                  "& th": {
+                                    position: "sticky",
+                                    top: 0,
+                                    zIndex: 1, 
+                                    backgroundColor: "#99caff", 
+                                  },
+                                }}
+                              >
                               {" "}
                               <TableCell>
                                 <Typography fontWeight="bold"></Typography>
@@ -990,6 +1019,27 @@ setConfirmedDocIds([]);
                           </TableBody>
                         </Table>
                       </TableContainer>
+                      <Box display="flex" justifyContent="flex-end" mt={2} mb={1}>
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          // onClick={handleDiscard} // optional: attach your discard logic
+                          sx={{
+                            borderRadius: "10px",
+                            bgcolor: "#f2f4f5",
+                            px: 3,
+                            color: "black",
+                            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                            border: "none",
+                            "&:hover": {
+                              bgcolor: "#e5e7e8",
+                              border: "none",
+                            },
+                          }}
+                        >
+                          Discard
+                        </Button>
+                    </Box>
                     </Paper>
                   )}
                 </div>
@@ -1001,6 +1051,8 @@ setConfirmedDocIds([]);
                         p: 2,
                         mb: 2,
                         mt: 1,
+                      overflowY:"auto",
+                      maxHeight:400
                       }}
                     >
                       <Typography
@@ -1029,8 +1081,16 @@ setConfirmedDocIds([]);
                         <Table size="small">
                           <TableHead>
                             <TableRow
-                              sx={{ bgcolor: "#99caff", "& td": { py: 0.5 } }}
-                            >
+                                    sx={{
+                                      bgcolor: "#99caff",
+                                      "& th": {
+                                        position: "sticky",
+                                        top: 0,
+                                        zIndex: 1, 
+                                        backgroundColor: "#99caff",
+                                      },
+                                    }}
+                                  >
                               <TableCell></TableCell>
 
                               <TableCell>
@@ -1314,6 +1374,27 @@ setConfirmedDocIds([]);
                           </TableBody>
                         </Table>
                       </TableContainer>
+                      <Box display="flex" justifyContent="flex-end" mt={2} mb={1}>
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          // onClick={handleDiscard} // optional: attach your discard logic
+                          sx={{
+                            borderRadius: "10px",
+                            bgcolor: "#f2f4f5",
+                            px: 3,
+                            color: "black",
+                            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                            border: "none",
+                            "&:hover": {
+                              bgcolor: "#e5e7e8",
+                              border: "none",
+                            },
+                          }}
+                        >
+                          Discard
+                        </Button>
+                    </Box>
                     </Paper>
                   )}
                 </div>
@@ -1444,7 +1525,7 @@ setConfirmedDocIds([]);
                         variant="contained"
                         color="primary"
                         onClick={handleSave}
-                        // disabled={selectedDoc === null}
+                        disabled={disable}
                         sx={{
                           borderRadius: "10px",
                           bgcolor: "#99CAFF",
@@ -1461,8 +1542,7 @@ setConfirmedDocIds([]);
                       <Button
                         variant="outlined"
                         color="secondary"
-                        // onClick={handleDiscard}
-                        // disabled={!selectedDoc}
+                       disabled={disable}
                         sx={{
                           borderRadius: "10px",
                           bgcolor: "#f2f4f5",
@@ -1565,7 +1645,7 @@ setConfirmedDocIds([]);
                         variant="contained"
                         color="primary"
                         onClick={handleSave}
-                        // disabled={selectedDoc === null}
+                        disabled={disable}
                         sx={{
                           borderRadius: "10px",
                           bgcolor: "#99CAFF",
@@ -1579,26 +1659,27 @@ setConfirmedDocIds([]);
                       >
                         Save
                       </Button>
-                      <Button
-                        variant="outlined"
-                        color="secondary"
-                        // onClick={handleDiscard}
-                        // disabled={!selectedDoc}
-                        sx={{
-                          borderRadius: "10px",
-                          bgcolor: "#f2f4f5",
-                          px: 3,
-                          color: "black",
-                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                          border: "none",
-                          "&:hover": {
-                            bgcolor: "#e5e7e8",
-                            border: "none",
-                          },
-                        }}
-                      >
-                        Discard
-                      </Button>
+                     
+  <Button
+    variant="outlined"
+    color="secondary"
+   disabled={disable}
+    sx={{
+      borderRadius: "10px",
+      bgcolor: "#f2f4f5",
+      px: 3,
+      color: "black",
+      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      border: "none",
+      "&:hover": {
+        bgcolor: "#e5e7e8",
+        border: "none",
+      },
+    }}
+  >
+    Discard
+  </Button>
+
                     </Stack>
                   </Box>
                 </Card>
