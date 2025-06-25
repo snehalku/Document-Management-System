@@ -1227,8 +1227,8 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell>
-                        <Stack direction="row" alignItems="center">
+                     <TableCell>
+                        <Stack direction="column" alignItems="right">
                           <Typography fontWeight="bold">Action</Typography>
                           <TextField
                             size="small"
@@ -1275,11 +1275,11 @@ const Documents = () => {
 
                         <TableCell align="center">{unitHolder.fund}</TableCell>
                         <TableCell align="center">{unitHolder.class}</TableCell>
-                        <TableCell align="center">
+                        <TableCell  align="right">₹
                           {unitHolder.amount}
                         </TableCell>
                         <TableCell align="center">{unitHolder.units}</TableCell>
-                        <TableCell align="center">{unitHolder.nav}</TableCell>
+                        <TableCell  align="right">₹{unitHolder.nav}</TableCell>
 
                         <TableCell align="center" sx={{ textAlign: "center" }}>
                           {unitHolder.documentId}

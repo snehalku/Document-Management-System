@@ -31,16 +31,16 @@ const folderPaths = [
 ];
 
 const Folders = () => {
- const handleFolderSource = (e) => {
-  const files = Array.from(e.target.files);
-  if (files.length > 0) {
-    const fullPath = files[0].webkitRelativePath;
-    const folderName = fullPath.split("/")[0]; // gets the folder name
-    setSourceFolderName(folderName);
-    console.log("📁 Source Folder Selected:", folderName);
-    console.log(files);
-  }
-};
+  const handleFolderSource = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length > 0) {
+      const fullPath = files[0].webkitRelativePath;
+      const folderName = fullPath.split("/")[0]; // gets the folder name
+      setSourceFolderName(folderName);
+      console.log("📁 Source Folder Selected:", folderName);
+      console.log(files);
+    }
+  };
   const sourceInputRef = useRef(null);
   const destinationInputRef = useRef(null);
   const discardInputRef = useRef(null);
@@ -75,7 +75,7 @@ const Folders = () => {
     { label: "Legal" },
   ];
 
-const [sourceFolderName, setSourceFolderName] = useState("");
+  const [sourceFolderName, setSourceFolderName] = useState("");
   return (
     <div>
       <Header departments={departments} defValue={"Sales"} />
@@ -134,7 +134,6 @@ const [sourceFolderName, setSourceFolderName] = useState("");
               >
                 <MenuItem value="sales">Sales</MenuItem>
                 <MenuItem value="accounts">Accounts</MenuItem>
-                <MenuItem value="hr">HR</MenuItem>
                 <MenuItem value="legal">Legal</MenuItem>
               </Select>
             </FormControl>

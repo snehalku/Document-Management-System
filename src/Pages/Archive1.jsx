@@ -22,7 +22,7 @@ import {
 } from "@mui/material";
 import Doc2 from "../assets/Doc2.png";
 import Doc3 from "../assets/Doc3.png";
-import blankImage from "../assets/blank.png"
+import blankImage from "../assets/blank.png";
 import transactionDoc from "../assets/trDoc1.png";
 import transactionDoc1 from "../assets/trDoc2.png";
 import SearchIcon from "@mui/icons-material/Search";
@@ -32,7 +32,6 @@ import TransitionAlerts from "../Components/ui/Notification";
 import Header from "../Components/Layout/Header";
 
 const mockCustomerDocs = [
- 
   {
     id: "EDB5617",
     firstName: "John",
@@ -42,7 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
-     filingDate: "2025-06-20",
+    filingDate: "24-06-2025",
   },
   {
     id: "AFB7712",
@@ -53,21 +52,21 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
-     filingDate: "2025-06-20",
+    filingDate: "24-06-2025",
   },
-  {
-    id: "EEA5924",
-    firstName: "John",
-    lastName: "Smith",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "14-11-1998",
-    expiresOn: "2032-12-12",
-    nationalId: "A123477",
-     filingDate: "2025-06-20",
-  },
+  // {
+  //   id: "EEA5924",
+  //   firstName: "John",
+  //   lastName: "Smith",
+  //   transactionId: "TXN123",
+  //   date: "2025-05-28",
+  //   dob: "14-11-1998",
+  //   expiresOn: "2032-12-12",
+  //   nationalId: "A123477",
+  //   filingDate: "2025-06-24",
+  // },
 
-   {
+  {
     id: "EDB5612",
     firstName: "John",
     lastName: "Livone",
@@ -76,19 +75,19 @@ const mockCustomerDocs = [
     dob: "06-09-1986",
     expiresOn: "2030-11-12",
     nationalId: "A123456",
-    filingDate: "2025-06-20",
+    filingDate: "24-06-2025",
   },
-  {
-    id: "EEA5923",
-    firstName: "John",
-    lastName: "carter",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "14-11-1998",
-    expiresOn: "2032-12-12",
-    nationalId: "A123477",
-     filingDate: "2025-06-20",
-  },
+  // {
+  //   id: "EEA5923",
+  //   firstName: "John",
+  //   lastName: "carter",
+  //   transactionId: "TXN123",
+  //   date: "2025-05-28",
+  //   dob: "14-11-1998",
+  //   expiresOn: "2032-12-12",
+  //   nationalId: "A123477",
+  //   filingDate: "2025-06-20",
+  // },
   {
     id: "EDB5C13",
     firstName: "Mets",
@@ -98,14 +97,13 @@ const mockCustomerDocs = [
     dob: "08-01-1980",
     expiresOn: "2020-01-02",
     nationalId: "3800108",
-     filingDate: "2025-06-20",
+    filingDate: "24-06-2025",
   },
 ];
 const unitHolderDetails = [
-  
   {
     id: "UH253",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
@@ -114,20 +112,20 @@ const unitHolderDetails = [
     units: "3225.806452",
     nav: "21.7",
   },
-  {
-    id: "UH056",
-    transactionDate: "2025-06-22",
-    transactionNo: "TXN1032",
-    transactionType: "Purchase",
-    fund: "Fund 5",
-    class: "C",
-    amount: "17000",
-    units: "500",
-    nav: "34",
-  },
+  // {
+  //   id: "UH056",
+  //   transactionDate: "2025-06-22",
+  //   transactionNo: "TXN1032",
+  //   transactionType: "Purchase",
+  //   fund: "Fund 5",
+  //   class: "C",
+  //   amount: "17000",
+  //   units: "500",
+  //   nav: "34",
+  // },
   {
     id: "UH326",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1001",
     transactionType: "Purchase",
     fund: "Fund 1",
@@ -138,7 +136,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH045",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -149,7 +147,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH002",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
@@ -160,7 +158,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH025",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1031",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -193,8 +191,31 @@ const Archive1 = () => {
   const [hideTable, setHideTable] = React.useState(false);
   const [selectedCategory, setSelectedCategory] = useState("AML_KYC");
   const [formCard, setFormCard] = useState(false);
-const [savedCustomerId, setSavedCustomerId] = useState("");
-const [disable, setDisable] = useState(false);
+  const [savedCustomerId, setSavedCustomerId] = useState("");
+  const [disable, setDisable] = useState(false);
+  const [zoom, setZoom] = useState(1);
+
+  const handleZoomIn = () => {
+    setZoom((prev) => Math.min(prev + 0.2, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoom((prev) => Math.max(prev - 0.2, 0.5));
+  };
+  const docPath =
+    selectedCategory === "AML_KYC"
+      ? previewDocPath || selectedDoc?.path || Doc2
+      : selectedCategory === "Transaction"
+      ? previewDocPath || selectedDoc?.path || transactionDoc
+      : selectedCategory === "sel"
+      ? blankImage
+      : null;
+
+  const isImage =
+    docPath?.toLowerCase().endsWith(".png") ||
+    docPath?.toLowerCase().endsWith(".jpg") ||
+    docPath?.toLowerCase().endsWith(".jpeg") ||
+    docPath?.toLowerCase().endsWith(".gif");
 
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
@@ -208,7 +229,7 @@ const [disable, setDisable] = useState(false);
   const [expiryDate, setExpiryDate] = useState("");
   const [formData, setFormData] = useState({
     customerId: "",
-     firstName: "",
+    firstName: "",
     filingDate: "",
     issueDate: "",
     expiryDate: "",
@@ -228,14 +249,13 @@ const [disable, setDisable] = useState(false);
     nav: "",
   });
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setDisable(false);
-  }, 5000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDisable(false);
+    }, 5000);
 
-  return () => clearTimeout(timer);
-}, [disable]);
-  
+    return () => clearTimeout(timer);
+  }, [disable]);
 
   useEffect(() => {
     if (selectedDoc) {
@@ -254,9 +274,9 @@ useEffect(() => {
       setUnitColumnSearch((prev) => ({
         ...prev,
         customerId: selectedDoc.id || "",
-         transactionDate: selectedDoc.transactionDate || "",
+        transactionDate: selectedDoc.transactionDate || "",
         transactionNo: selectedDoc.transactionNo || "",
-      amount: selectedDoc.amount || "",
+        amount: selectedDoc.amount || "",
       }));
     }
   }, [selectedDoc]);
@@ -276,7 +296,6 @@ useEffect(() => {
     }
   }, [selectedDocName, docList]);
 
-  
   const handleSearch = () => {
     const query = searchCustomer.toLowerCase();
     const results = mockCustomerDocs.filter((doc) => {
@@ -327,7 +346,7 @@ useEffect(() => {
     setSelectedDate(doc.date);
     setSearchCustomer(doc.customerName);
     setDocIdentifier("National ID");
-setConfirmedDocIds([]);
+    setConfirmedDocIds([]);
     // if (!confirmedDocIds.includes(doc.id)) {
     //   setConfirmedDocIds([...confirmedDocIds, doc.id]);
     // }
@@ -355,52 +374,48 @@ setConfirmedDocIds([]);
     }
   };
 
- const handleSave = () => {
-  setAlertOpen(true); // show success alert
-  setDisable(true); // immediately hide discard button
+  const handleSave = () => {
+    setAlertOpen(true); // show success alert
+    setDisable(true); // immediately hide discard button
 
-  // Save the current customer ID before clearing it
-  const currentCustomerId = formData.customerId;
-  setSavedCustomerId(currentCustomerId);
+    // Save the current customer ID before clearing it
+    const currentCustomerId = formData.customerId;
+    setSavedCustomerId(currentCustomerId);
 
-  setTimeout(() => {
-    if (selectedCategory === "AML_KYC") {
-      setPreviewDocPath(Doc3);
-    }
-    if (previewDocPath === Doc3) {
-      setPreviewDocPath(blankImage);
-    }
-    if (selectedCategory === "Transaction") {
-      setPreviewDocPath(transactionDoc1);
-    }
+    setTimeout(() => {
+      if (selectedCategory === "AML_KYC") {
+        setPreviewDocPath(Doc3);
+      }
+      if (previewDocPath === Doc3) {
+        setPreviewDocPath(blankImage);
+      }
+      if (selectedCategory === "Transaction") {
+        setPreviewDocPath(transactionDoc1);
+      }
 
-    // Reset all form and UI states
-    setFormData({
-      customerId: "",
-      issueDate: "",
-      expiryDate: "",
-      filingDate: "2025-06-20",
-    });
-    setSelectedDoc(null);
-    setHideTable(false);
-    showNextDocument();
-    setSelectedDate(null);
-    setSelectedCategory(selectedCategory);
-    setSearchCustomer("");
-    setSearchResults("");
-    setCategory("");
-    setSubcategory("");
-    setIssueDate("");
-    setExpiryDate("");
-    setFormCard(false);
-    setConfirmedDocIds([]);
-    setFormData({ ...initialState });
-
-    // Simulate document change + re-enable discard button
-    // wait for next doc to appear
-  }, 3000); // wait for alert
-};
-
+      // Reset all form and UI states
+      setFormData({
+        customerId: "",
+        issueDate: "",
+        expiryDate: "",
+        filingDate: "2025-06-20",
+      });
+      setSelectedDoc(null);
+      setHideTable(false);
+      showNextDocument();
+      setSelectedDate(null);
+      setSelectedCategory(selectedCategory);
+      setSearchCustomer("");
+      setSearchResults("");
+      setCategory("");
+      setSubcategory("");
+      setIssueDate("");
+      setExpiryDate("");
+      setFormCard(false);
+      setConfirmedDocIds([]);
+      setFormData({ ...initialState });
+    }, 3000);
+  };
 
   const snackbarRef = useRef(null);
   useEffect(() => {
@@ -448,11 +463,11 @@ setConfirmedDocIds([]);
   //   setFormCard(true);
   // };
   const onCheck = (id) => {
-  // Mark the current doc as selected
-  setConfirmedDocIds([id]);
-  setHideTable(true);
-  setFormCard(true);
-};
+    // Mark the current doc as selected
+    setConfirmedDocIds([id]);
+    setHideTable(true);
+    setFormCard(true);
+  };
 
   const handleCategory = (e) => {
     setSelectedCategory(e.target.value);
@@ -460,18 +475,18 @@ setConfirmedDocIds([]);
   };
 
   useEffect(() => {
-  if (alertOpen) {
-    const timer = setTimeout(() => setAlertOpen(false), 3000);
-    return () => clearTimeout(timer);
-  }
-}, [alertOpen]);
+    if (alertOpen) {
+      const timer = setTimeout(() => setAlertOpen(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [alertOpen]);
 
   const dateLabel =
-  selectedCategory === "AML_KYC"
-    ? "Filing Date"
-    : selectedCategory === "Transaction"
-    ? "Transaction Date"
-    : "Date";
+    selectedCategory === "AML_KYC"
+      ? "Filing Date"
+      : selectedCategory === "Transaction"
+      ? "Transaction Date"
+      : "Date";
 
   return (
     <div>
@@ -498,6 +513,36 @@ setConfirmedDocIds([]);
             flexDirection: "row",
           }}
         >
+          {/* <Box direction="column" width="50%">
+            <Card
+              sx={{
+                flex: 1.2,
+                height: "84vh",
+                position: "sticky",
+                marginTop: 2,
+                alignSelf: "flex-start",
+                overflowY: "hidden",
+              }}
+            >
+              {(() => {
+                let docPath;
+                if (selectedCategory === "AML_KYC") {
+                  docPath = previewDocPath || selectedDoc?.path;
+                }
+                if (selectedCategory === "Transaction") {
+                  docPath =
+                    previewDocPath || selectedDoc?.path || transactionDoc;
+                }
+                if (selectedCategory === "sel") {
+                  docPath = blankImage;
+                }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> b59e5db171b8330d0392313e95f01b50897ac6cc
+>>>>>>> d8b97130535e0fa699abfc68dfe35b894fa18929
           <Card
             sx={{
               flex: 1.2,
@@ -516,64 +561,169 @@ setConfirmedDocIds([]);
               if (selectedCategory === "Transaction") {
                 docPath = previewDocPath || selectedDoc?.path || transactionDoc;
               }
-                if (selectedCategory === "sel") {
-                docPath =blankImage;
+              if (selectedCategory === "sel") {
+                docPath = blankImage;
               }
+=======
+>>>>>>> cb576e1 (Cosmetic changes)
+=======
+>>>>>>> cb576e1 (Cosmetic changes)
 
-              const isImage =
-                docPath?.toLowerCase().endsWith(".png") ||
-                docPath?.toLowerCase().endsWith(".jpg") ||
-                docPath?.toLowerCase().endsWith(".jpeg") ||
-                docPath?.toLowerCase().endsWith(".gif");
+                const isImage =
+                  docPath?.toLowerCase().endsWith(".png") ||
+                  docPath?.toLowerCase().endsWith(".jpg") ||
+                  docPath?.toLowerCase().endsWith(".jpeg") ||
+                  docPath?.toLowerCase().endsWith(".gif");
 
-              return isImage ? (
-                <CardMedia
-                  component="img"
-                  image={docPath}
-                  alt="Document"
-                  sx={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
-                    borderRadius: 2,
-                    boxShadow: 2,
-                  }}
-                />
-              ) : (
-                <Box
-                  sx={{
-                    position: "relative",
-                    width: "100%",
-                    height: "100%",
-                    mt: 1,
-                    borderRadius: 2,
-                    overflow: "hidden",
-                    boxShadow: 2,
-                  }}
-                >
-                  <iframe
-                    src={`${docPath}#toolbar=0`}
-                    title="KYC Document"
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      border: "none",
+                return isImage ? (
+                  <CardMedia
+                    component="img"
+                    image={docPath}
+                    alt="Document"
+                    sx={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      borderRadius: 2,
+                      boxShadow: 2,
                     }}
                   />
-                </Box>
-              );
-            })()}
-          </Card>
+                ) : (
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
+                      mt: 1,
+                      borderRadius: 2,
+                      overflow: "hidden",
+                      boxShadow: 2,
+                    }}
+                  >
+                    <iframe
+                      src={`${docPath}#toolbar=0`}
+                      title="KYC Document"
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                      }}
+                    />
+                  </Box>
+                );
+              })()}
+            </Card>
+          </Box> */}
+          <Box direction="column" width="50%">
+            <Card
+              sx={{
+                flex: 1.2,
+                height: "82vh",
+                position: "sticky",
+                marginTop: 2,
+                alignSelf: "center",
+                overflow: "auto",
+                p: 1,
+              }}
+            >
+              <Stack
+                direction="row"
+                justifyContent="flex-end"
+                spacing={2}
+                sx={{ mt: 1, mb: 1 }}
+              >
+                <Button
+                  variant="outlined"
+                  onClick={handleZoomIn}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "1px solid #ccc",
+                    minWidth: "40px",
+                    fontWeight: "bold",
+                    mx: 1,
+                    "&:hover": {
+                      backgroundColor: "#f5f5f5",
+                    },
+                  }}
+                >
+                  +
+                </Button>
+
+                <Button
+                  variant="outlined"
+                  onClick={handleZoomOut}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "1px solid #ccc",
+                    minWidth: "40px",
+                    fontWeight: "bold",
+                    mx: 1,
+                    "&:hover": {
+                      backgroundColor: "#f5f5f5",
+                    },
+                  }}
+                >
+                  -
+                </Button>
+              </Stack>
+
+              <Box
+                sx={{
+                  transform: `scale(${zoom})`,
+                  transformOrigin: "top left",
+                  transition: "transform 0.3s ease",
+                  width: isImage ? "fit-content" : "100%",
+                }}
+              >
+                {isImage ? (
+                  <CardMedia
+                    component="img"
+                    image={docPath}
+                    alt="Document"
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      borderRadius: 2,
+                      boxShadow: 2,
+                    }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: "80vh",
+                      borderRadius: 2,
+                      overflow: "hidden",
+                      boxShadow: 2,
+                    }}
+                  >
+                    <iframe
+                      src={`${docPath}#toolbar=0`}
+                      title="Document Preview"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                      }}
+                    />
+                  </Box>
+                )}
+              </Box>
+            </Card>
+          </Box>
 
           <Box
             sx={{
               flex: 1,
               pl: 2,
               pr: 2,
-              width: "60%",
+              width: "50%",
             }}
           >
             <Box
@@ -606,7 +756,7 @@ setConfirmedDocIds([]);
                         fontWeight="700"
                         sx={{ mr: 2 }}
                       >
-                       {dateLabel}
+                        {dateLabel}
                         <span style={{ color: "red", marginLeft: "4px" }}>
                           *
                         </span>
@@ -739,7 +889,15 @@ setConfirmedDocIds([]);
               {selectedCategory === "AML_KYC" ? (
                 <div>
                   {!hideTable && searchResults.length > 0 && (
-                    <Paper sx={{ p: 2, mb: 2, mt: 1,overflowY:"auto",maxHeight:400 }}>
+                    <Paper
+                      sx={{
+                        p: 2,
+                        mb: 2,
+                        mt: 1,
+                        overflowY: "auto",
+                        maxHeight: 400,
+                      }}
+                    >
                       <Typography
                         variant="body2"
                         color="text.secondary"
@@ -766,19 +924,48 @@ setConfirmedDocIds([]);
                         <Table size="small">
                           <TableHead>
                             <TableRow
-                                sx={{
-                                  bgcolor: "#99caff",
-                                  "& th": {
-                                    position: "sticky",
-                                    top: 0,
-                                    zIndex: 1, 
-                                    backgroundColor: "#99caff", 
-                                  },
-                                }}
-                              >
-                              {" "}
+                              sx={{
+                                bgcolor: "#99caff",
+                                "& th": {
+                                  position: "sticky",
+                                  top: 0,
+                                  zIndex: 1,
+                                  backgroundColor: "#99caff",
+                                },
+                              }}
+                            >
                               <TableCell>
                                 <Typography fontWeight="bold"></Typography>
+                              </TableCell>
+
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Filing Date
+                                </Typography>
+
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  type="date"
+                                  value={columnSearch.filingDate}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setColumnSearch((prev) => ({
+                                      ...prev,
+                                      filingDate: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = mockCustomerDocs.filter(
+                                      (doc) =>
+                                        doc.filingDate
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
                               </TableCell>
                               <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
@@ -787,25 +974,22 @@ setConfirmedDocIds([]);
                                 <TextField
                                   variant="standard"
                                   size="small"
-                                  value={columnSearch.id}
+                                  value={formData.id}
                                   onChange={(e) => {
                                     const value = e.target.value;
-                                    setColumnSearch((prev) => ({
+                                    setFormData((prev) => ({
                                       ...prev,
                                       id: value,
                                     }));
                                     const query = value.toLowerCase();
                                     const filtered = mockCustomerDocs.filter(
                                       (doc) =>
-                                        String(doc.id)
-                                          .toLowerCase()
-                                          .includes(query)
+                                        doc.id.toLowerCase().includes(query)
                                     );
                                     setSearchResults(filtered);
                                   }}
-                                  placeholder="Search  "
+                                  placeholder="Search"
                                   fullWidth
-                                  autoComplete="off"
                                 />
                               </TableCell>
                               <TableCell>
@@ -864,32 +1048,6 @@ setConfirmedDocIds([]);
                                 />
                               </TableCell>
 
-                               <TableCell>
-                                <Typography fontWeight="bold" mb={1}>
-                                  Filing Date
-                                </Typography>
-                                <TextField
-                                  variant="standard"
-                                  size="small"
-                                  value={columnSearch.filingDate}
-                                  onChange={(e) => {
-                                    const value = e.target.value;
-                                    setColumnSearch((prev) => ({
-                                      ...prev,
-                                      filingDate: value,
-                                    }));
-                                    const query = value.toLowerCase();
-                                    const filtered = mockCustomerDocs.filter(
-                                      (doc) =>
-                                        doc.filingDate.toLowerCase().includes(query)
-                                    );
-                                    setSearchResults(filtered);
-                                  }}
-                                  placeholder="Search"
-                                  fullWidth
-                                />
-                              </TableCell>
-
                               <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   ID Number
@@ -921,6 +1079,7 @@ setConfirmedDocIds([]);
                                 <Typography fontWeight="bold" mb={1}>
                                   Date of Birth
                                 </Typography>
+
                                 <TextField
                                   variant="standard"
                                   size="small"
@@ -946,7 +1105,7 @@ setConfirmedDocIds([]);
                             </TableRow>
                           </TableHead>
 
-                          <TableBody>
+                          {/* <TableBody>
                             {searchResults
                               .filter(
                                 (doc) =>
@@ -956,7 +1115,7 @@ setConfirmedDocIds([]);
                                   doc.lastName
                                     .toLowerCase()
                                     .includes(filterLastName.toLowerCase()) &&
-                                    doc.filingDate
+                                  doc.filingDate
                                     .toLowerCase()
                                     .includes(filterLastName.toLowerCase()) &&
                                   doc.dob
@@ -981,7 +1140,6 @@ setConfirmedDocIds([]);
                                       checked={confirmedDocIds.includes(doc.id)}
                                       onChange={() => onCheck(doc.id)}
                                     />
-
                                   </TableCell>
 
                                   <TableCell>{doc.id}</TableCell>
@@ -1016,10 +1174,48 @@ setConfirmedDocIds([]);
                                 </TableCell>
                               </TableRow>
                             )}
+                          </TableBody> */}
+                          <TableBody>
+                            {searchResults.map((doc) => (
+                              <TableRow
+                                key={doc.id}
+                                hover
+                                onClick={() => handleSelectSearchDoc(doc)}
+                              >
+                                <TableCell>
+                                  <Checkbox
+                                    checked={confirmedDocIds.includes(doc.id)}
+                                    onChange={() => onCheck(doc.id)}
+                                  />
+                                </TableCell>
+                                <TableCell>{doc.filingDate}</TableCell>
+
+                                <TableCell>{doc.id}</TableCell>
+                                <TableCell>{doc.firstName}</TableCell>
+                                <TableCell>{doc.lastName}</TableCell>
+                                <TableCell>{doc.nationalId}</TableCell>
+                                <TableCell>{doc.dob}</TableCell>
+                              </TableRow>
+                            ))}
+
+                            {searchResults.length === 0 && (
+                              <TableRow>
+                                <TableCell colSpan={7} align="center">
+                                  <Typography color="text.secondary">
+                                    No records found.
+                                  </Typography>
+                                </TableCell>
+                              </TableRow>
+                            )}
                           </TableBody>
                         </Table>
                       </TableContainer>
-                      <Box display="flex" justifyContent="flex-end" mt={2} mb={1}>
+                      <Box
+                        display="flex"
+                        justifyContent="flex-end"
+                        mt={2}
+                        mb={1}
+                      >
                         <Button
                           variant="outlined"
                           color="secondary"
@@ -1039,7 +1235,7 @@ setConfirmedDocIds([]);
                         >
                           Discard
                         </Button>
-                    </Box>
+                      </Box>
                     </Paper>
                   )}
                 </div>
@@ -1051,8 +1247,8 @@ setConfirmedDocIds([]);
                         p: 2,
                         mb: 2,
                         mt: 1,
-                      overflowY:"auto",
-                      maxHeight:400
+                        overflowY: "auto",
+                        maxHeight: 400,
                       }}
                     >
                       <Typography
@@ -1081,44 +1277,17 @@ setConfirmedDocIds([]);
                         <Table size="small">
                           <TableHead>
                             <TableRow
-                                    sx={{
-                                      bgcolor: "#99caff",
-                                      "& th": {
-                                        position: "sticky",
-                                        top: 0,
-                                        zIndex: 1, 
-                                        backgroundColor: "#99caff",
-                                      },
-                                    }}
-                                  >
+                              sx={{
+                                bgcolor: "#99caff",
+                                "& th": {
+                                  position: "sticky",
+                                  top: 0,
+                                  zIndex: 1,
+                                  backgroundColor: "#99caff",
+                                },
+                              }}
+                            >
                               <TableCell></TableCell>
-
-                              <TableCell>
-                                <Typography fontWeight="bold" mb={1}>
-                                  Unitholder ID
-                                </Typography>
-                                <TextField
-                                  variant="standard"
-                                  size="small"
-                                  value={unitColumnSearch.id}
-                                  onChange={(e) => {
-                                    const value = e.target.value;
-                                    setUnitColumnSearch((prev) => ({
-                                      ...prev,
-                                      id: value,
-                                    }));
-                                    const query = value.toLowerCase();
-                                    const filtered = unitHolderDetails.filter(
-                                      (doc) =>
-                                        doc.id.toLowerCase().includes(query)
-                                    );
-                                    setSearchUnitResults(filtered);
-                                  }}
-                                  placeholder="Search"
-                                  fullWidth
-                                />
-                              </TableCell>
-
                               <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   Transaction Date
@@ -1140,6 +1309,31 @@ setConfirmedDocIds([]);
                                         doc.transactionDate
                                           .toLowerCase()
                                           .includes(query)
+                                    );
+                                    setSearchUnitResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Unitholder ID
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.id}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      id: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.id.toLowerCase().includes(query)
                                     );
                                     setSearchUnitResults(filtered);
                                   }}
@@ -1350,15 +1544,18 @@ setConfirmedDocIds([]);
                                     onChange={onCheck}
                                   />
                                 </TableCell>
-                                <TableCell>{doc.id}</TableCell>
                                 <TableCell>{doc.transactionDate}</TableCell>
+                                <TableCell>{doc.id}</TableCell>
+
                                 <TableCell>{doc.transactionNo}</TableCell>
                                 <TableCell>{doc.transactionType}</TableCell>
                                 <TableCell>{doc.fund}</TableCell>
                                 <TableCell>{doc.class}</TableCell>
-                                <TableCell>{doc.amount}</TableCell>
+                                <TableCell align="right">
+                                  ₹{doc.amount}
+                                </TableCell>
                                 <TableCell>{doc.units}</TableCell>
-                                <TableCell>{doc.nav}</TableCell>
+                                <TableCell align="right">₹{doc.nav}</TableCell>
                               </TableRow>
                             ))}
 
@@ -1374,7 +1571,12 @@ setConfirmedDocIds([]);
                           </TableBody>
                         </Table>
                       </TableContainer>
-                      <Box display="flex" justifyContent="flex-end" mt={2} mb={1}>
+                      <Box
+                        display="flex"
+                        justifyContent="flex-end"
+                        mt={2}
+                        mb={1}
+                      >
                         <Button
                           variant="outlined"
                           color="secondary"
@@ -1394,7 +1596,7 @@ setConfirmedDocIds([]);
                         >
                           Discard
                         </Button>
-                    </Box>
+                      </Box>
                     </Paper>
                   )}
                 </div>
@@ -1431,13 +1633,9 @@ setConfirmedDocIds([]);
                         // disabled={!selectedDoc}
                       />
 
-                     <TextField
+                      <TextField
                         // label="Issue Date"
-                        label={
-                          <span>
-                            Filing Date{" "}
-                          </span>
-                        }
+                        label={<span>Filing Date </span>}
                         type="date"
                         fullWidth
                         sx={{ mb: 2 }}
@@ -1452,13 +1650,13 @@ setConfirmedDocIds([]);
                       />
 
                       <TextField
-                                              label="Customer Name"
-                                              fullWidth
-                                              value={`${formData.firstName} ${
-                                                formData.lastName || ""
-                                              }`}
-                                              sx={{ mb: 2 }}
-                                            />
+                        label="Customer Name"
+                        fullWidth
+                        value={`${formData.firstName} ${
+                          formData.lastName || ""
+                        }`}
+                        sx={{ mb: 2 }}
+                      />
                       <TextField
                         // label="Issue Date"
                         label={
@@ -1503,16 +1701,11 @@ setConfirmedDocIds([]);
                           }))
                         }
                       />
-
-                      
-
-
                     </Paper>
                   </Grid>
                   <TransitionAlerts
                     alertOpen={alertOpen}
-                   message={`The document of the customer ID ${formData.customerId} has been saved successfully.`}
-
+                    message={`The document of the customer ID ${formData.customerId} has been saved successfully.`}
                   />
 
                   <Box sx={{ p: 1, mt: 2 }}>
@@ -1542,7 +1735,7 @@ setConfirmedDocIds([]);
                       <Button
                         variant="outlined"
                         color="secondary"
-                       disabled={disable}
+                        disabled={disable}
                         sx={{
                           borderRadius: "10px",
                           bgcolor: "#f2f4f5",
@@ -1593,13 +1786,9 @@ setConfirmedDocIds([]);
                         // disabled={!selectedDoc}
                       />
 
-                    <TextField
+                      <TextField
                         // label="Issue Date"
-                        label={
-                          <span>
-                            Transaction Date{" "}
-                          </span>
-                        }
+                        label={<span>Transaction Date </span>}
                         type="date"
                         fullWidth
                         sx={{ mb: 2 }}
@@ -1612,19 +1801,21 @@ setConfirmedDocIds([]);
                           }))
                         }
                       />
-                       <TextField
+                      <TextField
                         label="Transaction No."
                         fullWidth
                         value={unitColumnSearch.transactionNo}
                         sx={{ mb: 2 }}
                         // disabled={!selectedDoc}
                       />
-                       <TextField
+                      <TextField
                         label="Amount"
                         fullWidth
-                        value={unitColumnSearch.amount}
+                        value={`₹ ${unitColumnSearch.amount}`}
                         sx={{ mb: 2 }}
-                        // disabled={!selectedDoc}
+                        InputProps={{
+                          readOnly: true,
+                        }}
                       />
                     </Paper>
                   </Grid>
@@ -1659,27 +1850,26 @@ setConfirmedDocIds([]);
                       >
                         Save
                       </Button>
-                     
-  <Button
-    variant="outlined"
-    color="secondary"
-   disabled={disable}
-    sx={{
-      borderRadius: "10px",
-      bgcolor: "#f2f4f5",
-      px: 3,
-      color: "black",
-      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-      border: "none",
-      "&:hover": {
-        bgcolor: "#e5e7e8",
-        border: "none",
-      },
-    }}
-  >
-    Discard
-  </Button>
 
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                        disabled={disable}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#f2f4f5",
+                          px: 3,
+                          color: "black",
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          border: "none",
+                          "&:hover": {
+                            bgcolor: "#e5e7e8",
+                            border: "none",
+                          },
+                        }}
+                      >
+                        Discard
+                      </Button>
                     </Stack>
                   </Box>
                 </Card>

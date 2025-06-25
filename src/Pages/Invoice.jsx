@@ -36,7 +36,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2032-12-12",
     invoiceNo: "123477",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "4725",
   },
   {
@@ -45,7 +45,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "8521",
   },
   {
@@ -54,7 +54,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "3569",
   },
   {
@@ -63,7 +63,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "972",
   },
   {
@@ -71,9 +71,9 @@ const mockCustomerDocs = [
     companyName: "Maitland",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
-    invoiceNo: "457896",
-    invoiceDate: "23-06-2025",
-    invoiceAmount: "3599",
+    invoiceNo: "325FR125",
+    invoiceDate: "24-06-2025",
+    invoiceAmount: "4725",
   },
 ];
 const Invoice = () => {
@@ -114,6 +114,7 @@ const Invoice = () => {
   const [hideTable, setHideTable] = React.useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Accounts");
   const [formCard, setFormCard] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const [columnSearch, setColumnSearch] = useState({
     invoiceNo: "",
@@ -128,6 +129,7 @@ const Invoice = () => {
   const [formData, setFormData] = useState({
     customerId: "",
     invoiceNo: "",
+    invoiceAmount: "",
     issueDate: "",
     expiryDate: "",
   });
@@ -138,6 +140,7 @@ const Invoice = () => {
         // ...prev,
         customerId: selectedDoc.id || "",
         invoiceNo: selectedDoc.invoiceNo || "",
+        invoiceAmount: selectedDoc.invoiceAmount || "",
       });
     }
   }, [selectedDoc]);
@@ -177,6 +180,7 @@ const Invoice = () => {
   const onCheck = () => {
     setHideTable(true);
     setFormCard(true);
+    setConfirmedDocIds([id]);
   };
 
   const handleSelectSearchDoc = (doc) => {
@@ -186,10 +190,10 @@ const Invoice = () => {
     setSelectedDocName(doc.docName);
     setSelectedDate(doc.date);
     setSearchCustomer(doc.invoiceNo);
-
-    if (!confirmedDocIds.includes(doc.id)) {
-      setConfirmedDocIds([...confirmedDocIds, doc.id]);
-    }
+    setConfirmedDocIds([]);
+    // if (!confirmedDocIds.includes(doc.id)) {
+    //   setConfirmedDocIds([...confirmedDocIds, doc.id]);
+    // }
   };
 
   const showNextDocument = () => {
@@ -210,10 +214,17 @@ const Invoice = () => {
       setSelectedDoc(null);
     }
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDisable(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [disable]);
 
   const handleSave = () => {
     setAlertOpen(true);
-
+    setDisable(true);
     setTimeout(() => {
       setAlertOpen(false);
       setFormData({
@@ -233,6 +244,7 @@ const Invoice = () => {
       setIssueDate("");
       setExpiryDate("");
       setPreviewDocPath(invoice3);
+      setConfirmedDocIds([]);
     }, 3000);
   };
 
@@ -345,11 +357,11 @@ const Invoice = () => {
             })()}
           </Card> */}
 
-          <Box direction="column">
+          <Box direction="column" width="50%">
             <Card
               sx={{
                 flex: 1.2,
-                height: "80vh",
+                height: "82vh",
                 position: "sticky",
                 marginTop: 2,
                 alignSelf: "center",
@@ -450,6 +462,7 @@ const Invoice = () => {
               flex: 1,
               pl: 2,
               pr: 2,
+              width: "50%",
             }}
           >
             <Box
@@ -578,7 +591,9 @@ const Invoice = () => {
             </Box>
             <Box sx={{ overflowY: "auto" }}>
               {!hideTable && searchResults.length > 0 && (
-                <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
+                <Paper
+                  sx={{ p: 2, mb: 2, mt: 1, overflowY: "auto", maxHeight: 400 }}
+                >
                   <Typography
                     variant="body2"
                     color="text.secondary"
@@ -753,13 +768,13 @@ const Invoice = () => {
                               <TableCell>
                                 <Checkbox
                                   checked={confirmedDocIds.includes(doc.id)}
-                                  onChange={onCheck}
+                                  onChange={() => onCheck(doc.id)}
                                 />
                               </TableCell>
                               <TableCell>{doc.invoiceDate}</TableCell>
                               <TableCell>{doc.invoiceNo}</TableCell>
                               <TableCell align="right">
-                                {doc.invoiceAmount}
+                                ₹{doc.invoiceAmount}
                               </TableCell>
                               <TableCell>{doc.id}</TableCell>
 
@@ -769,6 +784,26 @@ const Invoice = () => {
                       </TableBody>
                     </Table>
                   </TableContainer>
+                  <Box display="flex" justifyContent="flex-end" mt={2} mb={1}>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      sx={{
+                        borderRadius: "10px",
+                        bgcolor: "#f2f4f5",
+                        px: 3,
+                        color: "black",
+                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                        border: "none",
+                        "&:hover": {
+                          bgcolor: "#e5e7e8",
+                          border: "none",
+                        },
+                      }}
+                    >
+                      Discard
+                    </Button>
+                  </Box>
                 </Paper>
               )}
               {formCard && (
@@ -809,6 +844,18 @@ const Invoice = () => {
                         sx={{ mb: 2 }}
                         // disabled={!selectedDoc}
                       />
+
+                      <TextField
+                        label="Invoice Amount"
+                        fullWidth
+                        value={formData.invoiceAmount}
+                        sx={{ mb: 2 }}
+                        InputProps={{
+                          startAdornment: (
+                            <span style={{ marginRight: 4 }}>₹</span>
+                          ),
+                        }}
+                      />
                     </Paper>
                   </Grid>
                   <TransitionAlerts
@@ -828,7 +875,7 @@ const Invoice = () => {
                         variant="contained"
                         color="primary"
                         onClick={handleSave}
-                        // disabled={selectedDoc === null}
+                        disabled={disable}
                         sx={{
                           borderRadius: "10px",
                           bgcolor: "#99CAFF",
@@ -845,6 +892,7 @@ const Invoice = () => {
                       <Button
                         variant="outlined"
                         color="secondary"
+                        disabled={disable}
                         sx={{
                           borderRadius: "10px",
                           bgcolor: "#f2f4f5",
