@@ -974,12 +974,12 @@ const Archive1 = () => {
                                 <TextField
                                   variant="standard"
                                   size="small"
-                                  value={formData.id}
+                                  value={formData.customerId}
                                   onChange={(e) => {
                                     const value = e.target.value;
                                     setFormData((prev) => ({
                                       ...prev,
-                                      id: value,
+                                      customerId: value,
                                     }));
                                     const query = value.toLowerCase();
                                     const filtered = mockCustomerDocs.filter(
