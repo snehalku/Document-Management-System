@@ -41,7 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   {
     id: "AFB7712",
@@ -52,7 +52,7 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   // {
   //   id: "EEA5924",
@@ -75,7 +75,7 @@ const mockCustomerDocs = [
     dob: "06-09-1986",
     expiresOn: "2030-11-12",
     nationalId: "A123456",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   // {
   //   id: "EEA5923",
@@ -97,7 +97,7 @@ const mockCustomerDocs = [
     dob: "08-01-1980",
     expiresOn: "2020-01-02",
     nationalId: "3800108",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
 ];
 const unitHolderDetails = [
@@ -937,13 +937,16 @@ const Archive1 = () => {
                               <TableCell>
                                 <Typography fontWeight="bold"></Typography>
                               </TableCell>
+
                               <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   Filing Date
                                 </Typography>
+
                                 <TextField
                                   variant="standard"
                                   size="small"
+                                  type="date"
                                   value={columnSearch.filingDate}
                                   onChange={(e) => {
                                     const value = e.target.value;
@@ -1076,6 +1079,7 @@ const Archive1 = () => {
                                 <Typography fontWeight="bold" mb={1}>
                                   Date of Birth
                                 </Typography>
+
                                 <TextField
                                   variant="standard"
                                   size="small"
