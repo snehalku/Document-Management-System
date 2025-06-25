@@ -317,11 +317,14 @@ const User = () => {
                       .includes(searchInputs.name.toLowerCase());
                     const mailMatch = role.mail
                       .toLowerCase()
+                      .includes(searchInputs.userName.toLowerCase());
+                    const userNameMatch = role.userName
+                      .toLowerCase()
                       .includes(searchInputs.mail.toLowerCase());
                     const roleMatch = role.role
                       .toLowerCase()
                       .includes(searchInputs.role.toLowerCase());
-                    return nameMatch && mailMatch && roleMatch;
+                    return nameMatch && mailMatch && roleMatch && userNameMatch;
                   })
                   .map((role, index) => (
                     <TableRow key={index} hover>
@@ -330,7 +333,6 @@ const User = () => {
                       <TableCell>{role.mobNo}</TableCell>
                       <TableCell>{role.userName}</TableCell>
                       <TableCell>{role.role}</TableCell>
-                      {/* <TableCell>{role.responsibility}</TableCell> */}
                       <TableCell>
                         <Stack direction="row" spacing={1}>
                           <Tooltip title="Edit">

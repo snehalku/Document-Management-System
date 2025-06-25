@@ -934,11 +934,37 @@ const Archive1 = () => {
                                 },
                               }}
                             >
-          
                               <TableCell>
                                 <Typography fontWeight="bold"></Typography>
                               </TableCell>
-                             <TableCell>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Filing Date
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={columnSearch.filingDate}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setColumnSearch((prev) => ({
+                                      ...prev,
+                                      filingDate: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = mockCustomerDocs.filter(
+                                      (doc) =>
+                                        doc.filingDate
+                                          .toLowerCase()
+                                          .includes(query)
+                                    );
+                                    setSearchResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+                              <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   Customer ID
                                 </Typography>
@@ -1018,33 +1044,7 @@ const Archive1 = () => {
                                   fullWidth
                                 />
                               </TableCell>
-                              <TableCell>
-                                <Typography fontWeight="bold" mb={1}>
-                                  Filing Date
-                                </Typography>
-                                <TextField
-                                  variant="standard"
-                                  size="small"
-                                  value={columnSearch.filingDate}
-                                  onChange={(e) => {
-                                    const value = e.target.value;
-                                    setColumnSearch((prev) => ({
-                                      ...prev,
-                                      filingDate: value,
-                                    }));
-                                    const query = value.toLowerCase();
-                                    const filtered = mockCustomerDocs.filter(
-                                      (doc) =>
-                                        doc.filingDate
-                                          .toLowerCase()
-                                          .includes(query)
-                                    );
-                                    setSearchResults(filtered);
-                                  }}
-                                  placeholder="Search"
-                                  fullWidth
-                                />
-                              </TableCell>
+
                               <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   ID Number
@@ -1184,10 +1184,11 @@ const Archive1 = () => {
                                     onChange={() => onCheck(doc.id)}
                                   />
                                 </TableCell>
+                                <TableCell>{doc.filingDate}</TableCell>
+
                                 <TableCell>{doc.id}</TableCell>
                                 <TableCell>{doc.firstName}</TableCell>
                                 <TableCell>{doc.lastName}</TableCell>
-                                <TableCell>{doc.filingDate}</TableCell>
                                 <TableCell>{doc.nationalId}</TableCell>
                                 <TableCell>{doc.dob}</TableCell>
                               </TableRow>
@@ -1283,33 +1284,6 @@ const Archive1 = () => {
                               }}
                             >
                               <TableCell></TableCell>
-
-                              <TableCell>
-                                <Typography fontWeight="bold" mb={1}>
-                                  Unitholder ID
-                                </Typography>
-                                <TextField
-                                  variant="standard"
-                                  size="small"
-                                  value={unitColumnSearch.id}
-                                  onChange={(e) => {
-                                    const value = e.target.value;
-                                    setUnitColumnSearch((prev) => ({
-                                      ...prev,
-                                      id: value,
-                                    }));
-                                    const query = value.toLowerCase();
-                                    const filtered = unitHolderDetails.filter(
-                                      (doc) =>
-                                        doc.id.toLowerCase().includes(query)
-                                    );
-                                    setSearchUnitResults(filtered);
-                                  }}
-                                  placeholder="Search"
-                                  fullWidth
-                                />
-                              </TableCell>
-
                               <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   Transaction Date
@@ -1331,6 +1305,31 @@ const Archive1 = () => {
                                         doc.transactionDate
                                           .toLowerCase()
                                           .includes(query)
+                                    );
+                                    setSearchUnitResults(filtered);
+                                  }}
+                                  placeholder="Search"
+                                  fullWidth
+                                />
+                              </TableCell>
+                              <TableCell>
+                                <Typography fontWeight="bold" mb={1}>
+                                  Unitholder ID
+                                </Typography>
+                                <TextField
+                                  variant="standard"
+                                  size="small"
+                                  value={unitColumnSearch.id}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setUnitColumnSearch((prev) => ({
+                                      ...prev,
+                                      id: value,
+                                    }));
+                                    const query = value.toLowerCase();
+                                    const filtered = unitHolderDetails.filter(
+                                      (doc) =>
+                                        doc.id.toLowerCase().includes(query)
                                     );
                                     setSearchUnitResults(filtered);
                                   }}
@@ -1541,15 +1540,18 @@ const Archive1 = () => {
                                     onChange={onCheck}
                                   />
                                 </TableCell>
-                                <TableCell>{doc.id}</TableCell>
                                 <TableCell>{doc.transactionDate}</TableCell>
+                                <TableCell>{doc.id}</TableCell>
+
                                 <TableCell>{doc.transactionNo}</TableCell>
                                 <TableCell>{doc.transactionType}</TableCell>
                                 <TableCell>{doc.fund}</TableCell>
                                 <TableCell>{doc.class}</TableCell>
-                                <TableCell align="right">₹{doc.amount}</TableCell>
+                                <TableCell align="right">
+                                  ₹{doc.amount}
+                                </TableCell>
                                 <TableCell>{doc.units}</TableCell>
-                                <TableCell  align="right">₹{doc.nav}</TableCell>
+                                <TableCell align="right">₹{doc.nav}</TableCell>
                               </TableRow>
                             ))}
 
@@ -1802,7 +1804,7 @@ const Archive1 = () => {
                         sx={{ mb: 2 }}
                         // disabled={!selectedDoc}
                       />
-                     <TextField
+                      <TextField
                         label="Amount"
                         fullWidth
                         value={`₹ ${unitColumnSearch.amount}`}
@@ -1811,7 +1813,6 @@ const Archive1 = () => {
                           readOnly: true,
                         }}
                       />
-
                     </Paper>
                   </Grid>
                   <TransitionAlerts
