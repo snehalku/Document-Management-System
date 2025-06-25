@@ -36,7 +36,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2032-12-12",
     invoiceNo: "123477",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "4725",
   },
   {
@@ -45,7 +45,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "8521",
   },
   {
@@ -54,7 +54,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "3569",
   },
   {
@@ -63,7 +63,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "972",
   },
   {
@@ -72,7 +72,7 @@ const mockCustomerDocs = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "325FR125",
-    invoiceDate: "23-06-2025",
+    invoiceDate: "24-06-2025",
     invoiceAmount: "4725",
   },
 ];
@@ -361,7 +361,7 @@ const Invoice = () => {
             <Card
               sx={{
                 flex: 1.2,
-                height: "80vh",
+                height: "82vh",
                 position: "sticky",
                 marginTop: 2,
                 alignSelf: "center",
@@ -591,7 +591,9 @@ const Invoice = () => {
             </Box>
             <Box sx={{ overflowY: "auto" }}>
               {!hideTable && searchResults.length > 0 && (
-                <Paper sx={{ p: 2, mb: 2, mt: 1 }}>
+                <Paper
+                  sx={{ p: 2, mb: 2, mt: 1, overflowY: "auto", maxHeight: 400 }}
+                >
                   <Typography
                     variant="body2"
                     color="text.secondary"
