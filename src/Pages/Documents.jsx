@@ -498,20 +498,31 @@ const Documents = () => {
             <Box>
               <TableContainer
                 component={Paper}
-                sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
+                sx={{
+                  mb: 2,
+                  borderRadius: "10px 10px 0 0",
+                  maxHeight: 480,
+                  overflowY: "auto",
+                }}
               >
-                <Table>
+                <Table stickyHeader>
                   <TableHead>
                     <TableRow sx={{ bgcolor: "#99caff" }}>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">
-                            Filing Date{" "}
-                          </Typography>
+                          <Typography fontWeight="bold">Filing Date</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -526,7 +537,16 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -547,7 +567,16 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -573,7 +602,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -597,13 +634,21 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">ID Number </Typography>
+                          <Typography fontWeight="bold">ID Number</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -618,13 +663,21 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">Issue Date </Typography>
+                          <Typography fontWeight="bold">Issue Date</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -642,15 +695,22 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">
-                            Expiry Date{" "}
-                          </Typography>
+                          <Typography fontWeight="bold">Expiry Date</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -668,15 +728,22 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">
-                            Document ID{" "}
-                          </Typography>
+                          <Typography fontWeight="bold">Document ID</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -707,7 +774,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -745,7 +820,14 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell>
+                      <TableCell
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack direction="column" alignItems="right">
                           <Typography fontWeight="bold">Action</Typography>
                           <TextField
@@ -771,57 +853,28 @@ const Documents = () => {
                       </TableCell>
                     </TableRow>
                   </TableHead>
-
                   <TableBody>
                     {filteredData.map((project) => (
                       <TableRow key={project.id} hover>
                         <TableCell>{project.date}</TableCell>
-                        <TableCell>
-                          <Typography align="center">{project.id}</Typography>
-                        </TableCell>
+                        <TableCell align="center">{project.id}</TableCell>
                         <TableCell align="center">
                           {project.customerName}
                         </TableCell>
-
                         <TableCell align="center">{project.dob}</TableCell>
                         <TableCell align="center">{project.IdNo}</TableCell>
-
                         <TableCell align="center">
                           {project.issueDate}
                         </TableCell>
                         <TableCell align="center">
                           {project.expiryDate}
                         </TableCell>
-                        <TableCell align="center" sx={{ textAlign: "center" }}>
+                        <TableCell align="center">
                           {project.documentId}
                         </TableCell>
                         <TableCell align="center">
                           {project.documentName}
                         </TableCell>
-
-                        {/* <TableCell>
-                    <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
-                        <IconButton
-                          color="primary"
-                          onClick={() => navigate("/viewdocument")}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip title="Download Document">
-                        <a
-                          href={agecard}
-                          download="agecard.jpg"
-                          style={{ color: "inherit", textDecoration: "none" }}
-                        >
-                          <IconButton color="secondary">
-                            <FileDownloadIcon />
-                          </IconButton>
-                        </a>
-                      </Tooltip>
-                    </Stack>
-                  </TableCell> */}
                         <TableCell>
                           <Tooltip title="View and Download">
                             <IconButton
@@ -837,6 +890,7 @@ const Documents = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+
               <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
                 <Pagination
                   count={10}
@@ -932,12 +986,25 @@ const Documents = () => {
             <Box>
               <TableContainer
                 component={Paper}
-                sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
+                sx={{
+                  mb: 2,
+                  borderRadius: "10px 10px 0 0",
+                  maxHeight: 480,
+                  overflowY: "auto",
+                }}
               >
-                <Table>
+                <Table stickyHeader>
                   <TableHead>
                     <TableRow sx={{ bgcolor: "#99caff" }}>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -964,7 +1031,15 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -988,7 +1063,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1013,7 +1096,15 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1039,7 +1130,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1060,7 +1159,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1082,7 +1189,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1104,7 +1219,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1126,7 +1249,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1148,7 +1279,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1188,7 +1327,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1227,7 +1374,14 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                     <TableCell>
+                      <TableCell
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack direction="column" alignItems="right">
                           <Typography fontWeight="bold">Action</Typography>
                           <TextField
@@ -1275,11 +1429,11 @@ const Documents = () => {
 
                         <TableCell align="center">{unitHolder.fund}</TableCell>
                         <TableCell align="center">{unitHolder.class}</TableCell>
-                        <TableCell  align="right">₹
-                          {unitHolder.amount}
+                        <TableCell align="right">
+                          ₹{unitHolder.amount}
                         </TableCell>
                         <TableCell align="center">{unitHolder.units}</TableCell>
-                        <TableCell  align="right">₹{unitHolder.nav}</TableCell>
+                        <TableCell align="right">₹{unitHolder.nav}</TableCell>
 
                         <TableCell align="center" sx={{ textAlign: "center" }}>
                           {unitHolder.documentId}
