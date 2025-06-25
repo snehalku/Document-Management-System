@@ -41,7 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
-    filingDate: "2025-06-20",
+    filingDate: "2025-06-24",
   },
   {
     id: "AFB7712",
@@ -52,7 +52,7 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
-    filingDate: "2025-06-20",
+    filingDate: "2025-06-24",
   },
   {
     id: "EEA5924",
@@ -63,7 +63,7 @@ const mockCustomerDocs = [
     dob: "14-11-1998",
     expiresOn: "2032-12-12",
     nationalId: "A123477",
-    filingDate: "2025-06-20",
+    filingDate: "2025-06-24",
   },
 
   {
@@ -75,7 +75,7 @@ const mockCustomerDocs = [
     dob: "06-09-1986",
     expiresOn: "2030-11-12",
     nationalId: "A123456",
-    filingDate: "2025-06-20",
+    filingDate: "2025-06-24",
   },
   // {
   //   id: "EEA5923",
@@ -97,13 +97,13 @@ const mockCustomerDocs = [
     dob: "08-01-1980",
     expiresOn: "2020-01-02",
     nationalId: "3800108",
-    filingDate: "2025-06-20",
+    filingDate: "2025-06-24",
   },
 ];
 const unitHolderDetails = [
   {
     id: "UH253",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
@@ -125,7 +125,7 @@ const unitHolderDetails = [
   // },
   {
     id: "UH326",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1001",
     transactionType: "Purchase",
     fund: "Fund 1",
@@ -136,7 +136,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH045",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -147,7 +147,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH002",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
@@ -158,7 +158,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH025",
-    transactionDate: "2025-06-22",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1031",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -204,7 +204,7 @@ const Archive1 = () => {
   };
   const docPath =
     selectedCategory === "AML_KYC"
-      ? previewDocPath || selectedDoc?.path
+      ? previewDocPath || selectedDoc?.path || Doc2
       : selectedCategory === "Transaction"
       ? previewDocPath || selectedDoc?.path || transactionDoc
       : selectedCategory === "sel"
@@ -414,10 +414,7 @@ const Archive1 = () => {
       setFormCard(false);
       setConfirmedDocIds([]);
       setFormData({ ...initialState });
-
-      // Simulate document change + re-enable discard button
-      // wait for next doc to appear
-    }, 3000); // wait for alert
+    }, 3000);
   };
 
   const snackbarRef = useRef(null);
@@ -624,7 +621,7 @@ const Archive1 = () => {
             <Card
               sx={{
                 flex: 1.2,
-                height: "80vh",
+                height: "82vh",
                 position: "sticky",
                 marginTop: 2,
                 alignSelf: "center",
@@ -632,7 +629,6 @@ const Archive1 = () => {
                 p: 1,
               }}
             >
-              {/* Zoom Buttons */}
               <Stack
                 direction="row"
                 justifyContent="flex-end"
@@ -676,7 +672,6 @@ const Archive1 = () => {
                 </Button>
               </Stack>
 
-              {/* Preview Area */}
               <Box
                 sx={{
                   transform: `scale(${zoom})`,
@@ -969,7 +964,9 @@ const Archive1 = () => {
                                   placeholder="Search  "
                                   fullWidth
                                   autoComplete="off"
-                                   inputProps={{ style: { textAlign: "center" } }}
+                                  inputProps={{
+                                    style: { textAlign: "center" },
+                                  }}
                                 />
                               </TableCell>
                               <TableCell>
@@ -1110,7 +1107,7 @@ const Archive1 = () => {
                             </TableRow>
                           </TableHead>
 
-                          <TableBody>
+                          {/* <TableBody>
                             {searchResults
                               .filter(
                                 (doc) =>
@@ -1173,6 +1170,38 @@ const Archive1 = () => {
                             ).length === 0 && (
                               <TableRow>
                                 <TableCell colSpan={6} align="center">
+                                  <Typography color="text.secondary">
+                                    No records found.
+                                  </Typography>
+                                </TableCell>
+                              </TableRow>
+                            )}
+                          </TableBody> */}
+                          <TableBody>
+                            {searchResults.map((doc) => (
+                              <TableRow
+                                key={doc.id}
+                                hover
+                                onClick={() => handleSelectSearchDoc(doc)}
+                              >
+                                <TableCell>
+                                  <Checkbox
+                                    checked={confirmedDocIds.includes(doc.id)}
+                                    onChange={() => onCheck(doc.id)}
+                                  />
+                                </TableCell>
+                                <TableCell>{doc.id}</TableCell>
+                                <TableCell>{doc.firstName}</TableCell>
+                                <TableCell>{doc.lastName}</TableCell>
+                                <TableCell>{doc.filingDate}</TableCell>
+                                <TableCell>{doc.nationalId}</TableCell>
+                                <TableCell>{doc.dob}</TableCell>
+                              </TableRow>
+                            ))}
+
+                            {searchResults.length === 0 && (
+                              <TableRow>
+                                <TableCell colSpan={7} align="center">
                                   <Typography color="text.secondary">
                                     No records found.
                                   </Typography>
