@@ -1547,9 +1547,9 @@ const Archive1 = () => {
                                 <TableCell>{doc.transactionType}</TableCell>
                                 <TableCell>{doc.fund}</TableCell>
                                 <TableCell>{doc.class}</TableCell>
-                                <TableCell>{doc.amount}</TableCell>
+                                <TableCell align="right">₹{doc.amount}</TableCell>
                                 <TableCell>{doc.units}</TableCell>
-                                <TableCell>{doc.nav}</TableCell>
+                                <TableCell  align="right">₹{doc.nav}</TableCell>
                               </TableRow>
                             ))}
 
@@ -1802,13 +1802,16 @@ const Archive1 = () => {
                         sx={{ mb: 2 }}
                         // disabled={!selectedDoc}
                       />
-                      <TextField
+                     <TextField
                         label="Amount"
                         fullWidth
-                        value={unitColumnSearch.amount}
+                        value={`₹ ${unitColumnSearch.amount}`}
                         sx={{ mb: 2 }}
-                        // disabled={!selectedDoc}
+                        InputProps={{
+                          readOnly: true,
+                        }}
                       />
+
                     </Paper>
                   </Grid>
                   <TransitionAlerts
