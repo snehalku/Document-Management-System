@@ -56,7 +56,7 @@ const roles = [
 
   {
     roleName: "View Role",
-    permission: "Can view and assign parameters for Sales documents.",
+    permission: "Can view  documents.",
   },
 ];
 
