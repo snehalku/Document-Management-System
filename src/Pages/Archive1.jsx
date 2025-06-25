@@ -54,17 +54,17 @@ const mockCustomerDocs = [
     nationalId: "584324",
     filingDate: "2025-06-24",
   },
-  {
-    id: "EEA5924",
-    firstName: "John",
-    lastName: "Smith",
-    transactionId: "TXN123",
-    date: "2025-05-28",
-    dob: "14-11-1998",
-    expiresOn: "2032-12-12",
-    nationalId: "A123477",
-    filingDate: "2025-06-24",
-  },
+  // {
+  //   id: "EEA5924",
+  //   firstName: "John",
+  //   lastName: "Smith",
+  //   transactionId: "TXN123",
+  //   date: "2025-05-28",
+  //   dob: "14-11-1998",
+  //   expiresOn: "2032-12-12",
+  //   nationalId: "A123477",
+  //   filingDate: "2025-06-24",
+  // },
 
   {
     id: "EDB5612",
@@ -934,39 +934,33 @@ const Archive1 = () => {
                                 },
                               }}
                             >
-                              {" "}
+          
                               <TableCell>
                                 <Typography fontWeight="bold"></Typography>
                               </TableCell>
-                              <TableCell>
+                             <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   Customer ID
                                 </Typography>
                                 <TextField
                                   variant="standard"
                                   size="small"
-                                  value={columnSearch.id}
+                                  value={formData.id}
                                   onChange={(e) => {
                                     const value = e.target.value;
-                                    setColumnSearch((prev) => ({
+                                    setFormData((prev) => ({
                                       ...prev,
                                       id: value,
                                     }));
                                     const query = value.toLowerCase();
                                     const filtered = mockCustomerDocs.filter(
                                       (doc) =>
-                                        String(doc.id)
-                                          .toLowerCase()
-                                          .includes(query)
+                                        doc.id.toLowerCase().includes(query)
                                     );
                                     setSearchResults(filtered);
                                   }}
-                                  placeholder="Search  "
+                                  placeholder="Search"
                                   fullWidth
-                                  autoComplete="off"
-                                  inputProps={{
-                                    style: { textAlign: "center" },
-                                  }}
                                 />
                               </TableCell>
                               <TableCell>
