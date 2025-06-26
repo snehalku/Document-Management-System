@@ -78,7 +78,7 @@ const Sidebar = () => {
             style={{ width: "150px", height: "auto" }}
           />
         </Box>
-        <Box
+        {/* <Box
           sx={{
             ml: 4,
             mt: 2,
@@ -88,7 +88,7 @@ const Sidebar = () => {
           }}
         >
           {department}
-        </Box>
+        </Box> */}
 
         {/* Menu Items */}
 
