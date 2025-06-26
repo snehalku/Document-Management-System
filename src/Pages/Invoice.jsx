@@ -32,13 +32,13 @@ import Header from "../Components/Layout/Header";
 const mockCustomerDocs = [
   {
     id: "111",
-    companyName: "TCS",
+    companyName: "Dassault Systèmes",
     date: "2025-04-30",
     expiresOn: "2032-12-12",
-    invoiceNo: "123477",
+    invoiceNo: "325FR125",
     invoiceDate: "24-06-2025",
-    invoiceAmountRu: "4725",
-    invoiceAmount: "52.50",
+    invoiceAmount: "4725.00",
+    invoiceAmountEUR: "52.50",
     docId: "11",
     docName: "invoice_2025",
     category: "Accounts Payable",
@@ -46,13 +46,13 @@ const mockCustomerDocs = [
   },
   {
     id: "125",
-    companyName: "Fujitsu",
+    companyName: "Siemens AG",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
     invoiceDate: "24-06-2025",
-    invoiceAmountRu: "8521",
-    invoiceAmount: "94.68",
+    invoiceAmount: "852100",
+    invoiceAmountEUR: "94.68",
     docId: "13",
     docName: "invoice_2024",
     category: "Accounts Receivable",
@@ -60,13 +60,13 @@ const mockCustomerDocs = [
   },
   {
     id: "126",
-    companyName: "Infosys",
+    companyName: "Bosch ",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
     invoiceDate: "24-06-2025",
-    invoiceAmountRu: "3569",
-    invoiceAmount: "39.66",
+    invoiceAmount: "356900",
+    invoiceAmountEUR: "39.66",
     docId: "18",
     docName: "invoice_18",
     category: "Accounts Payable",
@@ -74,13 +74,13 @@ const mockCustomerDocs = [
   },
   {
     id: "123",
-    companyName: "Infotech",
+    companyName: "Infineon Technologies",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
     invoiceDate: "24-06-2025",
-    invoiceAmountRu: "971",
-    invoiceAmount: "10.79",
+    invoiceAmount: "971.56",
+    invoiceAmountEUR: "10.79",
     docId: "16",
     docName: "invoice_16",
     category: "Accounts Payable",
@@ -88,13 +88,13 @@ const mockCustomerDocs = [
   },
   {
     id: "127",
-    companyName: "Maitland",
+    companyName: "SAP SE",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
     invoiceDate: "24-06-2025",
-    invoiceAmountRu: "3599",
-    invoiceAmount: "39.99",
+    invoiceAmount: "359900",
+    invoiceAmountEUR: "39.99",
     docId: "14",
     docName: "invoice_14",
     category: "Accounts Payable",
@@ -414,7 +414,7 @@ const [position, setPosition] = useState({ x: 0, y: 0 });
             })()}
           </Card> */}
 
-          <Box direction="column" width="50%">
+          <Box direction="column" width="49%">
             <Card
               sx={{
                 flex: 1.2,
@@ -514,7 +514,7 @@ const [position, setPosition] = useState({ x: 0, y: 0 });
               flex: 1,
               pl: 2,
               pr: 2,
-              width: "50%",
+              width: "51%",
             }}
           >
             <Box
