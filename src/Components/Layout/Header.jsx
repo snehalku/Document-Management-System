@@ -197,7 +197,7 @@ const Header = ({ departments, defValue }) => {
                 fontSize: 16,
               }}
             >
-              Daniel Lewis (Admin)
+              Daniel Lewis (Processor)
             </Typography>
           </Box>
         </Box>

@@ -47,7 +47,7 @@ const roles = [
     mobNo: "+1234567891",
     // role: "Chartered Accountant (CA)",
     userName: "michaelcarter",
-    role: "View Role",
+    role: "Viewer",
     // responsibility:
     //   "Views and assigns parameters to Accounts-related documents.",
   },

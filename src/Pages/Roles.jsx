@@ -55,7 +55,7 @@ const roles = [
   },
 
   {
-    roleName: "View Role",
+    roleName: "Viewer",
     permission: "Can view  documents.",
   },
 ];

@@ -170,6 +170,38 @@ const unitHolderDetails = [
 ];
 
 const Archive1 = () => {
+
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const isDragging = useRef(false);
+  const lastPosition = useRef({ x: 0, y: 0 });
+
+  const handleWheel = (e) => {
+    if (isImage) {
+      e.preventDefault();
+      const newZoom = zoom + (e.deltaY < 0 ? 0.1 : -0.1);
+      setZoom(Math.min(Math.max(newZoom, 1), 3));
+    }
+  };
+
+
+  const handleMouseDown = (e) => {
+    if (!isImage || zoom <= 1) return;
+    isDragging.current = true;
+    lastPosition.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging.current) return;
+    const dx = e.clientX - lastPosition.current.x;
+    const dy = e.clientY - lastPosition.current.y;
+    setPosition((prev) => ({ x: prev.x + dx, y: prev.y + dy }));
+    lastPosition.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
   const [docList, setDocList] = useState([]);
   const [selectedDocName, setSelectedDocName] = useState("");
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -629,55 +661,18 @@ const Archive1 = () => {
                 p: 1,
               }}
             >
-              <Stack
-                direction="row"
-                justifyContent="flex-end"
-                spacing={2}
-                sx={{ mt: 1, mb: 1 }}
-              >
-                <Button
-                  variant="outlined"
-                  onClick={handleZoomIn}
-                  sx={{
-                    backgroundColor: "white",
-                    color: "black",
-                    border: "1px solid #ccc",
-                    minWidth: "40px",
-                    fontWeight: "bold",
-                    mx: 1,
-                    "&:hover": {
-                      backgroundColor: "#f5f5f5",
-                    },
-                  }}
-                >
-                  +
-                </Button>
-
-                <Button
-                  variant="outlined"
-                  onClick={handleZoomOut}
-                  sx={{
-                    backgroundColor: "white",
-                    color: "black",
-                    border: "1px solid #ccc",
-                    minWidth: "40px",
-                    fontWeight: "bold",
-                    mx: 1,
-                    "&:hover": {
-                      backgroundColor: "#f5f5f5",
-                    },
-                  }}
-                >
-                  -
-                </Button>
-              </Stack>
-
               <Box
+                onWheel={handleWheel}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
                 sx={{
-                  transform: `scale(${zoom})`,
-                  transformOrigin: "top left",
-                  transition: "transform 0.3s ease",
-                  width: isImage ? "fit-content" : "100%",
+                  cursor: zoom > 1 ? "grab" : "default",
+                  width: "100%",
+                  height: "100%",
+                  overflow: "auto",
+                  position: "relative",
                 }}
               >
                 {isImage ? (
@@ -686,11 +681,15 @@ const Archive1 = () => {
                     image={docPath}
                     alt="Document"
                     sx={{
-                      width: "100%",
-                      height: "100%",
+                      position: "absolute",
+                      top: position.y,
+                      left: position.x,
+                      width: `${zoom * 100}%`,
+                      height: "auto",
                       objectFit: "contain",
                       borderRadius: 2,
                       boxShadow: 2,
+                      transition: "width 0.2s ease",
                     }}
                   />
                 ) : (
