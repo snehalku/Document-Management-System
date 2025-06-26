@@ -710,7 +710,7 @@ const Archive1 = () => {
                     alt="Document"
                     sx={{
                       position: "absolute",
-                      top: "50%",
+                      top: "80%",
                       left: "50%",
                       transform: `translate(-50%, -50%) scale(${zoom}) translate(${position.x}px, ${position.y}px)`,
                       transformOrigin: "center center",
