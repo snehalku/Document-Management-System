@@ -42,22 +42,23 @@ const projectData = [
     date: "2025-04-30",
     expiresOn: "2032-12-12",
     invoiceNo: "123477",
-    invoiceDate: "22-06-2025",
-    invoiceAmount: "4725",
+    invoiceDate: "24-06-2025",
+    invoiceAmountRu: "4725",
+    invoiceAmount: "52.50",
     docId: "11",
     docName: "invoice_2025",
     category: "Accounts Payable",
     subCategory: "Purchase Invoice",
   },
-
   {
     id: "125",
     companyName: "Fujitsu",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
-    invoiceDate: "22-06-2025",
-    invoiceAmount: "8521",
+    invoiceDate: "24-06-2025",
+    invoiceAmountRu: "8521",
+    invoiceAmount: "94.68",
     docId: "13",
     docName: "invoice_2024",
     category: "Accounts Receivable",
@@ -69,8 +70,9 @@ const projectData = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "22-06-2025",
-    invoiceAmount: "3569",
+    invoiceDate: "24-06-2025",
+    invoiceAmountRu: "3569",
+    invoiceAmount: "39.66",
     docId: "18",
     docName: "invoice_18",
     category: "Accounts Payable",
@@ -82,8 +84,9 @@ const projectData = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
-    invoiceDate: "22-06-2025",
-    invoiceAmount: "971",
+    invoiceDate: "24-06-2025",
+    invoiceAmountRu: "971",
+    invoiceAmount: "10.79",
     docId: "16",
     docName: "invoice_16",
     category: "Accounts Payable",
@@ -95,14 +98,16 @@ const projectData = [
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "22-06-2025",
-    invoiceAmount: "3599",
+    invoiceDate: "24-06-2025",
+    invoiceAmountRu: "3599",
+    invoiceAmount: "39.99",
     docId: "14",
     docName: "invoice_14",
     category: "Accounts Payable",
     subCategory: "Purchase Invoice",
   },
 ];
+
 
 const InvoiceDocument = () => {
   const navigate = useNavigate();
@@ -187,7 +192,7 @@ const InvoiceDocument = () => {
             fontWeight="bold"
             sx={{ mb: 1 }}
           >
-            View Documents
+            Accounts - View Documents
           </Typography>
           <Stack
             direction="row"
@@ -209,7 +214,7 @@ const InvoiceDocument = () => {
                 <TextField
                   type="date"
                   size="small"
-                  defaultValue="2025-06-22"
+                  defaultValue="2025-06-24"
                   sx={{ width: 160 }}
                 />
               </Stack>
@@ -527,7 +532,7 @@ const InvoiceDocument = () => {
                     <TableCell align="center">{project.invoiceDate}</TableCell>
                     <TableCell align="center">{project.invoiceNo}</TableCell>
                     <TableCell align="right">
-                      ₹ {project.invoiceAmount}
+                     € {project.invoiceAmount}
                     </TableCell>
                     <TableCell align="center">{project.id}</TableCell>
                     <TableCell>
