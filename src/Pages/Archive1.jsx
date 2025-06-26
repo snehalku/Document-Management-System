@@ -189,7 +189,6 @@ const unitHolderDetails = [
 ];
 
 const Archive1 = () => {
-
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const isDragging = useRef(false);
   const lastPosition = useRef({ x: 0, y: 0 });
@@ -201,7 +200,6 @@ const Archive1 = () => {
       setZoom(Math.min(Math.max(newZoom, 1), 3));
     }
   };
-
 
   const handleMouseDown = (e) => {
     if (!isImage || zoom <= 1) return;
@@ -733,35 +731,30 @@ const Archive1 = () => {
                   </Box>
                 )}
               </Box>
-              
+
               <Box sx={{ p: 1, mt: 2 }}>
-                <Stack
-                      direction="row"
-                      spacing={2}
-                      justifyContent="flex-end"
-                    >
+                <Stack direction="row" spacing={2} justifyContent="flex-end">
                   <Button
-                        variant="outlined"
-                        color="secondary"
-                        disabled={disable}
-                        sx={{
-                          borderRadius: "10px",
-                          bgcolor: "#f2f4f5",
-                          px: 3,
-                          color: "black",
-                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                          border: "none",
-                          "&:hover": {
-                            bgcolor: "#e5e7e8",
-                            border: "none",
-                          },
-                        }}
-                      >
-                        Discard Document
+                    variant="outlined"
+                    color="secondary"
+                    disabled={disable}
+                    sx={{
+                      borderRadius: "10px",
+                      bgcolor: "#f2f4f5",
+                      px: 3,
+                      color: "black",
+                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                      border: "none",
+                      "&:hover": {
+                        bgcolor: "#e5e7e8",
+                        border: "none",
+                      },
+                    }}
+                  >
+                    Discard Document
                   </Button>
                 </Stack>
               </Box>
-
             </Card>
           </Box>
 
@@ -1601,7 +1594,9 @@ const Archive1 = () => {
                                 <TableCell align="right">
                                   €{doc.amount}
                                 </TableCell>
-                                <TableCell align="right">€{doc.units}</TableCell>
+                                <TableCell align="right">
+                                  €{doc.units}
+                                </TableCell>
                                 <TableCell align="right">€{doc.nav}</TableCell>
                               </TableRow>
                             ))}
@@ -1779,7 +1774,6 @@ const Archive1 = () => {
                       >
                         Save
                       </Button>
-                      
                     </Stack>
                   </Box>
                 </Card>
