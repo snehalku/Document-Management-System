@@ -122,6 +122,89 @@ const projectData = [
   },
 ];
 
+// const unitHolderDetails = [
+//   {
+//     id: "UH253",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1012",
+//     transactionType: "Purchase",
+//     fund: "Fund 2",
+//     class: "B",
+//     amount: "70,000",
+//     units: "3225.806452",
+//     nav: "21.7",
+//     documentId: "102",
+//     documentName: "B_202512",
+//     subCategory: "Additional Purchase",
+//   },
+//   {
+//     id: "UH056",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1032",
+//     transactionType: "Purchase",
+//     fund: "Fund 5",
+//     class: "C",
+//     amount: "17,000",
+//     units: "500",
+//     nav: "34",
+//     documentId: "103",
+//     documentName: "C_202513",
+//     subCategory: "Redemption",
+//   },
+//   {
+//     id: "UH326",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1001",
+//     transactionType: "Purchase",
+//     fund: "Fund 1",
+//     class: "A",
+//     amount: "60,000",
+//     units: "5141.388175",
+//     nav: "11.67",
+//     documentId: "101",
+//     documentName: "A_202511",
+//     subCategory: "New Purchase",
+//   },
+//   {
+//     id: "UH045",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1025",
+//     transactionType: "Purchase",
+//     fund: "Fund 4",
+//     class: "D",
+//     amount: "40,000",
+//     units: "3174.603175",
+//     nav: "12.6",
+//     documentId: "104",
+//     documentName: "D_202514",
+//     subCategory: "Switch",
+//   },
+//   {
+//     id: "UH002",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1002",
+//     transactionType: "Purchase",
+//     fund: "Fund 6",
+//     class: "E",
+//     amount: "18,000",
+//     units: "818.1818182",
+//     nav: "22",
+//     documentId: "105",
+//     documentName: "E_202515",
+//     subCategory: "Transfer",
+//   },
+//   // {
+//   //   id: "UH025",
+//   //   transactionDate: "04/02/2025",
+//   //   transactionNo: "TXN1031",
+//   //   transactionType: "Purchase",
+//   //   fund: "Fund 4",
+//   //   class: "F",
+//   //   amount: "15000",
+//   //   units: "652.173913",
+//   //   nav: "23",
+//   // },
+// ];
 const unitHolderDetails = [
   {
     id: "UH253",
@@ -130,9 +213,12 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 2",
     class: "B",
-    amount: "70000",
-    units: "3225.806452",
-    nav: "21.7",
+    amountRu: "70,000",
+    amount: "777.78",
+    unitsRu: "3225.806452",
+    units: "35.8341",
+    navRu: "21.7",
+    nav: "0.24",
     documentId: "102",
     documentName: "B_202512",
     subCategory: "Additional Purchase",
@@ -144,9 +230,12 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 5",
     class: "C",
-    amount: "17000",
-    units: "500",
-    nav: "34",
+    amountRu: "17,000",
+    amount: "188.89",
+    unitsRu: "500",
+    units: "5.5553",
+    navRu: "34",
+    nav: "0.38",
     documentId: "103",
     documentName: "C_202513",
     subCategory: "Redemption",
@@ -158,9 +247,12 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 1",
     class: "A",
-    amount: "60000",
-    units: "5141.388175",
-    nav: "11.67",
+    amountRu: "60,000",
+    amount: "666.67",
+    unitsRu: "5141.388175",
+    units:"57.1104",
+    navRu: "11.67",
+    nav: "0.13",
     documentId: "101",
     documentName: "A_202511",
     subCategory: "New Purchase",
@@ -172,9 +264,12 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 4",
     class: "D",
-    amount: "40000",
-    units: "3174.603175",
-    nav: "12.6",
+    amountRu: "40,000",
+    amount: "444.44",
+    unitsRU: "3174.603175",
+    units: "35.2706",
+    navRu: "12.6",
+    nav: "0.14",
     documentId: "104",
     documentName: "D_202514",
     subCategory: "Switch",
@@ -186,25 +281,18 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 6",
     class: "E",
-    amount: "18000",
-    units: "818.1818182",
-    nav: "22",
+    amountRu: "18,000",
+    amount: "200.00",
+    unitsRU: "818.1818182",
+    units: "9.0909",
+    navRu: "22",
+    nav: "0.24",
     documentId: "105",
     documentName: "E_202515",
     subCategory: "Transfer",
   },
-  // {
-  //   id: "UH025",
-  //   transactionDate: "04/02/2025",
-  //   transactionNo: "TXN1031",
-  //   transactionType: "Purchase",
-  //   fund: "Fund 4",
-  //   class: "F",
-  //   amount: "15000",
-  //   units: "652.173913",
-  //   nav: "23",
-  // },
 ];
+
 
 const Documents = () => {
   const navigate = useNavigate();
@@ -372,7 +460,7 @@ const Documents = () => {
             fontWeight="bold"
             sx={{ mb: 1 }}
           >
-            View Documents
+           Sales - View Documents
           </Typography>
           <Stack
             direction="row"
@@ -1430,10 +1518,10 @@ const Documents = () => {
                         <TableCell align="center">{unitHolder.fund}</TableCell>
                         <TableCell align="center">{unitHolder.class}</TableCell>
                         <TableCell align="right">
-                          ₹{unitHolder.amount}
+                          €{unitHolder.amount}
                         </TableCell>
-                        <TableCell align="center">{unitHolder.units}</TableCell>
-                        <TableCell align="right">₹{unitHolder.nav}</TableCell>
+                        <TableCell align="right">€{unitHolder.units}</TableCell>
+                        <TableCell align="right">€{unitHolder.nav}</TableCell>
 
                         <TableCell align="center" sx={{ textAlign: "center" }}>
                           {unitHolder.documentId}
