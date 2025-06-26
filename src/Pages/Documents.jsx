@@ -208,7 +208,7 @@ const projectData = [
 const unitHolderDetails = [
   {
     id: "UH253",
-    transactionDate: "24/06/2025",
+    transactionDate: "24-06-2025",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
@@ -225,7 +225,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH056",
-    transactionDate: "24/06/2025",
+    transactionDate: "24-06-2025",
     transactionNo: "TXN1032",
     transactionType: "Purchase",
     fund: "Fund 5",
@@ -242,7 +242,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH326",
-    transactionDate: "24/06/2025",
+    transactionDate: "24-06-2025",
     transactionNo: "TXN1001",
     transactionType: "Purchase",
     fund: "Fund 1",
@@ -259,7 +259,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH045",
-    transactionDate: "24/06/2025",
+    transactionDate: "24-06-2025",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -276,7 +276,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH002",
-    transactionDate: "24/06/2025",
+    transactionDate: "24-06-2025",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
