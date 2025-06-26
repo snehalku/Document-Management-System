@@ -41,7 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
-    filingDate: "24-06-2025",
+    filingDate: "2025-06-24",
   },
   {
     id: "AFB7712",
@@ -52,7 +52,7 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
-    filingDate: "24-06-2025",
+    filingDate: "2025-06-24",
   },
   // {
   //   id: "EEA5924",
@@ -75,7 +75,7 @@ const mockCustomerDocs = [
     dob: "06-09-1986",
     expiresOn: "2030-11-12",
     nationalId: "A123456",
-    filingDate: "24-06-2025",
+    filingDate: "2025-06-24",
   },
   // {
   //   id: "EEA5923",
@@ -97,7 +97,7 @@ const mockCustomerDocs = [
     dob: "08-01-1980",
     expiresOn: "2020-01-02",
     nationalId: "3800108",
-    filingDate: "24-06-2025",
+    filingDate: "2025-06-24",
   },
 ];
 const unitHolderDetails = [
@@ -430,7 +430,7 @@ const Archive1 = () => {
         customerId: "",
         issueDate: "",
         expiryDate: "",
-        filingDate: "2025-06-20",
+        filingDate: "2025-06-24",
       });
       setSelectedDoc(null);
       setHideTable(false);
@@ -973,12 +973,12 @@ const Archive1 = () => {
                                 <TextField
                                   variant="standard"
                                   size="small"
-                                  value={formData.id}
+                                  value={formData.customerId}
                                   onChange={(e) => {
                                     const value = e.target.value;
                                     setFormData((prev) => ({
                                       ...prev,
-                                      id: value,
+                                      customerId: value,
                                     }));
                                     const query = value.toLowerCase();
                                     const filtered = mockCustomerDocs.filter(

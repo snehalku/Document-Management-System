@@ -122,6 +122,89 @@ const projectData = [
   },
 ];
 
+// const unitHolderDetails = [
+//   {
+//     id: "UH253",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1012",
+//     transactionType: "Purchase",
+//     fund: "Fund 2",
+//     class: "B",
+//     amount: "70,000",
+//     units: "3225.806452",
+//     nav: "21.7",
+//     documentId: "102",
+//     documentName: "B_202512",
+//     subCategory: "Additional Purchase",
+//   },
+//   {
+//     id: "UH056",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1032",
+//     transactionType: "Purchase",
+//     fund: "Fund 5",
+//     class: "C",
+//     amount: "17,000",
+//     units: "500",
+//     nav: "34",
+//     documentId: "103",
+//     documentName: "C_202513",
+//     subCategory: "Redemption",
+//   },
+//   {
+//     id: "UH326",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1001",
+//     transactionType: "Purchase",
+//     fund: "Fund 1",
+//     class: "A",
+//     amount: "60,000",
+//     units: "5141.388175",
+//     nav: "11.67",
+//     documentId: "101",
+//     documentName: "A_202511",
+//     subCategory: "New Purchase",
+//   },
+//   {
+//     id: "UH045",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1025",
+//     transactionType: "Purchase",
+//     fund: "Fund 4",
+//     class: "D",
+//     amount: "40,000",
+//     units: "3174.603175",
+//     nav: "12.6",
+//     documentId: "104",
+//     documentName: "D_202514",
+//     subCategory: "Switch",
+//   },
+//   {
+//     id: "UH002",
+//     transactionDate: "23/06/2025",
+//     transactionNo: "TXN1002",
+//     transactionType: "Purchase",
+//     fund: "Fund 6",
+//     class: "E",
+//     amount: "18,000",
+//     units: "818.1818182",
+//     nav: "22",
+//     documentId: "105",
+//     documentName: "E_202515",
+//     subCategory: "Transfer",
+//   },
+//   // {
+//   //   id: "UH025",
+//   //   transactionDate: "04/02/2025",
+//   //   transactionNo: "TXN1031",
+//   //   transactionType: "Purchase",
+//   //   fund: "Fund 4",
+//   //   class: "F",
+//   //   amount: "15000",
+//   //   units: "652.173913",
+//   //   nav: "23",
+//   // },
+// ];
 const unitHolderDetails = [
   {
     id: "UH253",
@@ -130,9 +213,12 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 2",
     class: "B",
-    amount: "70000",
-    units: "3225.806452",
-    nav: "21.7",
+    amountRu: "70,000",
+    amount: "777.78",
+    unitsRu: "3225.806452",
+    units: "35.8341",
+    navRu: "21.7",
+    nav: "0.24",
     documentId: "102",
     documentName: "B_202512",
     subCategory: "Additional Purchase",
@@ -144,9 +230,12 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 5",
     class: "C",
-    amount: "17000",
-    units: "500",
-    nav: "34",
+    amountRu: "17,000",
+    amount: "188.89",
+    unitsRu: "500",
+    units: "5.5553",
+    navRu: "34",
+    nav: "0.38",
     documentId: "103",
     documentName: "C_202513",
     subCategory: "Redemption",
@@ -158,9 +247,12 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 1",
     class: "A",
-    amount: "60000",
-    units: "5141.388175",
-    nav: "11.67",
+    amountRu: "60,000",
+    amount: "666.67",
+    unitsRu: "5141.388175",
+    units:"57.1104",
+    navRu: "11.67",
+    nav: "0.13",
     documentId: "101",
     documentName: "A_202511",
     subCategory: "New Purchase",
@@ -172,9 +264,12 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 4",
     class: "D",
-    amount: "40000",
-    units: "3174.603175",
-    nav: "12.6",
+    amountRu: "40,000",
+    amount: "444.44",
+    unitsRU: "3174.603175",
+    units: "35.2706",
+    navRu: "12.6",
+    nav: "0.14",
     documentId: "104",
     documentName: "D_202514",
     subCategory: "Switch",
@@ -186,25 +281,18 @@ const unitHolderDetails = [
     transactionType: "Purchase",
     fund: "Fund 6",
     class: "E",
-    amount: "18000",
-    units: "818.1818182",
-    nav: "22",
+    amountRu: "18,000",
+    amount: "200.00",
+    unitsRU: "818.1818182",
+    units: "9.0909",
+    navRu: "22",
+    nav: "0.24",
     documentId: "105",
     documentName: "E_202515",
     subCategory: "Transfer",
   },
-  // {
-  //   id: "UH025",
-  //   transactionDate: "04/02/2025",
-  //   transactionNo: "TXN1031",
-  //   transactionType: "Purchase",
-  //   fund: "Fund 4",
-  //   class: "F",
-  //   amount: "15000",
-  //   units: "652.173913",
-  //   nav: "23",
-  // },
 ];
+
 
 const Documents = () => {
   const navigate = useNavigate();
@@ -372,7 +460,7 @@ const Documents = () => {
             fontWeight="bold"
             sx={{ mb: 1 }}
           >
-            View Documents
+           Sales - View Documents
           </Typography>
           <Stack
             direction="row"
@@ -498,20 +586,31 @@ const Documents = () => {
             <Box>
               <TableContainer
                 component={Paper}
-                sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
+                sx={{
+                  mb: 2,
+                  borderRadius: "10px 10px 0 0",
+                  maxHeight: 480,
+                  overflowY: "auto",
+                }}
               >
-                <Table>
+                <Table stickyHeader>
                   <TableHead>
                     <TableRow sx={{ bgcolor: "#99caff" }}>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">
-                            Filing Date{" "}
-                          </Typography>
+                          <Typography fontWeight="bold">Filing Date</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -526,7 +625,16 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -547,7 +655,16 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -573,7 +690,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -597,13 +722,21 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">ID Number </Typography>
+                          <Typography fontWeight="bold">ID Number</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -618,13 +751,21 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">Issue Date </Typography>
+                          <Typography fontWeight="bold">Issue Date</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -642,15 +783,22 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">
-                            Expiry Date{" "}
-                          </Typography>
+                          <Typography fontWeight="bold">Expiry Date</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -668,15 +816,22 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
                           justifyContent="center"
                         >
-                          <Typography fontWeight="bold">
-                            Document ID{" "}
-                          </Typography>
+                          <Typography fontWeight="bold">Document ID</Typography>
                           <TextField
                             size="small"
                             variant="standard"
@@ -707,7 +862,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -745,7 +908,14 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell>
+                      <TableCell
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack direction="column" alignItems="right">
                           <Typography fontWeight="bold">Action</Typography>
                           <TextField
@@ -771,57 +941,28 @@ const Documents = () => {
                       </TableCell>
                     </TableRow>
                   </TableHead>
-
                   <TableBody>
                     {filteredData.map((project) => (
                       <TableRow key={project.id} hover>
                         <TableCell>{project.date}</TableCell>
-                        <TableCell>
-                          <Typography align="center">{project.id}</Typography>
-                        </TableCell>
+                        <TableCell align="center">{project.id}</TableCell>
                         <TableCell align="center">
                           {project.customerName}
                         </TableCell>
-
                         <TableCell align="center">{project.dob}</TableCell>
                         <TableCell align="center">{project.IdNo}</TableCell>
-
                         <TableCell align="center">
                           {project.issueDate}
                         </TableCell>
                         <TableCell align="center">
                           {project.expiryDate}
                         </TableCell>
-                        <TableCell align="center" sx={{ textAlign: "center" }}>
+                        <TableCell align="center">
                           {project.documentId}
                         </TableCell>
                         <TableCell align="center">
                           {project.documentName}
                         </TableCell>
-
-                        {/* <TableCell>
-                    <Stack direction="row" spacing={1}>
-                      <Tooltip title="View Document">
-                        <IconButton
-                          color="primary"
-                          onClick={() => navigate("/viewdocument")}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip title="Download Document">
-                        <a
-                          href={agecard}
-                          download="agecard.jpg"
-                          style={{ color: "inherit", textDecoration: "none" }}
-                        >
-                          <IconButton color="secondary">
-                            <FileDownloadIcon />
-                          </IconButton>
-                        </a>
-                      </Tooltip>
-                    </Stack>
-                  </TableCell> */}
                         <TableCell>
                           <Tooltip title="View and Download">
                             <IconButton
@@ -837,6 +978,7 @@ const Documents = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+
               <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
                 <Pagination
                   count={10}
@@ -932,12 +1074,25 @@ const Documents = () => {
             <Box>
               <TableContainer
                 component={Paper}
-                sx={{ mb: 2, borderRadius: "10px 10px 0 0", maxHeight: 480 }}
+                sx={{
+                  mb: 2,
+                  borderRadius: "10px 10px 0 0",
+                  maxHeight: 480,
+                  overflowY: "auto",
+                }}
               >
-                <Table>
+                <Table stickyHeader>
                   <TableHead>
                     <TableRow sx={{ bgcolor: "#99caff" }}>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -964,7 +1119,15 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -988,7 +1151,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1013,7 +1184,15 @@ const Documents = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1039,7 +1218,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1060,7 +1247,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1082,7 +1277,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1104,7 +1307,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1126,7 +1337,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1148,7 +1367,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1188,7 +1415,15 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack
                           direction="column"
                           alignItems="center"
@@ -1227,7 +1462,14 @@ const Documents = () => {
                         </Stack>
                       </TableCell>
 
-                     <TableCell>
+                      <TableCell
+                        sx={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "#99caff",
+                          zIndex: 1,
+                        }}
+                      >
                         <Stack direction="column" alignItems="right">
                           <Typography fontWeight="bold">Action</Typography>
                           <TextField
@@ -1275,11 +1517,11 @@ const Documents = () => {
 
                         <TableCell align="center">{unitHolder.fund}</TableCell>
                         <TableCell align="center">{unitHolder.class}</TableCell>
-                        <TableCell  align="right">₹
-                          {unitHolder.amount}
+                        <TableCell align="right">
+                          €{unitHolder.amount}
                         </TableCell>
-                        <TableCell align="center">{unitHolder.units}</TableCell>
-                        <TableCell  align="right">₹{unitHolder.nav}</TableCell>
+                        <TableCell align="right">€{unitHolder.units}</TableCell>
+                        <TableCell align="right">€{unitHolder.nav}</TableCell>
 
                         <TableCell align="center" sx={{ textAlign: "center" }}>
                           {unitHolder.documentId}
