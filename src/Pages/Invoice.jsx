@@ -103,6 +103,37 @@ const mockCustomerDocs = [
 ];
 
 const Invoice = () => {
+
+const [position, setPosition] = useState({ x: 0, y: 0 });
+  const isDragging = useRef(false);
+  const lastPosition = useRef({ x: 0, y: 0 });
+
+  const handleWheel = (e) => {
+    if (isImage) {
+      e.preventDefault();
+      const newZoom = zoom + (e.deltaY < 0 ? 0.1 : -0.1);
+      setZoom(Math.min(Math.max(newZoom, 1), 3));
+    }
+  };
+
+  const handleMouseDown = (e) => {
+    if (!isImage || zoom <= 1) return;
+    isDragging.current = true;
+    lastPosition.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging.current) return;
+    const dx = e.clientX - lastPosition.current.x;
+    const dy = e.clientY - lastPosition.current.y;
+    setPosition((prev) => ({ x: prev.x + dx, y: prev.y + dy }));
+    lastPosition.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
   const [zoom, setZoom] = useState(1);
   const [selectedDoc, setSelectedDoc] = useState(mockCustomerDocs[0]);
   const [previewDocPath, setPreviewDocPath] = useState(null);
@@ -391,58 +422,25 @@ const Invoice = () => {
                 position: "sticky",
                 marginTop: 2,
                 alignSelf: "center",
-                overflow: "auto",
+                overflow: "hidden", // Avoid scrollbars from container
                 p: 1,
               }}
             >
-              <Stack
-                direction="row"
-                justifyContent="flex-end"
-                spacing={2}
-                sx={{ mt: 1, mb: 1 }}
-              >
-                <Button
-                  variant="outlined"
-                  onClick={handleZoomIn}
-                  sx={{
-                    backgroundColor: "white",
-                    color: "black",
-                    border: "1px solid #ccc",
-                    minWidth: "40px",
-                    fontWeight: "bold",
-                    mx: 1,
-                    "&:hover": {
-                      backgroundColor: "#f5f5f5",
-                    },
-                  }}
-                >
-                  +
-                </Button>
-
-                <Button
-                  variant="outlined"
-                  onClick={handleZoomOut}
-                  sx={{
-                    backgroundColor: "white",
-                    color: "black",
-                    border: "1px solid #ccc",
-                    minWidth: "40px",
-                    fontWeight: "bold",
-                    mx: 1,
-                    "&:hover": {
-                      backgroundColor: "#f5f5f5",
-                    },
-                  }}
-                >
-                  -
-                </Button>
-              </Stack>
               <Box
+                onWheel={handleWheel}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
                 sx={{
-                  transform: `scale(${zoom})`,
-                  transformOrigin: "top left",
-                  transition: "transform 0.3s ease",
-                  width: isImage ? "fit-content" : "100%",
+                  cursor: zoom > 1 ? "grab" : "default",
+                  width: "100%",
+                  height: "calc(100% - 60px)", // leave space for buttons
+                  position: "relative",
+                  overflow: "auto",
+                  border: "2px solid",
+                  borderColor: "grey.300",
+                  borderRadius: 2,
                 }}
               >
                 {isImage ? (
@@ -451,26 +449,30 @@ const Invoice = () => {
                     image={docPath}
                     alt="Document"
                     sx={{
-                      width: "100%",
-                      height: "100%",
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: `translate(-50%, -50%) scale(${zoom}) translate(${position.x}px, ${position.y}px)`,
+                      transformOrigin: "center center",
                       objectFit: "contain",
                       borderRadius: 2,
                       boxShadow: 2,
+                      transition: "transform 0.2s ease",
                     }}
                   />
                 ) : (
                   <Box
                     sx={{
                       width: "100%",
-                      height: "80vh",
+                      height: "100%",
                       borderRadius: 2,
                       overflow: "hidden",
                       boxShadow: 2,
                     }}
                   >
                     <iframe
-                      src={docPath}
-                      title="Invoice Document"
+                      src={`${docPath}#toolbar=0`}
+                      title="Document Preview"
                       style={{
                         width: "100%",
                         height: "100%",
@@ -479,6 +481,30 @@ const Invoice = () => {
                     />
                   </Box>
                 )}
+              </Box>
+
+              <Box sx={{ pt: 2, pr: 1, pb: 2 }}>
+                <Stack direction="row" spacing={2} justifyContent="flex-end">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    disabled={disable}
+                    sx={{
+                      borderRadius: "10px",
+                      bgcolor: "#f2f4f5",
+                      px: 3,
+                      color: "black",
+                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                      border: "none",
+                      "&:hover": {
+                        bgcolor: "#e5e7e8",
+                        border: "none",
+                      },
+                    }}
+                  >
+                    Discard Document
+                  </Button>
+                </Stack>
               </Box>
             </Card>
           </Box>
@@ -800,7 +826,7 @@ const Invoice = () => {
                               <TableCell>{doc.invoiceDate}</TableCell>
                               <TableCell>{doc.invoiceNo}</TableCell>
                               <TableCell align="right">
-                               €{doc.invoiceAmount}
+                                €{doc.invoiceAmount}
                               </TableCell>
                               <TableCell>{doc.id}</TableCell>
 
@@ -810,7 +836,7 @@ const Invoice = () => {
                       </TableBody>
                     </Table>
                   </TableContainer>
-                  <Box display="flex" justifyContent="flex-end" mt={2} mb={1}>
+                  {/* <Box display="flex" justifyContent="flex-end" mt={2} mb={1}>
                     <Button
                       variant="outlined"
                       color="secondary"
@@ -829,7 +855,7 @@ const Invoice = () => {
                     >
                       Discard
                     </Button>
-                  </Box>
+                  </Box> */}
                 </Paper>
               )}
               {formCard && (
@@ -915,7 +941,7 @@ const Invoice = () => {
                       >
                         Save
                       </Button>
-                      <Button
+                      {/* <Button
                         variant="outlined"
                         color="secondary"
                         disabled={disable}
@@ -933,7 +959,7 @@ const Invoice = () => {
                         }}
                       >
                         Discard
-                      </Button>
+                      </Button> */}
                     </Stack>
                   </Box>
                 </Card>

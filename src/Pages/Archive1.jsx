@@ -189,6 +189,7 @@ const unitHolderDetails = [
 ];
 
 const Archive1 = () => {
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const isDragging = useRef(false);
   const lastPosition = useRef({ x: 0, y: 0 });
@@ -200,6 +201,7 @@ const Archive1 = () => {
       setZoom(Math.min(Math.max(newZoom, 1), 3));
     }
   };
+
 
   const handleMouseDown = (e) => {
     if (!isImage || zoom <= 1) return;
@@ -674,7 +676,7 @@ const Archive1 = () => {
                 position: "sticky",
                 marginTop: 2,
                 alignSelf: "center",
-                overflow: "auto",
+                overflow: "hidden", // Avoid scrollbars from container
                 p: 1,
               }}
             >
@@ -687,9 +689,12 @@ const Archive1 = () => {
                 sx={{
                   cursor: zoom > 1 ? "grab" : "default",
                   width: "100%",
-                  height: "100%",
-                  overflow: "auto",
+                  height: "calc(100% - 60px)", // leave space for buttons
                   position: "relative",
+                  overflow: "auto",
+                  border: "2px solid",
+                  borderColor: "grey.300",
+                  borderRadius: 3,
                 }}
               >
                 {isImage ? (
@@ -699,21 +704,21 @@ const Archive1 = () => {
                     alt="Document"
                     sx={{
                       position: "absolute",
-                      top: position.y,
-                      left: position.x,
-                      width: `${zoom * 100}%`,
-                      height: "auto",
+                      top: "50%",
+                      left: "50%",
+                      transform: `translate(-50%, -50%) scale(${zoom}) translate(${position.x}px, ${position.y}px)`,
+                      transformOrigin: "center center",
                       objectFit: "contain",
                       borderRadius: 2,
                       boxShadow: 2,
-                      transition: "width 0.2s ease",
+                      transition: "transform 0.2s ease",
                     }}
                   />
                 ) : (
                   <Box
                     sx={{
                       width: "100%",
-                      height: "80vh",
+                      height: "100%",
                       borderRadius: 2,
                       overflow: "hidden",
                       boxShadow: 2,
@@ -732,7 +737,7 @@ const Archive1 = () => {
                 )}
               </Box>
 
-              <Box sx={{ p: 1, mt: 2 }}>
+              <Box sx={{ pt: 2, pr: 1, pb: 2 }}>
                 <Stack direction="row" spacing={2} justifyContent="flex-end">
                   <Button
                     variant="outlined"
