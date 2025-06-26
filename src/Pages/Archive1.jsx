@@ -41,7 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
-    filingDate: "24-06-2025",
+    filingDate: "2025-06-24",
   },
   {
     id: "AFB7712",
@@ -52,7 +52,7 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
-    filingDate: "24-06-2025",
+    filingDate: "2025-06-24",
   },
   // {
   //   id: "EEA5924",
@@ -75,7 +75,7 @@ const mockCustomerDocs = [
     dob: "06-09-1986",
     expiresOn: "2030-11-12",
     nationalId: "A123456",
-    filingDate: "24-06-2025",
+    filingDate: "2025-06-24",
   },
   // {
   //   id: "EEA5923",
@@ -97,91 +97,91 @@ const mockCustomerDocs = [
     dob: "08-01-1980",
     expiresOn: "2020-01-02",
     nationalId: "3800108",
-    filingDate: "24-06-2025",
+    filingDate: "2025-06-24",
   },
 ];
 const unitHolderDetails = [
   {
     id: "UH253",
-    transactionDate: "24/06/2025",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
     class: "B",
-    amountRu: "70,000",
-    amount: "777.78",
-    unitsRu: "3225.806452",
-    units: "35.8341",
-    navRu: "21.7",
-    nav: "0.24",
+    amount: "70,000",
+    amountEUR: "777.78",
+    units: "3225.806452",
+    unitsEUR: "35.8341",
+    nav: "21.7",
+    navEUR: "0.24",
     documentId: "102",
     documentName: "B_202512",
     subCategory: "Additional Purchase",
   },
   {
     id: "UH056",
-    transactionDate: "24/06/2025",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1032",
     transactionType: "Purchase",
     fund: "Fund 5",
     class: "C",
-    amountRu: "17,000",
-    amount: "188.89",
-    unitsRu: "500",
-    units: "5.5553",
-    navRu: "34",
-    nav: "0.38",
+    amount: "17,000",
+    amountEUR: "188.89",
+    units: "500",
+    unitsEUR: "5.5553",
+    nav: "34",
+    navEUR: "0.38",
     documentId: "103",
     documentName: "C_202513",
     subCategory: "Redemption",
   },
   {
     id: "UH326",
-    transactionDate: "24/06/2025",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1001",
     transactionType: "Purchase",
     fund: "Fund 1",
     class: "A",
-    amountRu: "60,000",
-    amount: "666.67",
-    unitsRu: "5141.388175",
-    units: "57.1104",
-    navRu: "11.67",
-    nav: "0.13",
+    amount: "60,000",
+    amountEUR: "666.67",
+    units: "5141.388175",
+    unitsEUR: "57.1104",
+    nav: "11.67",
+    navEUR: "0.13",
     documentId: "101",
     documentName: "A_202511",
     subCategory: "New Purchase",
   },
   {
     id: "UH045",
-    transactionDate: "24/06/2025",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
     class: "D",
-    amountRu: "40,000",
-    amount: "444.44",
-    unitsRU: "3174.603175",
-    units: "35.2706",
-    navRu: "12.6",
-    nav: "0.14",
+    amount: "40,000",
+    amountEUR: "444.44",
+    units: "3174.603175",
+    unitsEUR: "35.2706",
+    nav: "12.6",
+    navEUR: "0.14",
     documentId: "104",
     documentName: "D_202514",
     subCategory: "Switch",
   },
   {
     id: "UH002",
-    transactionDate: "24/06/2025",
+    transactionDate: "2025-06-24",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
     class: "E",
-    amountRu: "18,000",
-    amount: "200.00",
-    unitsRU: "818.1818182",
-    units: "9.0909",
-    navRu: "22",
-    nav: "0.24",
+    amount: "18,000",
+    amountEUR: "200.00",
+    units: "818.1818182",
+    unitsEUR: "9.0909",
+    nav: "22",
+    navEUR: "0.24",
     documentId: "105",
     documentName: "E_202515",
     subCategory: "Transfer",
@@ -449,7 +449,7 @@ const Archive1 = () => {
         customerId: "",
         issueDate: "",
         expiryDate: "",
-        filingDate: "2025-06-20",
+        filingDate: "2025-06-24",
       });
       setSelectedDoc(null);
       setHideTable(false);
@@ -538,6 +538,12 @@ const Archive1 = () => {
       : selectedCategory === "Transaction"
       ? "Transaction Date"
       : "Date";
+
+    function formatDateToDDMMYYYY(dateStr) {
+      if (!dateStr) return "";
+      const [year, month, day] = dateStr.split("-");
+      return `${day}-${month}-${year}`;
+    }
 
   return (
     <div>
@@ -983,19 +989,18 @@ const Archive1 = () => {
                                 <Typography fontWeight="bold"></Typography>
                               </TableCell>
 
-                              <TableCell>
+                             <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   Filing Date
                                 </Typography>
-
                                 <TextField
                                   variant="standard"
                                   size="small"
                                   type="date"
-                                  value={columnSearch.filingDate}
+                                  value={formData.filingDate}
                                   onChange={(e) => {
                                     const value = e.target.value;
-                                    setColumnSearch((prev) => ({
+                                   setFormData((prev) => ({
                                       ...prev,
                                       filingDate: value,
                                     }));
@@ -1233,7 +1238,7 @@ const Archive1 = () => {
                                     onChange={() => onCheck(doc.id)}
                                   />
                                 </TableCell>
-                                <TableCell>{doc.filingDate}</TableCell>
+                                <TableCell>{formatDateToDDMMYYYY(doc.filingDate)}</TableCell>
 
                                 <TableCell>{doc.id}</TableCell>
                                 <TableCell>{doc.firstName}</TableCell>
@@ -1589,7 +1594,8 @@ const Archive1 = () => {
                                     onChange={onCheck}
                                   />
                                 </TableCell>
-                                <TableCell>{doc.transactionDate}</TableCell>
+                               
+                                <TableCell>{formatDateToDDMMYYYY(doc.transactionDate)}</TableCell>
                                 <TableCell>{doc.id}</TableCell>
 
                                 <TableCell>{doc.transactionNo}</TableCell>
@@ -1839,7 +1845,7 @@ const Archive1 = () => {
                       <TextField
                         label="Amount"
                         fullWidth
-                        value={`₹ ${unitColumnSearch.amount}`}
+                        value={`€ ${unitColumnSearch.amount}`}
                         sx={{ mb: 2 }}
                         InputProps={{
                           readOnly: true,
