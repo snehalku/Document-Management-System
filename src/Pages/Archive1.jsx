@@ -41,7 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   {
     id: "AFB7712",
@@ -52,7 +52,7 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   // {
   //   id: "EEA5924",
@@ -75,7 +75,7 @@ const mockCustomerDocs = [
     dob: "06-09-1986",
     expiresOn: "2030-11-12",
     nationalId: "A123456",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   // {
   //   id: "EEA5923",
@@ -97,75 +97,94 @@ const mockCustomerDocs = [
     dob: "08-01-1980",
     expiresOn: "2020-01-02",
     nationalId: "3800108",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
 ];
 const unitHolderDetails = [
   {
     id: "UH253",
-    transactionDate: "2025-06-24",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
     class: "B",
-    amount: "70000",
-    units: "3225.806452",
-    nav: "21.7",
+    amountRu: "70,000",
+    amount: "777.78",
+    unitsRu: "3225.806452",
+    units: "35.8341",
+    navRu: "21.7",
+    nav: "0.24",
+    documentId: "102",
+    documentName: "B_202512",
+    subCategory: "Additional Purchase",
   },
-  // {
-  //   id: "UH056",
-  //   transactionDate: "2025-06-22",
-  //   transactionNo: "TXN1032",
-  //   transactionType: "Purchase",
-  //   fund: "Fund 5",
-  //   class: "C",
-  //   amount: "17000",
-  //   units: "500",
-  //   nav: "34",
-  // },
+  {
+    id: "UH056",
+    transactionDate: "24/06/2025",
+    transactionNo: "TXN1032",
+    transactionType: "Purchase",
+    fund: "Fund 5",
+    class: "C",
+    amountRu: "17,000",
+    amount: "188.89",
+    unitsRu: "500",
+    units: "5.5553",
+    navRu: "34",
+    nav: "0.38",
+    documentId: "103",
+    documentName: "C_202513",
+    subCategory: "Redemption",
+  },
   {
     id: "UH326",
-    transactionDate: "2025-06-24",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1001",
     transactionType: "Purchase",
     fund: "Fund 1",
     class: "A",
-    amount: "60000",
-    units: "5141.388175",
-    nav: "11.67",
+    amountRu: "60,000",
+    amount: "666.67",
+    unitsRu: "5141.388175",
+    units: "57.1104",
+    navRu: "11.67",
+    nav: "0.13",
+    documentId: "101",
+    documentName: "A_202511",
+    subCategory: "New Purchase",
   },
   {
     id: "UH045",
-    transactionDate: "2025-06-24",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
     class: "D",
-    amount: "40000",
-    units: "3174.603175",
-    nav: "12.6",
+    amountRu: "40,000",
+    amount: "444.44",
+    unitsRU: "3174.603175",
+    units: "35.2706",
+    navRu: "12.6",
+    nav: "0.14",
+    documentId: "104",
+    documentName: "D_202514",
+    subCategory: "Switch",
   },
   {
     id: "UH002",
-    transactionDate: "2025-06-24",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
     class: "E",
-    amount: "18000",
-    units: "818.1818182",
-    nav: "22",
-  },
-  {
-    id: "UH025",
-    transactionDate: "2025-06-24",
-    transactionNo: "TXN1031",
-    transactionType: "Purchase",
-    fund: "Fund 4",
-    class: "F",
-    amount: "15000",
-    units: "652.173913",
-    nav: "23",
+    amountRu: "18,000",
+    amount: "200.00",
+    unitsRU: "818.1818182",
+    units: "9.0909",
+    navRu: "22",
+    nav: "0.24",
+    documentId: "105",
+    documentName: "E_202515",
+    subCategory: "Transfer",
   },
 ];
 
@@ -430,7 +449,7 @@ const Archive1 = () => {
         customerId: "",
         issueDate: "",
         expiryDate: "",
-        filingDate: "2025-06-24",
+        filingDate: "2025-06-20",
       });
       setSelectedDoc(null);
       setHideTable(false);
@@ -714,6 +733,35 @@ const Archive1 = () => {
                   </Box>
                 )}
               </Box>
+              
+              <Box sx={{ p: 1, mt: 2 }}>
+                <Stack
+                      direction="row"
+                      spacing={2}
+                      justifyContent="flex-end"
+                    >
+                  <Button
+                        variant="outlined"
+                        color="secondary"
+                        disabled={disable}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#f2f4f5",
+                          px: 3,
+                          color: "black",
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          border: "none",
+                          "&:hover": {
+                            bgcolor: "#e5e7e8",
+                            border: "none",
+                          },
+                        }}
+                      >
+                        Discard Document
+                  </Button>
+                </Stack>
+              </Box>
+
             </Card>
           </Box>
 
@@ -731,7 +779,7 @@ const Archive1 = () => {
               }}
             >
               <Typography variant="h6" fontWeight="bold" mb={1} mt={1}>
-                File Document
+                Sales - File Document
               </Typography>
               {!hideTable && (
                 <Card
@@ -973,12 +1021,12 @@ const Archive1 = () => {
                                 <TextField
                                   variant="standard"
                                   size="small"
-                                  value={formData.customerId}
+                                  value={formData.id}
                                   onChange={(e) => {
                                     const value = e.target.value;
                                     setFormData((prev) => ({
                                       ...prev,
-                                      customerId: value,
+                                      id: value,
                                     }));
                                     const query = value.toLowerCase();
                                     const filtered = mockCustomerDocs.filter(
@@ -1209,7 +1257,7 @@ const Archive1 = () => {
                           </TableBody>
                         </Table>
                       </TableContainer>
-                      <Box
+                      {/* <Box
                         display="flex"
                         justifyContent="flex-end"
                         mt={2}
@@ -1234,7 +1282,7 @@ const Archive1 = () => {
                         >
                           Discard
                         </Button>
-                      </Box>
+                      </Box> */}
                     </Paper>
                   )}
                 </div>
@@ -1551,10 +1599,10 @@ const Archive1 = () => {
                                 <TableCell>{doc.fund}</TableCell>
                                 <TableCell>{doc.class}</TableCell>
                                 <TableCell align="right">
-                                  ₹{doc.amount}
+                                  €{doc.amount}
                                 </TableCell>
-                                <TableCell>{doc.units}</TableCell>
-                                <TableCell align="right">₹{doc.nav}</TableCell>
+                                <TableCell align="right">€{doc.units}</TableCell>
+                                <TableCell align="right">€{doc.nav}</TableCell>
                               </TableRow>
                             ))}
 
@@ -1731,25 +1779,7 @@ const Archive1 = () => {
                       >
                         Save
                       </Button>
-                      <Button
-                        variant="outlined"
-                        color="secondary"
-                        disabled={disable}
-                        sx={{
-                          borderRadius: "10px",
-                          bgcolor: "#f2f4f5",
-                          px: 3,
-                          color: "black",
-                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                          border: "none",
-                          "&:hover": {
-                            bgcolor: "#e5e7e8",
-                            border: "none",
-                          },
-                        }}
-                      >
-                        Discard
-                      </Button>
+                      
                     </Stack>
                   </Box>
                 </Card>

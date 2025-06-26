@@ -37,7 +37,12 @@ const mockCustomerDocs = [
     expiresOn: "2032-12-12",
     invoiceNo: "123477",
     invoiceDate: "24-06-2025",
-    invoiceAmount: "4725",
+    invoiceAmountRu: "4725",
+    invoiceAmount: "52.50",
+    docId: "11",
+    docName: "invoice_2025",
+    category: "Accounts Payable",
+    subCategory: "Purchase Invoice",
   },
   {
     id: "125",
@@ -46,7 +51,12 @@ const mockCustomerDocs = [
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
     invoiceDate: "24-06-2025",
-    invoiceAmount: "8521",
+    invoiceAmountRu: "8521",
+    invoiceAmount: "94.68",
+    docId: "13",
+    docName: "invoice_2024",
+    category: "Accounts Receivable",
+    subCategory: "Credit Note",
   },
   {
     id: "126",
@@ -55,7 +65,12 @@ const mockCustomerDocs = [
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
     invoiceDate: "24-06-2025",
-    invoiceAmount: "3569",
+    invoiceAmountRu: "3569",
+    invoiceAmount: "39.66",
+    docId: "18",
+    docName: "invoice_18",
+    category: "Accounts Payable",
+    subCategory: "Proof of Payment",
   },
   {
     id: "123",
@@ -64,18 +79,29 @@ const mockCustomerDocs = [
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
     invoiceDate: "24-06-2025",
-    invoiceAmount: "972",
+    invoiceAmountRu: "971",
+    invoiceAmount: "10.79",
+    docId: "16",
+    docName: "invoice_16",
+    category: "Accounts Payable",
+    subCategory: "Purchase Invoice",
   },
   {
     id: "127",
     companyName: "Maitland",
     date: "2025-04-30",
     expiresOn: "2025-10-22",
-    invoiceNo: "325FR125",
+    invoiceNo: "457896",
     invoiceDate: "24-06-2025",
-    invoiceAmount: "4725",
+    invoiceAmountRu: "3599",
+    invoiceAmount: "39.99",
+    docId: "14",
+    docName: "invoice_14",
+    category: "Accounts Payable",
+    subCategory: "Purchase Invoice",
   },
 ];
+
 const Invoice = () => {
   const [zoom, setZoom] = useState(1);
   const [selectedDoc, setSelectedDoc] = useState(mockCustomerDocs[0]);
@@ -471,7 +497,7 @@ const Invoice = () => {
               }}
             >
               <Typography variant="h6" fontWeight="bold" mb={1} mt={1}>
-                Invoice Document
+                Accounts - Invoice Document
               </Typography>
 
               {!hideTable && (
@@ -577,7 +603,7 @@ const Invoice = () => {
                             <MenuItem value="Purchase Invoice">
                               Purchase Invoice
                             </MenuItem>
-
+                            <MenuItem value="Credit Note">Credit Note</MenuItem>
                             <MenuItem value="Application Form">
                               Proof of Payment
                             </MenuItem>
@@ -774,7 +800,7 @@ const Invoice = () => {
                               <TableCell>{doc.invoiceDate}</TableCell>
                               <TableCell>{doc.invoiceNo}</TableCell>
                               <TableCell align="right">
-                                ₹{doc.invoiceAmount}
+                               €{doc.invoiceAmount}
                               </TableCell>
                               <TableCell>{doc.id}</TableCell>
 
@@ -852,7 +878,7 @@ const Invoice = () => {
                         sx={{ mb: 2 }}
                         InputProps={{
                           startAdornment: (
-                            <span style={{ marginRight: 4 }}>₹</span>
+                            <span style={{ marginRight: 4 }}>€</span>
                           ),
                         }}
                       />
