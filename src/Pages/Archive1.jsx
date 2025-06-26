@@ -41,7 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   {
     id: "AFB7712",
@@ -52,7 +52,7 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   // {
   //   id: "EEA5924",
@@ -75,7 +75,7 @@ const mockCustomerDocs = [
     dob: "06-09-1986",
     expiresOn: "2030-11-12",
     nationalId: "A123456",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
   // {
   //   id: "EEA5923",
@@ -97,7 +97,7 @@ const mockCustomerDocs = [
     dob: "08-01-1980",
     expiresOn: "2020-01-02",
     nationalId: "3800108",
-    filingDate: "2025-06-24",
+    filingDate: "24-06-2025",
   },
 ];
 const unitHolderDetails = [
@@ -449,7 +449,7 @@ const Archive1 = () => {
         customerId: "",
         issueDate: "",
         expiryDate: "",
-        filingDate: "2025-06-24",
+        filingDate: "2025-06-20",
       });
       setSelectedDoc(null);
       setHideTable(false);
@@ -733,6 +733,35 @@ const Archive1 = () => {
                   </Box>
                 )}
               </Box>
+              
+              <Box sx={{ p: 1, mt: 2 }}>
+                <Stack
+                      direction="row"
+                      spacing={2}
+                      justifyContent="flex-end"
+                    >
+                  <Button
+                        variant="outlined"
+                        color="secondary"
+                        disabled={disable}
+                        sx={{
+                          borderRadius: "10px",
+                          bgcolor: "#f2f4f5",
+                          px: 3,
+                          color: "black",
+                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                          border: "none",
+                          "&:hover": {
+                            bgcolor: "#e5e7e8",
+                            border: "none",
+                          },
+                        }}
+                      >
+                        Discard Document
+                  </Button>
+                </Stack>
+              </Box>
+
             </Card>
           </Box>
 
@@ -992,12 +1021,12 @@ const Archive1 = () => {
                                 <TextField
                                   variant="standard"
                                   size="small"
-                                  value={formData.customerId}
+                                  value={formData.id}
                                   onChange={(e) => {
                                     const value = e.target.value;
                                     setFormData((prev) => ({
                                       ...prev,
-                                      customerId: value,
+                                      id: value,
                                     }));
                                     const query = value.toLowerCase();
                                     const filtered = mockCustomerDocs.filter(
@@ -1228,7 +1257,7 @@ const Archive1 = () => {
                           </TableBody>
                         </Table>
                       </TableContainer>
-                      <Box
+                      {/* <Box
                         display="flex"
                         justifyContent="flex-end"
                         mt={2}
@@ -1253,7 +1282,7 @@ const Archive1 = () => {
                         >
                           Discard
                         </Button>
-                      </Box>
+                      </Box> */}
                     </Paper>
                   )}
                 </div>
@@ -1750,25 +1779,7 @@ const Archive1 = () => {
                       >
                         Save
                       </Button>
-                      <Button
-                        variant="outlined"
-                        color="secondary"
-                        disabled={disable}
-                        sx={{
-                          borderRadius: "10px",
-                          bgcolor: "#f2f4f5",
-                          px: 3,
-                          color: "black",
-                          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                          border: "none",
-                          "&:hover": {
-                            bgcolor: "#e5e7e8",
-                            border: "none",
-                          },
-                        }}
-                      >
-                        Discard
-                      </Button>
+                      
                     </Stack>
                   </Box>
                 </Card>
