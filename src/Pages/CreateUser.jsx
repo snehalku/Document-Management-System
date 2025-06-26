@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../Components/Layout/Header";
 
 // const roles = ["Sales Manager", "Chartered Accountant", "HR"];
-const roles = ["Processor", "View Role"];
+const roles = ["Processor", "Viewer"];
 const CreateUser = () => {
   const navigate = useNavigate();
   const departments = [

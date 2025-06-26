@@ -25,7 +25,7 @@ const EditUser = () => {
   const navigate = useNavigate();
 
   // const roles = ["Sales Manager", "Chartered Accountant", "HR", "Admin"];
-  const roles = ["Processor", "View Role"];
+  const roles = ["Processor", "Viewer"];
   const [selectedRoles, setSelectedRoles] = useState(["Processor"]); // default selected
 
   const departments = [
@@ -231,7 +231,7 @@ const EditUser = () => {
                   fontWeight="500"
                   sx={{ mr: 2.5, whiteSpace: "nowrap" }}
                 >
-                  Assigned Role <span style={{ color: "red" }}>*</span>
+                  Assign Role <span style={{ color: "red" }}>*</span>
                 </Typography>
                 <FormControl sx={{ minWidth: 240 }}>
                   <Select
