@@ -317,9 +317,9 @@ const Dashboard = () => {
                     >
                       Sales
                     </Typography>
-                    {/* <Typography fontFamily="Poppins, sans-serif">
+                    <Typography fontFamily="Poppins, sans-serif">
                       Pending Documents - 2
-                    </Typography> */}
+                    </Typography>
                   </Box>
                   {/* <Typography
                     variant="h4"
@@ -370,12 +370,14 @@ const Dashboard = () => {
                     >
                       Accounts
                     </Typography>
-                    {/* <Typography
-                     
+                    <Typography
+                      // variant="h6"
+                      // component="div"
+                      // fontWeight="500"
                       fontFamily="Poppins, sans-serif"
                     >
                       Pending Documents - 2
-                    </Typography> */}
+                    </Typography>
                   </Box>
                 </CardContent>
               </Card>
@@ -454,12 +456,14 @@ const Dashboard = () => {
                     >
                       Legal
                     </Typography>
-                    {/* <Typography
-                    
+                    <Typography
+                      // variant="h6"
+                      // component="div"
+                      // fontWeight="500"
                       fontFamily="Poppins, sans-serif"
                     >
                       Pending Documents - 0
-                    </Typography> */}
+                    </Typography>
                   </Box>
                 </CardContent>
               </Card>
