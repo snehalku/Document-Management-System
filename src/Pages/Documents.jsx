@@ -38,7 +38,7 @@ import Header from "../Components/Layout/Header";
 const projectData = [
   {
     id: "EDB5617",
-    date: "23-06-2025",
+    date: "24-06-2025",
     issueDate: "02-06-2025",
     expiryDate: "12-11-2030",
 
@@ -55,7 +55,7 @@ const projectData = [
   },
   {
     id: "EDB6611",
-    date: "23-06-2025",
+    date: "24-06-2025",
     issueDate: "04-06-2025",
     expiryDate: "18-01-2029",
 
@@ -72,7 +72,7 @@ const projectData = [
   },
   {
     id: "EDB5612",
-    date: "23-06-2025",
+    date: "24-06-2025",
     issueDate: "12-11-2020",
     customerName: "John Livone",
     transactionId: "TXN123",
@@ -88,7 +88,7 @@ const projectData = [
   },
   {
     id: "EDB7712",
-    date: "23-06-2025",
+    date: "24-06-2025",
     issueDate: "14-06-2025",
     expiryDate: "25-04-2032",
 
@@ -105,7 +105,7 @@ const projectData = [
   },
   {
     id: "EDC2345",
-    date: "23-06-2025",
+    date: "24-06-2025",
     issueDate: "22-06-2025",
     expiryDate: "10-06-2034",
 
@@ -208,7 +208,7 @@ const projectData = [
 const unitHolderDetails = [
   {
     id: "UH253",
-    transactionDate: "23/06/2025",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
@@ -225,7 +225,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH056",
-    transactionDate: "23/06/2025",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1032",
     transactionType: "Purchase",
     fund: "Fund 5",
@@ -242,7 +242,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH326",
-    transactionDate: "23/06/2025",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1001",
     transactionType: "Purchase",
     fund: "Fund 1",
@@ -250,7 +250,7 @@ const unitHolderDetails = [
     amountRu: "60,000",
     amount: "666.67",
     unitsRu: "5141.388175",
-    units:"57.1104",
+    units: "57.1104",
     navRu: "11.67",
     nav: "0.13",
     documentId: "101",
@@ -259,7 +259,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH045",
-    transactionDate: "23/06/2025",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -276,7 +276,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH002",
-    transactionDate: "23/06/2025",
+    transactionDate: "24/06/2025",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
@@ -292,7 +292,6 @@ const unitHolderDetails = [
     subCategory: "Transfer",
   },
 ];
-
 
 const Documents = () => {
   const navigate = useNavigate();
@@ -413,11 +412,11 @@ const Documents = () => {
     if (newCategory === "AML_KYC") {
       setSelectedSubcategory("ID Proof");
       setLabel("Filing Date");
+    } else if (newCategory === "Transaction") {
+      setLabel("Transaction Date");
+      setSelectedSubcategory("newPurchase");
     } else {
       setSelectedSubcategory("sel");
-    }
-    if (newCategory === "Transaction") {
-      setLabel("Transaction Date");
     }
   };
 
@@ -460,7 +459,7 @@ const Documents = () => {
             fontWeight="bold"
             sx={{ mb: 1 }}
           >
-           Sales - View Documents
+            Sales - View Documents
           </Typography>
           <Stack
             direction="row"
@@ -482,7 +481,7 @@ const Documents = () => {
                 <TextField
                   type="date"
                   size="small"
-                  defaultValue="2025-06-23"
+                  defaultValue="2025-06-24"
                   sx={{ width: 160 }}
                 />
               </Stack>
