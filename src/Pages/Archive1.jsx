@@ -269,6 +269,7 @@ const Archive1 = () => {
   const [columnSearch, setColumnSearch] = useState({
     firstName: "",
     lastName: "",
+    filingDate: "",
   });
   const [showSearchInput, setShowSearchInput] = useState({
     firstName: false,
@@ -995,10 +996,10 @@ const Archive1 = () => {
                                   variant="standard"
                                   size="small"
                                   type="date"
-                                  value={formData.filingDate}
+                                  value={columnSearch.filingDate}
                                   onChange={(e) => {
                                     const value = e.target.value;
-                                    setFormData((prev) => ({
+                                    setColumnSearch((prev) => ({
                                       ...prev,
                                       filingDate: value,
                                     }));
