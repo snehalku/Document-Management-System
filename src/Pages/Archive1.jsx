@@ -189,7 +189,6 @@ const unitHolderDetails = [
 ];
 
 const Archive1 = () => {
-
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const isDragging = useRef(false);
   const lastPosition = useRef({ x: 0, y: 0 });
@@ -201,7 +200,6 @@ const Archive1 = () => {
       setZoom(Math.min(Math.max(newZoom, 1), 3));
     }
   };
-
 
   const handleMouseDown = (e) => {
     if (!isImage || zoom <= 1) return;
@@ -539,11 +537,11 @@ const Archive1 = () => {
       ? "Transaction Date"
       : "Date";
 
-    function formatDateToDDMMYYYY(dateStr) {
-      if (!dateStr) return "";
-      const [year, month, day] = dateStr.split("-");
-      return `${day}-${month}-${year}`;
-    }
+  function formatDateToDDMMYYYY(dateStr) {
+    if (!dateStr) return "";
+    const [year, month, day] = dateStr.split("-");
+    return `${day}-${month}-${year}`;
+  }
 
   return (
     <div>
@@ -989,7 +987,7 @@ const Archive1 = () => {
                                 <Typography fontWeight="bold"></Typography>
                               </TableCell>
 
-                             <TableCell>
+                              <TableCell>
                                 <Typography fontWeight="bold" mb={1}>
                                   Filing Date
                                 </Typography>
@@ -1000,7 +998,7 @@ const Archive1 = () => {
                                   value={formData.filingDate}
                                   onChange={(e) => {
                                     const value = e.target.value;
-                                   setFormData((prev) => ({
+                                    setFormData((prev) => ({
                                       ...prev,
                                       filingDate: value,
                                     }));
@@ -1227,19 +1225,45 @@ const Archive1 = () => {
                           </TableBody> */}
                           <TableBody>
                             {searchResults.map((doc) => (
+                              // <TableRow
+                              //   key={doc.id}
+                              //   hover
+                              //   onClick={() => handleSelectSearchDoc(doc)}
+                              // >
+                              //   <TableCell>
+                              //     <Checkbox
+                              //       checked={confirmedDocIds.includes(doc.id)}
+                              //       onChange={() => onCheck(doc.id)}
+                              //     />
+                              //   </TableCell>
+                              //   <TableCell>
+                              //     {formatDateToDDMMYYYY(doc.filingDate)}
+                              //   </TableCell>
+
+                              //   <TableCell>{doc.id}</TableCell>
+                              //   <TableCell>{doc.firstName}</TableCell>
+                              //   <TableCell>{doc.lastName}</TableCell>
+                              //   <TableCell>{doc.nationalId}</TableCell>
+                              //   <TableCell>{doc.dob}</TableCell>
+                              // </TableRow>
                               <TableRow
                                 key={doc.id}
                                 hover
-                                onClick={() => handleSelectSearchDoc(doc)}
+                                onClick={() => {
+                                  handleSelectSearchDoc(doc); // handles row selection logic
+                                  onCheck(doc.id); // handles checkbox logic
+                                }}
+                                sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
                               >
                                 <TableCell>
                                   <Checkbox
                                     checked={confirmedDocIds.includes(doc.id)}
-                                    onChange={() => onCheck(doc.id)}
+                                    readOnly // prevents interference with row click
                                   />
                                 </TableCell>
-                                <TableCell>{formatDateToDDMMYYYY(doc.filingDate)}</TableCell>
-
+                                <TableCell>
+                                  {formatDateToDDMMYYYY(doc.filingDate)}
+                                </TableCell>
                                 <TableCell>{doc.id}</TableCell>
                                 <TableCell>{doc.firstName}</TableCell>
                                 <TableCell>{doc.lastName}</TableCell>
@@ -1582,22 +1606,56 @@ const Archive1 = () => {
 
                           <TableBody>
                             {searchUnitResult.map((doc) => (
+                              // <TableRow
+                              //   key={doc.id}
+                              //   hover
+                              //   onClick={() => handleSelectSearchDoc(doc)}
+                              //   sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
+                              // >
+                              //   <TableCell>
+                              //     <Checkbox
+                              //       checked={confirmedDocIds.includes(doc.id)}
+                              //       onChange={onCheck}
+                              //     />
+                              //   </TableCell>
+
+                              //   <TableCell>
+                              //     {formatDateToDDMMYYYY(doc.transactionDate)}
+                              //   </TableCell>
+                              //   <TableCell>{doc.id}</TableCell>
+
+                              //   <TableCell>{doc.transactionNo}</TableCell>
+                              //   <TableCell>{doc.transactionType}</TableCell>
+                              //   <TableCell>{doc.fund}</TableCell>
+                              //   <TableCell>{doc.class}</TableCell>
+                              //   <TableCell align="right">
+                              //     €{doc.amount}
+                              //   </TableCell>
+                              //   <TableCell align="right">
+                              //     €{doc.units}
+                              //   </TableCell>
+                              //   <TableCell align="right">€{doc.nav}</TableCell>
+                              // </TableRow>
                               <TableRow
                                 key={doc.id}
                                 hover
-                                onClick={() => handleSelectSearchDoc(doc)}
+                                onClick={() => {
+                                  handleSelectSearchDoc(doc);
+                                  onCheck(doc.id);
+                                }}
                                 sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
                               >
                                 <TableCell>
                                   <Checkbox
                                     checked={confirmedDocIds.includes(doc.id)}
-                                    onChange={onCheck}
+                                    readOnly
                                   />
                                 </TableCell>
-                               
-                                <TableCell>{formatDateToDDMMYYYY(doc.transactionDate)}</TableCell>
-                                <TableCell>{doc.id}</TableCell>
 
+                                <TableCell>
+                                  {formatDateToDDMMYYYY(doc.transactionDate)}
+                                </TableCell>
+                                <TableCell>{doc.id}</TableCell>
                                 <TableCell>{doc.transactionNo}</TableCell>
                                 <TableCell>{doc.transactionType}</TableCell>
                                 <TableCell>{doc.fund}</TableCell>

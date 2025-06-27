@@ -103,8 +103,7 @@ const mockCustomerDocs = [
 ];
 
 const Invoice = () => {
-
-const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const isDragging = useRef(false);
   const lastPosition = useRef({ x: 0, y: 0 });
 
@@ -811,16 +810,40 @@ const [position, setPosition] = useState({ x: 0, y: 0 });
                                 .includes(filterCompanyName.toLowerCase())
                           )
                           .map((doc) => (
+                            // <TableRow
+                            //   key={doc.id}
+                            //   hover
+                            //   onClick={() => handleSelectSearchDoc(doc)}
+                            //   // sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
+                            // >
+                            //   <TableCell>
+                            //     <Checkbox
+                            //       checked={confirmedDocIds.includes(doc.id)}
+                            //       onChange={() => onCheck(doc.id)}
+                            //     />
+                            //   </TableCell>
+                            //   <TableCell>{doc.invoiceDate}</TableCell>
+                            //   <TableCell>{doc.invoiceNo}</TableCell>
+                            //   <TableCell align="right">
+                            //     €{doc.invoiceAmount}
+                            //   </TableCell>
+                            //   <TableCell>{doc.id}</TableCell>
+
+                            //   <TableCell>{doc.companyName}</TableCell>
+                            // </TableRow>
                             <TableRow
                               key={doc.id}
                               hover
-                              onClick={() => handleSelectSearchDoc(doc)}
+                              onClick={() => {
+                                handleSelectSearchDoc(doc);
+                                onCheck(doc.id);
+                              }}
                               sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
                             >
                               <TableCell>
                                 <Checkbox
                                   checked={confirmedDocIds.includes(doc.id)}
-                                  onChange={() => onCheck(doc.id)}
+                                  readOnly
                                 />
                               </TableCell>
                               <TableCell>{doc.invoiceDate}</TableCell>
@@ -829,7 +852,6 @@ const [position, setPosition] = useState({ x: 0, y: 0 });
                                 €{doc.invoiceAmount}
                               </TableCell>
                               <TableCell>{doc.id}</TableCell>
-
                               <TableCell>{doc.companyName}</TableCell>
                             </TableRow>
                           ))}
