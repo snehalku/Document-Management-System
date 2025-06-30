@@ -212,60 +212,61 @@ const CreateUser = () => {
                   </Select>
                 </FormControl>
               </Box> */}
-              <Box sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: 2,
-                  mb: 2,
-                }}>
-
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
-                  flex: 1,
+                  gap: 2,
+                  mb: 2,
                 }}
               >
-                <Typography
-                  variant="body1"
-                  fontWeight="500"
-                  sx={{ mr: 4.5, whiteSpace: "nowrap" }}
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    flex: 1,
+                  }}
                 >
-                  Assign Role <span style={{ color: "red" }}>*</span>
-                </Typography>
-
-                <FormControl sx={{ minWidth: 240 }}>
-                  <Select
-                    multiple
-                    displayEmpty
-                    size="small"
-                    value={selectedRoles}
-                    onChange={handleChange}
-                    input={<OutlinedInput />}
-                    renderValue={(selected) => {
-                      if (selected.length === 0) {
-                        return <>Select Role</>;
-                      }
-                      return selected.join(", ");
-                    }}
-                    sx={{
-                      height: "38px",
-                      fontSize: "0.8rem",
-                      borderRadius: "4px",
-                    }}
+                  <Typography
+                    variant="body1"
+                    fontWeight="500"
+                    sx={{ mr: 4.5, whiteSpace: "nowrap" }}
                   >
-                    <MenuItem disabled value="">
-                      <em>Select Role</em>
-                    </MenuItem>
-                    {roles.map((role) => (
-                      <MenuItem key={role} value={role}>
-                        {role}
+                    Assign Role <span style={{ color: "red" }}>*</span>
+                  </Typography>
+
+                  <FormControl sx={{ minWidth: 240 }}>
+                    <Select
+                      multiple
+                      displayEmpty
+                      size="small"
+                      value={selectedRoles}
+                      onChange={handleChange}
+                      input={<OutlinedInput />}
+                      renderValue={(selected) => {
+                        if (selected.length === 0) {
+                          return <>Select Role</>;
+                        }
+                        return selected.join(", ");
+                      }}
+                      sx={{
+                        height: "38px",
+                        fontSize: "0.8rem",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      <MenuItem disabled value="">
+                        <em>Select Role</em>
                       </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Box>
+                      {roles.map((role) => (
+                        <MenuItem key={role} value={role}>
+                          {role}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
               </Box>
             </Box>
           </Paper>
