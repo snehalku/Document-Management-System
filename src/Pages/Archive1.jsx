@@ -1944,7 +1944,7 @@ const Archive1 = () => {
                         Save
                       </Button>
 
-                      <Button
+                      {/* <Button
                         variant="outlined"
                         color="secondary"
                         disabled={disable}
@@ -1962,7 +1962,7 @@ const Archive1 = () => {
                         }}
                       >
                         Discard
-                      </Button>
+                      </Button> */}
                     </Stack>
                   </Box>
                 </Card>
