@@ -274,23 +274,6 @@ const CreateUser = () => {
           <Box sx={{ p: 1 }}>
             <Stack direction="row" spacing={2} justifyContent="flex-end">
               <Button
-                variant="contained"
-                color="primary"
-                onClick={() => navigate("/user")}
-                sx={{
-                  borderRadius: "10px",
-                  bgcolor: "#99CAFF",
-                  color: "black",
-                  px: 3,
-                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                  "&:hover": {
-                    bgcolor: "#7bb8ff",
-                  },
-                }}
-              >
-                Back
-              </Button>
-              <Button
                 variant="outlined"
                 color="secondary"
                 onClick={() => navigate("/user")}
@@ -304,6 +287,23 @@ const CreateUser = () => {
                   "&:hover": {
                     bgcolor: "#e5e7e8",
                     border: "none",
+                  },
+                }}
+              >
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => navigate("/user")}
+                sx={{
+                  borderRadius: "10px",
+                  bgcolor: "#99CAFF",
+                  color: "black",
+                  px: 3,
+                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                  "&:hover": {
+                    bgcolor: "#7bb8ff",
                   },
                 }}
               >
