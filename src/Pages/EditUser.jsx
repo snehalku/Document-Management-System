@@ -211,82 +211,65 @@ const EditUser = () => {
                 </FormControl>
               </Box> */}
               <Box
-              sx={{
+                sx={{
                   display: "flex",
                   flexDirection: "row",
                   gap: 2,
                   mb: 2,
-                }}>
-
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  flex: 1,
                 }}
               >
-                <Typography
-                  variant="body1"
-                  fontWeight="500"
-                  sx={{ mr: 2.5, whiteSpace: "nowrap" }}
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    flex: 1,
+                  }}
                 >
-                  Assign Role <span style={{ color: "red" }}>*</span>
-                </Typography>
-                <FormControl sx={{ minWidth: 240 }}>
-                  <Select
-                    multiple
-                    displayEmpty
-                    size="small"
-                    value={selectedRoles}
-                    onChange={(e) => setSelectedRoles(e.target.value)}
-                    input={<OutlinedInput />}
-                    renderValue={(selected) => {
-                      if (selected.length === 0) {
-                        return <em>Select Role</em>;
-                      }
-                      return selected.join(", ");
-                    }}
-                    sx={{
-                      height: "38px",
-                      fontSize: "0.8rem",
-                      borderRadius: "4px",
-                    }}
+                  <Typography
+                    variant="body1"
+                    fontWeight="500"
+                    sx={{ mr: 2.5, whiteSpace: "nowrap" }}
                   >
-                    <MenuItem disabled value="">
-                      <em>Select Role</em>
-                    </MenuItem>
-                    {roles.map((role) => (
-                      <MenuItem key={role} value={role}>
-                        {role}
+                    Assign Role <span style={{ color: "red" }}>*</span>
+                  </Typography>
+                  <FormControl sx={{ minWidth: 240 }}>
+                    <Select
+                      multiple
+                      displayEmpty
+                      size="small"
+                      value={selectedRoles}
+                      onChange={(e) => setSelectedRoles(e.target.value)}
+                      input={<OutlinedInput />}
+                      renderValue={(selected) => {
+                        if (selected.length === 0) {
+                          return <em>Select Role</em>;
+                        }
+                        return selected.join(", ");
+                      }}
+                      sx={{
+                        height: "38px",
+                        fontSize: "0.8rem",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      <MenuItem disabled value="">
+                        <em>Select Role</em>
                       </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Box>
+                      {roles.map((role) => (
+                        <MenuItem key={role} value={role}>
+                          {role}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
               </Box>
             </Box>
           </Paper>
 
           <Box sx={{ p: 1 }}>
             <Stack direction="row" spacing={2} justifyContent="flex-end">
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => navigate("/user")}
-                sx={{
-                  borderRadius: "10px",
-                  bgcolor: "#99CAFF",
-                  color: "black",
-                  px: 3,
-                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                  "&:hover": {
-                    bgcolor: "#7bb8ff",
-                  },
-                }}
-              >
-                Back
-              </Button>
               <Button
                 variant="outlined"
                 color="secondary"
@@ -301,6 +284,23 @@ const EditUser = () => {
                   "&:hover": {
                     bgcolor: "#e5e7e8",
                     border: "none",
+                  },
+                }}
+              >
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => navigate("/user")}
+                sx={{
+                  borderRadius: "10px",
+                  bgcolor: "#99CAFF",
+                  color: "black",
+                  px: 3,
+                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                  "&:hover": {
+                    bgcolor: "#7bb8ff",
                   },
                 }}
               >
