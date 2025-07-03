@@ -41,7 +41,7 @@ const mockCustomerDocs = [
     dob: "16-11-1988",
     expiresOn: "2020-01-02",
     nationalId: "AS1234567",
-    filingDate: "2025-06-24",
+    filingDate: "2025-07-02",
   },
   {
     id: "AFB7712",
@@ -52,7 +52,7 @@ const mockCustomerDocs = [
     dob: "01-05-2006",
     expiresOn: "2024-08-22",
     nationalId: "584324",
-    filingDate: "2025-06-24",
+    filingDate: "2025-07-02",
   },
   // {
   //   id: "EEA5924",
@@ -75,7 +75,7 @@ const mockCustomerDocs = [
     dob: "06-09-1986",
     expiresOn: "2030-11-12",
     nationalId: "A123456",
-    filingDate: "2025-06-24",
+    filingDate: "2025-07-02",
   },
   // {
   //   id: "EEA5923",
@@ -97,13 +97,13 @@ const mockCustomerDocs = [
     dob: "08-01-1980",
     expiresOn: "2020-01-02",
     nationalId: "3800108",
-    filingDate: "2025-06-24",
+    filingDate: "2025-07-02",
   },
 ];
 const unitHolderDetails = [
   {
     id: "UH253",
-    transactionDate: "2025-06-24",
+    transactionDate: "2025-07-02",
     transactionNo: "TXN1012",
     transactionType: "Purchase",
     fund: "Fund 2",
@@ -120,7 +120,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH056",
-    transactionDate: "2025-06-24",
+    transactionDate: "2025-07-02",
     transactionNo: "TXN1032",
     transactionType: "Purchase",
     fund: "Fund 5",
@@ -137,7 +137,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH326",
-    transactionDate: "2025-06-24",
+    transactionDate: "2025-07-02",
     transactionNo: "TXN1001",
     transactionType: "Purchase",
     fund: "Fund 1",
@@ -154,7 +154,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH045",
-    transactionDate: "2025-06-24",
+    transactionDate: "2025-07-02",
     transactionNo: "TXN1025",
     transactionType: "Purchase",
     fund: "Fund 4",
@@ -171,7 +171,7 @@ const unitHolderDetails = [
   },
   {
     id: "UH002",
-    transactionDate: "2025-06-24",
+    transactionDate: "2025-07-02",
     transactionNo: "TXN1002",
     transactionType: "Purchase",
     fund: "Fund 6",
@@ -448,7 +448,7 @@ const Archive1 = () => {
         customerId: "",
         issueDate: "",
         expiryDate: "",
-        filingDate: "2025-06-24",
+        filingDate: "2025-07-02",
       });
       setSelectedDoc(null);
       setHideTable(false);

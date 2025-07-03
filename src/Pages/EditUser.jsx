@@ -229,7 +229,7 @@ const EditUser = () => {
                   <Typography
                     variant="body1"
                     fontWeight="500"
-                    sx={{ mr: 2.5, whiteSpace: "nowrap" }}
+                    sx={{ mr: 4.5, whiteSpace: "nowrap" }}
                   >
                     Assign Role <span style={{ color: "red" }}>*</span>
                   </Typography>

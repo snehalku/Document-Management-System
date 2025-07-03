@@ -35,14 +35,14 @@ import NavigateNext from "@mui/icons-material/NavigateNext";
 import SearchIcon from "@mui/icons-material/Search";
 import Header from "../Components/Layout/Header";
 
-const projectData =[
+const projectData = [
   {
     id: "111",
     companyName: "Dassault Systèmes",
     date: "2025-04-30",
     expiresOn: "2032-12-12",
     invoiceNo: "325FR125",
-    invoiceDate: "24-06-2025",
+    invoiceDate: "02-07-2025",
     invoiceAmount: "4725.00",
     invoiceAmountEUR: "52.50",
     docId: "11",
@@ -56,7 +56,7 @@ const projectData =[
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "547896",
-    invoiceDate: "24-06-2025",
+    invoiceDate: "02-07-2025",
     invoiceAmount: "852100",
     invoiceAmountEUR: "94.68",
     docId: "13",
@@ -70,7 +70,7 @@ const projectData =[
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "24-06-2025",
+    invoiceDate: "02-07-2025",
     invoiceAmount: "356900",
     invoiceAmountEUR: "39.66",
     docId: "18",
@@ -84,7 +84,7 @@ const projectData =[
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "123456",
-    invoiceDate: "24-06-2025",
+    invoiceDate: "02-07-2025",
     invoiceAmount: "971.56",
     invoiceAmountEUR: "10.79",
     docId: "16",
@@ -98,7 +98,7 @@ const projectData =[
     date: "2025-04-30",
     expiresOn: "2025-10-22",
     invoiceNo: "457896",
-    invoiceDate: "24-06-2025",
+    invoiceDate: "02-07-2025",
     invoiceAmount: "359900",
     invoiceAmountEUR: "39.99",
     docId: "14",
@@ -213,7 +213,7 @@ const InvoiceDocument = () => {
                 <TextField
                   type="date"
                   size="small"
-                  defaultValue="2025-06-24"
+                  defaultValue="2025-07-02"
                   sx={{ width: 160 }}
                 />
               </Stack>
@@ -531,7 +531,7 @@ const InvoiceDocument = () => {
                     <TableCell align="center">{project.invoiceDate}</TableCell>
                     <TableCell align="center">{project.invoiceNo}</TableCell>
                     <TableCell align="right">
-                     € {project.invoiceAmount}
+                      € {project.invoiceAmount}
                     </TableCell>
                     <TableCell align="center">{project.id}</TableCell>
                     <TableCell>
