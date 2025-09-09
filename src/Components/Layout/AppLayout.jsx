@@ -13,18 +13,17 @@ function AppLayout() {
 
   return (
     <div className="flex flex-col">
-      <Header toggleSidebar={toggleSidebar} />
       <div className="flex" style={{ marginTop: "64px" }}>
         {" "}
-        {/* ✅ FIX: Prevent content from hiding under the fixed header */}
         <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
         <main
           className="flex-1 p-4 bg-gray-100"
           style={{
-            marginLeft: "220px", // ✅ FIX: Prevent content from overlapping sidebar
-            paddingTop: "10px",
+            marginLeft: "145px",
+            // paddingTop: "10px",
             overflowY: parentScroll ? "auto" : "hidden",
-            height: "calc(100vh - 64px)", // ✅ FIX: Ensure content fits within the screen
+            // height: "calc(100vh - 64px)",
+            // height: "100vh",
           }}
         >
           <Outlet context={{ setParentScroll }} />

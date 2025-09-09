@@ -1,430 +1,12 @@
-// import React from "react";
-// import {
-//   Box,
-//   TextField,
-//   Typography,
-//   MenuItem,
-//   Grid,
-//   Paper,
-//   Button,
-//   Stack,
-// } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
-
-// const categories = [
-//   { value: "Finance", label: "Finance" },
-//   { value: "Account", label: "Account" },
-//   { value: "Sales", label: "Sales" },
-// ];
-
-// const subcategories = {
-//   Finance: [
-//     { value: "Checklist", label: "Checklist" },
-//     { value: "Receipt", label: "Receipt" },
-//   ],
-//  Account: [
-//     { value: "Bank Statement", label: "Bank Statement" },
-//     { value: "Invoice", label: "Invoice" },
-//   ],
-//  Sales: [
-//     { value: "Tax", label: "Tax" },
-//     { value: "Checklist", label: "Checklist" },
-//   ],
-// };
-
-// const PreviewDocument = () => {
-//   const navigate = useNavigate();
-//   const [category, setCategory] = React.useState("Account");
-//   const [subcategory, setSubcategory] = React.useState("Invoice");
-
-//   return (
-//     <Box
-//       sx={{
-//         bgcolor: "#f2f4f5",
-//         // minHeight: "88vh",
-//         py: 4,
-//         pl: "70px",
-//         pt: "12px",
-//         pr: "24px",
-//         boxSizing: "border-box",
-//         overflow: "hidden",
-//       }}
-//     >
-//       <Typography variant="h5" component="h1" fontWeight="bold" sx={{ mb: 2 }}>
-//         Preview Document
-//       </Typography>
-
-//       <Paper
-//         elevation={3}
-//         sx={{
-//           p: 4,
-//           borderRadius: "10px",
-//           // mb: 3,
-//           // maxHeight: "78vh",
-//           // overflow: "auto",
-
-//         }}
-//       >
-//         <Grid container spacing={2}>
-//             {/* Left Side - Invoice Image */}
-//             <Grid item size={7} >
-//               <Paper
-//                 elevation={3}
-//                 sx={{
-//                   height: "62vh",
-//                   display: "flex",
-//                   justifyContent: "center",
-//                   alignItems: "center",
-//                 }}
-//               >
-//                 <img
-//                   src="src/assets/invoice.jpg"
-//                   alt="Invoice"
-//                   style={{ maxWidth: "100%", maxHeight: "100%" }}
-//                 />
-//               </Paper>
-//             </Grid>
-
-//             {/* Right Side - Form Fields */}
-//             <Grid item size={5}>
-//               <Paper
-//                 elevation={3}
-//                 sx={{
-//                   height: "57vh",
-//                   p: 2,
-//                   display: "flex",
-//                   flexDirection: "column",
-//                   justifyContent: "space-between",
-//                 }}
-//               >
-//               <Box>
-//                 <Typography variant="h6" mb={2}>
-//                   Invoice Details
-//                 </Typography>
-
-//                 <TextField
-//                   label="Date"
-//                   defaultValue="22/9/2020"
-//                   // type="date"
-//                   fullWidth
-//                   // InputLabelProps={{ shrink: true }}
-//                   sx={{ mb: 2 }}
-//                 />
-
-//                 <TextField
-//                   label="Category"
-//                   select
-//                   value={category}
-//                   onChange={(e) => setCategory(e.target.value)}
-//                   fullWidth
-//                   sx={{ mb: 2 }}
-//                 >
-//                   {categories.map((option) => (
-//                     <MenuItem key={option.value} value={option.value}>
-//                       {option.label}
-//                     </MenuItem>
-//                   ))}
-//                 </TextField>
-
-//                 <TextField
-//                   label="Subcategory"
-//                   select
-//                   value={subcategory}
-//                   onChange={(e) => setSubcategory(e.target.value)}
-//                   fullWidth
-//                   sx={{ mb: 2 }}
-//                   disabled={!category}
-//                 >
-//                   {(subcategories[category] || []).map((option) => (
-//                     <MenuItem key={option.value} value={option.value}>
-//                       {option.label}
-//                     </MenuItem>
-//                   ))}
-//                 </TextField>
-
-//                 <TextField
-//                   // label="Invoice No"
-//                   defaultValue="123456"
-//                   label="Transaction ID"
-//                   fullWidth
-//                   InputLabelProps={{ shrink: true }}
-//                   sx={{ mb: 2 }}
-//                 />
-
-//                 <TextField
-//                   // label="Customer ID"
-//                   defaultValue="123"
-//                   label="Document ID"
-//                   fullWidth
-//                   InputLabelProps={{ shrink: true }}
-//                   sx={{ mb: 2 }}
-//                 />
-//               </Box>
-//             </Paper>
-//           </Grid>
-//         </Grid>
-
-//         {/* Save and Discard Buttons */}
-//         <Stack
-//           direction="row"
-//           spacing={2}
-//           justifyContent="flex-end"
-//           sx={{ mt: 2 }}
-//         >
-//          <Button
-//           variant="contained"
-//           sx={{
-//             borderRadius: "10px",
-//             bgcolor: "#99CAFF",
-//             color: "black",
-//             px: 3,
-//             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Shadow added here
-//             "&:hover": {
-//               bgcolor: "#7bb8ff",
-//             },
-//           }}
-//             onClick={() => {
-//               // navigate("/project1");
-//               navigate("/documents");
-//             }}
-//           >
-//             Save
-//           </Button>
-//           <Button
-//           variant="outlined"
-//           sx={{
-//             borderRadius: "10px",
-//             bgcolor: "#f2f4f5",
-//             px: 3,
-//             color: "black",
-//             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-//             border: "none", // 👈 override outlined variant's default border
-//             "&:hover": {
-//               bgcolor: "#e5e7e8",
-//               border: "none", // 👈 make sure hover state also has no border
-//             },
-//           }}>
-//             Discard
-//           </Button>
-//         </Stack>
-//       </Paper>
-//     </Box>
-//   );
-// };
-
-// export default PreviewDocument;
-
-// import React, { useState, useEffect } from "react";
-// import pan_card from "../assets/pan_card.pdf"
-// import pdf from "../assets/राहुरी बुद्रुक_482_1_अ_1_Satbara.pdf"
-// import {
-//   Box,
-//   Grid,
-//   Paper,
-//   Typography,
-//   TextField,
-//   MenuItem,
-//   Button,
-//   Stack,
-// } from "@mui/material";
-
-// // const mockDocuments = {
-// //   "2025-04-28": [
-// //     {
-// //       name: "kyc_001.jpg",
-// //       type: "image",
-// //       path: "/assets/kyc_001.jpg",
-// //       category: "PAN",
-// //     },
-// //     {
-// //       name: "kyc_002.pdf",
-// //       type: "pdf",
-// //       path: "/assets/kyc_002.pdf",
-// //       category: "Aadhaar",
-// //     },
-// //   ],
-// //   "2025-04-29": [
-// //     {
-// //       name: "kyc_003.jpg",
-// //       type: "image",
-// //       path: "/assets/kyc_003.jpg",
-// //       category: "Voter ID",
-// //     },
-// //   ],
-// // };
-// const mockDocuments = {
-//   "2025-04-30": [
-//     {
-//       name: "pan_card.pdf",
-//       type: "pdf",
-//       path: "/assets/pan_card.pdf",
-//       category: "PAN",
-//     },
-//   ],
-// };
-
-// const PreviewKycPage = () => {
-//   const [selectedDate, setSelectedDate] = useState("");
-//   const [docList, setDocList] = useState([]);
-//   const [selectedDocName, setSelectedDocName] = useState("");
-//   const [selectedDoc, setSelectedDoc] = useState("");
-//   const [category, setCategory] = useState("");
-
-//   // Load document list when date changes
-//   useEffect(() => {
-//     const list = mockDocuments[selectedDate] || [];
-//     setDocList(list);
-//     setSelectedDocName("");
-//     setSelectedDoc(null);
-//   }, [selectedDate]);
-
-//   // Load selected document
-//   useEffect(() => {
-//     const doc = docList.find((d) => d.name === selectedDocName);
-//     if (doc) {
-//       setSelectedDoc(doc);
-//       setCategory(doc.category || "");
-//     }
-//   }, [selectedDocName, docList]);
-
-//   const handleSave = () => {
-//     if (!selectedDoc || !category) return;
-
-//     const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.name.split(".").pop()}`;
-
-//     console.log("Saving to DB:", {
-//       original: selectedDoc.name,
-//       newName: newFileName,
-//       category,
-//       date: selectedDate,
-//     });
-
-//     // Simulate DB save
-//     alert(`Saved as ${newFileName}`);
-//   };
-
-//   const handleDiscard = () => {
-//     alert(`Document ${selectedDoc.name} moved to trash`);
-//     setSelectedDoc(null);
-//     setSelectedDocName("");
-//   };
-
-//   return (
-//     // <Box sx={{ p: 4, backgroundColor: "#f5f5f5", height: "100vh" }}>
-//     <Box
-//           sx={{
-//             bgcolor: "#f2f4f5",
-//             // minHeight: "88vh",
-//             py: 4,
-//             pl: "70px",
-//             pt: "12px",
-//             pr: "24px",
-//             boxSizing: "border-box",
-//             overflow: "hidden",
-//           }}
-//         >
-//       <Typography variant="h5" fontWeight="bold" mb={3}>
-//         KYC Document Verification
-//       </Typography>
-
-//       <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
-//         <Grid container spacing={2}>
-//           {/* Left - Document Preview */}
-//           <Grid item size={7} >
-//             <Paper
-//               sx={{
-//                 height: "65vh",
-//                 display: "flex",
-//                 alignItems: "center",
-//                 justifyContent: "center",
-//                 overflow: "auto",
-//               }}
-//               elevation={2}
-//             >
-//               <iframe
-//                 src={`${pan_card}#toolbar=0`}
-//                 title="PAN Card"
-//                 width="100%"
-//                 height="100%"
-//               />
-//             </Paper>
-//           </Grid>
-
-//           {/* Right - Metadata and Actions */}
-//           <Grid item size={5}>
-//             <Paper sx={{ p: 2, height: "60vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-//               <Box>
-//                 <TextField
-//                   label="Select Date"
-//                   type="date"
-//                   fullWidth
-//                   value={selectedDate}
-//                   onChange={(e) => setSelectedDate(e.target.value)}
-//                   InputLabelProps={{ shrink: true }}
-//                   sx={{ mb: 2 }}
-//                 />
-
-//                 <TextField
-//                   label="KYC Document"
-//                   select
-//                   fullWidth
-//                   value={selectedDocName}
-//                   onChange={(e) => setSelectedDocName(e.target.value)}
-//                   sx={{ mb: 2 }}
-//                   disabled={!docList.length}
-//                 >
-//                   {docList.map((doc) => (
-//                     <MenuItem key={doc.name} value={doc.name}>
-//                       {doc.name}
-//                     </MenuItem>
-//                   ))}
-//                 </TextField>
-
-//                 <TextField
-//                   label="Document Type"
-//                   select
-//                   fullWidth
-//                   value={category}
-//                   onChange={(e) => setCategory(e.target.value)}
-//                   sx={{ mb: 2 }}
-//                   disabled={!selectedDoc}
-//                 >
-//                   <MenuItem value="PAN">PAN</MenuItem>
-//                   <MenuItem value="Aadhaar">Aadhaar</MenuItem>
-//                   <MenuItem value="Voter ID">Voter ID</MenuItem>
-//                   <MenuItem value="Passport">Passport</MenuItem>
-//                 </TextField>
-//               </Box>
-//             </Paper>
-//           </Grid>
-//         </Grid>
-//         <Stack direction="row" spacing={2} justifyContent="flex-end" mt={2}>
-//                 <Button
-//                   variant="contained"
-//                   color="primary"
-//                   onClick={handleSave}
-//                   disabled={!selectedDoc}
-//                 >
-//                   Save
-//                 </Button>
-//                 <Button
-//                   variant="outlined"
-//                   color="secondary"
-//                   onClick={handleDiscard}
-//                   disabled={!selectedDoc}
-//                 >
-//                   Discard
-//                 </Button>
-//               </Stack>
-//       </Paper>
-//     </Box>
-//   );
-// };
-
-// export default PreviewKycPage;
-
 import React, { useState, useEffect } from "react";
-import pan_card from "../assets/pan_card.pdf";
+import passport from "../assets/passport.jpg";
+import idcard from "../assets/idcard.jpg";
+import ID from "../assets/ID.jpg";
+
+// import wordfile from "../assets/wordfile.pdf";
+
+import { Snackbar, Alert, Divider } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {
   Box,
   Grid,
@@ -438,45 +20,90 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  FormControl,
+  Select,
   TableHead,
   TableRow,
   Checkbox,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
 
 const mockCustomerDocs = [
   {
-    id: 1,
-    customerName: "John Doe",
+    id: 105,
+    firstName: "Mets",
+    lastName: "Lilli",
+    transactionId: "TXN123",
     date: "2025-04-30",
-    docName: "pan_card.pdf",
-    docType: "pdf",
-    // path: "/assets/pan_card.pdf",
-    category: "PAN",
-    subcategory: "Primary",
+    dob: "1988-11-16",
+    expiresOn: "2020-01-02",
+    nationalId: "AS1234567",
   },
   {
-    id: 2,
-    customerName: "Jane Smith",
-    date: "2025-04-29",
-    docName: "aadhaar_card.jpg",
-    docType: "image",
-    // path: "/assets/kyc_001.jpg",
-    category: "Aadhaar",
-    subcategory: "Secondary",
+    id: 110,
+    firstName: "John",
+    lastName: "Smith",
+    transactionId: "TXN123",
+    date: "2025-04-30",
+    dob: "1988-11-16",
+    expiresOn: "2032-12-12",
+    nationalId: "A123477",
   },
   {
-    id: 2,
-    customerName: "Jane Smith",
+    id: 100,
+    firstName: "John",
+    lastName: "Livone",
+    transactionId: "TXN123",
+    date: "2025-04-30",
+    dob: "1986-09-06",
+    expiresOn: "2030-11-12",
+    nationalId: "A123456",
+  },
+  {
+    id: 101,
+    firstName: "David R",
+    lastName: "Smith",
+    transactionId: "TXN123",
+    date: "2025-04-30",
+    dob: "2006-05-01",
+    expiresOn: "2024-08-22",
+    nationalId: "5843216645678904",
+  },
+  {
+    id: 102,
+    firstName: "Jane Smith",
+    lastName: "Smith",
+    transactionId: "TXN345",
     date: "2025-04-29",
-    docName: "pan_card.pdf",
-    docType: "pdf",
-    // path: "/assets/kyc_001.jpg",
-    category: "Pan",
-    subcategory: "Secondary",
+    dob: "2007-12-11",
+    expiresOn: "2025-08-12",
+    nationalId: "5843216645678904",
+  },
+  {
+    id: 103,
+    firstName: "Angela ",
+    lastName: "Greene",
+    transactionId: "TXN567",
+    date: "2025-04-28",
+    dob: "2002-11-09",
+    expiresOn: "2028-04-30",
+    nationalId: "5843216619642184",
+  },
+  {
+    id: 104,
+    firstName: "David ",
+    lastName: "Greene",
+    transactionId: "TXN567",
+    date: "2025-04-30",
+    dob: "2002-11-09",
+    expiresOn: "2028-04-30",
+    nationalId: "5843216619642184",
   },
 ];
 
 const PreviewKycPage = () => {
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState("");
   const [docList, setDocList] = useState([]);
   const [selectedDocName, setSelectedDocName] = useState("");
@@ -487,6 +114,22 @@ const PreviewKycPage = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [confirmedDocIds, setConfirmedDocIds] = useState([]);
   const [docIdentifier, setDocIdentifier] = useState("");
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [filterFirstName, setFilterFirstName] = useState("");
+  const [filterLastName, setFilterLastName] = useState("");
+  const [filterDob, setFilterDob] = useState("");
+  const [filterNationalId, setFilterNationalId] = useState("");
+  const [previewDocPath, setPreviewDocPath] = useState(null);
+  const [columnSearch, setColumnSearch] = useState({
+    firstName: "",
+    lastName: "",
+  });
+  const [showSearchInput, setShowSearchInput] = useState({
+    firstName: false,
+    lastName: false,
+  });
+  const [issueDate, setIssueDate] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
 
   useEffect(() => {
     const list = [];
@@ -504,23 +147,18 @@ const PreviewKycPage = () => {
   }, [selectedDocName, docList]);
 
   const handleSearch = () => {
-    const results = mockCustomerDocs.filter(
-      (doc) =>
+    const query = searchCustomer.toLowerCase();
+    const results = mockCustomerDocs.filter((doc) => {
+      return (
+        (!selectedDate || doc.date === selectedDate) &&
         (!searchCustomer ||
-          doc.customerName
-            .toLowerCase()
-            .includes(searchCustomer.toLowerCase())) &&
-        (!selectedDate || doc.date === selectedDate)
-    );
+          doc.firstName.toLowerCase().includes(query) ||
+          doc.lastName.toLowerCase().includes(query) ||
+          doc.dob.toLowerCase().includes(query) ||
+          doc.nationalId.toLowerCase().includes(query))
+      );
+    });
     setSearchResults(results);
-  };
-
-  const handleCheckboxToggle = (docId) => {
-    if (confirmedDocIds.includes(docId)) {
-      setConfirmedDocIds(confirmedDocIds.filter((id) => id !== docId));
-    } else {
-      setConfirmedDocIds([...confirmedDocIds, docId]);
-    }
   };
 
   const handleSelectSearchDoc = (doc) => {
@@ -529,26 +167,30 @@ const PreviewKycPage = () => {
     setSubcategory(doc.subcategory || "");
     setSelectedDocName(doc.docName);
     setSelectedDate(doc.date);
+    setSearchCustomer(doc.customerName);
+    setDocIdentifier("National ID");
+
+    if (!confirmedDocIds.includes(doc.id)) {
+      setConfirmedDocIds([...confirmedDocIds, doc.id]);
+    }
   };
 
   const handleSave = () => {
-    if (!selectedDoc || !docIdentifier || !category || !subcategory) return;
-
-    const newFileName = `kyc_${category}_${Date.now()}.${selectedDoc.docName
-      .split(".")
-      .pop()}`;
-
-    console.log("Saving to DB:", {
-      original: selectedDoc.docName,
-      newName: newFileName,
-      documentId: docIdentifier,
-      category,
-      subcategory,
-      date: selectedDate,
-    });
-
-    alert(`Saved as ${newFileName}`);
-    setConfirmedDocIds([...confirmedDocIds, selectedDoc.id]);
+    setShowSnackbar(true);
+    console.log("Snackbar should show now");
+    setTimeout(() => {
+      setPreviewDocPath(idcard);
+    }, 3000);
+    setSelectedDate(null);
+    setSearchCustomer("");
+    setSearchResults("");
+    setCategory("");
+    setSubcategory("");
+    setIssueDate("");
+    setExpiryDate("");
+    // setTimeout(() => {
+    //   navigate("/documents");
+    // }, 2000);
   };
 
   const handleDiscard = () => {
@@ -562,122 +204,363 @@ const PreviewKycPage = () => {
     <Box
       sx={{
         bgcolor: "#f2f4f5",
-        py: 4,
+        py: 2,
         pl: "70px",
-        pt: "12px",
-        pr: "24px",
-        boxSizing: "border-box",
-        overflow: "hidden",
+        // pt: "12px",
+        // pr: "24px",
+        // boxSizing: "border-box",
+        // overflow: "hidden",
+        // position: "relative",
       }}
     >
-      <Typography variant="h5" fontWeight="bold" mb={3}>
-        KYC Document Verification
+      <Typography variant="h5" fontWeight="bold" mb={1}>
+        Customer KYC
       </Typography>
 
-      {/* Search Parameters */}
-      <Box mb={3}>
-        <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <TextField
-              label="Search by Date"
-              type="date"
-              fullWidth
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              InputLabelProps={{ shrink: true }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <TextField
-              label="Customer Name"
-              fullWidth
-              value={searchCustomer}
-              onChange={(e) => setSearchCustomer(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={4} display="flex" alignItems="center">
-            <Button variant="contained" color="primary" onClick={handleSearch}>
-              Get Data
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-
-      {/* Search Result Table */}
-      {searchResults.length > 0 && (
-        <Paper sx={{ p: 2, mb: 3 }}>
-          {/* <Typography variant="h6" gutterBottom>Search Results</Typography> */}
-          <TableContainer
-            component={Paper}
-            sx={{ mb: 4, borderRadius: "10px 10px 0 0" }}
+      {!selectedDoc && (
+        <>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ mb: 2 }}
+            justifyContent="flex-start"
+            alignItems="center"
           >
-            <Table>
-              <TableHead>
-                <TableRow sx={{ bgcolor: "#99caff" }}>
-                  <TableCell>
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Confirm</Typography>
-                      {/* No ArrowDropDown for Id */}
-                    </Stack>
-                  </TableCell>
+            <Typography variant="subtitle1" fontWeight="bold">
+              Select Department
+            </Typography>
 
-                  <TableCell>
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Customer Name</Typography>
-                      {/* No ArrowDropDown for Id */}
-                    </Stack>
-                  </TableCell>
+            <FormControl sx={{ minWidth: 150 }}>
+              <Select
+                labelId="application-select-label"
+                id="application-select"
+                defaultValue="AML KYC"
+                label="Application"
+                sx={{
+                  bgcolor: "#f2f4f5",
+                  height: "45px",
+                  borderRadius: "5px",
+                  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+                  "& fieldset": {
+                    border: "none",
+                  },
+                  "&.Mui-focused": {
+                    boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.35)",
+                  },
+                }}
+              >
+                <MenuItem value="AML KYC">AML KYC</MenuItem>
+                <MenuItem value="Account">Accounts</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
+          <Box mb={3}>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <TextField
+                  label="Search by Date"
+                  type="date"
+                  fullWidth
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  InputLabelProps={{ shrink: true }}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  label="Search by Customer ID, Customer Name, Date of Birth, National ID"
+                  value={searchCustomer}
+                  onChange={(e) => setSearchCustomer(e.target.value)}
+                  sx={{ width: "475px" }}
+                />
+              </Grid>
+              <Grid item xs={4} display="flex" alignItems="center">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSearch}
+                  sx={{
+                    height: "100%",
+                    borderRadius: "10px",
+                    bgcolor: "#99CAFF",
+                    color: "black",
+                    px: 3,
+                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                    "&:hover": {
+                      bgcolor: "#7bb8ff",
+                    },
+                  }}
+                >
+                  Get Data
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
 
-                  <TableCell>
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Date</Typography>
-                      {/* <ArrowDropDown /> */}
-                    </Stack>
-                  </TableCell>
-
-                  <TableCell>
-                    <Stack direction="row" alignItems="center">
-                      <Typography fontWeight="bold">Document Name</Typography>
-                      {/* <ArrowDropDown /> */}
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {searchResults.map((doc) => (
-                  <TableRow
-                    key={doc.id}
-                    hover
-                    onClick={() => handleSelectSearchDoc(doc)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <TableCell>
-                      <Checkbox
-                        checked={confirmedDocIds.includes(doc.id)}
-                        disabled
-                      />
-                    </TableCell>
-                    <TableCell>{doc.customerName}</TableCell>
-                    <TableCell>{doc.date}</TableCell>
-                    <TableCell>{doc.docName}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
+          {searchResults.length > 0 && (
+            <Paper sx={{ p: 2, mb: 2 }}>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                Select the appropriate record from the list below.
+                <span style={{ color: "red" }}>*</span>
+              </Typography>
+              <TableContainer
+                component={Paper}
+                sx={{ borderRadius: "10px 10px 0 0" }}
+              >
+                <Table size="small">
+                  {" "}
+                  <TableHead>
+                    <TableRow sx={{ bgcolor: "#99caff", "& td": { py: 0.5 } }}>
+                      {" "}
+                      <TableCell>
+                        <Typography fontWeight="bold"></Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Box display="flex" alignItems="center">
+                          <Typography fontWeight="bold" mr={1}>
+                            Customer ID
+                          </Typography>
+                          <SearchIcon
+                            sx={{ cursor: "pointer" }}
+                            onClick={() =>
+                              setShowSearchInput((prev) => ({
+                                ...prev,
+                                id: !prev.id,
+                              }))
+                            }
+                          />
+                        </Box>
+                        {showSearchInput.id && (
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.id}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                id: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                String(doc.id).toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search Customer ID"
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <Box display="flex" alignItems="center">
+                          <Typography fontWeight="bold" mr={1}>
+                            First Name
+                          </Typography>
+                          <SearchIcon
+                            sx={{ cursor: "pointer" }}
+                            onClick={() =>
+                              setShowSearchInput((prev) => ({
+                                ...prev,
+                                firstName: !prev.firstName,
+                              }))
+                            }
+                          />
+                        </Box>
+                        {showSearchInput.firstName && (
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.firstName}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                firstName: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                doc.firstName.toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search First Name"
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <Box display="flex" alignItems="center">
+                          <Typography fontWeight="bold" mr={1}>
+                            Last Name
+                          </Typography>
+                          <SearchIcon
+                            sx={{ cursor: "pointer" }}
+                            onClick={() =>
+                              setShowSearchInput((prev) => ({
+                                ...prev,
+                                lastName: !prev.lastName,
+                              }))
+                            }
+                          />
+                        </Box>
+                        {showSearchInput.lastName && (
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.lastName}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                lastName: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                doc.lastName.toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search Last Name"
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <Box display="flex" alignItems="center">
+                          <Typography fontWeight="bold" mr={1}>
+                            Date of Birth
+                          </Typography>
+                          <SearchIcon
+                            sx={{ cursor: "pointer" }}
+                            onClick={() =>
+                              setShowSearchInput((prev) => ({
+                                ...prev,
+                                dob: !prev.dob,
+                              }))
+                            }
+                          />
+                        </Box>
+                        {showSearchInput.dob && (
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.dob}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                dob: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                doc.dob.toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search Date od Birth"
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <Box display="flex" alignItems="center">
+                          <Typography fontWeight="bold" mr={1}>
+                            ID Number
+                          </Typography>
+                          <SearchIcon
+                            sx={{ cursor: "pointer" }}
+                            onClick={() =>
+                              setShowSearchInput((prev) => ({
+                                ...prev,
+                                nationalId: !prev.nationalId,
+                              }))
+                            }
+                          />
+                        </Box>
+                        {showSearchInput.nationalId && (
+                          <TextField
+                            variant="standard"
+                            size="small"
+                            value={columnSearch.nationalId}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setColumnSearch((prev) => ({
+                                ...prev,
+                                nationalId: value,
+                              }));
+                              const query = value.toLowerCase();
+                              const filtered = mockCustomerDocs.filter((doc) =>
+                                doc.nationalId.toLowerCase().includes(query)
+                              );
+                              setSearchResults(filtered);
+                            }}
+                            placeholder="Search National ID"
+                          />
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {searchResults
+                      .filter(
+                        (doc) =>
+                          doc.firstName
+                            .toLowerCase()
+                            .includes(filterFirstName.toLowerCase()) &&
+                          doc.lastName
+                            .toLowerCase()
+                            .includes(filterLastName.toLowerCase()) &&
+                          doc.dob
+                            .toLowerCase()
+                            .includes(filterDob.toLowerCase()) &&
+                          doc.nationalId
+                            .toLowerCase()
+                            .includes(filterNationalId.toLowerCase())
+                      )
+                      .map((doc) => (
+                        <TableRow
+                          key={doc.id}
+                          hover
+                          onClick={() => handleSelectSearchDoc(doc)}
+                          sx={{ cursor: "pointer", "& td": { py: 0.5 } }}
+                        >
+                          <TableCell>
+                            <Checkbox
+                              checked={confirmedDocIds.includes(doc.id)}
+                              disabled
+                            />
+                          </TableCell>
+                          <TableCell>{doc.id}</TableCell>
+                          <TableCell>{doc.firstName}</TableCell>
+                          <TableCell>{doc.lastName}</TableCell>
+                          {/* <TableCell>{doc.transactionId}</TableCell> */}
+                          <TableCell>{doc.dob}</TableCell>
+                          <TableCell>{doc.nationalId}</TableCell>
+                        </TableRow>
+                      ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          )}
+        </>
       )}
-
-      <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
+      <Paper
+        elevation={3}
+        sx={{
+          p: 2,
+          borderRadius: 2,
+          height: "100vh",
+          overflow: "auto",
+        }}
+      >
         <Grid container spacing={2}>
           <Grid item size={7}>
-            <Paper
+            {/* <Paper
               sx={{
-                height: "65vh",
+                height: "110vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                overflow: "auto",
+                overflow: "hidden",
+                position: "relative",
               }}
               elevation={2}
             >
@@ -685,42 +568,152 @@ const PreviewKycPage = () => {
                 <img
                   src={selectedDoc.path}
                   alt="KYC"
-                  style={{ maxWidth: "100%", maxHeight: "100%" }}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
                 />
               ) : (
                 <iframe
-                  src={`${selectedDoc?.path || pan_card}#toolbar=0`}
+                  src={`${selectedDoc?.path || agecard}#toolbar=0`}
                   title="KYC Document"
-                  width="100%"
-                  height="100%"
-                  style={{ border: "none" }}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                />
+              )}
+            </Paper> */}
+            <Paper
+              sx={{
+                height: "110vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                position: "relative",
+              }}
+              elevation={2}
+            >
+              {previewDocPath ? (
+                previewDocPath.endsWith(".png") ||
+                previewDocPath.endsWith(".jpg") ? (
+                  <img
+                    src={previewDocPath}
+                    alt="Preview"
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                ) : (
+                  <iframe
+                    src={`${previewDocPath}#toolbar=0`}
+                    title="Preview Document"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      border: "none",
+                    }}
+                  />
+                )
+              ) : selectedDoc?.docType === "image" ? (
+                <img
+                  src={selectedDoc.path}
+                  alt="KYC"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              ) : (
+                <iframe
+                  src={`${selectedDoc?.path || ID}#toolbar=0`}
+                  title="KYC Document"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
                 />
               )}
             </Paper>
           </Grid>
 
-          <Grid item xs={5}>
+          <Grid item size={5}>
             <Paper
               sx={{
                 p: 2,
-                height: "60vh",
+                height: "105vh",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
               }}
             >
               <Box>
+                <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
+                  Transaction Data From OLTP System
+                </Typography>
                 <TextField
-                  label="Document ID"
+                  label="Customer ID / Transaction ID"
                   fullWidth
-                  value={docIdentifier}
-                  onChange={(e) => setDocIdentifier(e.target.value)}
+                  value={selectedDoc?.id || ""}
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 />
-
                 <TextField
-                  label="Document Type"
+                  label="First Name"
+                  fullWidth
+                  value={selectedDoc?.firstName || ""}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                />
+                <TextField
+                  label="Last Name"
+                  fullWidth
+                  value={selectedDoc?.lastName || ""}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                />
+                <TextField
+                  label="Date of Birth"
+                  fullWidth
+                  value={selectedDoc?.dob || ""}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                />
+                <TextField
+                  label="ID Number"
+                  fullWidth
+                  value={selectedDoc?.nationalId || ""}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                />
+                <Divider
+                  sx={{
+                    mb: 2,
+                    borderBottomWidth: 2,
+                    borderColor: "black",
+                  }}
+                />
+                <Typography sx={{ mb: 2, fontSize: 20, fontWeight: "bold" }}>
+                  Document
+                </Typography>
+                <TextField
+                  label="Category"
                   select
                   fullWidth
                   value={category}
@@ -728,38 +721,132 @@ const PreviewKycPage = () => {
                   sx={{ mb: 2 }}
                   disabled={!selectedDoc}
                 >
-                  <MenuItem value="PAN">ID PROOF</MenuItem>
-                  <MenuItem value="Aadhaar">ADDRESS PROOF</MenuItem>
-                  {/* <MenuItem value="Voter ID">Voter ID</MenuItem>
-                  <MenuItem value="Passport">Passport</MenuItem> */}
+                  <MenuItem value="passport"> ID Proof</MenuItem>
+                  <MenuItem value="license"> Address Proof</MenuItem>
+                  <MenuItem value="signature"> Signature Proof</MenuItem>
                 </TextField>
+                <TextField
+                  label=" Sub Category"
+                  select
+                  fullWidth
+                  value={subcategory}
+                  onChange={(e) => setSubcategory(e.target.value)}
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                >
+                  <MenuItem value="passport"> Passport</MenuItem>
+                </TextField>
+                <TextField
+                  label="Issue Date"
+                  type="date"
+                  fullWidth
+                  value={issueDate}
+                  onChange={(e) => setIssueDate(e.target.value)}
+                  sx={{ mb: 2 }}
+                  InputLabelProps={{ shrink: true }}
+                  disabled={!selectedDoc}
+                />
 
-                {/* <TextField label="Subcategory" select fullWidth value={subcategory} onChange={(e) => setSubcategory(e.target.value)} sx={{ mb: 2 }} disabled={!selectedDoc}>
-                  <MenuItem value="Primary">Primary</MenuItem>
-                  <MenuItem value="Secondary">Secondary</MenuItem>
-                </TextField> */}
+                <TextField
+                  label="Expiry Date"
+                  type="date"
+                  fullWidth
+                  value={expiryDate}
+                  onChange={(e) => setExpiryDate(e.target.value)}
+                  sx={{ mb: 2 }}
+                  InputLabelProps={{ shrink: true }}
+                  disabled={!selectedDoc}
+                />
+
+                <TextField
+                  label="Version NO."
+                  fullWidth
+                  defaultValue="1.0"
+                  sx={{ mb: 2 }}
+                  disabled={!selectedDoc}
+                />
               </Box>
-              <Stack direction="row" spacing={2} justifyContent="flex-end">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSave}
-                  disabled={!selectedDoc}
-                >
-                  Save
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={handleDiscard}
-                  disabled={!selectedDoc}
-                >
-                  Discard
-                </Button>
-              </Stack>
             </Paper>
           </Grid>
         </Grid>
+        <Box sx={{ p: 1 }}>
+          <Stack direction="row" spacing={2} justifyContent="flex-end">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSave}
+              disabled={selectedDoc === null}
+              sx={{
+                borderRadius: "10px",
+                bgcolor: "#99CAFF",
+                color: "black",
+                px: 3,
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                "&:hover": {
+                  bgcolor: "#7bb8ff",
+                },
+              }}
+            >
+              Save
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={handleDiscard}
+              disabled={!selectedDoc}
+              sx={{
+                borderRadius: "10px",
+                bgcolor: "#f2f4f5",
+                px: 3,
+                color: "black",
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                border: "none",
+                "&:hover": {
+                  bgcolor: "#e5e7e8",
+                  border: "none",
+                },
+              }}
+            >
+              Discard
+            </Button>
+          </Stack>
+          <Snackbar
+            open={showSnackbar}
+            autoHideDuration={3000}
+            onClose={() => {
+              setShowSnackbar(false);
+              const currentIndex = searchResults.findIndex(
+                (doc) => doc.id === selectedDoc.id
+              );
+              const nextDoc = searchResults[currentIndex + 1];
+              setSelectedDoc(nextDoc || null);
+            }}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert
+              onClose={() => setShowSnackbar(false)}
+              severity="success"
+              variant="filled"
+              icon={<CheckCircleIcon sx={{ fontSize: 24, mr: 1 }} />}
+              sx={{
+                width: "100%",
+                fontWeight: 700,
+                fontSize: "1rem",
+                boxShadow: 3,
+                backgroundColor: "#2e7d32",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography fontWeight={500}>
+                  Your document has been saved successfully.
+                </Typography>
+              </Box>
+            </Alert>
+          </Snackbar>
+        </Box>
       </Paper>
     </Box>
   );
